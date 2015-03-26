@@ -6,8 +6,10 @@
     >
 
     <Application.Resources>
-        <Color x:Key="MessageColour">#FF1600FF</Color>
+        <Color x:Key="MessageColour">blue</Color>
+        <Color x:Key="ErrorColour">red</Color>
 
         <SolidColorBrush x:Key="MessageColourBrush" Color="{StaticResource MessageColour}"/>
+        <SolidColorBrush x:Key="ErrorColourBrush" Color="{StaticResource ErrorColour}"/>
     </Application.Resources>
 </Application>
