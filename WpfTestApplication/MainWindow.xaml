@@ -6,6 +6,6 @@
     >
 
     <Grid>
-        <TextBlock TextWrapping="Wrap" Text="Helleu wurruld!!" FontWeight="Bold" FontSize="20" TextAlignment="Center" Foreground="{StaticResource AssertColourBrush}"/>
+        <TextBlock TextWrapping="Wrap" Text="Helleu wurruld!!" FontWeight="Bold" FontSize="20" TextAlignment="Center" Foreground="{StaticResource ErrorColourBrush}"/>
     </Grid>
 </Window>
