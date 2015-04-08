@@ -2,10 +2,24 @@
     x:Class="WpfTestApplication.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="MainWindow" Height="350" Width="525"
+    Title="MainWindow" 
+    Height="350" Width="525"
     >
 
     <Grid>
-        <TextBlock TextWrapping="Wrap" Text="Helleu wurruld!!" FontWeight="Bold" FontSize="20" TextAlignment="Center" Foreground="{StaticResource MessageColourBrush}"/>
+        <StackPanel Margin="10">
+            <TextBlock TextWrapping="Wrap" Text="Helleu wurruld this is WpfTestApplication!!" FontWeight="Bold" FontSize="20" Foreground="{StaticResource MessageColourBrush}"/>
+           
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5">
+                <Button Name="descriptionButton" Click="DescriptionButton_Click" Style="{StaticResource NavigationButtonStyle}">
+                    <TextBlock Text="Description" Style="{StaticResource NavigationTextBlockStyle}"/>
+                </Button>
+                <Button Name="actionButton" Click="ActionButton_Click" Style="{StaticResource NavigationButtonStyle}">
+                    <TextBlock Text="Action" Style="{StaticResource NavigationTextBlockStyle}"/>
+                </Button>
+            </StackPanel>
+            
+            <Frame Name="PageFrame" Margin="0" Source="/Pages/DescriptionPage.xaml" />
+        </StackPanel>
     </Grid>
 </Window>
