@@ -7,8 +7,9 @@
 
     <Application.Resources>
         <Color x:Key="MessageColour">blue</Color>
-        <Color x:Key="ErrorColour">red</Color>
         <Color x:Key="AssertColour">green</Color>
+        <Color x:Key="WarningColour">orange</Color>
+        <Color x:Key="ErrorColour">red</Color>
 
         <SolidColorBrush x:Key="MessageColourBrush" Color="{StaticResource MessageColour}"/>
         <SolidColorBrush x:Key="ErrorColourBrush" Color="{StaticResource ErrorColour}"/>
