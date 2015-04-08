@@ -6,13 +6,10 @@
     >
 
     <Application.Resources>
-        <Color x:Key="MessageColour">blue</Color>
-        <Color x:Key="AssertColour">green</Color>
-        <Color x:Key="WarningColour">orange</Color>
-        <Color x:Key="ErrorColour">red</Color>
-
-        <SolidColorBrush x:Key="MessageColourBrush" Color="{StaticResource MessageColour}"/>
-        <SolidColorBrush x:Key="ErrorColourBrush" Color="{StaticResource ErrorColour}"/>
-        <SolidColorBrush x:Key="AssertColourBrush" Color="{StaticResource AssertColour}"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/WpfTestApplication;component/Styles/GeneralStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

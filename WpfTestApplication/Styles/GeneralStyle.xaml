@@ -1,0 +1,15 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    >
+    
+    <Color x:Key="MessageColour">blue</Color>
+    <Color x:Key="AssertColour">green</Color>
+    <Color x:Key="WarningColour">orange</Color>
+    <Color x:Key="ErrorColour">red</Color>
+
+    <SolidColorBrush x:Key="MessageColourBrush" Color="{StaticResource MessageColour}"/>
+    <SolidColorBrush x:Key="AssertColourBrush" Color="{StaticResource AssertColour}"/>
+    <SolidColorBrush x:Key="WarningColourBrush" Color="{StaticResource WarningColour}"/>
+    <SolidColorBrush x:Key="ErrorColourBrush" Color="{StaticResource ErrorColour}"/>
+</ResourceDictionary>
