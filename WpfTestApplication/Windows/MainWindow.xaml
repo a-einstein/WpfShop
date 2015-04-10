@@ -19,7 +19,7 @@
                 </Button>
             </StackPanel>
             
-            <Frame Name="PageFrame" Margin="0" Source="/Pages/DescriptionPage.xaml" />
+            <Frame Name="PageFrame" Margin="0" Source="/Views/DescriptionView.xaml" />
         </StackPanel>
     </Grid>
 </Window>

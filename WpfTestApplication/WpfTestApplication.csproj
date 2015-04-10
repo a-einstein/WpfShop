@@ -56,11 +56,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Pages\ActionPage.xaml">
+    <Page Include="Views\ActionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\DescriptionPage.xaml">
+    <Page Include="Views\DescriptionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -72,12 +72,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Pages\ActionPage.xaml.cs">
-      <DependentUpon>ActionPage.xaml</DependentUpon>
+    <Compile Include="ViewModels\ActionViewModel.cs" />
+    <Compile Include="Views\ActionView.xaml.cs">
+      <DependentUpon>ActionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\DescriptionPage.xaml.cs">
-      <DependentUpon>DescriptionPage.xaml</DependentUpon>
+    <Compile Include="Views\DescriptionView.xaml.cs">
+      <DependentUpon>DescriptionView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\DescriptionViewModel.cs" />
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

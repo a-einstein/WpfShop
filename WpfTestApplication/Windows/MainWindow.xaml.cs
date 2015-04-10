@@ -12,12 +12,12 @@ namespace WpfTestApplication
 
         private void DescriptionButton_Click(object sender, RoutedEventArgs e)
         {
-            PageFrame.Source = new Uri("/Pages/DescriptionPage.xaml", UriKind.Relative);
+            PageFrame.Source = new Uri("/Views/DescriptionView.xaml", UriKind.Relative);
         }
 
         private void ActionButton_Click(object sender, RoutedEventArgs e)
         {
-            PageFrame.Source = new Uri("/Pages/ActionPage.xaml", UriKind.Relative);
+            PageFrame.Source = new Uri("/Views/ActionView.xaml", UriKind.Relative);
         }
     }
 }
