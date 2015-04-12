@@ -1,8 +1,8 @@
 ﻿<Window 
-    x:Class="WpfTestApplication.MainWindow"
+    x:Class="WpfTestApplication.Views.MainView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="MainWindow" 
+    Title="MainView" 
     Height="350" Width="525"
     >
 
@@ -19,7 +19,7 @@
                 </Button>
             </StackPanel>
             
-            <Frame Name="PageFrame" Margin="0" Source="/Views/DescriptionView.xaml" />
+            <Frame Name="pageFrame" Margin="0" Source="/Views/DescriptionView.xaml" />
         </StackPanel>
     </Grid>
 </Window>
