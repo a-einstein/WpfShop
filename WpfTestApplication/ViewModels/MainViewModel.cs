@@ -12,18 +12,18 @@ namespace WpfTestApplication.ViewModels
             set { descriptionPageSource = value; }
         }
 
-        private Uri actionPageSource = new Uri("/Views/ActionView.xaml", UriKind.Relative);
+        private Uri productsPageSource = new Uri("/Views/ProductsView.xaml", UriKind.Relative);
 
-        public Uri ActionPageSource
+        public Uri ProductsPageSource
         {
-            get { return actionPageSource; }
-            set { actionPageSource = value; }
+            get { return productsPageSource; }
+            set { productsPageSource = value; }
         }
     }
 
     interface IMainViewModel
     {
         Uri DescriptionPageSource { get; set; }
-        Uri ActionPageSource { get; set; }
+        Uri ProductsPageSource { get; set; }
     }
 }
