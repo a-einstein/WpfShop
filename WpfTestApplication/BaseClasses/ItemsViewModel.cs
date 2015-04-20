@@ -1,14 +1,17 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.Practices.Prism.Commands;
 using System.Data;
 using System.Windows;
+using System.Windows.Input;
 
-namespace WpfTestApplication.ViewModels
+namespace WpfTestApplication.BaseClasses
 {
-    abstract class ItemsViewModel : DependencyObject
+    abstract class ItemsViewModel : ViewModel
     {
         public ItemsViewModel()
         {
             LoadData();
+
+            DetailsCommand = new DelegateCommand<object>(ShowDetails);
         }
 
         protected abstract void LoadData();
@@ -18,7 +21,7 @@ namespace WpfTestApplication.ViewModels
         // Note this uses the DataView's standard functionality.
         // Note a CollectionViewSource.View apparently is not able to filter.
         // TODO this could be implemented using a ObservableCollection and/or IQueryable.
-        public DataView ItemsView { get { return Items.DefaultView; } }
+        public DataView ItemsDataView { get { return Items.DefaultView; } }
 
         public static readonly DependencyProperty ItemsFilterProperty =
             DependencyProperty.Register("ItemsFilter", typeof(string), typeof(ItemsViewModel), new PropertyMetadata(new PropertyChangedCallback(OnItemsFilterChanged)));
@@ -38,29 +41,15 @@ namespace WpfTestApplication.ViewModels
 
             viewModel.SetFilter();
         }
-
-         protected virtual void SetFilter()
+        
+        protected virtual void SetFilter()
         {
             Items.CaseSensitive = false;
-            ItemsView.RowFilter = string.Format("Name LIKE '%{0}%'", ItemsFilter);
+            ItemsDataView.RowFilter = string.Format("Name LIKE '%{0}%'", ItemsFilter);
         }
+        
+        public ICommand DetailsCommand { get; private set; }
 
-        protected static bool NullOrEmpty(string value)
-        {
-            return (value == null || value.Trim() == string.Empty);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        // This signal can be particularly useful if a collection is entirely replaced, as the formerly bound collection no longer can.
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            var handler = PropertyChanged;
-
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        protected abstract void ShowDetails(object p);
     }
 }

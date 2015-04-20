@@ -1,5 +1,8 @@
-﻿using WpfTestApplication.Data;
+﻿using System.Windows;
+using WpfTestApplication.BaseClasses;
+using WpfTestApplication.Data;
 using WpfTestApplication.Data.AdventureWorks2014DataSetTableAdapters;
+using WpfTestApplication.Views;
 
 namespace WpfTestApplication.ViewModels
 {
@@ -13,6 +16,14 @@ namespace WpfTestApplication.ViewModels
             productsTableAdapter.Fill(adventureWorksDataSet.Product);
 
             Items = adventureWorksDataSet.Product;
+        }
+
+        protected override void ShowDetails(object p)
+        {
+            Window detailWindow = new ProductView();
+
+            // TODO Get the Item or an Id to retrieve it. How?
+            detailWindow.Show();
         }
     }
 }

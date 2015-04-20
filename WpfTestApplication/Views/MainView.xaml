@@ -13,17 +13,18 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0">
-            <TextBlock  TextWrapping="Wrap" Text="WpfTestApplication" FontWeight="Bold" FontSize="20" Foreground="{StaticResource MessageColourBrush}"/>
+            <TextBlock  TextWrapping="Wrap" Text="WpfTestApplication" FontWeight="Bold" FontSize="20" Foreground="{StaticResource MessageColourBrush}"/>
+
             <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5">
-                <Button x:Name="descriptionButton" Click="DescriptionButton_Click" Style="{StaticResource NavigationButtonStyle}">
-                    <TextBlock Text="Description" Style="{StaticResource NavigationTextBlockStyle}"/>
-                </Button>
                 <Button x:Name="productsButton" Click="ProductsButton_Click" Style="{StaticResource NavigationButtonStyle}">
                     <TextBlock Text="Products" Style="{StaticResource NavigationTextBlockStyle}"/>
+                </Button>
+                <Button x:Name="descriptionButton" Click="DescriptionButton_Click" Style="{StaticResource NavigationButtonStyle}">
+                    <TextBlock Text="About us" Style="{StaticResource NavigationTextBlockStyle}"/>
                 </Button>
             </StackPanel>
         </StackPanel>
 
-        <Frame Grid.Row="1" x:Name="pageFrame" Margin="0" Source="/Views/DescriptionView.xaml" />
+        <Frame Grid.Row="1" x:Name="pageFrame" Margin="0" Source="/Views/ProductsView.xaml" />
     </Grid>
 </Window>

@@ -5,9 +5,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:toolkit="http://schemas.microsoft.com/wpf/2008/toolkit"  
+    xmlns:Converters="clr-namespace:WpfTestApplication.Converters"
     mc:Ignorable="d" 
     d:DesignHeight="400" d:DesignWidth="300"
     >
+    
+    <Page.Resources>
+        <ResourceDictionary>
+            <Converters:PriceFormatter x:Key="PriceFormatter"/>
+        </ResourceDictionary>
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -15,19 +22,32 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,5,0,0">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right">
             <TextBox Text="{Binding ItemsFilter, Mode=TwoWay}" Width="200" Height="20" Margin="0,0,5,0"/>
             <Button Content="Filter" Height="20"/>
         </StackPanel>
 
         <Border Grid.Row="1" Margin="0,5,0,0" BorderBrush="Black" BorderThickness="1">
             <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding ItemsView, UpdateSourceTrigger=PropertyChanged}">
+                <ItemsControl ItemsSource="{Binding ItemsDataView, UpdateSourceTrigger=PropertyChanged}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border Margin="3" BorderBrush="Black" BorderThickness="1">
-                                <TextBlock Text="{Binding Name}" Margin="2" Padding="2" Width="150" TextWrapping="Wrap"/>
-                            </Border>
+                            <Border Margin="3" BorderBrush="Black" BorderThickness="1" Width="200">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0" Margin="3" Width="60" Height="80" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                        <Image/>
+                                    </Border>
+                                    <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                                        <TextBlock Text="{Binding Name}" Margin="3" Padding="2" TextWrapping="Wrap" FontWeight="Bold" FontSize="16" HorizontalAlignment="Right"/>
+                                        <TextBlock Text="{Binding ListPrice, Converter={StaticResource PriceFormatter}}" Margin="3" Padding="2" FontWeight="Bold" FontSize="12" HorizontalAlignment="Right"/>
+                                        <Button Content="Description" Command="{Binding DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" Margin="3" HorizontalAlignment="Right"/>
+                                    </StackPanel>
+                                </Grid>
+                             </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
 
