@@ -12,9 +12,9 @@ namespace WpfTestApplication.Views
             DataContext = new MainViewModel();
         }
 
-        private void DescriptionButton_Click(object sender, RoutedEventArgs e)
+        private void AboutButton_Click(object sender, RoutedEventArgs e)
         {
-            pageFrame.Source = (DataContext as IMainViewModel).DescriptionPageSource;
+            pageFrame.Source = (DataContext as IMainViewModel).AboutPageSource;
         }
 
         private void ProductsButton_Click(object sender, RoutedEventArgs e)

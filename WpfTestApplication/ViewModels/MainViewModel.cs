@@ -4,12 +4,12 @@ namespace WpfTestApplication.ViewModels
 {
     class MainViewModel : IMainViewModel
     {
-        private Uri descriptionPageSource = new Uri("/Views/DescriptionView.xaml", UriKind.Relative);
+        private Uri aboutPageSource = new Uri("/Views/AboutView.xaml", UriKind.Relative);
 
-        public Uri DescriptionPageSource
+        public Uri AboutPageSource
         {
-            get { return descriptionPageSource; }
-            set { descriptionPageSource = value; }
+            get { return aboutPageSource; }
+            set { aboutPageSource = value; }
         }
 
         private Uri productsPageSource = new Uri("/Views/ProductsView.xaml", UriKind.Relative);
@@ -23,7 +23,7 @@ namespace WpfTestApplication.ViewModels
 
     interface IMainViewModel
     {
-        Uri DescriptionPageSource { get; set; }
+        Uri AboutPageSource { get; set; }
         Uri ProductsPageSource { get; set; }
     }
 }

@@ -11,5 +11,10 @@ namespace WpfTestApplication.Views
 
             DataContext = new ProductViewModel();
         }
+
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

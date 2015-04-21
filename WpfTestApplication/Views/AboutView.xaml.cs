@@ -3,13 +3,13 @@ using WpfTestApplication.ViewModels;
 
 namespace WpfTestApplication.Views
 {
-    public partial class DescriptionView : Page
+    public partial class AboutView : Page
     {
-        public DescriptionView()
+        public AboutView()
         {
             InitializeComponent();
 
-            DataContext = new DescriptionViewModel();
+            DataContext = new AboutViewModel();
         }
     }
 }

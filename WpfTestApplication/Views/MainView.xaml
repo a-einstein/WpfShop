@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:WpfTestApplication="clr-namespace:WpfTestApplication" 
     x:Class="WpfTestApplication.Views.MainView"
+    Title="WpfTestApplication"
     Height="700" Width="500"
     >
 
@@ -19,7 +20,7 @@
                 <Button x:Name="productsButton" Click="ProductsButton_Click" Style="{StaticResource NavigationButtonStyle}">
                     <TextBlock Text="Products" Style="{StaticResource NavigationTextBlockStyle}"/>
                 </Button>
-                <Button x:Name="descriptionButton" Click="DescriptionButton_Click" Style="{StaticResource NavigationButtonStyle}">
+                <Button x:Name="aboutButton" Click="AboutButton_Click" Style="{StaticResource NavigationButtonStyle}">
                     <TextBlock Text="About us" Style="{StaticResource NavigationTextBlockStyle}"/>
                 </Button>
             </StackPanel>
