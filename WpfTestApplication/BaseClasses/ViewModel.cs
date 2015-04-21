@@ -4,7 +4,7 @@ using System.Windows.Input;
 
 namespace WpfTestApplication.BaseClasses
 {
-    abstract class ViewModel : DependencyObject
+    abstract class ViewModel : DependencyObject, INotifyPropertyChanged
     {
         public ICommand OrderCommand { get; set; }
 

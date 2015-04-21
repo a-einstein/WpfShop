@@ -1,9 +1,18 @@
-﻿using System.Data;
-
+﻿
 namespace WpfTestApplication.BaseClasses
 {
-    abstract class ItemViewModel : ViewModel
+    abstract class ItemViewModel<T> : ViewModel
     {
-        protected DataRow Item;
+        private T item;
+
+        public T Item
+        {
+            get { return item; }
+            set
+            {
+                item = value;
+                RaisePropertyChanged("Item");
+            }
+        }
     }
 }

@@ -21,8 +21,8 @@
             <Image/>
         </Border>
         <StackPanel Grid.Column="1" HorizontalAlignment="Right">
-            <TextBlock Text="{Binding Name}" Margin="3" Padding="2" TextWrapping="Wrap" FontWeight="Bold" FontSize="16" HorizontalAlignment="Right"/>
-            <TextBlock Text="{Binding ListPrice, Converter={StaticResource PriceFormatter}}" Margin="3" Padding="2" FontWeight="Bold" FontSize="12" HorizontalAlignment="Right"/>
+            <TextBlock Text="{Binding Item.Name}" Margin="3" Padding="2" TextWrapping="Wrap" FontWeight="Bold" FontSize="16" HorizontalAlignment="Right"/>
+            <TextBlock Text="{Binding Item.ListPrice, Converter={StaticResource PriceFormatter}}" Margin="3" Padding="2" FontWeight="Bold" FontSize="12" HorizontalAlignment="Right"/>
         </StackPanel>
     </Grid>
 </Window>

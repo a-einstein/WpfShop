@@ -1,8 +1,10 @@
-﻿using System.Windows;
+﻿using System.Data;
+using System.Windows;
 using WpfTestApplication.BaseClasses;
 using WpfTestApplication.Data;
 using WpfTestApplication.Data.AdventureWorks2014DataSetTableAdapters;
 using WpfTestApplication.Views;
+using ProductRow = WpfTestApplication.Data.AdventureWorks2014DataSet.ProductRow;
 
 namespace WpfTestApplication.ViewModels
 {
@@ -18,12 +20,16 @@ namespace WpfTestApplication.ViewModels
             Items = adventureWorksDataSet.Product;
         }
 
-        protected override void ShowDetails(object p)
+        protected override void ShowDetails(object parameter)
         {
-            Window detailWindow = new ProductView();
+            RoutedEventArgs routedEventArgs = parameter as RoutedEventArgs;
 
-            // TODO Get the Item or an Id to retrieve it. How?
-            detailWindow.Show();
+            Window productView = new ProductView();
+
+            ProductViewModel productViewModel = productView.DataContext as ProductViewModel;
+            productViewModel.Item = ((routedEventArgs.Source as FrameworkElement).DataContext as DataRowView).Row as ProductRow;
+
+            productView.Show();
         }
     }
 }

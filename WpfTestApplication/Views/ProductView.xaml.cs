@@ -9,7 +9,6 @@ namespace WpfTestApplication.Views
         {
             InitializeComponent();
 
-            // Crude MVVM implementation.
             DataContext = new ProductViewModel();
         }
     }
