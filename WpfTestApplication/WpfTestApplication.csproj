@@ -80,6 +80,8 @@
     <Compile Include="BaseClasses\ViewModel.cs" />
     <Compile Include="BaseClasses\ItemsViewModel.cs" />
     <Compile Include="Converters\PriceFormatter.cs" />
+    <Compile Include="Converters\WeightFormatter.cs" />
+    <Compile Include="Converters\SizeFormatter.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="Views\ProductView.xaml.cs">
       <DependentUpon>ProductView.xaml</DependentUpon>
@@ -146,16 +148,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Data\AdventureWorks2014DataSet.xsc">
-      <DependentUpon>AdventureWorks2014DataSet.xsd</DependentUpon>
-    </None>
     <None Include="Data\AdventureWorks2014DataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>AdventureWorks2014DataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Data\AdventureWorks2014DataSet.xss">
-      <DependentUpon>AdventureWorks2014DataSet.xsd</DependentUpon>
+      <LastGenOutput>AdventureWorks2014DataSet1.Designer.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

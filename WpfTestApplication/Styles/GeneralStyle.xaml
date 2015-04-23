@@ -30,4 +30,9 @@
         </Setter>
     </Style>
 
+    <Style x:Key="DetailsTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
 </ResourceDictionary>

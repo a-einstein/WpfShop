@@ -10,6 +10,8 @@
     <Window.Resources>
         <ResourceDictionary>
             <Converters:PriceFormatter x:Key="PriceFormatter"/>
+            <Converters:SizeFormatter x:Key="SizeFormatter"/>
+            <Converters:WeightFormatter x:Key="WeightFormatter"/>
         </ResourceDictionary>
     </Window.Resources>
 
@@ -27,8 +29,25 @@
             <Image/>
         </Border>
         <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right">
-            <TextBlock Text="{Binding Item.Name}" Margin="3" Padding="2" TextWrapping="Wrap" FontWeight="Bold" FontSize="16" HorizontalAlignment="Right"/>
-            <TextBlock Text="{Binding Item.ListPrice, Converter={StaticResource PriceFormatter}}" Margin="3" Padding="2" FontWeight="Bold" FontSize="12" HorizontalAlignment="Right"/>
+            <TextBlock Text="{Binding Item.Name}" Style="{StaticResource DetailsTextBlockStyle}" FontWeight="Bold" FontSize="16"/>
+            <TextBlock Text="{Binding Item.ListPrice, Converter={StaticResource PriceFormatter}}" Style="{StaticResource DetailsTextBlockStyle}" FontWeight="Bold" FontSize="12"/>
+            <TextBlock Style="{StaticResource DetailsTextBlockStyle}">
+                <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResource SizeFormatter}">
+                        <Binding Path="Item.Size"/>
+                        <Binding Path="Item.SizeUnitMeasureCode"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock Style="{StaticResource DetailsTextBlockStyle}">
+                <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResource WeightFormatter}">
+                        <Binding Path="Item.Weight"/>
+                        <Binding Path="Item.WeightUnitMeasureCode"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock Text="{Binding Item.Color}" Style="{StaticResource DetailsTextBlockStyle}"/>
         </StackPanel>
         <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Name="closeButton" Content="Close" Click="closeButton_Click" Margin="3" Width="50" HorizontalAlignment="Right"/>
     </Grid>

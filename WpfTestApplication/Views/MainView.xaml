@@ -4,7 +4,7 @@
     xmlns:WpfTestApplication="clr-namespace:WpfTestApplication" 
     x:Class="WpfTestApplication.Views.MainView"
     Title="WpfTestApplication"
-    Height="700" Width="500"
+    Height="900" Width="700"
     >
 
     <Grid Margin="10">

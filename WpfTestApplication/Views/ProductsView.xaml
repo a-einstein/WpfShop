@@ -14,6 +14,8 @@
     <Page.Resources>
         <ResourceDictionary>
             <Converters:PriceFormatter x:Key="PriceFormatter"/>
+            <Converters:SizeFormatter x:Key="SizeFormatter"/>
+            <Converters:WeightFormatter x:Key="WeightFormatter"/>
         </ResourceDictionary>
     </Page.Resources>
 
@@ -33,7 +35,7 @@
                 <ItemsControl ItemsSource="{Binding ItemsDataView, UpdateSourceTrigger=PropertyChanged}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border Margin="3" BorderBrush="Black" BorderThickness="1" Width="200">
+                            <Border Margin="3" BorderBrush="Black" BorderThickness="1" Width="300">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
@@ -43,9 +45,26 @@
                                         <Image/>
                                     </Border>
                                     <StackPanel Grid.Column="1" HorizontalAlignment="Right">
-                                        <TextBlock Text="{Binding Name}" Margin="3" Padding="2" TextWrapping="Wrap" FontWeight="Bold" FontSize="16" HorizontalAlignment="Right"/>
-                                        <TextBlock Text="{Binding ListPrice, Converter={StaticResource PriceFormatter}}" Margin="3" Padding="2" FontWeight="Bold" FontSize="12" HorizontalAlignment="Right"/>
-                                        <Button Content="Description" Margin="3" HorizontalAlignment="Right">
+                                        <TextBlock Text="{Binding Name}" Style="{StaticResource DetailsTextBlockStyle}" FontWeight="Bold" FontSize="16"/>
+                                        <TextBlock Text="{Binding ListPrice, Converter={StaticResource PriceFormatter}}" Style="{StaticResource DetailsTextBlockStyle}" FontWeight="Bold" FontSize="12"/>
+                                        <TextBlock Style="{StaticResource DetailsTextBlockStyle}">
+                                            <TextBlock.Text>
+                                                <MultiBinding Converter="{StaticResource SizeFormatter}">
+                                                    <Binding Path="Size"/>
+                                                    <Binding Path="SizeUnitMeasureCode"/>
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                        <TextBlock Style="{StaticResource DetailsTextBlockStyle}">
+                                            <TextBlock.Text>
+                                                <MultiBinding Converter="{StaticResource WeightFormatter}">
+                                                    <Binding Path="Weight"/>
+                                                    <Binding Path="WeightUnitMeasureCode"/>
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding Color}" Style="{StaticResource DetailsTextBlockStyle}" TextWrapping="Wrap"/>
+                                        <Button Content="Details" Margin="3" HorizontalAlignment="Right">
                                             <interactivity:Interaction.Triggers>
                                                 <interactivity:EventTrigger EventName="Click">
                                                     <prism:InvokeCommandAction Command="{Binding DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" />

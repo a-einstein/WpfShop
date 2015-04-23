@@ -5915,7 +5915,7 @@ SELECT WorkOrderID, ProductID, OperationSequence, LocationID, ScheduledStartDate
               </xs:element>
               <xs:element name="MakeFlag" msprop:Generator_ColumnVarNameInTable="columnMakeFlag" msprop:Generator_ColumnPropNameInRow="MakeFlag" msprop:Generator_ColumnPropNameInTable="MakeFlagColumn" msprop:Generator_UserColumnName="MakeFlag" type="xs:boolean" />
               <xs:element name="FinishedGoodsFlag" msprop:Generator_ColumnVarNameInTable="columnFinishedGoodsFlag" msprop:Generator_ColumnPropNameInRow="FinishedGoodsFlag" msprop:Generator_ColumnPropNameInTable="FinishedGoodsFlagColumn" msprop:Generator_UserColumnName="FinishedGoodsFlag" type="xs:boolean" />
-              <xs:element name="Color" msprop:Generator_ColumnVarNameInTable="columnColor" msprop:Generator_ColumnPropNameInRow="Color" msprop:Generator_ColumnPropNameInTable="ColorColumn" msprop:Generator_UserColumnName="Color" minOccurs="0">
+              <xs:element name="Color" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="Color" msprop:Generator_ColumnVarNameInTable="columnColor" msprop:Generator_ColumnPropNameInTable="ColorColumn" msprop:Generator_UserColumnName="Color" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="15" />
@@ -5926,28 +5926,28 @@ SELECT WorkOrderID, ProductID, OperationSequence, LocationID, ScheduledStartDate
               <xs:element name="ReorderPoint" msprop:Generator_ColumnVarNameInTable="columnReorderPoint" msprop:Generator_ColumnPropNameInRow="ReorderPoint" msprop:Generator_ColumnPropNameInTable="ReorderPointColumn" msprop:Generator_UserColumnName="ReorderPoint" type="xs:short" />
               <xs:element name="StandardCost" msprop:Generator_ColumnVarNameInTable="columnStandardCost" msprop:Generator_ColumnPropNameInRow="StandardCost" msprop:Generator_ColumnPropNameInTable="StandardCostColumn" msprop:Generator_UserColumnName="StandardCost" type="xs:decimal" />
               <xs:element name="ListPrice" msprop:Generator_ColumnVarNameInTable="columnListPrice" msprop:Generator_ColumnPropNameInRow="ListPrice" msprop:Generator_ColumnPropNameInTable="ListPriceColumn" msprop:Generator_UserColumnName="ListPrice" type="xs:decimal" />
-              <xs:element name="Size" msprop:Generator_ColumnVarNameInTable="columnSize" msprop:Generator_ColumnPropNameInRow="Size" msprop:Generator_ColumnPropNameInTable="SizeColumn" msprop:Generator_UserColumnName="Size" minOccurs="0">
+              <xs:element name="Size" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="Size" msprop:Generator_ColumnVarNameInTable="columnSize" msprop:Generator_ColumnPropNameInTable="SizeColumn" msprop:Generator_UserColumnName="Size" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="5" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="SizeUnitMeasureCode" msprop:Generator_ColumnVarNameInTable="columnSizeUnitMeasureCode" msprop:Generator_ColumnPropNameInRow="SizeUnitMeasureCode" msprop:Generator_ColumnPropNameInTable="SizeUnitMeasureCodeColumn" msprop:Generator_UserColumnName="SizeUnitMeasureCode" minOccurs="0">
+              <xs:element name="SizeUnitMeasureCode" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="SizeUnitMeasureCode" msprop:Generator_ColumnVarNameInTable="columnSizeUnitMeasureCode" msprop:Generator_ColumnPropNameInTable="SizeUnitMeasureCodeColumn" msprop:Generator_UserColumnName="SizeUnitMeasureCode" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="3" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="WeightUnitMeasureCode" msprop:Generator_ColumnVarNameInTable="columnWeightUnitMeasureCode" msprop:Generator_ColumnPropNameInRow="WeightUnitMeasureCode" msprop:Generator_ColumnPropNameInTable="WeightUnitMeasureCodeColumn" msprop:Generator_UserColumnName="WeightUnitMeasureCode" minOccurs="0">
+              <xs:element name="WeightUnitMeasureCode" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="WeightUnitMeasureCode" msprop:Generator_ColumnVarNameInTable="columnWeightUnitMeasureCode" msprop:Generator_ColumnPropNameInTable="WeightUnitMeasureCodeColumn" msprop:Generator_UserColumnName="WeightUnitMeasureCode" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="3" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Weight" msprop:Generator_ColumnVarNameInTable="columnWeight" msprop:Generator_ColumnPropNameInRow="Weight" msprop:Generator_ColumnPropNameInTable="WeightColumn" msprop:Generator_UserColumnName="Weight" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Weight" msprop:nullValue="0" msprop:Generator_ColumnPropNameInRow="Weight" msprop:Generator_ColumnVarNameInTable="columnWeight" msprop:Generator_ColumnPropNameInTable="WeightColumn" msprop:Generator_UserColumnName="Weight" type="xs:decimal" minOccurs="0" />
               <xs:element name="DaysToManufacture" msprop:Generator_ColumnVarNameInTable="columnDaysToManufacture" msprop:Generator_ColumnPropNameInRow="DaysToManufacture" msprop:Generator_ColumnPropNameInTable="DaysToManufactureColumn" msprop:Generator_UserColumnName="DaysToManufacture" type="xs:int" />
               <xs:element name="ProductLine" msprop:Generator_ColumnVarNameInTable="columnProductLine" msprop:Generator_ColumnPropNameInRow="ProductLine" msprop:Generator_ColumnPropNameInTable="ProductLineColumn" msprop:Generator_UserColumnName="ProductLine" minOccurs="0">
                 <xs:simpleType>
