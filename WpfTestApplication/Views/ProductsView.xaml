@@ -16,6 +16,7 @@
             <Converters:PriceFormatter x:Key="PriceFormatter"/>
             <Converters:SizeFormatter x:Key="SizeFormatter"/>
             <Converters:WeightFormatter x:Key="WeightFormatter"/>
+            <Converters:ByteArrayToBitmapImageConverter x:Key="ByteArrayToBitmapImageConverter"/>
         </ResourceDictionary>
     </Page.Resources>
 
@@ -27,7 +28,7 @@
         
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right">
             <TextBox Text="{Binding ItemsFilter, Mode=TwoWay}" Width="200" Height="20" Margin="0,0,5,0"/>
-            <Button Content="Filter" Height="20"/>
+            <Button Content="Filter names" Height="20"/>
         </StackPanel>
 
         <Border Grid.Row="1" Margin="0,5,0,0" BorderBrush="Black" BorderThickness="1">
@@ -41,8 +42,8 @@
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Border Grid.Column="0" Margin="3" Width="60" Height="80" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                        <Image/>
+                                    <Border Grid.Column="0" Margin="3" Width="80" Height="80" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                        <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}"/>
                                     </Border>
                                     <StackPanel Grid.Column="1" HorizontalAlignment="Right">
                                         <TextBlock Text="{Binding Name}" Style="{StaticResource DetailsTextBlockStyle}" FontWeight="Bold" FontSize="16"/>

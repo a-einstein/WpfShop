@@ -79,9 +79,15 @@
     </ApplicationDefinition>
     <Compile Include="BaseClasses\ViewModel.cs" />
     <Compile Include="BaseClasses\ItemsViewModel.cs" />
+    <Compile Include="Converters\ByteArrayToBitmapImageConverter.cs" />
     <Compile Include="Converters\PriceFormatter.cs" />
     <Compile Include="Converters\WeightFormatter.cs" />
     <Compile Include="Converters\SizeFormatter.cs" />
+    <Compile Include="Data\ProductsOverviewDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductsOverviewDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="Views\ProductView.xaml.cs">
       <DependentUpon>ProductView.xaml</DependentUpon>
@@ -152,6 +158,11 @@
       <Generator>MSDataSetGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>AdventureWorks2014DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Data\ProductsOverviewDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProductsOverviewDataSet.Designer.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

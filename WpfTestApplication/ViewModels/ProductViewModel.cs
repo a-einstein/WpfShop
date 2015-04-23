@@ -1,9 +1,9 @@
 ﻿using WpfTestApplication.BaseClasses;
-using ProductRow = WpfTestApplication.Data.AdventureWorks2014DataSet.ProductRow;
+using ProductsOverviewRow = WpfTestApplication.Data.ProductsOverviewDataSet.ProductsOverviewRow;
 
 namespace WpfTestApplication.ViewModels
 {
-    class ProductViewModel : ItemViewModel<ProductRow>
+    class ProductViewModel : ItemViewModel<ProductsOverviewRow>
     {
     }
 }

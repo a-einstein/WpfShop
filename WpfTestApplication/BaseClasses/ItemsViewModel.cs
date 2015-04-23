@@ -32,9 +32,8 @@ namespace WpfTestApplication.BaseClasses
             set { SetValue(ItemsFilterProperty, value); }
         }
 
-        // Note this event appears on leaving the control.
-        // TODO The action should be hooked up to the Button.
-        // TODO The action should be hooked up to the Enter key.
+        // Note this event appears on leaving the control, for instance tabbing out. Pressing the search button indirectly has the same effect.
+        // TODO The action should be hooked up to the Enter key. This would demand implementation of a behaviour.
         private static void OnItemsFilterChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
         {
             ItemsViewModel viewModel = dependencyObject as ItemsViewModel;
