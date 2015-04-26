@@ -46,7 +46,6 @@
                                         <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}"/>
                                     </Border>
 
-                                    <!--Note that for the Description there seemed to be something wrong in the AdventureWorks DB in the relations of ProductModelProductDescriptionCulture. -->
                                     <StackPanel Grid.Column="1" HorizontalAlignment="Right">
                                         <TextBlock Text="{Binding Name}" Style="{StaticResource DetailsTextBlockStyle}" FontWeight="Bold" FontSize="16"/>
                                         <TextBlock Text="{Binding ListPrice, Converter={StaticResource PriceFormatter}}" Style="{StaticResource DetailsTextBlockStyle}" FontWeight="Bold" FontSize="12"/>
