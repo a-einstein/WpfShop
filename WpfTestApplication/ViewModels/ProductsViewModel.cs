@@ -1,10 +1,10 @@
 ﻿using System.Data;
 using System.Windows;
 using WpfTestApplication.BaseClasses;
-using WpfTestApplication.Data;
-using WpfTestApplication.Data.ProductsOverviewDataSetTableAdapters;
+using WpfTestApplication.Data.ProductsDataSetTableAdapters;
 using WpfTestApplication.Views;
-using ProductsOverviewRow = WpfTestApplication.Data.ProductsOverviewDataSet.ProductsOverviewRow;
+using ProductsOverviewDataTable = WpfTestApplication.Data.ProductsDataSet.ProductsOverviewDataTable;
+using ProductsOverviewRow = WpfTestApplication.Data.ProductsDataSet.ProductsOverviewRow;
 
 namespace WpfTestApplication.ViewModels
 {
@@ -12,12 +12,11 @@ namespace WpfTestApplication.ViewModels
     {
         protected override void LoadData()
         {
-            ProductsOverviewDataSet adventureWorksDataSet = new ProductsOverviewDataSet();
-
             ProductsOverviewTableAdapter productsTableAdapter = new ProductsOverviewTableAdapter();
-            productsTableAdapter.Fill(adventureWorksDataSet.ProductsOverview);
 
-            Items = adventureWorksDataSet.ProductsOverview;
+            ProductsOverviewDataTable productsOverviewDataTable = productsTableAdapter.GetData();
+
+            Items = productsOverviewDataTable;
         }
 
         protected override void ShowDetails(object parameter)
@@ -27,7 +26,7 @@ namespace WpfTestApplication.ViewModels
             Window productView = new ProductView();
 
             ProductViewModel productViewModel = productView.DataContext as ProductViewModel;
-            productViewModel.Item = ((routedEventArgs.Source as FrameworkElement).DataContext as DataRowView).Row as ProductsOverviewRow;
+            productViewModel.ItemId = (((routedEventArgs.Source as FrameworkElement).DataContext as DataRowView).Row as ProductsOverviewRow).ProductID;
 
             productView.Show();
         }

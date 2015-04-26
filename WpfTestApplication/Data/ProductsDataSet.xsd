@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ProductsDataSet" targetNamespace="http://tempuri.org/ProductsOverviewDataSet.xsd" xmlns:mstns="http://tempuri.org/ProductsOverviewDataSet.xsd" xmlns="http://tempuri.org/ProductsOverviewDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="AdventureWorks2014ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="AdventureWorks2014ConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.WpfTestApplication.Properties.Settings.GlobalReference.Default.AdventureWorks2014ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ProductsOverviewTableAdapter" GeneratorDataComponentClassName="ProductsOverviewTableAdapter" Name="ProductsOverview" UserDataComponentName="ProductsOverviewTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AdventureWorks2014ConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Production.Product.ProductID, Production.Product.Name, Production.Product.Color, Production.Product.ListPrice, Production.Product.Size, Production.Product.SizeUnitMeasureCode, 
+                         Production.Product.WeightUnitMeasureCode, Production.Product.Weight, Production.ProductPhoto.ThumbNailPhoto
+FROM            Production.ProductPhoto INNER JOIN
+                         Production.ProductProductPhoto ON Production.ProductPhoto.ProductPhotoID = Production.ProductProductPhoto.ProductPhotoID RIGHT OUTER JOIN
+                         Production.Product ON Production.ProductProductPhoto.ProductID = Production.Product.ProductID
+ORDER BY Production.Product.Name</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ProductID" DataSetColumn="ProductID" />
+              <Mapping SourceColumn="Name" DataSetColumn="Name" />
+              <Mapping SourceColumn="Color" DataSetColumn="Color" />
+              <Mapping SourceColumn="ListPrice" DataSetColumn="ListPrice" />
+              <Mapping SourceColumn="Size" DataSetColumn="Size" />
+              <Mapping SourceColumn="SizeUnitMeasureCode" DataSetColumn="SizeUnitMeasureCode" />
+              <Mapping SourceColumn="WeightUnitMeasureCode" DataSetColumn="WeightUnitMeasureCode" />
+              <Mapping SourceColumn="Weight" DataSetColumn="Weight" />
+              <Mapping SourceColumn="ThumbNailPhoto" DataSetColumn="ThumbNailPhoto" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ProductDetailsTableAdapter" GeneratorDataComponentClassName="ProductDetailsTableAdapter" Name="ProductDetails" UserDataComponentName="ProductDetailsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AdventureWorks2014ConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Production.Product.ProductID, Production.Product.Name, Production.Product.ListPrice, Production.Product.Color, Production.Product.Size, Production.Product.SizeUnitMeasureCode, Production.Product.Weight, 
+                         Production.Product.WeightUnitMeasureCode, Production.ProductPhoto.LargePhoto, Production.ProductModel.Name AS ModelName, Production.ProductDescription.Description
+FROM            Production.ProductModelProductDescriptionCulture INNER JOIN
+                         Production.ProductDescription ON Production.ProductModelProductDescriptionCulture.ProductDescriptionID = Production.ProductDescription.ProductDescriptionID INNER JOIN
+                         Production.ProductModel ON Production.ProductModelProductDescriptionCulture.CultureID = N'en' AND 
+                         Production.ProductModelProductDescriptionCulture.ProductModelID = Production.ProductModel.ProductModelID RIGHT OUTER JOIN
+                         Production.Product ON Production.ProductModel.ProductModelID = Production.Product.ProductModelID LEFT OUTER JOIN
+                         Production.ProductPhoto INNER JOIN
+                         Production.ProductProductPhoto ON Production.ProductPhoto.ProductPhotoID = Production.ProductProductPhoto.ProductPhotoID ON 
+                         Production.Product.ProductID = Production.ProductProductPhoto.ProductID
+ORDER BY Production.Product.Name</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Name" DataSetColumn="Name" />
+              <Mapping SourceColumn="ListPrice" DataSetColumn="ListPrice" />
+              <Mapping SourceColumn="Color" DataSetColumn="Color" />
+              <Mapping SourceColumn="Size" DataSetColumn="Size" />
+              <Mapping SourceColumn="SizeUnitMeasureCode" DataSetColumn="SizeUnitMeasureCode" />
+              <Mapping SourceColumn="Weight" DataSetColumn="Weight" />
+              <Mapping SourceColumn="WeightUnitMeasureCode" DataSetColumn="WeightUnitMeasureCode" />
+              <Mapping SourceColumn="LargePhoto" DataSetColumn="LargePhoto" />
+              <Mapping SourceColumn="ModelName" DataSetColumn="ModelName" />
+              <Mapping SourceColumn="Description" DataSetColumn="Description" />
+              <Mapping SourceColumn="ProductID" DataSetColumn="ProductID" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="AdventureWorks2014ConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="FillBy" GetMethodModifier="Public" GetMethodName="GetDataBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBy">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Production.Product.ProductID, Production.Product.Name, Production.Product.ListPrice, Production.Product.Color, Production.Product.Size, Production.Product.SizeUnitMeasureCode, Production.Product.Weight, 
+                         Production.Product.WeightUnitMeasureCode, Production.ProductPhoto.LargePhoto, Production.ProductModel.Name AS ModelName, Production.ProductDescription.Description
+FROM            Production.ProductModelProductDescriptionCulture INNER JOIN
+                         Production.ProductDescription ON Production.ProductModelProductDescriptionCulture.ProductDescriptionID = Production.ProductDescription.ProductDescriptionID INNER JOIN
+                         Production.ProductModel ON Production.ProductModelProductDescriptionCulture.CultureID = N'en' AND 
+                         Production.ProductModelProductDescriptionCulture.ProductModelID = Production.ProductModel.ProductModelID RIGHT OUTER JOIN
+                         Production.Product ON Production.ProductModel.ProductModelID = Production.Product.ProductModelID LEFT OUTER JOIN
+                         Production.ProductPhoto INNER JOIN
+                         Production.ProductProductPhoto ON Production.ProductPhoto.ProductPhotoID = Production.ProductProductPhoto.ProductPhotoID ON 
+                         Production.Product.ProductID = Production.ProductProductPhoto.ProductID
+WHERE        (Production.Product.ProductID = @productID)
+ORDER BY Production.Product.Name</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="productID" ColumnName="ProductID" DataSourceName="AdventureWorks2014.Production.Product" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@productID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="ProductID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ProductsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ProductsDataSet" msprop:Generator_UserDSName="ProductsDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ProductsOverview" msprop:Generator_TableClassName="ProductsOverviewDataTable" msprop:Generator_TableVarName="tableProductsOverview" msprop:Generator_TablePropName="ProductsOverview" msprop:Generator_RowDeletingName="ProductsOverviewRowDeleting" msprop:Generator_RowChangingName="ProductsOverviewRowChanging" msprop:Generator_RowEvHandlerName="ProductsOverviewRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductsOverviewRowDeleted" msprop:Generator_UserTableName="ProductsOverview" msprop:Generator_RowChangedName="ProductsOverviewRowChanged" msprop:Generator_RowEvArgName="ProductsOverviewRowChangeEvent" msprop:Generator_RowClassName="ProductsOverviewRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ProductID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnProductID" msprop:Generator_ColumnPropNameInRow="ProductID" msprop:Generator_ColumnPropNameInTable="ProductIDColumn" msprop:Generator_UserColumnName="ProductID" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Color" msprop:Generator_ColumnVarNameInTable="columnColor" msprop:Generator_ColumnPropNameInRow="Color" msprop:Generator_ColumnPropNameInTable="ColorColumn" msprop:Generator_UserColumnName="Color" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ListPrice" msprop:Generator_ColumnVarNameInTable="columnListPrice" msprop:Generator_ColumnPropNameInRow="ListPrice" msprop:Generator_ColumnPropNameInTable="ListPriceColumn" msprop:Generator_UserColumnName="ListPrice" type="xs:decimal" />
+              <xs:element name="Size" msprop:Generator_ColumnVarNameInTable="columnSize" msprop:Generator_ColumnPropNameInRow="Size" msprop:Generator_ColumnPropNameInTable="SizeColumn" msprop:Generator_UserColumnName="Size" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SizeUnitMeasureCode" msprop:Generator_ColumnVarNameInTable="columnSizeUnitMeasureCode" msprop:Generator_ColumnPropNameInRow="SizeUnitMeasureCode" msprop:Generator_ColumnPropNameInTable="SizeUnitMeasureCodeColumn" msprop:Generator_UserColumnName="SizeUnitMeasureCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="WeightUnitMeasureCode" msprop:Generator_ColumnVarNameInTable="columnWeightUnitMeasureCode" msprop:Generator_ColumnPropNameInRow="WeightUnitMeasureCode" msprop:Generator_ColumnPropNameInTable="WeightUnitMeasureCodeColumn" msprop:Generator_UserColumnName="WeightUnitMeasureCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Weight" msprop:Generator_ColumnVarNameInTable="columnWeight" msprop:Generator_ColumnPropNameInRow="Weight" msprop:Generator_ColumnPropNameInTable="WeightColumn" msprop:Generator_UserColumnName="Weight" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ThumbNailPhoto" msprop:Generator_ColumnVarNameInTable="columnThumbNailPhoto" msprop:Generator_ColumnPropNameInRow="ThumbNailPhoto" msprop:Generator_ColumnPropNameInTable="ThumbNailPhotoColumn" msprop:Generator_UserColumnName="ThumbNailPhoto" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ProductDetails" msprop:Generator_TableClassName="ProductDetailsDataTable" msprop:Generator_TableVarName="tableProductDetails" msprop:Generator_RowChangedName="ProductDetailsRowChanged" msprop:Generator_TablePropName="ProductDetails" msprop:Generator_RowDeletingName="ProductDetailsRowDeleting" msprop:Generator_RowChangingName="ProductDetailsRowChanging" msprop:Generator_RowEvHandlerName="ProductDetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductDetailsRowDeleted" msprop:Generator_RowClassName="ProductDetailsRow" msprop:Generator_UserTableName="ProductDetails" msprop:Generator_RowEvArgName="ProductDetailsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ListPrice" msprop:Generator_ColumnVarNameInTable="columnListPrice" msprop:Generator_ColumnPropNameInRow="ListPrice" msprop:Generator_ColumnPropNameInTable="ListPriceColumn" msprop:Generator_UserColumnName="ListPrice" type="xs:decimal" />
+              <xs:element name="Color" msprop:Generator_ColumnVarNameInTable="columnColor" msprop:Generator_ColumnPropNameInRow="Color" msprop:Generator_ColumnPropNameInTable="ColorColumn" msprop:Generator_UserColumnName="Color" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Size" msprop:Generator_ColumnVarNameInTable="columnSize" msprop:Generator_ColumnPropNameInRow="Size" msprop:Generator_ColumnPropNameInTable="SizeColumn" msprop:Generator_UserColumnName="Size" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SizeUnitMeasureCode" msprop:Generator_ColumnVarNameInTable="columnSizeUnitMeasureCode" msprop:Generator_ColumnPropNameInRow="SizeUnitMeasureCode" msprop:Generator_ColumnPropNameInTable="SizeUnitMeasureCodeColumn" msprop:Generator_UserColumnName="SizeUnitMeasureCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Weight" msprop:Generator_ColumnVarNameInTable="columnWeight" msprop:Generator_ColumnPropNameInRow="Weight" msprop:Generator_ColumnPropNameInTable="WeightColumn" msprop:Generator_UserColumnName="Weight" type="xs:decimal" minOccurs="0" />
+              <xs:element name="WeightUnitMeasureCode" msprop:Generator_ColumnVarNameInTable="columnWeightUnitMeasureCode" msprop:Generator_ColumnPropNameInRow="WeightUnitMeasureCode" msprop:Generator_ColumnPropNameInTable="WeightUnitMeasureCodeColumn" msprop:Generator_UserColumnName="WeightUnitMeasureCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LargePhoto" msprop:Generator_ColumnVarNameInTable="columnLargePhoto" msprop:Generator_ColumnPropNameInRow="LargePhoto" msprop:Generator_ColumnPropNameInTable="LargePhotoColumn" msprop:Generator_UserColumnName="LargePhoto" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="ModelName" msprop:Generator_ColumnVarNameInTable="columnModelName" msprop:Generator_ColumnPropNameInRow="ModelName" msprop:Generator_ColumnPropNameInTable="ModelNameColumn" msprop:Generator_UserColumnName="ModelName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" msprop:Generator_UserColumnName="Description" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="400" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ProductID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnProductID" msprop:Generator_ColumnPropNameInRow="ProductID" msprop:Generator_ColumnPropNameInTable="ProductIDColumn" msprop:Generator_UserColumnName="ProductID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ProductsOverview" />
+      <xs:field xpath="mstns:ProductID" />
+    </xs:unique>
+    <xs:unique name="ProductDetails_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ProductDetails" />
+      <xs:field xpath="mstns:ProductID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

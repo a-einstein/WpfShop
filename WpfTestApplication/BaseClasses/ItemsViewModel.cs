@@ -14,8 +14,6 @@ namespace WpfTestApplication.BaseClasses
             DetailsCommand = new DelegateCommand<object>(ShowDetails);
         }
 
-        protected abstract void LoadData();
-
         protected DataTable Items;
 
         // Note this uses the DataView's standard functionality.

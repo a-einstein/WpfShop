@@ -83,10 +83,10 @@
     <Compile Include="Converters\PriceFormatter.cs" />
     <Compile Include="Converters\WeightFormatter.cs" />
     <Compile Include="Converters\SizeFormatter.cs" />
-    <Compile Include="Data\ProductsOverviewDataSet.Designer.cs">
+    <Compile Include="Data\ProductsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ProductsOverviewDataSet.xsd</DependentUpon>
+      <DependentUpon>ProductsDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="Views\ProductView.xaml.cs">
@@ -159,10 +159,10 @@
       <SubType>Designer</SubType>
       <LastGenOutput>AdventureWorks2014DataSet1.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Data\ProductsOverviewDataSet.xsd">
+    <None Include="Data\ProductsDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ProductsOverviewDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>ProductsDataSet2.Designer.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
