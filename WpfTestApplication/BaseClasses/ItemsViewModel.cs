@@ -18,7 +18,7 @@ namespace WpfTestApplication.BaseClasses
 
         // Note this uses the DataView's standard functionality.
         // Note a CollectionViewSource.View apparently is not able to filter.
-        // TODO this could be implemented using a ObservableCollection and/or IQueryable.
+        // This could also be implemented using a ObservableCollection and/or IQueryable.
         public DataView ItemsDataView { get { return Items.DefaultView; } }
 
         public static readonly DependencyProperty ItemsFilterProperty =
