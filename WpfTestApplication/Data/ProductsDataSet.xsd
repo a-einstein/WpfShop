@@ -11,12 +11,16 @@
             <MainSource>
               <DbSource ConnectionRef="AdventureWorks2014ConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT        Production.Product.ProductID, Production.Product.Name, Production.Product.Color, Production.Product.ListPrice, Production.Product.Size, Production.Product.SizeUnitMeasureCode, 
-                         Production.Product.WeightUnitMeasureCode, Production.Product.Weight, Production.ProductPhoto.ThumbNailPhoto
-FROM            Production.ProductPhoto INNER JOIN
-                         Production.ProductProductPhoto ON Production.ProductPhoto.ProductPhotoID = Production.ProductProductPhoto.ProductPhotoID RIGHT OUTER JOIN
-                         Production.Product ON Production.ProductProductPhoto.ProductID = Production.Product.ProductID
+                         Production.Product.WeightUnitMeasureCode, Production.Product.Weight, Production.ProductPhoto.ThumbNailPhoto, Production.ProductCategory.ProductCategoryID, 
+                         Production.ProductCategory.Name AS ProductCategory, Production.ProductSubcategory.ProductSubcategoryID, Production.ProductSubcategory.Name AS ProductSubcategory
+FROM            Production.ProductSubcategory INNER JOIN
+                         Production.ProductCategory ON Production.ProductSubcategory.ProductCategoryID = Production.ProductCategory.ProductCategoryID RIGHT OUTER JOIN
+                         Production.Product ON Production.ProductSubcategory.ProductSubcategoryID = Production.Product.ProductSubcategoryID LEFT OUTER JOIN
+                         Production.ProductPhoto INNER JOIN
+                         Production.ProductProductPhoto ON Production.ProductPhoto.ProductPhotoID = Production.ProductProductPhoto.ProductPhotoID ON 
+                         Production.Product.ProductID = Production.ProductProductPhoto.ProductID
 ORDER BY Production.Product.Name</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -33,6 +37,10 @@ ORDER BY Production.Product.Name</CommandText>
               <Mapping SourceColumn="WeightUnitMeasureCode" DataSetColumn="WeightUnitMeasureCode" />
               <Mapping SourceColumn="Weight" DataSetColumn="Weight" />
               <Mapping SourceColumn="ThumbNailPhoto" DataSetColumn="ThumbNailPhoto" />
+              <Mapping SourceColumn="ProductCategoryID" DataSetColumn="ProductCategoryID" />
+              <Mapping SourceColumn="ProductCategory" DataSetColumn="ProductCategory" />
+              <Mapping SourceColumn="ProductSubcategoryID" DataSetColumn="ProductSubcategoryID" />
+              <Mapping SourceColumn="ProductSubcategory" DataSetColumn="ProductSubcategory" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -40,14 +48,19 @@ ORDER BY Production.Product.Name</CommandText>
             <MainSource>
               <DbSource ConnectionRef="AdventureWorks2014ConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT        Production.Product.ProductID, Production.Product.Name, Production.Product.ListPrice, Production.Product.Color, Production.Product.Size, Production.Product.SizeUnitMeasureCode, Production.Product.Weight, 
-                         Production.Product.WeightUnitMeasureCode, Production.ProductPhoto.LargePhoto, Production.ProductModel.Name AS ModelName, Production.ProductDescription.Description
-FROM            Production.ProductModelProductDescriptionCulture INNER JOIN
+                         Production.Product.WeightUnitMeasureCode, Production.ProductPhoto.LargePhoto, Production.ProductModel.Name AS ModelName, Production.ProductDescription.Description, 
+                         Production.ProductCategory.ProductCategoryID, Production.ProductCategory.Name AS ProductCategory, Production.ProductSubcategory.ProductSubcategoryID, 
+                         Production.ProductSubcategory.Name AS ProductSubcategory
+FROM            Production.ProductSubcategory INNER JOIN
+                         Production.ProductCategory ON Production.ProductSubcategory.ProductCategoryID = Production.ProductCategory.ProductCategoryID RIGHT OUTER JOIN
+                         Production.Product ON Production.ProductSubcategory.ProductSubcategoryID = Production.Product.ProductSubcategoryID LEFT OUTER JOIN
+                         Production.ProductModelProductDescriptionCulture INNER JOIN
                          Production.ProductDescription ON Production.ProductModelProductDescriptionCulture.ProductDescriptionID = Production.ProductDescription.ProductDescriptionID INNER JOIN
                          Production.ProductModel ON Production.ProductModelProductDescriptionCulture.CultureID = N'en' AND 
-                         Production.ProductModelProductDescriptionCulture.ProductModelID = Production.ProductModel.ProductModelID RIGHT OUTER JOIN
-                         Production.Product ON Production.ProductModel.ProductModelID = Production.Product.ProductModelID LEFT OUTER JOIN
+                         Production.ProductModelProductDescriptionCulture.ProductModelID = Production.ProductModel.ProductModelID ON 
+                         Production.Product.ProductModelID = Production.ProductModel.ProductModelID LEFT OUTER JOIN
                          Production.ProductPhoto INNER JOIN
                          Production.ProductProductPhoto ON Production.ProductPhoto.ProductPhotoID = Production.ProductProductPhoto.ProductPhotoID ON 
                          Production.Product.ProductID = Production.ProductProductPhoto.ProductID
@@ -69,18 +82,27 @@ ORDER BY Production.Product.Name</CommandText>
               <Mapping SourceColumn="ModelName" DataSetColumn="ModelName" />
               <Mapping SourceColumn="Description" DataSetColumn="Description" />
               <Mapping SourceColumn="ProductID" DataSetColumn="ProductID" />
+              <Mapping SourceColumn="ProductCategoryID" DataSetColumn="ProductCategoryID" />
+              <Mapping SourceColumn="ProductCategory" DataSetColumn="ProductCategory" />
+              <Mapping SourceColumn="ProductSubcategoryID" DataSetColumn="ProductSubcategoryID" />
+              <Mapping SourceColumn="ProductSubcategory" DataSetColumn="ProductSubcategory" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="AdventureWorks2014ConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="FillBy" GetMethodModifier="Public" GetMethodName="GetDataBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBy">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        Production.Product.ProductID, Production.Product.Name, Production.Product.ListPrice, Production.Product.Color, Production.Product.Size, Production.Product.SizeUnitMeasureCode, Production.Product.Weight, 
-                         Production.Product.WeightUnitMeasureCode, Production.ProductPhoto.LargePhoto, Production.ProductModel.Name AS ModelName, Production.ProductDescription.Description
-FROM            Production.ProductModelProductDescriptionCulture INNER JOIN
+                         Production.Product.WeightUnitMeasureCode, Production.ProductPhoto.LargePhoto, Production.ProductModel.Name AS ModelName, Production.ProductDescription.Description, 
+                         Production.ProductCategory.ProductCategoryID, Production.ProductCategory.Name AS ProductCategory, Production.ProductSubcategory.ProductSubcategoryID, 
+                         Production.ProductSubcategory.Name AS ProductSubcategory
+FROM            Production.ProductSubcategory INNER JOIN
+                         Production.ProductCategory ON Production.ProductSubcategory.ProductCategoryID = Production.ProductCategory.ProductCategoryID RIGHT OUTER JOIN
+                         Production.Product ON Production.ProductSubcategory.ProductSubcategoryID = Production.Product.ProductSubcategoryID LEFT OUTER JOIN
+                         Production.ProductModelProductDescriptionCulture INNER JOIN
                          Production.ProductDescription ON Production.ProductModelProductDescriptionCulture.ProductDescriptionID = Production.ProductDescription.ProductDescriptionID INNER JOIN
                          Production.ProductModel ON Production.ProductModelProductDescriptionCulture.CultureID = N'en' AND 
-                         Production.ProductModelProductDescriptionCulture.ProductModelID = Production.ProductModel.ProductModelID RIGHT OUTER JOIN
-                         Production.Product ON Production.ProductModel.ProductModelID = Production.Product.ProductModelID LEFT OUTER JOIN
+                         Production.ProductModelProductDescriptionCulture.ProductModelID = Production.ProductModel.ProductModelID ON 
+                         Production.Product.ProductModelID = Production.ProductModel.ProductModelID LEFT OUTER JOIN
                          Production.ProductPhoto INNER JOIN
                          Production.ProductProductPhoto ON Production.ProductPhoto.ProductPhotoID = Production.ProductProductPhoto.ProductPhotoID ON 
                          Production.Product.ProductID = Production.ProductProductPhoto.ProductID
@@ -93,6 +115,44 @@ ORDER BY Production.Product.Name</CommandText>
                 </SelectCommand>
               </DbSource>
             </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ProductCategoryTableAdapter" GeneratorDataComponentClassName="ProductCategoryTableAdapter" Name="ProductCategory" UserDataComponentName="ProductCategoryTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AdventureWorks2014ConnectionString (Settings)" DbObjectName="AdventureWorks2014.Production.ProductCategory" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        ProductCategoryID, Name
+FROM            Production.ProductCategory
+ORDER BY Name</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ProductCategoryID" DataSetColumn="ProductCategoryID" />
+              <Mapping SourceColumn="Name" DataSetColumn="Name" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ProductSubcategoryTableAdapter" GeneratorDataComponentClassName="ProductSubcategoryTableAdapter" Name="ProductSubcategory" UserDataComponentName="ProductSubcategoryTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AdventureWorks2014ConnectionString (Settings)" DbObjectName="AdventureWorks2014.Production.ProductSubcategory" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        ProductSubcategoryID, Name
+FROM            Production.ProductSubcategory
+ORDER BY Name</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ProductSubcategoryID" DataSetColumn="ProductSubcategoryID" />
+              <Mapping SourceColumn="Name" DataSetColumn="Name" />
+            </Mappings>
+            <Sources />
           </TableAdapter>
         </Tables>
         <Sources />
@@ -144,6 +204,22 @@ ORDER BY Production.Product.Name</CommandText>
               </xs:element>
               <xs:element name="Weight" msprop:Generator_ColumnVarNameInTable="columnWeight" msprop:Generator_ColumnPropNameInRow="Weight" msprop:Generator_ColumnPropNameInTable="WeightColumn" msprop:Generator_UserColumnName="Weight" type="xs:decimal" minOccurs="0" />
               <xs:element name="ThumbNailPhoto" msprop:Generator_ColumnVarNameInTable="columnThumbNailPhoto" msprop:Generator_ColumnPropNameInRow="ThumbNailPhoto" msprop:Generator_ColumnPropNameInTable="ThumbNailPhotoColumn" msprop:Generator_UserColumnName="ThumbNailPhoto" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="ProductCategoryID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnProductCategoryID" msprop:Generator_ColumnPropNameInRow="ProductCategoryID" msprop:Generator_ColumnPropNameInTable="ProductCategoryIDColumn" msprop:Generator_UserColumnName="ProductCategoryID" type="xs:int" minOccurs="0" />
+              <xs:element name="ProductCategory" msprop:Generator_ColumnVarNameInTable="columnProductCategory" msprop:Generator_ColumnPropNameInRow="ProductCategory" msprop:Generator_ColumnPropNameInTable="ProductCategoryColumn" msprop:Generator_UserColumnName="ProductCategory" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ProductSubcategoryID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnProductSubcategoryID" msprop:Generator_ColumnPropNameInRow="ProductSubcategoryID" msprop:Generator_ColumnPropNameInTable="ProductSubcategoryIDColumn" msprop:Generator_UserColumnName="ProductSubcategoryID" type="xs:int" minOccurs="0" />
+              <xs:element name="ProductSubcategory" msprop:Generator_ColumnVarNameInTable="columnProductSubcategory" msprop:Generator_ColumnPropNameInRow="ProductSubcategory" msprop:Generator_ColumnPropNameInTable="ProductSubcategoryColumn" msprop:Generator_UserColumnName="ProductSubcategory" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -203,6 +279,50 @@ ORDER BY Production.Product.Name</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="ProductID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnProductID" msprop:Generator_ColumnPropNameInRow="ProductID" msprop:Generator_ColumnPropNameInTable="ProductIDColumn" msprop:Generator_UserColumnName="ProductID" type="xs:int" />
+              <xs:element name="ProductCategoryID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnProductCategoryID" msprop:Generator_ColumnPropNameInRow="ProductCategoryID" msprop:Generator_ColumnPropNameInTable="ProductCategoryIDColumn" msprop:Generator_UserColumnName="ProductCategoryID" type="xs:int" minOccurs="0" />
+              <xs:element name="ProductCategory" msprop:Generator_ColumnVarNameInTable="columnProductCategory" msprop:Generator_ColumnPropNameInRow="ProductCategory" msprop:Generator_ColumnPropNameInTable="ProductCategoryColumn" msprop:Generator_UserColumnName="ProductCategory" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ProductSubcategoryID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnProductSubcategoryID" msprop:Generator_ColumnPropNameInRow="ProductSubcategoryID" msprop:Generator_ColumnPropNameInTable="ProductSubcategoryIDColumn" msprop:Generator_UserColumnName="ProductSubcategoryID" type="xs:int" minOccurs="0" />
+              <xs:element name="ProductSubcategory" msprop:Generator_ColumnVarNameInTable="columnProductSubcategory" msprop:Generator_ColumnPropNameInRow="ProductSubcategory" msprop:Generator_ColumnPropNameInTable="ProductSubcategoryColumn" msprop:Generator_UserColumnName="ProductSubcategory" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ProductCategory" msprop:Generator_TableClassName="ProductCategoryDataTable" msprop:Generator_TableVarName="tableProductCategory" msprop:Generator_RowChangedName="ProductCategoryRowChanged" msprop:Generator_TablePropName="ProductCategory" msprop:Generator_RowDeletingName="ProductCategoryRowDeleting" msprop:Generator_RowChangingName="ProductCategoryRowChanging" msprop:Generator_RowEvHandlerName="ProductCategoryRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductCategoryRowDeleted" msprop:Generator_RowClassName="ProductCategoryRow" msprop:Generator_UserTableName="ProductCategory" msprop:Generator_RowEvArgName="ProductCategoryRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ProductCategoryID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnProductCategoryID" msprop:Generator_ColumnPropNameInRow="ProductCategoryID" msprop:Generator_ColumnPropNameInTable="ProductCategoryIDColumn" msprop:Generator_UserColumnName="ProductCategoryID" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ProductSubcategory" msprop:Generator_TableClassName="ProductSubcategoryDataTable" msprop:Generator_TableVarName="tableProductSubcategory" msprop:Generator_RowChangedName="ProductSubcategoryRowChanged" msprop:Generator_TablePropName="ProductSubcategory" msprop:Generator_RowDeletingName="ProductSubcategoryRowDeleting" msprop:Generator_RowChangingName="ProductSubcategoryRowChanging" msprop:Generator_RowEvHandlerName="ProductSubcategoryRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductSubcategoryRowDeleted" msprop:Generator_RowClassName="ProductSubcategoryRow" msprop:Generator_UserTableName="ProductSubcategory" msprop:Generator_RowEvArgName="ProductSubcategoryRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ProductSubcategoryID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnProductSubcategoryID" msprop:Generator_ColumnPropNameInRow="ProductSubcategoryID" msprop:Generator_ColumnPropNameInTable="ProductSubcategoryIDColumn" msprop:Generator_UserColumnName="ProductSubcategoryID" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -215,6 +335,14 @@ ORDER BY Production.Product.Name</CommandText>
     <xs:unique name="ProductDetails_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:ProductDetails" />
       <xs:field xpath="mstns:ProductID" />
+    </xs:unique>
+    <xs:unique name="ProductCategory_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ProductCategory" />
+      <xs:field xpath="mstns:ProductCategoryID" />
+    </xs:unique>
+    <xs:unique name="ProductSubcategory_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ProductSubcategory" />
+      <xs:field xpath="mstns:ProductSubcategoryID" />
     </xs:unique>
   </xs:element>
 </xs:schema>

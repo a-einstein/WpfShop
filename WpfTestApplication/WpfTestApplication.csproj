@@ -81,6 +81,7 @@
     <Compile Include="BaseClasses\ItemsViewModel.cs" />
     <Compile Include="Converters\ByteArrayToBitmapImageConverter.cs" />
     <Compile Include="Converters\PriceFormatter.cs" />
+    <Compile Include="Converters\CategoriesFormatter.cs" />
     <Compile Include="Converters\WeightFormatter.cs" />
     <Compile Include="Converters\SizeFormatter.cs" />
     <Compile Include="Data\ProductsDataSet.Designer.cs">

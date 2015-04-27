@@ -13,6 +13,7 @@
     
     <Page.Resources>
         <ResourceDictionary>
+            <Converters:CategoriesFormatter x:Key="CategoriesFormatter"/>
             <Converters:PriceFormatter x:Key="PriceFormatter"/>
             <Converters:SizeFormatter x:Key="SizeFormatter"/>
             <Converters:WeightFormatter x:Key="WeightFormatter"/>
@@ -47,6 +48,14 @@
                                     </Border>
 
                                     <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                                        <TextBlock Style="{StaticResource DetailsTextBlockStyle}">
+                                            <TextBlock.Text>
+                                                <MultiBinding Converter="{StaticResource CategoriesFormatter}">
+                                                    <Binding Path="ProductCategory"/>
+                                                    <Binding Path="ProductSubcategory"/>
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
                                         <TextBlock Text="{Binding Name}" Style="{StaticResource DetailsTextBlockStyle}" FontWeight="Bold" FontSize="16"/>
                                         <TextBlock Text="{Binding ListPrice, Converter={StaticResource PriceFormatter}}" Style="{StaticResource DetailsTextBlockStyle}" FontWeight="Bold" FontSize="12"/>
                                         <TextBlock Style="{StaticResource DetailsTextBlockStyle}">
