@@ -34,5 +34,6 @@
         <Setter Property="Margin" Value="2"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="TextAlignment" Value="Right"/>
     </Style>
 </ResourceDictionary>

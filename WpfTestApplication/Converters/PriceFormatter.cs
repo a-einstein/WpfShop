@@ -8,7 +8,7 @@ namespace WpfTestApplication.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return string.Format("€ {0}", value);
+            return string.Format("{0:C2}", value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
