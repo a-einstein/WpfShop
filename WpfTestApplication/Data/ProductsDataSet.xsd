@@ -140,7 +140,7 @@ ORDER BY Name</CommandText>
               <DbSource ConnectionRef="AdventureWorks2014ConnectionString (Settings)" DbObjectName="AdventureWorks2014.Production.ProductSubcategory" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        ProductSubcategoryID, Name
+                    <CommandText>SELECT        ProductSubcategoryID, Name, ProductCategoryID
 FROM            Production.ProductSubcategory
 ORDER BY Name</CommandText>
                     <Parameters />
@@ -151,6 +151,7 @@ ORDER BY Name</CommandText>
             <Mappings>
               <Mapping SourceColumn="ProductSubcategoryID" DataSetColumn="ProductSubcategoryID" />
               <Mapping SourceColumn="Name" DataSetColumn="Name" />
+              <Mapping SourceColumn="ProductCategoryID" DataSetColumn="ProductCategoryID" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -162,7 +163,7 @@ ORDER BY Name</CommandText>
   <xs:element name="ProductsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ProductsDataSet" msprop:Generator_UserDSName="ProductsDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="ProductsOverview" msprop:Generator_TableClassName="ProductsOverviewDataTable" msprop:Generator_TableVarName="tableProductsOverview" msprop:Generator_TablePropName="ProductsOverview" msprop:Generator_RowDeletingName="ProductsOverviewRowDeleting" msprop:Generator_RowChangingName="ProductsOverviewRowChanging" msprop:Generator_RowEvHandlerName="ProductsOverviewRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductsOverviewRowDeleted" msprop:Generator_UserTableName="ProductsOverview" msprop:Generator_RowChangedName="ProductsOverviewRowChanged" msprop:Generator_RowEvArgName="ProductsOverviewRowChangeEvent" msprop:Generator_RowClassName="ProductsOverviewRow">
+        <xs:element name="ProductsOverview" msprop:Generator_TableClassName="ProductsOverviewDataTable" msprop:Generator_TableVarName="tableProductsOverview" msprop:Generator_RowChangedName="ProductsOverviewRowChanged" msprop:Generator_TablePropName="ProductsOverview" msprop:Generator_RowDeletingName="ProductsOverviewRowDeleting" msprop:Generator_RowChangingName="ProductsOverviewRowChanging" msprop:Generator_RowEvHandlerName="ProductsOverviewRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductsOverviewRowDeleted" msprop:Generator_RowClassName="ProductsOverviewRow" msprop:Generator_UserTableName="ProductsOverview" msprop:Generator_RowEvArgName="ProductsOverviewRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ProductID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnProductID" msprop:Generator_ColumnPropNameInRow="ProductID" msprop:Generator_ColumnPropNameInTable="ProductIDColumn" msprop:Generator_UserColumnName="ProductID" type="xs:int" />
@@ -223,7 +224,7 @@ ORDER BY Name</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ProductDetails" msprop:Generator_TableClassName="ProductDetailsDataTable" msprop:Generator_TableVarName="tableProductDetails" msprop:Generator_RowChangedName="ProductDetailsRowChanged" msprop:Generator_TablePropName="ProductDetails" msprop:Generator_RowDeletingName="ProductDetailsRowDeleting" msprop:Generator_RowChangingName="ProductDetailsRowChanging" msprop:Generator_RowEvHandlerName="ProductDetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductDetailsRowDeleted" msprop:Generator_RowClassName="ProductDetailsRow" msprop:Generator_UserTableName="ProductDetails" msprop:Generator_RowEvArgName="ProductDetailsRowChangeEvent">
+        <xs:element name="ProductDetails" msprop:Generator_TableClassName="ProductDetailsDataTable" msprop:Generator_TableVarName="tableProductDetails" msprop:Generator_TablePropName="ProductDetails" msprop:Generator_RowDeletingName="ProductDetailsRowDeleting" msprop:Generator_RowChangingName="ProductDetailsRowChanging" msprop:Generator_RowEvHandlerName="ProductDetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductDetailsRowDeleted" msprop:Generator_UserTableName="ProductDetails" msprop:Generator_RowChangedName="ProductDetailsRowChanged" msprop:Generator_RowEvArgName="ProductDetailsRowChangeEvent" msprop:Generator_RowClassName="ProductDetailsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name">
@@ -298,7 +299,7 @@ ORDER BY Name</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ProductCategory" msprop:Generator_TableClassName="ProductCategoryDataTable" msprop:Generator_TableVarName="tableProductCategory" msprop:Generator_RowChangedName="ProductCategoryRowChanged" msprop:Generator_TablePropName="ProductCategory" msprop:Generator_RowDeletingName="ProductCategoryRowDeleting" msprop:Generator_RowChangingName="ProductCategoryRowChanging" msprop:Generator_RowEvHandlerName="ProductCategoryRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductCategoryRowDeleted" msprop:Generator_RowClassName="ProductCategoryRow" msprop:Generator_UserTableName="ProductCategory" msprop:Generator_RowEvArgName="ProductCategoryRowChangeEvent">
+        <xs:element name="ProductCategory" msprop:Generator_TableClassName="ProductCategoryDataTable" msprop:Generator_TableVarName="tableProductCategory" msprop:Generator_TablePropName="ProductCategory" msprop:Generator_RowDeletingName="ProductCategoryRowDeleting" msprop:Generator_RowChangingName="ProductCategoryRowChanging" msprop:Generator_RowEvHandlerName="ProductCategoryRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductCategoryRowDeleted" msprop:Generator_UserTableName="ProductCategory" msprop:Generator_RowChangedName="ProductCategoryRowChanged" msprop:Generator_RowEvArgName="ProductCategoryRowChangeEvent" msprop:Generator_RowClassName="ProductCategoryRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ProductCategoryID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnProductCategoryID" msprop:Generator_ColumnPropNameInRow="ProductCategoryID" msprop:Generator_ColumnPropNameInTable="ProductCategoryIDColumn" msprop:Generator_UserColumnName="ProductCategoryID" type="xs:int" />
@@ -312,7 +313,7 @@ ORDER BY Name</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ProductSubcategory" msprop:Generator_TableClassName="ProductSubcategoryDataTable" msprop:Generator_TableVarName="tableProductSubcategory" msprop:Generator_RowChangedName="ProductSubcategoryRowChanged" msprop:Generator_TablePropName="ProductSubcategory" msprop:Generator_RowDeletingName="ProductSubcategoryRowDeleting" msprop:Generator_RowChangingName="ProductSubcategoryRowChanging" msprop:Generator_RowEvHandlerName="ProductSubcategoryRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductSubcategoryRowDeleted" msprop:Generator_RowClassName="ProductSubcategoryRow" msprop:Generator_UserTableName="ProductSubcategory" msprop:Generator_RowEvArgName="ProductSubcategoryRowChangeEvent">
+        <xs:element name="ProductSubcategory" msprop:Generator_TableClassName="ProductSubcategoryDataTable" msprop:Generator_TableVarName="tableProductSubcategory" msprop:Generator_TablePropName="ProductSubcategory" msprop:Generator_RowDeletingName="ProductSubcategoryRowDeleting" msprop:Generator_RowChangingName="ProductSubcategoryRowChanging" msprop:Generator_RowEvHandlerName="ProductSubcategoryRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductSubcategoryRowDeleted" msprop:Generator_UserTableName="ProductSubcategory" msprop:Generator_RowChangedName="ProductSubcategoryRowChanged" msprop:Generator_RowEvArgName="ProductSubcategoryRowChangeEvent" msprop:Generator_RowClassName="ProductSubcategoryRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ProductSubcategoryID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnProductSubcategoryID" msprop:Generator_ColumnPropNameInRow="ProductSubcategoryID" msprop:Generator_ColumnPropNameInTable="ProductSubcategoryIDColumn" msprop:Generator_UserColumnName="ProductSubcategoryID" type="xs:int" />
@@ -323,6 +324,7 @@ ORDER BY Name</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="ProductCategoryID" msprop:Generator_ColumnVarNameInTable="columnProductCategoryID" msprop:Generator_ColumnPropNameInRow="ProductCategoryID" msprop:Generator_ColumnPropNameInTable="ProductCategoryIDColumn" msprop:Generator_UserColumnName="ProductCategoryID" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -345,4 +347,9 @@ ORDER BY Name</CommandText>
       <xs:field xpath="mstns:ProductSubcategoryID" />
     </xs:unique>
   </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="FK_ProductSubcategory_ProductCategory_ProductCategoryID" msdata:parent="ProductCategory" msdata:child="ProductSubcategory" msdata:parentkey="ProductCategoryID" msdata:childkey="ProductCategoryID" msprop:Generator_UserChildTable="ProductSubcategory" msprop:Generator_ChildPropName="GetProductSubcategoryRows" msprop:Generator_UserRelationName="FK_ProductSubcategory_ProductCategory_ProductCategoryID" msprop:Generator_ParentPropName="ProductCategoryRow" msprop:Generator_RelationVarName="relationFK_ProductSubcategory_ProductCategory_ProductCategoryID" msprop:Generator_UserParentTable="ProductCategory" />
+    </xs:appinfo>
+  </xs:annotation>
 </xs:schema>

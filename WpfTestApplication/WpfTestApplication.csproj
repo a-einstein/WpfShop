@@ -160,10 +160,16 @@
       <SubType>Designer</SubType>
       <LastGenOutput>AdventureWorks2014DataSet1.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Data\ProductsDataSet.xsc">
+      <DependentUpon>ProductsDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Data\ProductsDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ProductsDataSet2.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Data\ProductsDataSet.xss">
+      <DependentUpon>ProductsDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

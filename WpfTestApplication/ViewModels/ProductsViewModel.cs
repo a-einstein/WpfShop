@@ -3,22 +3,59 @@ using System.Windows;
 using WpfTestApplication.BaseClasses;
 using WpfTestApplication.Data.ProductsDataSetTableAdapters;
 using WpfTestApplication.Views;
+using ProductCategoryDataTable = WpfTestApplication.Data.ProductsDataSet.ProductCategoryDataTable;
 using ProductsOverviewDataTable = WpfTestApplication.Data.ProductsDataSet.ProductsOverviewDataTable;
 using ProductsOverviewRow = WpfTestApplication.Data.ProductsDataSet.ProductsOverviewRow;
+using ProductSubcategoryDataTable = WpfTestApplication.Data.ProductsDataSet.ProductSubcategoryDataTable;
 
 namespace WpfTestApplication.ViewModels
 {
     class ProductsViewModel : ItemsViewModel
     {
+        public override string MasterFilterSelectedValuePath { get { return "ProductCategoryID"; } }
+        public override string DetailFilterSelectedValuePath { get { return "ProductSubcategoryID"; } }
+        public override string DetailFilterMasterKeyPath { get { return "ProductCategoryID"; } }
+
         protected override void LoadData()
         {
             ProductsOverviewTableAdapter productsTableAdapter = new ProductsOverviewTableAdapter();
-
             // Note this currently takes in all the table data. Of course this should be prefiltered and/or paged in a realistic environment. 
-            ProductsOverviewDataTable productsOverviewDataTable = productsTableAdapter.GetData();
+            ProductsOverviewDataTable productsOverviewTable = productsTableAdapter.GetData();
+            Items = productsOverviewTable;
 
-            Items = productsOverviewDataTable;
+            ProductCategoryTableAdapter categoriesTableAdapter = new ProductCategoryTableAdapter();
+            ProductCategoryDataTable categoriesTable = new ProductCategoryDataTable();
+            categoriesTable.AddProductCategoryRow(string.Empty);
+            categoriesTableAdapter.ClearBeforeFill = false;
+            categoriesTableAdapter.Fill(categoriesTable);
+            MasterFilterItems = categoriesTable;
+
+            ProductSubcategoryTableAdapter subcategoriesTableAdapter = new ProductSubcategoryTableAdapter();
+            ProductSubcategoryDataTable subcategoriesTable = new ProductSubcategoryDataTable();
+            subcategoriesTable.AddProductSubcategoryRow(string.Empty, categoriesTable.FindByProductCategoryID(-1));
+            subcategoriesTableAdapter.ClearBeforeFill = false;
+            subcategoriesTableAdapter.Fill(subcategoriesTable);
+            DetailFilterItems = subcategoriesTable;
+
+            // Note that MasterFilterValue also determines DetailFilterItems.
+            MasterFilterValue = -1;
+            DetailFilterValue = -1;
         }
+
+        protected override void SetFilter(object p)
+        {
+            string filter;
+
+            // Note Product only references a ProductSubcategory, but no ProductCategory. 
+            // ProductSubcategoryID is Nullable.
+            filter = (int)DetailFilterValue != -1 ? string.Format("(ProductSubcategoryID = {0})", DetailFilterValue) : null;
+            filter += (int)DetailFilterValue != -1 && !NullOrEmpty(TextFilterValue) ? " AND " : null;
+            filter += !NullOrEmpty(TextFilterValue) ? string.Format("({0} LIKE '%{1}%')", TextFilterValuePath, TextFilterValue) : null;
+
+            Items.CaseSensitive = false;
+            Items.DefaultView.RowFilter = filter;
+        }
+
 
         protected override void ShowDetails(object parameter)
         {

@@ -34,6 +34,8 @@ namespace WpfTestApplication.Data
 
         private ProductSubcategoryDataTable tableProductSubcategory;
 
+        private global::System.Data.DataRelation relationFK_ProductSubcategory_ProductCategory_ProductCategoryID;
+
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -314,6 +316,7 @@ namespace WpfTestApplication.Data
                     this.tableProductSubcategory.InitVars();
                 }
             }
+            this.relationFK_ProductSubcategory_ProductCategory_ProductCategoryID = this.Relations["FK_ProductSubcategory_ProductCategory_ProductCategoryID"];
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -333,6 +336,10 @@ namespace WpfTestApplication.Data
             base.Tables.Add(this.tableProductCategory);
             this.tableProductSubcategory = new ProductSubcategoryDataTable();
             base.Tables.Add(this.tableProductSubcategory);
+            this.relationFK_ProductSubcategory_ProductCategory_ProductCategoryID = new global::System.Data.DataRelation("FK_ProductSubcategory_ProductCategory_ProductCategoryID", new global::System.Data.DataColumn[] {
+                        this.tableProductCategory.ProductCategoryIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableProductSubcategory.ProductCategoryIDColumn}, false);
+            this.Relations.Add(this.relationFK_ProductSubcategory_ProductCategory_ProductCategoryID);
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1836,6 +1843,8 @@ namespace WpfTestApplication.Data
 
             private global::System.Data.DataColumn columnName;
 
+            private global::System.Data.DataColumn columnProductCategoryID;
+
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ProductSubcategoryDataTable()
@@ -1897,6 +1906,16 @@ namespace WpfTestApplication.Data
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ProductCategoryIDColumn
+            {
+                get
+                {
+                    return this.columnProductCategoryID;
+                }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count
             {
@@ -1937,12 +1956,17 @@ namespace WpfTestApplication.Data
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ProductSubcategoryRow AddProductSubcategoryRow(string Name)
+            public ProductSubcategoryRow AddProductSubcategoryRow(string Name, ProductCategoryRow parentProductCategoryRowByFK_ProductSubcategory_ProductCategory_ProductCategoryID)
             {
                 ProductSubcategoryRow rowProductSubcategoryRow = ((ProductSubcategoryRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        Name};
+                        Name,
+                        null};
+                if ((parentProductCategoryRowByFK_ProductSubcategory_ProductCategory_ProductCategoryID != null))
+                {
+                    columnValuesArray[2] = parentProductCategoryRowByFK_ProductSubcategory_ProductCategory_ProductCategoryID[0];
+                }
                 rowProductSubcategoryRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowProductSubcategoryRow);
                 return rowProductSubcategoryRow;
@@ -1978,6 +2002,7 @@ namespace WpfTestApplication.Data
             {
                 this.columnProductSubcategoryID = base.Columns["ProductSubcategoryID"];
                 this.columnName = base.Columns["Name"];
+                this.columnProductCategoryID = base.Columns["ProductCategoryID"];
             }
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1988,6 +2013,8 @@ namespace WpfTestApplication.Data
                 base.Columns.Add(this.columnProductSubcategoryID);
                 this.columnName = new global::System.Data.DataColumn("Name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnName);
+                this.columnProductCategoryID = new global::System.Data.DataColumn("ProductCategoryID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProductCategoryID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnProductSubcategoryID}, true));
                 this.columnProductSubcategoryID.AutoIncrement = true;
@@ -1998,6 +2025,7 @@ namespace WpfTestApplication.Data
                 this.columnProductSubcategoryID.Unique = true;
                 this.columnName.AllowDBNull = false;
                 this.columnName.MaxLength = 50;
+                this.columnProductCategoryID.AllowDBNull = false;
             }
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3081,6 +3109,20 @@ namespace WpfTestApplication.Data
                     this[this.tableProductCategory.NameColumn] = value;
                 }
             }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ProductSubcategoryRow[] GetProductSubcategoryRows()
+            {
+                if ((this.Table.ChildRelations["FK_ProductSubcategory_ProductCategory_ProductCategoryID"] == null))
+                {
+                    return new ProductSubcategoryRow[0];
+                }
+                else
+                {
+                    return ((ProductSubcategoryRow[])(base.GetChildRows(this.Table.ChildRelations["FK_ProductSubcategory_ProductCategory_ProductCategoryID"])));
+                }
+            }
         }
 
         /// <summary>
@@ -3124,6 +3166,34 @@ namespace WpfTestApplication.Data
                 set
                 {
                     this[this.tableProductSubcategory.NameColumn] = value;
+                }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int ProductCategoryID
+            {
+                get
+                {
+                    return ((int)(this[this.tableProductSubcategory.ProductCategoryIDColumn]));
+                }
+                set
+                {
+                    this[this.tableProductSubcategory.ProductCategoryIDColumn] = value;
+                }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ProductCategoryRow ProductCategoryRow
+            {
+                get
+                {
+                    return ((ProductCategoryRow)(this.GetParentRow(this.Table.ParentRelations["FK_ProductSubcategory_ProductCategory_ProductCategoryID"])));
+                }
+                set
+                {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_ProductSubcategory_ProductCategory_ProductCategoryID"]);
                 }
             }
         }
@@ -4166,6 +4236,7 @@ ORDER BY Production.Product.Name";
             tableMapping.DataSetTable = "ProductSubcategory";
             tableMapping.ColumnMappings.Add("ProductSubcategoryID", "ProductSubcategoryID");
             tableMapping.ColumnMappings.Add("Name", "Name");
+            tableMapping.ColumnMappings.Add("ProductCategoryID", "ProductCategoryID");
             this._adapter.TableMappings.Add(tableMapping);
         }
 
@@ -4184,8 +4255,8 @@ ORDER BY Production.Product.Name";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        ProductSubcategoryID, Name\r\nFROM            Production.ProductSubca" +
-                "tegory\r\nORDER BY Name";
+            this._commandCollection[0].CommandText = "SELECT        ProductSubcategoryID, Name, ProductCategoryID\r\nFROM            Prod" +
+                "uction.ProductSubcategory\r\nORDER BY Name";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
 
