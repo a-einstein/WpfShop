@@ -29,10 +29,10 @@
         
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right">
             <TextBlock Text="{Binding MasterFilterLabel}" Margin="0,0,5,0"/>
-            <ComboBox ItemsSource="{Binding MasterFilterItems}" DisplayMemberPath="{Binding MasterFilterDisplayMemberPath}" SelectedValuePath="{Binding MasterFilterSelectedValuePath}" SelectedValue="{Binding MasterFilterValue}" MinWidth="50" Margin="0,0,5,0"/>
+            <ComboBox ItemsSource="{Binding MasterFilterItems}" DisplayMemberPath="{Binding MasterFilterDisplayMemberPath}" SelectedValuePath="{Binding MasterFilterSelectedValuePath}" SelectedValue="{Binding MasterFilterValue}" Style="{StaticResource FilterComboBoxStyle}"/>
             
             <TextBlock Text="{Binding DetailFilterLabel}" Margin="0,0,5,0"/>
-            <ComboBox ItemsSource="{Binding DetailFilterItems}" DisplayMemberPath="{Binding DetailFilterDisplayMemberPath}" SelectedValuePath="{Binding DetailFilterSelectedValuePath}" SelectedValue="{Binding DetailFilterValue}" MinWidth="50" Margin="0,0,5,0"/>
+            <ComboBox ItemsSource="{Binding DetailFilterItems}" DisplayMemberPath="{Binding DetailFilterDisplayMemberPath}" SelectedValuePath="{Binding DetailFilterSelectedValuePath}" SelectedValue="{Binding DetailFilterValue}" Style="{StaticResource FilterComboBoxStyle}"/>
             
             <TextBlock Text="{Binding TextFilterLabel}" Margin="0,0,5,0"/>
             <TextBox Text="{Binding TextFilterValue, Mode=TwoWay}" Width="200" Margin="0,0,5,0"/>

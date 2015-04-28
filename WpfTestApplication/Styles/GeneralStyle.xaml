@@ -36,4 +36,9 @@
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="TextAlignment" Value="Right"/>
     </Style>
+
+    <Style x:Key="FilterComboBoxStyle" TargetType="ComboBox">
+        <Setter Property="Margin" Value="0,0,5,0"/>
+        <Setter Property="MinWidth" Value="50"/>
+    </Style>
 </ResourceDictionary>
