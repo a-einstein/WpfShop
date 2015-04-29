@@ -38,7 +38,10 @@
             <!--Note this field has to be tabbed out to reach the default button by the enter key.-->
             <TextBox Text="{Binding TextFilterValue, Mode=TwoWay}" Width="200" Margin="{StaticResource StandardHorizontalSeparation}"/>
 
-            <Button Content="Filter" Command="{Binding FilterCommand}" IsDefault="True"/>
+            <Button Content="Filter" Command="{Binding FilterCommand}" IsDefault="True" Margin="{StaticResource StandardHorizontalSeparation}"/>
+
+            <TextBlock Text="{Binding ItemsCount}" Margin="{StaticResource StandardHorizontalSeparation}"/>
+            <TextBlock Text="Products" Margin="{StaticResource StandardHorizontalSeparation}"/>
         </StackPanel>
 
         <Border Grid.Row="1" Margin="0,10,0,0" BorderBrush="Black" BorderThickness="1">

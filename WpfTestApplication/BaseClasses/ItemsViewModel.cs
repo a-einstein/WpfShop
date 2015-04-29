@@ -14,16 +14,19 @@ namespace WpfTestApplication.BaseClasses
         }
 
         public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register("Items", typeof(DataTable), typeof(ItemsViewModel));
+            DependencyProperty.Register("Items", typeof(DataView), typeof(ItemsViewModel));
 
         // Note this uses the DataView's standard filtering functionality.
         // Note a CollectionViewSource.View apparently is not able to filter.
         // This could also be implemented using a ObservableCollection and/or IQueryable.
-        public DataTable Items
+        public DataView Items
         {
-            get { return (DataTable )GetValue(ItemsProperty); }
+            get { return (DataView)GetValue(ItemsProperty); }
             set { SetValue(ItemsProperty, value); }
         }
+
+        // Convenience property to signal changes.
+        public int ItemsCount { get { return Items.Count; } }
 
         public virtual string MasterFilterLabel { get { return "Category"; } }
         public virtual string MasterFilterDisplayMemberPath { get { return "Name"; } }
@@ -55,10 +58,13 @@ namespace WpfTestApplication.BaseClasses
 
         private void SetDetailFilterItems()
         {
+            string filter = null;
+
             // Preserve empty value.
-            string filter = string.Format("({0} = {1})", DetailFilterMasterKeyPath, -1);
-            filter += (int)MasterFilterValue != -1 ? string.Format(" OR ({0} = {1})", DetailFilterMasterKeyPath, MasterFilterValue ) : null;
-            
+            filter = string.Format("({0} = {1})", DetailFilterMasterKeyPath, -1);
+
+            filter += (int)MasterFilterValue != -1 ? string.Format(" OR ({0} = {1})", DetailFilterMasterKeyPath, MasterFilterValue) : null;
+
             DetailFilterItems.DefaultView.RowFilter = filter;
         }
 
@@ -66,10 +72,10 @@ namespace WpfTestApplication.BaseClasses
         public virtual string DetailFilterDisplayMemberPath { get { return "Name"; } }
         public abstract string DetailFilterSelectedValuePath { get; }
         public abstract string DetailFilterMasterKeyPath { get; }
-   
+
         public static readonly DependencyProperty DetailFilterItemsProperty =
             DependencyProperty.Register("DetailFilterItems", typeof(DataTable), typeof(ItemsViewModel));
-     
+
         public DataTable DetailFilterItems
         {
             get { return (DataTable)GetValue(DetailFilterItemsProperty); }
@@ -83,12 +89,7 @@ namespace WpfTestApplication.BaseClasses
         }
 
         public static readonly DependencyProperty DetailFilterValueProperty =
-            DependencyProperty.Register("DetailFilterValue", typeof(object), typeof(ItemsViewModel), new PropertyMetadata(OnDetailFilterValueChanged));
-
-        private static void OnDetailFilterValueChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
-        {
-            ItemsViewModel viewModel = dependencyObject as ItemsViewModel;
-        }
+            DependencyProperty.Register("DetailFilterValue", typeof(object), typeof(ItemsViewModel));
 
         public virtual string TextFilterLabel { get { return "Name"; } }
         public virtual string TextFilterValuePath { get { return "Name"; } }
@@ -112,8 +113,10 @@ namespace WpfTestApplication.BaseClasses
             filter = AddFilter(filter, DetailFilterSelectedValuePath, (int)DetailFilterValue);
             filter = AddFilter(filter, TextFilterValuePath, TextFilterValue);
 
-            Items.CaseSensitive = false;
-            Items.DefaultView.RowFilter = filter;
+            Items.Table.CaseSensitive = false;
+            Items.RowFilter = filter;
+
+            RaisePropertyChanged("ItemsCount");
         }
 
         private string AddFilter(string filter, string newFilterValuePath, int newFilterValue)
@@ -133,7 +136,7 @@ namespace WpfTestApplication.BaseClasses
 
             return filter;
         }
-      
+
         public ICommand DetailsCommand { get; private set; }
         protected abstract void ShowDetails(object p);
 

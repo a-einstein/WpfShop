@@ -21,7 +21,7 @@ namespace WpfTestApplication.ViewModels
             ProductsOverviewTableAdapter productsTableAdapter = new ProductsOverviewTableAdapter();
             // Note this currently takes in all the table data. Of course this should be prefiltered and/or paged in a realistic environment. 
             ProductsOverviewDataTable productsOverviewTable = productsTableAdapter.GetData();
-            Items = productsOverviewTable;
+            Items = productsOverviewTable.DefaultView;
 
             ProductCategoryTableAdapter categoriesTableAdapter = new ProductCategoryTableAdapter();
             ProductCategoryDataTable categoriesTable = new ProductCategoryDataTable();
