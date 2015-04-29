@@ -103,7 +103,32 @@ namespace WpfTestApplication.BaseClasses
         }
 
         public ICommand FilterCommand { get; private set; }
-        protected abstract void SetFilter(object p);
+
+        protected virtual void SetFilter(object p)
+        {
+            string filter = null;
+
+
+            filter = AddIdFilter(filter, MasterFilterSelectedValuePath, (int)MasterFilterValue);
+
+            filter = AddIdFilter(filter, DetailFilterSelectedValuePath, (int)DetailFilterValue);
+
+            filter += !NullOrEmpty(filter) && !NullOrEmpty(TextFilterValue) ? " AND " : null;
+            filter += !NullOrEmpty(TextFilterValue) ? string.Format("({0} LIKE '%{1}%')", TextFilterValuePath, TextFilterValue) : null;
+
+            Items.CaseSensitive = false;
+            Items.DefaultView.RowFilter = filter;
+        }
+
+        private string AddIdFilter(string filter, string newFilterValuePath, int newFilterValue)
+        {
+            // Note that newFilterValue is assumed int and Nullable, which is represented as -1.
+
+            filter += !NullOrEmpty(filter) && newFilterValue != -1 ? " AND " : null;
+            filter += (int)newFilterValue != -1 ? string.Format("({0} = {1})", newFilterValuePath, newFilterValue) : null;
+
+            return filter;
+        }
         
         public ICommand DetailsCommand { get; private set; }
         protected abstract void ShowDetails(object p);

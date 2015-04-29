@@ -42,20 +42,6 @@ namespace WpfTestApplication.ViewModels
             DetailFilterValue = -1;
         }
 
-        protected override void SetFilter(object p)
-        {
-            string filter;
-
-            // Note Product only references a ProductSubcategory, but no ProductCategory. 
-            // ProductSubcategoryID is Nullable.
-            filter = (int)DetailFilterValue != -1 ? string.Format("(ProductSubcategoryID = {0})", DetailFilterValue) : null;
-            filter += (int)DetailFilterValue != -1 && !NullOrEmpty(TextFilterValue) ? " AND " : null;
-            filter += !NullOrEmpty(TextFilterValue) ? string.Format("({0} LIKE '%{1}%')", TextFilterValuePath, TextFilterValue) : null;
-
-            Items.CaseSensitive = false;
-            Items.DefaultView.RowFilter = filter;
-        }
-
 
         protected override void ShowDetails(object parameter)
         {
