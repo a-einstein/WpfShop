@@ -108,19 +108,15 @@ namespace WpfTestApplication.BaseClasses
         {
             string filter = null;
 
-
-            filter = AddIdFilter(filter, MasterFilterSelectedValuePath, (int)MasterFilterValue);
-
-            filter = AddIdFilter(filter, DetailFilterSelectedValuePath, (int)DetailFilterValue);
-
-            filter += !NullOrEmpty(filter) && !NullOrEmpty(TextFilterValue) ? " AND " : null;
-            filter += !NullOrEmpty(TextFilterValue) ? string.Format("({0} LIKE '%{1}%')", TextFilterValuePath, TextFilterValue) : null;
+            filter = AddFilter(filter, MasterFilterSelectedValuePath, (int)MasterFilterValue);
+            filter = AddFilter(filter, DetailFilterSelectedValuePath, (int)DetailFilterValue);
+            filter = AddFilter(filter, TextFilterValuePath, TextFilterValue);
 
             Items.CaseSensitive = false;
             Items.DefaultView.RowFilter = filter;
         }
 
-        private string AddIdFilter(string filter, string newFilterValuePath, int newFilterValue)
+        private string AddFilter(string filter, string newFilterValuePath, int newFilterValue)
         {
             // Note that newFilterValue is assumed int and Nullable, which is represented as -1.
 
@@ -129,7 +125,15 @@ namespace WpfTestApplication.BaseClasses
 
             return filter;
         }
-        
+
+        private string AddFilter(string filter, string newFilterValuePath, string newFilterValue)
+        {
+            filter += !NullOrEmpty(filter) && !NullOrEmpty(newFilterValue) ? " AND " : null;
+            filter += !NullOrEmpty(newFilterValue) ? string.Format("({0} LIKE '%{1}%')", newFilterValuePath, newFilterValue) : null;
+
+            return filter;
+        }
+      
         public ICommand DetailsCommand { get; private set; }
         protected abstract void ShowDetails(object p);
 
