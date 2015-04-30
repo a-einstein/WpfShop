@@ -1,4 +1,5 @@
-﻿
+﻿using System.Windows.Input;
+
 namespace WpfTestApplication.BaseClasses
 {
     abstract class ItemViewModel<T> : ViewModel
@@ -26,5 +27,7 @@ namespace WpfTestApplication.BaseClasses
                 RaisePropertyChanged("Item");
             }
         }
+
+        public ICommand OrderCommand { get; set; }
     }
 }

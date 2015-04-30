@@ -1,14 +1,11 @@
 ﻿using System.ComponentModel;
 using System.Windows;
-using System.Windows.Input;
 
 namespace WpfTestApplication.BaseClasses
 {
     abstract class ViewModel : DependencyObject, INotifyPropertyChanged
     {
         protected abstract void LoadData();
-
-        public ICommand OrderCommand { get; set; }
 
         protected static bool NullOrEmpty(string value)
         {

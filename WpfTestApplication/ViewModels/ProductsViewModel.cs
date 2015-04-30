@@ -10,7 +10,7 @@ using ProductSubcategoryDataTable = WpfTestApplication.Data.ProductsDataSet.Prod
 
 namespace WpfTestApplication.ViewModels
 {
-    class ProductsViewModel : ItemsViewModel
+    class ProductsViewModel : FilterItemsViewModel
     {
         public override string MasterFilterSelectedValuePath { get { return "ProductCategoryID"; } }
         public override string DetailFilterSelectedValuePath { get { return "ProductSubcategoryID"; } }
@@ -42,10 +42,15 @@ namespace WpfTestApplication.ViewModels
             DetailFilterValue = -1;
         }
 
-
         protected override void ShowDetails(object parameter)
         {
             RoutedEventArgs routedEventArgs = parameter as RoutedEventArgs;
+
+            // TODO Generally distinguish between Windows, Pages and Views. 
+            // Like
+            // - Windows: Main, Details.
+            // - Pages: About, Shopping.
+            // - Views: Products, Product, ShoppingCart.
 
             Window productView = new ProductView();
 
