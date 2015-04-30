@@ -87,14 +87,7 @@
                                             </TextBlock.Text>
                                         </TextBlock>
                                         <TextBlock Text="{Binding Color}" Style="{StaticResource DetailsTextBlockStyle}" TextWrapping="Wrap"/>
-                                        <Button Content="Details" Margin="3" HorizontalAlignment="Right">
-                                            <!--TODO Could this simply be done by Command?-->
-                                            <interactivity:Interaction.Triggers>
-                                                <interactivity:EventTrigger EventName="Click">
-                                                    <prism:InvokeCommandAction Command="{Binding DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" />
-                                                </interactivity:EventTrigger>
-                                            </interactivity:Interaction.Triggers>
-                                        </Button>
+                                        <Button Content="Details" Command="{Binding DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding ProductID}" Margin="3" HorizontalAlignment="Right" />
                                     </StackPanel>
                                 </Grid>
                              </Border>

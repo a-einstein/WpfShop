@@ -55,7 +55,7 @@ namespace WpfTestApplication.ViewModels
             Window productView = new ProductView();
 
             ProductViewModel productViewModel = productView.DataContext as ProductViewModel;
-            productViewModel.ItemId = (((routedEventArgs.Source as FrameworkElement).DataContext as DataRowView).Row as ProductsOverviewRow).ProductID;
+            productViewModel.ItemId = (int)parameter;
 
             productView.Show();
         }
