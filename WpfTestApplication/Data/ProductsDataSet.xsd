@@ -185,7 +185,7 @@ FROM            Sales.ShoppingCartItem</CommandText>
   <xs:element name="ProductsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ProductsDataSet" msprop:Generator_UserDSName="ProductsDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="ProductsOverview" msprop:Generator_TableClassName="ProductsOverviewDataTable" msprop:Generator_TableVarName="tableProductsOverview" msprop:Generator_TablePropName="ProductsOverview" msprop:Generator_RowDeletingName="ProductsOverviewRowDeleting" msprop:Generator_RowChangingName="ProductsOverviewRowChanging" msprop:Generator_RowEvHandlerName="ProductsOverviewRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductsOverviewRowDeleted" msprop:Generator_UserTableName="ProductsOverview" msprop:Generator_RowChangedName="ProductsOverviewRowChanged" msprop:Generator_RowEvArgName="ProductsOverviewRowChangeEvent" msprop:Generator_RowClassName="ProductsOverviewRow">
+        <xs:element name="ProductsOverview" msprop:Generator_TableClassName="ProductsOverviewDataTable" msprop:Generator_TableVarName="tableProductsOverview" msprop:Generator_RowChangedName="ProductsOverviewRowChanged" msprop:Generator_TablePropName="ProductsOverview" msprop:Generator_RowDeletingName="ProductsOverviewRowDeleting" msprop:Generator_RowChangingName="ProductsOverviewRowChanging" msprop:Generator_RowEvHandlerName="ProductsOverviewRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductsOverviewRowDeleted" msprop:Generator_RowClassName="ProductsOverviewRow" msprop:Generator_UserTableName="ProductsOverview" msprop:Generator_RowEvArgName="ProductsOverviewRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ProductID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnProductID" msprop:Generator_ColumnPropNameInRow="ProductID" msprop:Generator_ColumnPropNameInTable="ProductIDColumn" msprop:Generator_UserColumnName="ProductID" type="xs:int" />
@@ -246,7 +246,7 @@ FROM            Sales.ShoppingCartItem</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ProductDetails" msprop:Generator_TableClassName="ProductDetailsDataTable" msprop:Generator_TableVarName="tableProductDetails" msprop:Generator_RowChangedName="ProductDetailsRowChanged" msprop:Generator_TablePropName="ProductDetails" msprop:Generator_RowDeletingName="ProductDetailsRowDeleting" msprop:Generator_RowChangingName="ProductDetailsRowChanging" msprop:Generator_RowEvHandlerName="ProductDetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductDetailsRowDeleted" msprop:Generator_RowClassName="ProductDetailsRow" msprop:Generator_UserTableName="ProductDetails" msprop:Generator_RowEvArgName="ProductDetailsRowChangeEvent">
+        <xs:element name="ProductDetails" msprop:Generator_TableClassName="ProductDetailsDataTable" msprop:Generator_TableVarName="tableProductDetails" msprop:Generator_TablePropName="ProductDetails" msprop:Generator_RowDeletingName="ProductDetailsRowDeleting" msprop:Generator_RowChangingName="ProductDetailsRowChanging" msprop:Generator_RowEvHandlerName="ProductDetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductDetailsRowDeleted" msprop:Generator_UserTableName="ProductDetails" msprop:Generator_RowChangedName="ProductDetailsRowChanged" msprop:Generator_RowEvArgName="ProductDetailsRowChangeEvent" msprop:Generator_RowClassName="ProductDetailsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name">
@@ -321,7 +321,7 @@ FROM            Sales.ShoppingCartItem</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ProductCategory" msprop:Generator_TableClassName="ProductCategoryDataTable" msprop:Generator_TableVarName="tableProductCategory" msprop:Generator_RowChangedName="ProductCategoryRowChanged" msprop:Generator_TablePropName="ProductCategory" msprop:Generator_RowDeletingName="ProductCategoryRowDeleting" msprop:Generator_RowChangingName="ProductCategoryRowChanging" msprop:Generator_RowEvHandlerName="ProductCategoryRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductCategoryRowDeleted" msprop:Generator_RowClassName="ProductCategoryRow" msprop:Generator_UserTableName="ProductCategory" msprop:Generator_RowEvArgName="ProductCategoryRowChangeEvent">
+        <xs:element name="ProductCategory" msprop:Generator_TableClassName="ProductCategoryDataTable" msprop:Generator_TableVarName="tableProductCategory" msprop:Generator_TablePropName="ProductCategory" msprop:Generator_RowDeletingName="ProductCategoryRowDeleting" msprop:Generator_RowChangingName="ProductCategoryRowChanging" msprop:Generator_RowEvHandlerName="ProductCategoryRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductCategoryRowDeleted" msprop:Generator_UserTableName="ProductCategory" msprop:Generator_RowChangedName="ProductCategoryRowChanged" msprop:Generator_RowEvArgName="ProductCategoryRowChangeEvent" msprop:Generator_RowClassName="ProductCategoryRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ProductCategoryID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnProductCategoryID" msprop:Generator_ColumnPropNameInRow="ProductCategoryID" msprop:Generator_ColumnPropNameInTable="ProductCategoryIDColumn" msprop:Generator_UserColumnName="ProductCategoryID" type="xs:int" />
@@ -335,7 +335,7 @@ FROM            Sales.ShoppingCartItem</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ProductSubcategory" msprop:Generator_TableClassName="ProductSubcategoryDataTable" msprop:Generator_TableVarName="tableProductSubcategory" msprop:Generator_RowChangedName="ProductSubcategoryRowChanged" msprop:Generator_TablePropName="ProductSubcategory" msprop:Generator_RowDeletingName="ProductSubcategoryRowDeleting" msprop:Generator_RowChangingName="ProductSubcategoryRowChanging" msprop:Generator_RowEvHandlerName="ProductSubcategoryRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductSubcategoryRowDeleted" msprop:Generator_RowClassName="ProductSubcategoryRow" msprop:Generator_UserTableName="ProductSubcategory" msprop:Generator_RowEvArgName="ProductSubcategoryRowChangeEvent">
+        <xs:element name="ProductSubcategory" msprop:Generator_TableClassName="ProductSubcategoryDataTable" msprop:Generator_TableVarName="tableProductSubcategory" msprop:Generator_TablePropName="ProductSubcategory" msprop:Generator_RowDeletingName="ProductSubcategoryRowDeleting" msprop:Generator_RowChangingName="ProductSubcategoryRowChanging" msprop:Generator_RowEvHandlerName="ProductSubcategoryRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductSubcategoryRowDeleted" msprop:Generator_UserTableName="ProductSubcategory" msprop:Generator_RowChangedName="ProductSubcategoryRowChanged" msprop:Generator_RowEvArgName="ProductSubcategoryRowChangeEvent" msprop:Generator_RowClassName="ProductSubcategoryRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ProductSubcategoryID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnProductSubcategoryID" msprop:Generator_ColumnPropNameInRow="ProductSubcategoryID" msprop:Generator_ColumnPropNameInTable="ProductSubcategoryIDColumn" msprop:Generator_UserColumnName="ProductSubcategoryID" type="xs:int" />
@@ -350,7 +350,7 @@ FROM            Sales.ShoppingCartItem</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ShoppingCart" msprop:Generator_TableClassName="ShoppingCartDataTable" msprop:Generator_TableVarName="tableShoppingCart" msprop:Generator_TablePropName="ShoppingCart" msprop:Generator_RowDeletingName="ShoppingCartRowDeleting" msprop:Generator_RowChangingName="ShoppingCartRowChanging" msprop:Generator_RowEvHandlerName="ShoppingCartRowChangeEventHandler" msprop:Generator_RowDeletedName="ShoppingCartRowDeleted" msprop:Generator_UserTableName="ShoppingCart" msprop:Generator_RowChangedName="ShoppingCartRowChanged" msprop:Generator_RowEvArgName="ShoppingCartRowChangeEvent" msprop:Generator_RowClassName="ShoppingCartRow">
+        <xs:element name="ShoppingCart" msprop:Generator_TableClassName="ShoppingCartDataTable" msprop:Generator_TableVarName="tableShoppingCart" msprop:Generator_RowChangedName="ShoppingCartRowChanged" msprop:Generator_TablePropName="ShoppingCart" msprop:Generator_RowDeletingName="ShoppingCartRowDeleting" msprop:Generator_RowChangingName="ShoppingCartRowChanging" msprop:Generator_RowEvHandlerName="ShoppingCartRowChangeEventHandler" msprop:Generator_RowDeletedName="ShoppingCartRowDeleted" msprop:Generator_RowClassName="ShoppingCartRow" msprop:Generator_UserTableName="ShoppingCart" msprop:Generator_RowEvArgName="ShoppingCartRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ShoppingCartID" msprop:Generator_ColumnVarNameInTable="columnShoppingCartID" msprop:Generator_ColumnPropNameInRow="ShoppingCartID" msprop:Generator_ColumnPropNameInTable="ShoppingCartIDColumn" msprop:Generator_UserColumnName="ShoppingCartID">
@@ -363,7 +363,7 @@ FROM            Sales.ShoppingCartItem</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ShoppingCartItem" msprop:Generator_TableClassName="ShoppingCartItemDataTable" msprop:Generator_TableVarName="tableShoppingCartItem" msprop:Generator_TablePropName="ShoppingCartItem" msprop:Generator_RowDeletingName="ShoppingCartItemRowDeleting" msprop:Generator_RowChangingName="ShoppingCartItemRowChanging" msprop:Generator_RowEvHandlerName="ShoppingCartItemRowChangeEventHandler" msprop:Generator_RowDeletedName="ShoppingCartItemRowDeleted" msprop:Generator_UserTableName="ShoppingCartItem" msprop:Generator_RowChangedName="ShoppingCartItemRowChanged" msprop:Generator_RowEvArgName="ShoppingCartItemRowChangeEvent" msprop:Generator_RowClassName="ShoppingCartItemRow">
+        <xs:element name="ShoppingCartItem" msprop:Generator_TableClassName="ShoppingCartItemDataTable" msprop:Generator_TableVarName="tableShoppingCartItem" msprop:Generator_RowChangedName="ShoppingCartItemRowChanged" msprop:Generator_TablePropName="ShoppingCartItem" msprop:Generator_RowDeletingName="ShoppingCartItemRowDeleting" msprop:Generator_RowChangingName="ShoppingCartItemRowChanging" msprop:Generator_RowEvHandlerName="ShoppingCartItemRowChangeEventHandler" msprop:Generator_RowDeletedName="ShoppingCartItemRowDeleted" msprop:Generator_RowClassName="ShoppingCartItemRow" msprop:Generator_UserTableName="ShoppingCartItem" msprop:Generator_RowEvArgName="ShoppingCartItemRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ShoppingCartItemID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnShoppingCartItemID" msprop:Generator_ColumnPropNameInRow="ShoppingCartItemID" msprop:Generator_ColumnPropNameInTable="ShoppingCartItemIDColumn" msprop:Generator_UserColumnName="ShoppingCartItemID" type="xs:int" />
@@ -399,7 +399,7 @@ FROM            Sales.ShoppingCartItem</CommandText>
       <xs:selector xpath=".//mstns:ProductSubcategory" />
       <xs:field xpath="mstns:ProductSubcategoryID" />
     </xs:unique>
-    <xs:unique name="ShoppingCart_Constraint1" msdata:ConstraintName="Constraint1">
+    <xs:unique name="ShoppingCart_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:ShoppingCart" />
       <xs:field xpath="mstns:ShoppingCartID" />
     </xs:unique>
@@ -407,14 +407,14 @@ FROM            Sales.ShoppingCartItem</CommandText>
       <xs:selector xpath=".//mstns:ShoppingCartItem" />
       <xs:field xpath="mstns:ShoppingCartItemID" />
     </xs:unique>
-    <xs:keyref name="FK_ShoppingCart_ShoppingCartItem" refer="ShoppingCart_Constraint1" msprop:rel_Generator_UserChildTable="ShoppingCartItem" msprop:rel_Generator_ChildPropName="GetShoppingCartItemRows" msprop:rel_Generator_UserRelationName="FK_ShoppingCart_ShoppingCartItem" msprop:rel_Generator_ParentPropName="ShoppingCartRow" msprop:rel_Generator_RelationVarName="relationFK_ShoppingCart_ShoppingCartItem" msprop:rel_Generator_UserParentTable="ShoppingCart">
+    <xs:keyref name="FK_ShoppingCart_ShoppingCartItem" refer="ShoppingCart_Constraint1" msprop:rel_Generator_UserChildTable="ShoppingCartItem" msprop:rel_Generator_ChildPropName="GetShoppingCartItemRows" msprop:rel_Generator_UserRelationName="FK_ShoppingCart_ShoppingCartItem" msprop:rel_Generator_RelationVarName="relationFK_ShoppingCart_ShoppingCartItem" msprop:rel_Generator_UserParentTable="ShoppingCart" msprop:rel_Generator_ParentPropName="ShoppingCartRow">
       <xs:selector xpath=".//mstns:ShoppingCartItem" />
       <xs:field xpath="mstns:ShoppingCartID" />
     </xs:keyref>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_ProductSubcategory_ProductCategory_ProductCategoryID" msdata:parent="ProductCategory" msdata:child="ProductSubcategory" msdata:parentkey="ProductCategoryID" msdata:childkey="ProductCategoryID" msprop:Generator_UserChildTable="ProductSubcategory" msprop:Generator_ChildPropName="GetProductSubcategoryRows" msprop:Generator_UserRelationName="FK_ProductSubcategory_ProductCategory_ProductCategoryID" msprop:Generator_RelationVarName="relationFK_ProductSubcategory_ProductCategory_ProductCategoryID" msprop:Generator_UserParentTable="ProductCategory" msprop:Generator_ParentPropName="ProductCategoryRow" />
+      <msdata:Relationship name="FK_ProductSubcategory_ProductCategory_ProductCategoryID" msdata:parent="ProductCategory" msdata:child="ProductSubcategory" msdata:parentkey="ProductCategoryID" msdata:childkey="ProductCategoryID" msprop:Generator_UserChildTable="ProductSubcategory" msprop:Generator_ChildPropName="GetProductSubcategoryRows" msprop:Generator_UserRelationName="FK_ProductSubcategory_ProductCategory_ProductCategoryID" msprop:Generator_ParentPropName="ProductCategoryRow" msprop:Generator_RelationVarName="relationFK_ProductSubcategory_ProductCategory_ProductCategoryID" msprop:Generator_UserParentTable="ProductCategory" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

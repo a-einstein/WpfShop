@@ -14,7 +14,6 @@
     <Page.Resources>
         <ResourceDictionary>
             <Converters:CategoriesFormatter x:Key="CategoriesFormatter"/>
-            <Converters:PriceFormatter x:Key="PriceFormatter"/>
             <Converters:SizeFormatter x:Key="SizeFormatter"/>
             <Converters:WeightFormatter x:Key="WeightFormatter"/>
             <Converters:ByteArrayToBitmapImageConverter x:Key="ByteArrayToBitmapImageConverter"/>
@@ -69,7 +68,7 @@
                                             </TextBlock.Text>
                                         </TextBlock>
                                         <TextBlock Text="{Binding Name}" Style="{StaticResource DetailsTextBlockStyle}" FontWeight="Bold" FontSize="16"/>
-                                        <TextBlock Text="{Binding ListPrice, Converter={StaticResource PriceFormatter}}" Style="{StaticResource DetailsTextBlockStyle}" FontWeight="Bold" FontSize="12"/>
+                                        <TextBlock Text="{Binding ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource DetailsTextBlockStyle}" FontWeight="Bold" FontSize="12"/>
                                         <TextBlock Style="{StaticResource DetailsTextBlockStyle}">
                                             <TextBlock.Text>
                                                 <MultiBinding Converter="{StaticResource SizeFormatter}">
@@ -87,7 +86,8 @@
                                             </TextBlock.Text>
                                         </TextBlock>
                                         <TextBlock Text="{Binding Color}" Style="{StaticResource DetailsTextBlockStyle}" TextWrapping="Wrap"/>
-                                        <Button Content="Details" Command="{Binding DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding ProductID}" Margin="3" HorizontalAlignment="Right" />
+                                        <Button Content="Details" Command="{Binding DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding ProductID}" Margin="3" HorizontalAlignment="Right" Width="50"/>
+                                        <Button Content="Shop" Command="{Binding DataContext.CartCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding ProductID}" Margin="3" HorizontalAlignment="Right" Width="50"/>
                                     </StackPanel>
                                 </Grid>
                              </Border>

@@ -3,7 +3,7 @@ using System.Windows;
 
 namespace WpfTestApplication.BaseClasses
 {
-    abstract class ItemsViewModel : ViewModel
+    public abstract class ItemsViewModel : ViewModel
     {
         public ItemsViewModel()
         {
@@ -16,6 +16,7 @@ namespace WpfTestApplication.BaseClasses
         // Note this uses the DataView's standard filtering functionality.
         // Note a CollectionViewSource.View apparently is not able to filter.
         // This could also be implemented using a ObservableCollection and/or IQueryable.
+        // TODO Parameterize the class for this type?
         public DataView Items
         {
             get { return (DataView)GetValue(ItemsProperty); }

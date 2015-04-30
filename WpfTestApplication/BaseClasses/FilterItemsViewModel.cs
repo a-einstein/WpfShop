@@ -124,7 +124,7 @@ namespace WpfTestApplication.BaseClasses
         public ICommand DetailsCommand { get; private set; }
         protected abstract void ShowDetails(object p);
 
-        private void SetCommands()
+        protected virtual void SetCommands()
         {
             FilterCommand = new DelegateCommand<object>(SetFilter);
             DetailsCommand = new DelegateCommand<object>(ShowDetails);

@@ -10,7 +10,6 @@
     <Window.Resources>
         <ResourceDictionary>
             <Converters:CategoriesFormatter x:Key="CategoriesFormatter"/>
-            <Converters:PriceFormatter x:Key="PriceFormatter"/>
             <Converters:SizeFormatter x:Key="SizeFormatter"/>
             <Converters:WeightFormatter x:Key="WeightFormatter"/>
             <Converters:ByteArrayToBitmapImageConverter x:Key="ByteArrayToBitmapImageConverter"/>
@@ -41,7 +40,7 @@
             </TextBlock>
             <TextBlock Text="{Binding Item.ModelName}" Style="{StaticResource DetailsTextBlockStyle}"/>
             <TextBlock Text="{Binding Item.Name}" Style="{StaticResource DetailsTextBlockStyle}" FontWeight="Bold" FontSize="16"/>
-            <TextBlock Text="{Binding Item.ListPrice, Converter={StaticResource PriceFormatter}}" Style="{StaticResource DetailsTextBlockStyle}" FontWeight="Bold" FontSize="12"/>
+            <TextBlock Text="{Binding Item.ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource DetailsTextBlockStyle}" FontWeight="Bold" FontSize="12"/>
             <TextBlock Style="{StaticResource DetailsTextBlockStyle}">
                 <TextBlock.Text>
                     <MultiBinding Converter="{StaticResource SizeFormatter}">

@@ -2780,6 +2780,14 @@ namespace WpfTestApplication.Data
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ShoppingCartRow FindByShoppingCartID(string ShoppingCartID)
+            {
+                return ((ShoppingCartRow)(this.Rows.Find(new object[] {
+                            ShoppingCartID})));
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone()
             {
                 ShoppingCartDataTable cln = ((ShoppingCartDataTable)(base.Clone()));
@@ -2808,7 +2816,7 @@ namespace WpfTestApplication.Data
                 this.columnShoppingCartID = new global::System.Data.DataColumn("ShoppingCartID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnShoppingCartID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnShoppingCartID}, false));
+                                this.columnShoppingCartID}, true));
                 this.columnShoppingCartID.AllowDBNull = false;
                 this.columnShoppingCartID.Unique = true;
                 this.columnShoppingCartID.MaxLength = 50;

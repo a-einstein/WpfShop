@@ -1,11 +1,11 @@
-﻿using System.Data;
+﻿using Microsoft.Practices.Prism.Commands;
 using System.Windows;
+using System.Windows.Input;
 using WpfTestApplication.BaseClasses;
 using WpfTestApplication.Data.ProductsDataSetTableAdapters;
 using WpfTestApplication.Views;
 using ProductCategoryDataTable = WpfTestApplication.Data.ProductsDataSet.ProductCategoryDataTable;
 using ProductsOverviewDataTable = WpfTestApplication.Data.ProductsDataSet.ProductsOverviewDataTable;
-using ProductsOverviewRow = WpfTestApplication.Data.ProductsDataSet.ProductsOverviewRow;
 using ProductSubcategoryDataTable = WpfTestApplication.Data.ProductsDataSet.ProductSubcategoryDataTable;
 
 namespace WpfTestApplication.ViewModels
@@ -42,6 +42,13 @@ namespace WpfTestApplication.ViewModels
             DetailFilterValue = -1;
         }
 
+        protected override void SetCommands()
+        {
+            base.SetCommands();
+
+            CartCommand = new DelegateCommand<object>(Cart);
+        }
+
         protected override void ShowDetails(object parameter)
         {
             RoutedEventArgs routedEventArgs = parameter as RoutedEventArgs;
@@ -58,6 +65,13 @@ namespace WpfTestApplication.ViewModels
             productViewModel.ItemId = (int)parameter;
 
             productView.Show();
+        }
+
+        public ICommand CartCommand { get; private set; }
+
+        private void Cart(object parameter)
+        {
+            ShoppingCartViewModel.Instance.AddProduct((int)parameter);
         }
     }
 }

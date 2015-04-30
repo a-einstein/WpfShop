@@ -7,10 +7,6 @@
     Title="Shopping Cart" 
     Height="300" Width="300"
     >
-
-    <Window.Resources>
-        <Converters:PriceFormatter x:Key="PriceFormatter"/>
-    </Window.Resources>
     
     <Grid>
         <ItemsControl ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}">
@@ -29,8 +25,8 @@
 
                         <TextBlock Grid.Column="0" Text="{Binding Name}"/>
                         <TextBlock Grid.Column="1" Text="{Binding Color}"/>
-                        <TextBlock Grid.Column="2" Text="{Binding ListPrice, Converter={StaticResource PriceFormatter}}"/>
-                        <xctk:IntegerUpDown Grid.Column="3" Value="{Binding Quantity}"/>
+                        <TextBlock Grid.Column="2" Text="{Binding ListPrice, StringFormat=\{0:C2\}}"/>
+                        <xctk:IntegerUpDown Grid.Column="3" Value="{Binding Quantity, Mode=TwoWay}"/>
                         <TextBlock Grid.Column="5"/>
                         <Button Grid.Column="6" Content="Delete" />
                     </Grid>

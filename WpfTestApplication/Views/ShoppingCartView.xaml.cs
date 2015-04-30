@@ -9,7 +9,7 @@ namespace WpfTestApplication.Views
         {
             InitializeComponent();
 
-            DataContext = new ShoppingCartViewModel();
+            DataContext = ShoppingCartViewModel.Instance;
         }
     }
 }

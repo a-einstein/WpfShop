@@ -3,7 +3,7 @@ using System.Windows;
 
 namespace WpfTestApplication.BaseClasses
 {
-    abstract class ViewModel : DependencyObject, INotifyPropertyChanged
+    public abstract class ViewModel : DependencyObject, INotifyPropertyChanged
     {
         protected abstract void LoadData();
 
