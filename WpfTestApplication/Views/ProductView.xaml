@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Converters="clr-namespace:WpfTestApplication.Converters"
     Title="{Binding Item.Name}" 
-    Height="600" Width="600"
+    SizeToContent="WidthAndHeight"
+    Background="{StaticResource ProductBackgroundBrush}" Padding="3"
     >
 
     <Window.Resources>
@@ -16,20 +17,21 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid Margin="5">
+    <Grid Width="600">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="5"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Border Grid.Row="0" Grid.Column="0" Margin="3" Width="240" Height="240" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top" HorizontalAlignment="Left">
-            <Image Source="{Binding Item.LargePhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}"/>
-        </Border>
-        <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right">
+        <Image Grid.Row="0" Grid.Column="0" Source="{Binding Item.LargePhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}" Style="{StaticResource ImageStyle}" MaxWidth="240" MaxHeight="240"/>
+
+        <StackPanel Grid.Row="0" Grid.Column="2">
             <TextBlock Style="{StaticResource DetailsTextBlockStyle}">
                 <TextBlock.Text>
                     <MultiBinding Converter="{StaticResource CategoriesFormatter}">
@@ -38,9 +40,13 @@
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
+
             <TextBlock Text="{Binding Item.ModelName}" Style="{StaticResource DetailsTextBlockStyle}"/>
+
             <TextBlock Text="{Binding Item.Name}" Style="{StaticResource DetailsTextBlockStyle}" FontWeight="Bold" FontSize="16"/>
+
             <TextBlock Text="{Binding Item.ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource DetailsTextBlockStyle}" FontWeight="Bold" FontSize="12"/>
+
             <TextBlock Style="{StaticResource DetailsTextBlockStyle}">
                 <TextBlock.Text>
                     <MultiBinding Converter="{StaticResource SizeFormatter}">
@@ -49,6 +55,7 @@
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
+
             <TextBlock Style="{StaticResource DetailsTextBlockStyle}">
                 <TextBlock.Text>
                     <MultiBinding Converter="{StaticResource WeightFormatter}">
@@ -57,9 +64,12 @@
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
+
             <TextBlock Text="{Binding Item.Color}" Style="{StaticResource DetailsTextBlockStyle}"/>
+
             <TextBlock Text="{Binding Item.Description}" Style="{StaticResource DetailsTextBlockStyle}"/>
         </StackPanel>
-        <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Name="closeButton" Content="Close" Click="closeButton_Click" Margin="3" Width="50" HorizontalAlignment="Right"/>
+
+        <Button Grid.Row="1" Grid.Column="2" Name="closeButton" Content="Close" Click="closeButton_Click" Style="{StaticResource DetailsButtonStyle}" HorizontalAlignment="Right"/>
     </Grid>
 </Window>

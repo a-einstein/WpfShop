@@ -1,9 +1,9 @@
-﻿using System.Windows;
+﻿using System.Windows.Controls;
 using WpfTestApplication.ViewModels;
 
 namespace WpfTestApplication.Views
 {
-    public partial class ShoppingCartView : Window
+    public partial class ShoppingCartView : UserControl
     {
         public ShoppingCartView()
         {

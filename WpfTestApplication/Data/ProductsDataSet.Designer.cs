@@ -570,8 +570,6 @@ namespace WpfTestApplication.Data
 
             private global::System.Data.DataColumn columnWeightUnitMeasureCode;
 
-            private global::System.Data.DataColumn columnWeight;
-
             private global::System.Data.DataColumn columnThumbNailPhoto;
 
             private global::System.Data.DataColumn columnProductCategoryID;
@@ -693,16 +691,6 @@ namespace WpfTestApplication.Data
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn WeightColumn
-            {
-                get
-                {
-                    return this.columnWeight;
-                }
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn ThumbNailPhotoColumn
             {
                 get
@@ -793,7 +781,7 @@ namespace WpfTestApplication.Data
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ProductsOverviewRow AddProductsOverviewRow(string Name, string Color, decimal ListPrice, string Size, string SizeUnitMeasureCode, string WeightUnitMeasureCode, decimal Weight, byte[] ThumbNailPhoto, string ProductCategory, string ProductSubcategory)
+            public ProductsOverviewRow AddProductsOverviewRow(string Name, string Color, decimal ListPrice, string Size, string SizeUnitMeasureCode, string WeightUnitMeasureCode, byte[] ThumbNailPhoto, string ProductCategory, string ProductSubcategory)
             {
                 ProductsOverviewRow rowProductsOverviewRow = ((ProductsOverviewRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
@@ -804,7 +792,6 @@ namespace WpfTestApplication.Data
                         Size,
                         SizeUnitMeasureCode,
                         WeightUnitMeasureCode,
-                        Weight,
                         ThumbNailPhoto,
                         null,
                         ProductCategory,
@@ -850,7 +837,6 @@ namespace WpfTestApplication.Data
                 this.columnSize = base.Columns["Size"];
                 this.columnSizeUnitMeasureCode = base.Columns["SizeUnitMeasureCode"];
                 this.columnWeightUnitMeasureCode = base.Columns["WeightUnitMeasureCode"];
-                this.columnWeight = base.Columns["Weight"];
                 this.columnThumbNailPhoto = base.Columns["ThumbNailPhoto"];
                 this.columnProductCategoryID = base.Columns["ProductCategoryID"];
                 this.columnProductCategory = base.Columns["ProductCategory"];
@@ -876,8 +862,6 @@ namespace WpfTestApplication.Data
                 base.Columns.Add(this.columnSizeUnitMeasureCode);
                 this.columnWeightUnitMeasureCode = new global::System.Data.DataColumn("WeightUnitMeasureCode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnWeightUnitMeasureCode);
-                this.columnWeight = new global::System.Data.DataColumn("Weight", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnWeight);
                 this.columnThumbNailPhoto = new global::System.Data.DataColumn("ThumbNailPhoto", typeof(byte[]), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnThumbNailPhoto);
                 this.columnProductCategoryID = new global::System.Data.DataColumn("ProductCategoryID", typeof(int), null, global::System.Data.MappingType.Element);
@@ -3114,27 +3098,6 @@ namespace WpfTestApplication.Data
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal Weight
-            {
-                get
-                {
-                    try
-                    {
-                        return ((decimal)(this[this.tableProductsOverview.WeightColumn]));
-                    }
-                    catch (global::System.InvalidCastException e)
-                    {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Weight\' in table \'ProductsOverview\' is DBNull.", e);
-                    }
-                }
-                set
-                {
-                    this[this.tableProductsOverview.WeightColumn] = value;
-                }
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public byte[] ThumbNailPhoto
             {
                 get
@@ -3293,20 +3256,6 @@ namespace WpfTestApplication.Data
             public void SetWeightUnitMeasureCodeNull()
             {
                 this[this.tableProductsOverview.WeightUnitMeasureCodeColumn] = global::System.Convert.DBNull;
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsWeightNull()
-            {
-                return this.IsNull(this.tableProductsOverview.WeightColumn);
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetWeightNull()
-            {
-                this[this.tableProductsOverview.WeightColumn] = global::System.Convert.DBNull;
             }
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4553,7 +4502,6 @@ namespace WpfTestApplication.Data.ProductsDataSetTableAdapters
             tableMapping.ColumnMappings.Add("Size", "Size");
             tableMapping.ColumnMappings.Add("SizeUnitMeasureCode", "SizeUnitMeasureCode");
             tableMapping.ColumnMappings.Add("WeightUnitMeasureCode", "WeightUnitMeasureCode");
-            tableMapping.ColumnMappings.Add("Weight", "Weight");
             tableMapping.ColumnMappings.Add("ThumbNailPhoto", "ThumbNailPhoto");
             tableMapping.ColumnMappings.Add("ProductCategoryID", "ProductCategoryID");
             tableMapping.ColumnMappings.Add("ProductCategory", "ProductCategory");

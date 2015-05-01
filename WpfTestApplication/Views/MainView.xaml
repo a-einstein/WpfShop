@@ -1,8 +1,8 @@
 ﻿<Window
+    x:Class="WpfTestApplication.Views.MainView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:WpfTestApplication="clr-namespace:WpfTestApplication" 
-    x:Class="WpfTestApplication.Views.MainView"
+    xmlns:Views="clr-namespace:WpfTestApplication.Views" 
     Title="WpfTestApplication"
     Height="900" Width="700"
     >
@@ -24,8 +24,10 @@
                     <TextBlock Text="About us" Style="{StaticResource NavigationTextBlockStyle}"/>
                 </Button>
             </StackPanel>
+
+            <Views:ShoppingCartView Margin="0,10,0,0"/>
         </StackPanel>
 
-        <Frame Grid.Row="1" x:Name="pageFrame" Margin="0" Source="/Views/ProductsView.xaml" />
+        <Frame Grid.Row="1" x:Name="pageFrame" Margin="0,10,0,0" Source="/Views/ProductsView.xaml" />
     </Grid>
 </Window>

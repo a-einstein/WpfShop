@@ -13,6 +13,16 @@
     <SolidColorBrush x:Key="WarningColourBrush" Color="{StaticResource WarningColour}"/>
     <SolidColorBrush x:Key="ErrorColourBrush" Color="{StaticResource ErrorColour}"/>
 
+    <LinearGradientBrush x:Key="CartBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFF5F3DB" Offset="0"/>
+        <GradientStop Color="White" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ProductBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFE2F1FB" Offset="0"/>
+        <GradientStop Color="White" Offset="1"/>
+    </LinearGradientBrush>
+
     <Thickness x:Key="StandardHorizontalSeparation">0,0,5,0</Thickness>
 
     <Style x:Key="NavigationButtonStyle" TargetType="Button">
@@ -31,16 +41,33 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    <Style x:Key="ImageBorderStyle" TargetType="Border">
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Margin" Value="3"/>
+    </Style>
+
+    <Style x:Key="ImageStyle" TargetType="Image">
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Margin" Value="3"/>
+    </Style>
 
     <Style x:Key="DetailsTextBlockStyle" TargetType="TextBlock">
         <Setter Property="Margin" Value="2"/>
-        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
-        <Setter Property="TextAlignment" Value="Right"/>
+        <Setter Property="TextAlignment" Value="Left"/>
     </Style>
 
     <Style x:Key="FilterComboBoxStyle" TargetType="ComboBox">
         <Setter Property="Margin" Value="{StaticResource StandardHorizontalSeparation}"/>
+        <Setter Property="Width" Value="100"/>
+    </Style>
+
+    <Style x:Key="DetailsButtonStyle" TargetType="Button">
+        <Setter Property="Margin" Value="3"/>
         <Setter Property="MinWidth" Value="50"/>
     </Style>
 </ResourceDictionary>
