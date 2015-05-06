@@ -46,64 +46,66 @@
                 <TextBlock Text="Products" Margin="{StaticResource StandardHorizontalSeparation}"/>
             </StackPanel>
 
-            <!--Note this does not work within a StackPanel-->
-            <ScrollViewer  Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" BorderBrush="Black" BorderThickness="1" Margin="0,10,0,0">
-                <ItemsControl ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}" Padding="2">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Border Margin="2" BorderThickness="1" BorderBrush="Black" Background="{StaticResource ProductBackgroundBrush}" Padding="3">
-                                <Grid Width="300">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="5"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
+            <Border Grid.Row="2" Style="{StaticResource BorderStyle}" Margin="0,10,0,0">
+                <!--Note this does not work within a StackPanel-->
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}" Padding="2" Background="#FFEAF7FF">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="2" BorderThickness="1" BorderBrush="Black" Background="{StaticResource ProductBackgroundBrush}" Padding="3">
+                                    <Grid Width="300">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="5"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
 
-                                    <Image Grid.Column="0" Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}" Style="{StaticResource ImageStyle}" MaxWidth="80" MaxHeight="80" />
+                                        <Image Grid.Column="0" Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}" Style="{StaticResource ImageStyle}" MaxWidth="80" MaxHeight="80" />
 
-                                    <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                                        <Button Content="Details" Command="{Binding DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding ProductID}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource ProductBackgroundBrush}"/>
-                                        <Button Content="Shop" Command="{Binding DataContext.CartCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding ProductID}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"/>
-                                    </StackPanel>
+                                        <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                                            <Button Content="Details" Command="{Binding DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding ProductID}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource ProductBackgroundBrush}"/>
+                                            <Button Content="Shop" Command="{Binding DataContext.CartCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding ProductID}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"/>
+                                        </StackPanel>
 
-                                    <StackPanel Grid.Column="2">
-                                        <TextBlock Style="{StaticResource DetailsTextBlockStyle}">
-                                            <TextBlock.Text>
-                                                <MultiBinding Converter="{StaticResource CategoriesFormatter}">
-                                                    <Binding Path="ProductCategory"/>
-                                                    <Binding Path="ProductSubcategory"/>
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
+                                        <StackPanel Grid.Column="2">
+                                            <TextBlock Style="{StaticResource TextBlockStyle}">
+                                                <TextBlock.Text>
+                                                    <MultiBinding Converter="{StaticResource CategoriesFormatter}">
+                                                        <Binding Path="ProductCategory"/>
+                                                        <Binding Path="ProductSubcategory"/>
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
 
-                                        <TextBlock Text="{Binding Name}" Style="{StaticResource DetailsTextBlockStyle}" FontWeight="Bold" FontSize="16"/>
+                                            <TextBlock Text="{Binding Name}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold" FontSize="16"/>
 
-                                        <TextBlock Text="{Binding ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource DetailsTextBlockStyle}" FontWeight="Bold" FontSize="12"/>
+                                            <TextBlock Text="{Binding ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold" FontSize="12"/>
 
-                                        <TextBlock Style="{StaticResource DetailsTextBlockStyle}">
-                                            <TextBlock.Text>
-                                                <MultiBinding Converter="{StaticResource SizeFormatter}">
-                                                    <Binding Path="Size"/>
-                                                    <Binding Path="SizeUnitMeasureCode"/>
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
+                                            <TextBlock Style="{StaticResource TextBlockStyle}">
+                                                <TextBlock.Text>
+                                                    <MultiBinding Converter="{StaticResource SizeFormatter}">
+                                                        <Binding Path="Size"/>
+                                                        <Binding Path="SizeUnitMeasureCode"/>
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
 
-                                        <TextBlock Text="{Binding Color}" Style="{StaticResource DetailsTextBlockStyle}" TextWrapping="Wrap"/>
-                                    </StackPanel>
-                                </Grid>
+                                            <TextBlock Text="{Binding Color}" Style="{StaticResource TextBlockStyle}"/>
+                                        </StackPanel>
+                                    </Grid>
 
-                            </Border>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
 
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
-            </ScrollViewer>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Border>
         </Grid>
     </Border>
 </Page>

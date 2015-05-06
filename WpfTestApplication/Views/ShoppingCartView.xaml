@@ -9,62 +9,96 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <Converters:SizeFormatter x:Key="SizeFormatter"/>
+            <!--TODO Widths of GridViewColumn is still not correct, despite some research on the web.-->
+            <Style TargetType="ListViewItem">
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
 
     <Border BorderBrush="Black" BorderThickness="1" Padding="3" Background="{StaticResource CartBackgroundBrush}">
         <StackPanel>
             <TextBlock Text="Shopping Cart" FontWeight="Bold"/>
-            
-            <Expander Header="Details">
-                <ItemsControl ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
 
-                                <TextBlock Grid.Column="0" Text="{Binding Name}"/>
-                                
-                                <TextBlock Style="{StaticResource DetailsTextBlockStyle}">
-                                    <TextBlock.Text>
-                                        <MultiBinding Converter="{StaticResource SizeFormatter}">
-                                            <Binding Path="Size"/>
-                                            <Binding Path="SizeUnitMeasureCode"/>
-                                        </MultiBinding>
-                                    </TextBlock.Text>
-                                </TextBlock>
-                                
-                                <TextBlock Grid.Column="1" Text="{Binding Color}"/>
-                               
-                                <TextBlock Grid.Column="2" Text="{Binding ListPrice, StringFormat=\{0:C2\}}"/>
-                                
-                                <xctk:IntegerUpDown Grid.Column="3" Value="{Binding Quantity, Mode=TwoWay}"/>
-                               
-                                <TextBlock Grid.Column="4"/>
-                               
-                                <Button Grid.Column="5" Content="Delete" />
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+            <Expander>
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <!--TODO Update these controls on Quantity increase by IntegerUpDown.-->
+
+                        <TextBlock Text="{Binding ItemsCount}" Margin="{StaticResource StandardHorizontalSeparation}" FontWeight="Bold"/>
+                        <TextBlock Text="Products" Margin="{StaticResource StandardHorizontalSeparation}"/>
+
+                        <TextBlock Text="{Binding ProductItemCount}" Margin="{StaticResource StandardHorizontalSeparation}" FontWeight="Bold"/>
+                        <TextBlock Text="Items" Margin="{StaticResource StandardHorizontalSeparation}"/>
+
+                        <TextBlock Text="{Binding TotalValue, StringFormat=\{0:C2\}}" Margin="{StaticResource StandardHorizontalSeparation}" FontWeight="Bold"/>
+                        <TextBlock Text="Total" Margin="{StaticResource StandardHorizontalSeparation}"/>
+                    </StackPanel>
+                </Expander.Header>
+                <Expander.Content>
+                    <ListView ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}" MinHeight="20" Background="#FFFFFDF1">
+                        <ListView.View>
+                            <!--TODO Make Height of row smaller.-->
+                            <GridView ColumnHeaderContainerStyle="{StaticResource ShoppingCartColumnHeaderStyle}">
+
+                                <!--TODO Width Auto does not work. Is it possible at all?-->
+
+                                <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=ProductName}"/>
+
+                                <GridViewColumn Width="Auto">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Style="{StaticResource TextBlockStyle}">
+                                                <TextBlock.Text>
+                                                    <MultiBinding Converter="{StaticResource SizeFormatter}">
+                                                        <Binding Path="ProductSize"/>
+                                                        <Binding Path="ProductSizeUnitMeasureCode"/>
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=ProductColor}"/>
+
+                                <GridViewColumn Width="Auto">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource TextBlockStyle}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Width="Auto">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <xctk:IntegerUpDown Value="{Binding Quantity, Mode=TwoWay}" Style="{StaticResource IntegerUpDownStyle}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Width="Auto">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Value, StringFormat=\{0:C2\}}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Width="Auto">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <!--TODO Make this working.-->
+                                            <Button Content="X" Style="{StaticResource DeleteButtonStyle}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Expander.Content>
             </Expander>
-            
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Margin="{StaticResource StandardHorizontalSeparation}"/>
-                <TextBlock Text="Products" Margin="{StaticResource StandardHorizontalSeparation}"/>
-
-                <TextBlock Margin="{StaticResource StandardHorizontalSeparation}"/>
-                <TextBlock Text="Items" Margin="{StaticResource StandardHorizontalSeparation}"/>
-
-                <TextBlock Margin="{StaticResource StandardHorizontalSeparation}"/>
-            </StackPanel>
         </StackPanel>
     </Border>
 </UserControl>

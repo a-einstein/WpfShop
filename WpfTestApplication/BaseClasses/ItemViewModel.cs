@@ -1,11 +1,11 @@
-﻿using System.Windows.Input;
-
-namespace WpfTestApplication.BaseClasses
+﻿namespace WpfTestApplication.BaseClasses
 {
     abstract class ItemViewModel<T> : ViewModel
     {
         private int itemId;
 
+        // TODO Is this needed? 
+        // TODO Is it updated correctly and smartly?
         public int ItemId
         {
             get { return itemId; }
@@ -27,7 +27,5 @@ namespace WpfTestApplication.BaseClasses
                 RaisePropertyChanged("Item");
             }
         }
-
-        public ICommand OrderCommand { get; set; }
     }
 }

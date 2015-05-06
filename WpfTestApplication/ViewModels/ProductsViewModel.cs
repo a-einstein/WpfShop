@@ -2,15 +2,13 @@
 using System.Windows;
 using System.Windows.Input;
 using WpfTestApplication.BaseClasses;
-using WpfTestApplication.Data.ProductsDataSetTableAdapters;
+using WpfTestApplication.Interfaces;
+using WpfTestApplication.Model;
 using WpfTestApplication.Views;
-using ProductCategoryDataTable = WpfTestApplication.Data.ProductsDataSet.ProductCategoryDataTable;
-using ProductsOverviewDataTable = WpfTestApplication.Data.ProductsDataSet.ProductsOverviewDataTable;
-using ProductSubcategoryDataTable = WpfTestApplication.Data.ProductsDataSet.ProductSubcategoryDataTable;
 
 namespace WpfTestApplication.ViewModels
 {
-    class ProductsViewModel : FilterItemsViewModel
+    class ProductsViewModel : FilterItemsViewModel, IShopper
     {
         public override string MasterFilterSelectedValuePath { get { return "ProductCategoryID"; } }
         public override string DetailFilterSelectedValuePath { get { return "ProductSubcategoryID"; } }
@@ -18,24 +16,10 @@ namespace WpfTestApplication.ViewModels
 
         protected override void LoadData()
         {
-            ProductsOverviewTableAdapter productsTableAdapter = new ProductsOverviewTableAdapter();
-            // Note this currently takes in all the table data. Of course this should be prefiltered and/or paged in a realistic environment. 
-            ProductsOverviewDataTable productsOverviewTable = productsTableAdapter.GetData();
-            Items = productsOverviewTable.DefaultView;
+            Items = ProductsModel.Instance.Products.DefaultView;
 
-            ProductCategoryTableAdapter categoriesTableAdapter = new ProductCategoryTableAdapter();
-            ProductCategoryDataTable categoriesTable = new ProductCategoryDataTable();
-            categoriesTable.AddProductCategoryRow(string.Empty);
-            categoriesTableAdapter.ClearBeforeFill = false;
-            categoriesTableAdapter.Fill(categoriesTable);
-            MasterFilterItems = categoriesTable;
-
-            ProductSubcategoryTableAdapter subcategoriesTableAdapter = new ProductSubcategoryTableAdapter();
-            ProductSubcategoryDataTable subcategoriesTable = new ProductSubcategoryDataTable();
-            subcategoriesTable.AddProductSubcategoryRow(string.Empty, categoriesTable.FindByProductCategoryID(-1));
-            subcategoriesTableAdapter.ClearBeforeFill = false;
-            subcategoriesTableAdapter.Fill(subcategoriesTable);
-            DetailFilterItems = subcategoriesTable;
+            MasterFilterItems = ProductsModel.Instance.ProductCategories;
+            DetailFilterItems = ProductsModel.Instance.ProductSubcategories;
 
             // Note that MasterFilterValue also determines DetailFilterItems.
             MasterFilterValue = -1;
@@ -46,7 +30,7 @@ namespace WpfTestApplication.ViewModels
         {
             base.SetCommands();
 
-            CartCommand = new DelegateCommand<object>(Cart);
+            CartCommand = new DelegateCommand<object>(CartProduct);
         }
 
         protected override void ShowDetails(object parameter)
@@ -67,9 +51,9 @@ namespace WpfTestApplication.ViewModels
             productView.Show();
         }
 
-        public ICommand CartCommand { get; private set; }
+        public ICommand CartCommand { get; set; }
 
-        private void Cart(object parameter)
+        private void CartProduct(object parameter)
         {
             ShoppingCartViewModel.Instance.AddProduct((int)parameter);
         }

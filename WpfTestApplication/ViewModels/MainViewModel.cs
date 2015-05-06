@@ -6,6 +6,7 @@ namespace WpfTestApplication.ViewModels
     {
         private Uri aboutPageSource = new Uri("/Views/AboutView.xaml", UriKind.Relative);
 
+        // TODO Does this belong here?
         public Uri AboutPageSource
         {
             get { return aboutPageSource; }
@@ -14,6 +15,7 @@ namespace WpfTestApplication.ViewModels
 
         private Uri productsPageSource = new Uri("/Views/ProductsView.xaml", UriKind.Relative);
 
+        // TODO Does this belong here?
         public Uri ProductsPageSource
         {
             get { return productsPageSource; }

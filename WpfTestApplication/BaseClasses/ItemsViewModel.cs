@@ -5,11 +5,6 @@ namespace WpfTestApplication.BaseClasses
 {
     public abstract class ItemsViewModel : ViewModel
     {
-        public ItemsViewModel()
-        {
-            LoadData();
-        }
-
         public static readonly DependencyProperty ItemsProperty =
             DependencyProperty.Register("Items", typeof(DataView), typeof(ItemsViewModel));
 

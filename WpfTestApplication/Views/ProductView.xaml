@@ -21,6 +21,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
         <Grid.ColumnDefinitions>
@@ -31,8 +32,10 @@
 
         <Image Grid.Row="0" Grid.Column="0" Source="{Binding Item.LargePhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}" Style="{StaticResource ImageStyle}" MaxWidth="240" MaxHeight="240"/>
 
-        <StackPanel Grid.Row="0" Grid.Column="2">
-            <TextBlock Style="{StaticResource DetailsTextBlockStyle}">
+        <Button Grid.Row="1" Grid.Column="0" Content="Shop" Command="{Binding CartCommand}" CommandParameter="{Binding Item.ProductID}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"/>
+
+        <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="2">
+            <TextBlock Style="{StaticResource TextBlockStyle}">
                 <TextBlock.Text>
                     <MultiBinding Converter="{StaticResource CategoriesFormatter}">
                         <Binding Path="Item.ProductCategory"/>
@@ -41,13 +44,13 @@
                 </TextBlock.Text>
             </TextBlock>
 
-            <TextBlock Text="{Binding Item.ModelName}" Style="{StaticResource DetailsTextBlockStyle}"/>
+            <TextBlock Text="{Binding Item.ModelName}" Style="{StaticResource TextBlockStyle}"/>
 
-            <TextBlock Text="{Binding Item.Name}" Style="{StaticResource DetailsTextBlockStyle}" FontWeight="Bold" FontSize="16"/>
+            <TextBlock Text="{Binding Item.Name}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold" FontSize="16"/>
 
-            <TextBlock Text="{Binding Item.ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource DetailsTextBlockStyle}" FontWeight="Bold" FontSize="12"/>
+            <TextBlock Text="{Binding Item.ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold" FontSize="12"/>
 
-            <TextBlock Style="{StaticResource DetailsTextBlockStyle}">
+            <TextBlock Style="{StaticResource TextBlockStyle}">
                 <TextBlock.Text>
                     <MultiBinding Converter="{StaticResource SizeFormatter}">
                         <Binding Path="Item.Size"/>
@@ -56,7 +59,7 @@
                 </TextBlock.Text>
             </TextBlock>
 
-            <TextBlock Style="{StaticResource DetailsTextBlockStyle}">
+            <TextBlock Style="{StaticResource TextBlockStyle}">
                 <TextBlock.Text>
                     <MultiBinding Converter="{StaticResource WeightFormatter}">
                         <Binding Path="Item.Weight"/>
@@ -65,11 +68,11 @@
                 </TextBlock.Text>
             </TextBlock>
 
-            <TextBlock Text="{Binding Item.Color}" Style="{StaticResource DetailsTextBlockStyle}"/>
+            <TextBlock Text="{Binding Item.Color}" Style="{StaticResource TextBlockStyle}"/>
 
-            <TextBlock Text="{Binding Item.Description}" Style="{StaticResource DetailsTextBlockStyle}"/>
+            <TextBlock Text="{Binding Item.Description}" Style="{StaticResource TextBlockStyle}"/>
         </StackPanel>
 
-        <Button Grid.Row="1" Grid.Column="2" Name="closeButton" Content="Close" Click="closeButton_Click" Style="{StaticResource DetailsButtonStyle}" HorizontalAlignment="Right"/>
+        <Button Grid.Row="2" Grid.Column="2" Name="closeButton" Content="Close" Click="closeButton_Click" Style="{StaticResource DetailsButtonStyle}" HorizontalAlignment="Right"/>
     </Grid>
 </Window>

@@ -1,7 +1,10 @@
 ﻿<ResourceDictionary 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
    >
+    <Thickness x:Key="StandardHorizontalSeparation">0,0,5,0</Thickness>
+    <Thickness x:Key="StandardMargin">2</Thickness>
 
     <Color x:Key="MessageColour">blue</Color>
     <Color x:Key="AssertColour">green</Color>
@@ -23,8 +26,6 @@
         <GradientStop Color="White" Offset="1"/>
     </LinearGradientBrush>
 
-    <Thickness x:Key="StandardHorizontalSeparation">0,0,5,0</Thickness>
-
     <Style x:Key="NavigationButtonStyle" TargetType="Button">
         <Setter Property="Margin" Value="{StaticResource StandardHorizontalSeparation}"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -41,8 +42,13 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-    <Style x:Key="ImageBorderStyle" TargetType="Border">
+
+    <Style x:Key="BorderStyle" TargetType="Border">
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+
+    <Style x:Key="ImageBorderStyle" TargetType="Border" BasedOn="{StaticResource BorderStyle}">
         <Setter Property="BorderBrush" Value="Black"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
@@ -54,8 +60,8 @@
         <Setter Property="Margin" Value="3"/>
     </Style>
 
-    <Style x:Key="DetailsTextBlockStyle" TargetType="TextBlock">
-        <Setter Property="Margin" Value="2"/>
+    <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+        <Setter Property="Margin" Value="{StaticResource StandardMargin}"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="TextAlignment" Value="Left"/>
@@ -65,9 +71,26 @@
         <Setter Property="Margin" Value="{StaticResource StandardHorizontalSeparation}"/>
         <Setter Property="Width" Value="100"/>
     </Style>
+    
+    <Style x:Key="ButtonStyle" TargetType="Button">
+        <Setter Property="Margin" Value="{StaticResource StandardMargin}"/>
+    </Style>
 
-    <Style x:Key="DetailsButtonStyle" TargetType="Button">
-        <Setter Property="Margin" Value="3"/>
+    <Style x:Key="DetailsButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
         <Setter Property="MinWidth" Value="50"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+    </Style>
+
+    <Style x:Key="DeleteButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+        <Setter Property="Background" Value="Red"/>
+    </Style>
+
+    <Style x:Key="IntegerUpDownStyle" TargetType="xctk:IntegerUpDown">
+        <Setter Property="Margin" Value="{StaticResource StandardMargin}"/>
+    </Style>
+
+    <Style x:Key="ShoppingCartColumnHeaderStyle" TargetType="GridViewColumnHeader">
+        <Setter Property="Height" Value="0"/>
     </Style>
 </ResourceDictionary>

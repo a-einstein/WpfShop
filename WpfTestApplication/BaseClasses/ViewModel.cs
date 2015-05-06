@@ -5,7 +5,15 @@ namespace WpfTestApplication.BaseClasses
 {
     public abstract class ViewModel : DependencyObject, INotifyPropertyChanged
     {
+        public ViewModel()
+        {
+            LoadData();
+            SetCommands();
+        }
+
         protected abstract void LoadData();
+
+        protected virtual void SetCommands() { }
 
         protected static bool NullOrEmpty(string value)
         {

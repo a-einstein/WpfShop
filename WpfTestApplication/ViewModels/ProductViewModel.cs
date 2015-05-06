@@ -1,19 +1,31 @@
-﻿using WpfTestApplication.BaseClasses;
-using WpfTestApplication.Data.ProductsDataSetTableAdapters;
-using ProductDetailsDataTable = WpfTestApplication.Data.ProductsDataSet.ProductDetailsDataTable;
-using ProductDetailsRow = WpfTestApplication.Data.ProductsDataSet.ProductDetailsRow;
+﻿using Microsoft.Practices.Prism.Commands;
+using System.Windows.Input;
+using WpfTestApplication.BaseClasses;
+using WpfTestApplication.Interfaces;
+using WpfTestApplication.Model;
+using ProductDetailsRow = WpfTestApplication.Model.ProductsDataSet.ProductDetailsRow;
 
 namespace WpfTestApplication.ViewModels
 {
-    class ProductViewModel : ItemViewModel<ProductDetailsRow>
+    class ProductViewModel : ItemViewModel<ProductDetailsRow>, IShopper
     {
         protected override void LoadData()
         {
-            ProductDetailsTableAdapter productTableAdapter = new ProductDetailsTableAdapter();
+            Item = ProductsModel.Instance.ProductDetails(ItemId);
+        }
 
-            ProductDetailsDataTable productDetailsTable = productTableAdapter.GetDataBy(ItemId);
+        protected override void SetCommands()
+        {
+            base.SetCommands();
 
-            Item = productDetailsTable.FindByProductID(ItemId);
+            CartCommand = new DelegateCommand<object>(CartProduct);
+        }
+
+        public ICommand CartCommand { get; set; }
+
+        private void CartProduct(object parameter)
+        {
+            ShoppingCartViewModel.Instance.AddProduct((int)parameter);
         }
     }
 }

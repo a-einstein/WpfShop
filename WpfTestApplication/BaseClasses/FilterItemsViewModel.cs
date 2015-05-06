@@ -7,11 +7,6 @@ namespace WpfTestApplication.BaseClasses
 {
     abstract class FilterItemsViewModel : ItemsViewModel
     {
-        public FilterItemsViewModel()
-        {
-            SetCommands();
-        }
-
         public virtual string MasterFilterLabel { get { return "Category"; } }
         public virtual string MasterFilterDisplayMemberPath { get { return "Name"; } }
         public abstract string MasterFilterSelectedValuePath { get; }
@@ -124,7 +119,7 @@ namespace WpfTestApplication.BaseClasses
         public ICommand DetailsCommand { get; private set; }
         protected abstract void ShowDetails(object p);
 
-        protected virtual void SetCommands()
+        protected override void SetCommands()
         {
             FilterCommand = new DelegateCommand<object>(SetFilter);
             DetailsCommand = new DelegateCommand<object>(ShowDetails);
