@@ -151,19 +151,16 @@ namespace WpfTestApplication.Model
             }
         }
 
-        public void AddToCart(int productId)
+        const string cartItemsNumberExceptionMessage = "Unexpected number of found ShoppingCartItemsRows.";
+
+        public void CartItemQuantityIncrease(int productId)
         {
             string productQuery = string.Format("ProductID = {0}", productId);
             DataRow[] existingCartItems = CartItems.Select(productQuery);
 
             ShoppingCartItemsRow cartItem;
 
-            if (existingCartItems.Length == 1)
-            {
-                cartItem = existingCartItems[0] as ShoppingCartItemsRow;
-                cartItem.Quantity += 1;
-            }
-            else
+            if (existingCartItems.Length == 0)
             {
                 DateTime now = DateTime.Now;
 
@@ -173,8 +170,42 @@ namespace WpfTestApplication.Model
 
                 cartItem = CartItems.AddShoppingCartItemsRow(Cart, 1, productRow, now, now);
             }
+            else if (existingCartItems.Length == 1)
+            {
+                cartItem = existingCartItems[0] as ShoppingCartItemsRow;
+                cartItem.Quantity += 1;
+            }
+            else
+                throw new Exception(cartItemsNumberExceptionMessage);
 
             CartItems.AcceptChanges();
+        }
+
+        public void CartItemDelete(int cartItemID)
+        {
+            ShoppingCartItemsRow cartItem = CartItems.FindByShoppingCartItemID(cartItemID);
+
+            if (cartItem != null)
+            {
+                cartItem.Delete();
+                CartItems.AcceptChanges();
+            }
+            else
+                throw new Exception(cartItemsNumberExceptionMessage);
+        }
+
+        public int CartProductItemsCount()
+        {
+            return  CartItems.Count > 0
+            ? Convert.ToInt32(ShoppingWrapper.Instance.CartItems.Compute("Sum(Quantity)", null))
+            : 0;
+        }
+
+        public double CartValue()
+        {
+            return CartItems.Count > 0
+            ? Convert.ToDouble(CartItems.Compute("Sum(Value)", null))
+            : 0.0;
         }
     }
 }

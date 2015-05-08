@@ -16,6 +16,7 @@ namespace WpfTestApplication.ViewModels
 
         protected override void LoadData()
         {
+            // TODO reduce loading time e.g. by making it asynchronous.
             Items = ShoppingWrapper.Instance.Products.DefaultView;
 
             MasterFilterItems = ShoppingWrapper.Instance.ProductCategories;
@@ -55,7 +56,7 @@ namespace WpfTestApplication.ViewModels
 
         private void CartProduct(object parameter)
         {
-            ShoppingCartViewModel.Instance.Add((int)parameter);
+            ShoppingCartViewModel.Instance.Increase((int)parameter);
         }
     }
 }

@@ -67,7 +67,7 @@
                                 <GridViewColumn Width="Auto">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <xctk:IntegerUpDown Value="{Binding Quantity, Mode=TwoWay}" Style="{StaticResource IntegerUpDownStyle}"/>
+                                            <xctk:IntegerUpDown Value="{Binding Quantity, Mode=TwoWay}" Minimum="0" Style="{StaticResource IntegerUpDownStyle}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -83,8 +83,7 @@
                                 <GridViewColumn Width="Auto">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <!--TODO Make this working.-->
-                                            <Button Content="X" Style="{StaticResource DeleteButtonStyle}"/>
+                                            <Button Content="X" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding ShoppingCartItemID}" Style="{StaticResource DeleteButtonStyle}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

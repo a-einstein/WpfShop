@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Practices.Prism.Commands;
+using System;
 using System.Windows;
+using System.Windows.Input;
 using WpfTestApplication.BaseClasses;
 using WpfTestApplication.Model;
 
@@ -32,17 +34,39 @@ namespace WpfTestApplication.ViewModels
 
         protected override void LoadData()
         {
+            // TODO Maybe make a separate property Items for this in a new wrapper class CartItems. And so forth. Check what this means for filtering.
             Items = ShoppingWrapper.Instance.CartItems.DefaultView;
         }
 
-        public void Add(int productId)
+        protected override void SetCommands()
         {
-            ShoppingWrapper.Instance.AddToCart(productId);
+            base.SetCommands();
 
+            DeleteCommand = new DelegateCommand<object>(Delete);
+        }
+
+        public void Increase(int productId)
+        {
+            ShoppingWrapper.Instance.CartItemQuantityIncrease(productId);
+            UpdateTotals();
+        }
+
+        public ICommand DeleteCommand { get; set; }
+
+        private void Delete(object parameter)
+        {
+            int cartItemID = (int)parameter;
+
+            ShoppingWrapper.Instance.CartItemDelete(cartItemID);
+            UpdateTotals();
+        }
+
+        private void UpdateTotals()
+        {
             RaisePropertyChanged("ItemsCount");
 
-            ProductItemsCount = Convert.ToInt32(ShoppingWrapper.Instance.CartItems.Compute("Sum(Quantity)", null));
-            TotalValue = Convert.ToDouble(ShoppingWrapper.Instance.CartItems.Compute("Sum(Value)", null));
+            ProductItemsCount = ShoppingWrapper.Instance.CartProductItemsCount();
+            TotalValue = ShoppingWrapper.Instance.CartValue();
         }
 
         public static readonly DependencyProperty ProductItemCountProperty =
