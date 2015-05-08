@@ -12,7 +12,7 @@ namespace WpfTestApplication.BaseClasses
         // Note this signals its own changes by IBindingListView, IBindingList.
         // Note a CollectionViewSource.View apparently is not able to filter.
         // This could also be implemented using a ObservableCollection and/or IQueryable.
-        // TODO Parameterize the class for this type?
+        // TODO Change the type to some interface? Check references (like Items.Count and filtering).
         public DataView Items
         {
             get { return (DataView)GetValue(ItemsProperty); }

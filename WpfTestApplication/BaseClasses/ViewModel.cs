@@ -23,7 +23,6 @@ namespace WpfTestApplication.BaseClasses
         public event PropertyChangedEventHandler PropertyChanged;
 
         // This signal can be particularly useful if a collection is entirely replaced, as the formerly bound collection no longer can.
-        // TODO Is this (still) needed?
         protected void RaisePropertyChanged(string propertyName)
         {
             var handler = PropertyChanged;

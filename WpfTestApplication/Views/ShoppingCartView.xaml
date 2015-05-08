@@ -19,8 +19,6 @@
             <Expander>
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
-                        <!--TODO Update these controls on Quantity increase by IntegerUpDown.-->
-
                         <TextBlock Text="{Binding ItemsCount}" Margin="{StaticResource StandardHorizontalSeparation}" FontWeight="Bold"/>
                         <TextBlock Text="Products" Margin="{StaticResource StandardHorizontalSeparation}"/>
 

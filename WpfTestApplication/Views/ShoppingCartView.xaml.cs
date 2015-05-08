@@ -10,7 +10,7 @@ namespace WpfTestApplication.Views
         {
             InitializeComponent();
 
-            // TODO This should be assigned elsewhere.
+            // TODO This should generally be assigned elsewhere.
             DataContext = ShoppingCartViewModel.Instance;
         }
 
