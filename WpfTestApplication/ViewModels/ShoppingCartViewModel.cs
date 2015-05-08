@@ -14,7 +14,7 @@ namespace WpfTestApplication.ViewModels
         private static volatile ShoppingCartViewModel instance;
         private static object syncRoot = new Object();
 
-        // Note this class is a singleton, implemented along the way of https://msdn.microsoft.com/en-us/library/ff650316.aspx
+        // Note this class is a singleton, implemented along the way (but not entirely) of https://msdn.microsoft.com/en-us/library/ff650316.aspx
         public static ShoppingCartViewModel Instance
         {
             get
@@ -85,6 +85,14 @@ namespace WpfTestApplication.ViewModels
         {
             get { return (Double)GetValue(TotalProperty); }
             set { SetValue(TotalProperty, value); }
+        }
+
+        public void OnItemChanged()
+        {
+            // TODO This could be an OnItemChanged on a (new) wrapper class.
+            ShoppingWrapper.Instance.CartItems.AcceptChanges();
+
+            UpdateTotals();
         }
     }
 }

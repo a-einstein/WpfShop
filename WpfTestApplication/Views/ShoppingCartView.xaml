@@ -67,7 +67,7 @@
                                 <GridViewColumn Width="Auto">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <xctk:IntegerUpDown Value="{Binding Quantity, Mode=TwoWay}" Minimum="0" Style="{StaticResource IntegerUpDownStyle}"/>
+                                            <xctk:IntegerUpDown Name="quantityUpDown" Value="{Binding Quantity, Mode=TwoWay}" Minimum="0" Style="{StaticResource IntegerUpDownStyle}" ValueChanged="QuantityUpDown_ValueChanged"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

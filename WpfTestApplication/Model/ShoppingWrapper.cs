@@ -15,6 +15,7 @@ using ShoppingCartsRow = WpfTestApplication.Model.ProductsDataSet.ShoppingCartsR
 namespace WpfTestApplication.Model
 {
     // TODO Maybe put this functionality into the partial sub classes of ProductsDataSet. Problem: would not be able to have a singleton ProductsDataSet.
+    // Other option: make properties here on wrapper sub classes which are instantiated with a single dataset. The constructor should be restricted...?
     class ShoppingWrapper
     {
         private ShoppingWrapper()
@@ -25,7 +26,7 @@ namespace WpfTestApplication.Model
         private static volatile ShoppingWrapper instance;
         private static object syncRoot = new Object();
 
-        // Note this class is a singleton, implemented along the way of https://msdn.microsoft.com/en-us/library/ff650316.aspx
+        // Note this class is a singleton, implemented along the way (but not entirely) of https://msdn.microsoft.com/en-us/library/ff650316.aspx
         public static ShoppingWrapper Instance
         {
             get
