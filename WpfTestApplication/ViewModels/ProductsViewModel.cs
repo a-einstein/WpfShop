@@ -16,10 +16,10 @@ namespace WpfTestApplication.ViewModels
 
         protected override void LoadData()
         {
-            Items = ProductsModel.Instance.Products.DefaultView;
+            Items = ShoppingWrapper.Instance.Products.DefaultView;
 
-            MasterFilterItems = ProductsModel.Instance.ProductCategories;
-            DetailFilterItems = ProductsModel.Instance.ProductSubcategories;
+            MasterFilterItems = ShoppingWrapper.Instance.ProductCategories;
+            DetailFilterItems = ShoppingWrapper.Instance.ProductSubcategories;
 
             // Note that MasterFilterValue also determines DetailFilterItems.
             MasterFilterValue = -1;

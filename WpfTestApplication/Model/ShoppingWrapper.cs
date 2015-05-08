@@ -11,19 +11,18 @@ using ShoppingCartsRow = WpfTestApplication.Model.ProductsDataSet.ShoppingCartsR
 
 namespace WpfTestApplication.Model
 {
-    // TODO Probably break this up into separate classes.
-    class ProductsModel
+    class ShoppingWrapper
     {
-        private ProductsModel()
+        private ShoppingWrapper()
         {
             productsDataSet = new ProductsDataSet();
         }
 
-        private static volatile ProductsModel instance;
+        private static volatile ShoppingWrapper instance;
         private static object syncRoot = new Object();
 
         // Note this class is a singleton, implemented along the way of https://msdn.microsoft.com/en-us/library/ff650316.aspx
-        public static ProductsModel Instance
+        public static ShoppingWrapper Instance
         {
             get
             {
@@ -32,7 +31,7 @@ namespace WpfTestApplication.Model
                     lock (syncRoot)
                     {
                         if (instance == null)
-                            instance = new ProductsModel();
+                            instance = new ShoppingWrapper();
                     }
                 }
 
@@ -42,96 +41,83 @@ namespace WpfTestApplication.Model
 
         private ProductsDataSet productsDataSet;
 
-        private ProductsOverviewDataTable products;
-
         public ProductsOverviewDataTable Products
         {
             get
             {
-                // TODO Test and use productsDataSet.ProductsOverview directly?
-                if (products == null)
+                if (productsDataSet.ProductsOverview.Count == 0)
                 {
                     ProductsOverviewTableAdapter productsTableAdapter = new ProductsOverviewTableAdapter();
 
-                    // Note this currently takes in all the table data. Of course this should be prefiltered and/or paged in a realistic environment. 
-                    products = productsDataSet.ProductsOverview;
-                    productsTableAdapter.Fill(products);
+                    // Note this currently takes in all of the table data. Of course this should be prefiltered and/or paged in a realistic situation. 
+                    // Note this only retrieves the data once. whereas it would probably retrieve it every time in a realistic situation.
+                    productsTableAdapter.Fill(productsDataSet.ProductsOverview);
                 }
 
-                return products;
+                return productsDataSet.ProductsOverview;
             }
         }
 
-        // TODO Check if this a sensible way.
-        // TODO Rename?
         public ProductDetailsRow ProductDetails(int productID)
         {
             ProductDetailsTableAdapter productTableAdapter = new ProductDetailsTableAdapter();
 
+            // Note this always tries to retrieve a record from the DB.
             ProductDetailsDataTable productDetailsTable = productTableAdapter.GetDataBy(productID);
 
             return productDetailsTable.FindByProductID(productID);
         }
 
-        private ProductCategoriesDataTable productCategories;
-
         public ProductCategoriesDataTable ProductCategories
         {
             get
             {
-                if (productCategories == null)
+                if (productsDataSet.ProductCategories.Count == 0)
                 {
                     ProductCategoriesTableAdapter categoriesTableAdapter = new ProductCategoriesTableAdapter();
 
-                    productCategories = productsDataSet.ProductCategories;
-                    productCategories.AddProductCategoriesRow(string.Empty);
+                    // Add an empty element.
+                    productsDataSet.ProductCategories.AddProductCategoriesRow(string.Empty);
+
                     categoriesTableAdapter.ClearBeforeFill = false;
-                    categoriesTableAdapter.Fill(productCategories);
+                    // Note this only retrieves the data once. whereas it would probably retrieve it every time in a realistic situation.
+                    categoriesTableAdapter.Fill(productsDataSet.ProductCategories);
                 }
 
-                return productCategories;
+                return productsDataSet.ProductCategories;
             }
         }
-
-        private ProductSubcategoriesDataTable productSubcategories;
 
         public ProductSubcategoriesDataTable ProductSubcategories
         {
             get
             {
-                if (productSubcategories == null)
+                if (productsDataSet.ProductSubcategories.Count == 0)
                 {
                     ProductSubcategoriesTableAdapter subcategoriesTableAdapter = new ProductSubcategoriesTableAdapter();
 
-                    productSubcategories = productsDataSet.ProductSubcategories;
-                    productSubcategories.AddProductSubcategoriesRow(string.Empty, ProductCategories.FindByProductCategoryID(-1));
+                    // Add an empty element.
+                    productsDataSet.ProductSubcategories.AddProductSubcategoriesRow(string.Empty, ProductCategories.FindByProductCategoryID(-1));
+
                     subcategoriesTableAdapter.ClearBeforeFill = false;
-                    subcategoriesTableAdapter.Fill(productSubcategories);
+                    // Note this only retrieves the data once. whereas it would probably retrieve it every time in a realistic situation.
+                    subcategoriesTableAdapter.Fill(productsDataSet.ProductSubcategories);
                 }
 
-                return productSubcategories;
+                return productsDataSet.ProductSubcategories;
             }
         }
 
-        private ShoppingCartsDataTable carts;
-
+        // TODO This table might be removed alltogether, as only one cart is used.
         private ShoppingCartsDataTable Carts
         {
             get
             {
-                if (carts == null)
-                {
-
-                    // This table might be removed alltogether, as only one cart is used.
-                    carts = productsDataSet.ShoppingCarts;
-                }
-
-                return carts;
+                return productsDataSet.ShoppingCarts;
             }
         }
 
         private ShoppingCartsRow cart;
-        private const string cartId = "1";
 
         public ShoppingCartsRow Cart
         {
@@ -139,6 +125,8 @@ namespace WpfTestApplication.Model
             {
                 if (cart == null)
                 {
+                    const string cartId = "1";
+
                     Carts.AddShoppingCartsRow(cartId);
                     Carts.AcceptChanges();
 
@@ -149,18 +137,13 @@ namespace WpfTestApplication.Model
             }
         }
 
-        private ShoppingCartItemsDataTable cartItems;
-
         public ShoppingCartItemsDataTable CartItems
         {
             get
             {
-                if (cartItems == null)
-                {
-                    cartItems = productsDataSet.ShoppingCartItems;
-                }
-
-                return cartItems;
+                // Note that simply the whole table is used, as all items belong to the user.
+                // It is only kept in memory and not preserved. It is anticipated that only real orders are preserved.
+                return productsDataSet.ShoppingCartItems;
             }
         }
     }

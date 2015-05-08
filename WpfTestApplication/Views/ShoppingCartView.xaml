@@ -9,10 +9,6 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <Converters:SizeFormatter x:Key="SizeFormatter"/>
-            <!--TODO Widths of GridViewColumn is still not correct, despite some research on the web.-->
-            <Style TargetType="ListViewItem">
-                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -38,11 +34,9 @@
                 <Expander.Content>
                     <ListView ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}" MinHeight="20" Background="#FFFFFDF1">
                         <ListView.View>
+                            <!--Note that Width Auto of GridViewColumns does not work and seems to be a bug according to the web. Therefor a thin empty header row is used to enable resizing.-->
                             <!--TODO Make Height of row smaller.-->
                             <GridView ColumnHeaderContainerStyle="{StaticResource ShoppingCartColumnHeaderStyle}">
-
-                                <!--TODO Width Auto does not work. Is it possible at all?-->
-
                                 <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=ProductName}"/>
 
                                 <GridViewColumn Width="Auto">

@@ -35,14 +35,14 @@ namespace WpfTestApplication.ViewModels
 
         protected override void LoadData()
         {
-            Items = ProductsModel.Instance.CartItems.DefaultView;
+            Items = ShoppingWrapper.Instance.CartItems.DefaultView;
         }
 
         // TODO Should use a method of a model class.
         public void AddProduct(int productId)
         {
             string productQuery = string.Format("ProductID = {0}", productId);
-            DataRow[] existingCartItems = ProductsModel.Instance.CartItems.Select(productQuery);
+            DataRow[] existingCartItems = ShoppingWrapper.Instance.CartItems.Select(productQuery);
 
             ShoppingCartItemsRow cartItem;
             if (existingCartItems.Length == 1)
@@ -56,20 +56,20 @@ namespace WpfTestApplication.ViewModels
 
                 // Need acces to ProductsOverviewDataTable, or just a row.
                 // In case of a row: this could be passed from ProductsViewModel, but not from ProductViewModel (it is still desirable to order there too).
-                ProductsOverviewRow productRow = ProductsModel.Instance.Products.FindByProductID(productId);
+                ProductsOverviewRow productRow = ShoppingWrapper.Instance.Products.FindByProductID(productId);
 
-                cartItem = ProductsModel.Instance.CartItems.AddShoppingCartItemsRow(ProductsModel.Instance.Cart, 1, productRow, now, now);
+                cartItem = ShoppingWrapper.Instance.CartItems.AddShoppingCartItemsRow(ShoppingWrapper.Instance.Cart, 1, productRow, now, now);
             }
 
-            ProductsModel.Instance.CartItems.AcceptChanges();
+            ShoppingWrapper.Instance.CartItems.AcceptChanges();
             // TODO Needed?
             RaisePropertyChanged("Items");
 
             // TODO The binding seemed to work on Items.Count too.
             RaisePropertyChanged("ItemsCount");
 
-            ProductItemCount = Convert.ToInt32(ProductsModel.Instance.CartItems.Compute("Sum(Quantity)", null));
-            TotalValue = Convert.ToDouble(ProductsModel.Instance.CartItems.Compute("Sum(Value)", null));
+            ProductItemCount = Convert.ToInt32(ShoppingWrapper.Instance.CartItems.Compute("Sum(Quantity)", null));
+            TotalValue = Convert.ToDouble(ShoppingWrapper.Instance.CartItems.Compute("Sum(Value)", null));
         }
 
         public static readonly DependencyProperty ProductItemCountProperty =

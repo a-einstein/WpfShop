@@ -16,18 +16,19 @@
         <StackPanel Grid.Row="0">
             <TextBlock  TextWrapping="Wrap" Text="WpfTestApplication" FontWeight="Bold" FontSize="20" Foreground="{StaticResource MessageColourBrush}"/>
 
+            <!--TODO Enablements.-->
             <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5">
+                <Button x:Name="aboutButton" Click="AboutButton_Click" Style="{StaticResource NavigationButtonStyle}">
+                    <TextBlock Text="About this project" Style="{StaticResource NavigationTextBlockStyle}"/>
+                </Button>
                 <Button x:Name="productsButton" Click="ProductsButton_Click" Style="{StaticResource NavigationButtonStyle}">
                     <TextBlock Text="Products" Style="{StaticResource NavigationTextBlockStyle}"/>
-                </Button>
-                <Button x:Name="aboutButton" Click="AboutButton_Click" Style="{StaticResource NavigationButtonStyle}">
-                    <TextBlock Text="About us" Style="{StaticResource NavigationTextBlockStyle}"/>
                 </Button>
             </StackPanel>
 
             <Views:ShoppingCartView Margin="0,10,0,0"/>
         </StackPanel>
 
-        <Frame Grid.Row="1" x:Name="pageFrame" Margin="0,10,0,0" Source="/Views/ProductsView.xaml" />
+        <Frame Grid.Row="1" x:Name="pageFrame" Margin="0,10,0,0" Source="/Views/AboutView.xaml" />
     </Grid>
 </Window>

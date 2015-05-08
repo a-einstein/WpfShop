@@ -11,7 +11,7 @@ namespace WpfTestApplication.ViewModels
     {
         protected override void LoadData()
         {
-            Item = ProductsModel.Instance.ProductDetails(ItemId);
+            Item = ShoppingWrapper.Instance.ProductDetails(ItemId);
         }
 
         protected override void SetCommands()
