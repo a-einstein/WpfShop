@@ -3,7 +3,7 @@ using System.Windows.Input;
 using WpfTestApplication.BaseClasses;
 using WpfTestApplication.Interfaces;
 using WpfTestApplication.Model;
-using ProductDetailsRow = WpfTestApplication.Model.ProductsDataSet.ProductDetailsRow;
+using ProductDetailsRow = WpfTestApplication.Data.ProductsDataSet.ProductDetailsRow;
 
 namespace WpfTestApplication.ViewModels
 {
