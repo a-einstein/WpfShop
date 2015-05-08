@@ -88,7 +88,11 @@
     <Compile Include="Converters\WeightFormatter.cs" />
     <Compile Include="Converters\SizeFormatter.cs" />
     <Compile Include="Interfaces\IShopper.cs" />
-    <Compile Include="Data\ProductsDataSet.Designer.cs">
+    <Compile Include="Model\ProductsDataSet.cs">
+      <DependentUpon>ProductsDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Model\ProductsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProductsDataSet.xsd</DependentUpon>
@@ -114,6 +118,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Model\AdventureWorks2014DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdventureWorks2014DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Application\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -163,7 +172,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Data\ProductsDataSet.xsd">
+    <None Include="Model\AdventureWorks2014DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>AdventureWorks2014DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Model\ProductsDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ProductsDataSet2.Designer.cs</LastGenOutput>

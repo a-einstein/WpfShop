@@ -1,14 +1,13 @@
 ﻿using System;
-using WpfTestApplication.Data;
-using WpfTestApplication.Data.ProductsDataSetTableAdapters;
-using ProductCategoriesDataTable = WpfTestApplication.Data.ProductsDataSet.ProductCategoriesDataTable;
-using ProductDetailsDataTable = WpfTestApplication.Data.ProductsDataSet.ProductDetailsDataTable;
-using ProductDetailsRow = WpfTestApplication.Data.ProductsDataSet.ProductDetailsRow;
-using ProductsOverviewDataTable = WpfTestApplication.Data.ProductsDataSet.ProductsOverviewDataTable;
-using ProductSubcategoriesDataTable = WpfTestApplication.Data.ProductsDataSet.ProductSubcategoriesDataTable;
-using ShoppingCartItemsDataTable = WpfTestApplication.Data.ProductsDataSet.ShoppingCartItemsDataTable;
-using ShoppingCartsDataTable = WpfTestApplication.Data.ProductsDataSet.ShoppingCartsDataTable;
-using ShoppingCartsRow = WpfTestApplication.Data.ProductsDataSet.ShoppingCartsRow;
+using WpfTestApplication.Model.ProductsDataSetTableAdapters;
+using ProductCategoriesDataTable = WpfTestApplication.Model.ProductsDataSet.ProductCategoriesDataTable;
+using ProductDetailsDataTable = WpfTestApplication.Model.ProductsDataSet.ProductDetailsDataTable;
+using ProductDetailsRow = WpfTestApplication.Model.ProductsDataSet.ProductDetailsRow;
+using ProductsOverviewDataTable = WpfTestApplication.Model.ProductsDataSet.ProductsOverviewDataTable;
+using ProductSubcategoriesDataTable = WpfTestApplication.Model.ProductsDataSet.ProductSubcategoriesDataTable;
+using ShoppingCartItemsDataTable = WpfTestApplication.Model.ProductsDataSet.ShoppingCartItemsDataTable;
+using ShoppingCartsDataTable = WpfTestApplication.Model.ProductsDataSet.ShoppingCartsDataTable;
+using ShoppingCartsRow = WpfTestApplication.Model.ProductsDataSet.ShoppingCartsRow;
 
 namespace WpfTestApplication.Model
 {

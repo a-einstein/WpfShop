@@ -3,8 +3,8 @@ using System.Data;
 using System.Windows;
 using WpfTestApplication.BaseClasses;
 using WpfTestApplication.Model;
-using ProductsOverviewRow = WpfTestApplication.Data.ProductsDataSet.ProductsOverviewRow;
-using ShoppingCartItemsRow = WpfTestApplication.Data.ProductsDataSet.ShoppingCartItemsRow;
+using ProductsOverviewRow = WpfTestApplication.Model.ProductsDataSet.ProductsOverviewRow;
+using ShoppingCartItemsRow = WpfTestApplication.Model.ProductsDataSet.ShoppingCartItemsRow;
 
 namespace WpfTestApplication.ViewModels
 {
