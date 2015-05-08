@@ -9,6 +9,7 @@ namespace WpfTestApplication.BaseClasses
             DependencyProperty.Register("Items", typeof(DataView), typeof(ItemsViewModel));
 
         // Note this uses the DataView's standard filtering functionality.
+        // Note this signals its own changes by IBindingListView, IBindingList.
         // Note a CollectionViewSource.View apparently is not able to filter.
         // This could also be implemented using a ObservableCollection and/or IQueryable.
         // TODO Parameterize the class for this type?
@@ -19,6 +20,7 @@ namespace WpfTestApplication.BaseClasses
         }
 
         // Convenience property to signal changes.
+        // Note that just binding on Items.Count does not work.
         public int ItemsCount { get { return Items.Count; } }
     }
 }

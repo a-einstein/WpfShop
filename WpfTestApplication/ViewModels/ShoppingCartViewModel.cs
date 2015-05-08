@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Data;
 using System.Windows;
 using WpfTestApplication.BaseClasses;
 using WpfTestApplication.Model;
-using ProductsOverviewRow = WpfTestApplication.Model.ProductsDataSet.ProductsOverviewRow;
-using ShoppingCartItemsRow = WpfTestApplication.Model.ProductsDataSet.ShoppingCartItemsRow;
 
 namespace WpfTestApplication.ViewModels
 {
@@ -38,44 +35,20 @@ namespace WpfTestApplication.ViewModels
             Items = ShoppingWrapper.Instance.CartItems.DefaultView;
         }
 
-        // TODO Should use a method of a model class.
-        public void AddProduct(int productId)
+        public void Add(int productId)
         {
-            string productQuery = string.Format("ProductID = {0}", productId);
-            DataRow[] existingCartItems = ShoppingWrapper.Instance.CartItems.Select(productQuery);
+            ShoppingWrapper.Instance.AddToCart(productId);
 
-            ShoppingCartItemsRow cartItem;
-            if (existingCartItems.Length == 1)
-            {
-                cartItem = existingCartItems[0] as ShoppingCartItemsRow;
-                cartItem.Quantity += 1;
-            }
-            else
-            {
-                DateTime now = DateTime.Now;
-
-                // Need acces to ProductsOverviewDataTable, or just a row.
-                // In case of a row: this could be passed from ProductsViewModel, but not from ProductViewModel (it is still desirable to order there too).
-                ProductsOverviewRow productRow = ShoppingWrapper.Instance.Products.FindByProductID(productId);
-
-                cartItem = ShoppingWrapper.Instance.CartItems.AddShoppingCartItemsRow(ShoppingWrapper.Instance.Cart, 1, productRow, now, now);
-            }
-
-            ShoppingWrapper.Instance.CartItems.AcceptChanges();
-            // TODO Needed?
-            RaisePropertyChanged("Items");
-
-            // TODO The binding seemed to work on Items.Count too.
             RaisePropertyChanged("ItemsCount");
 
-            ProductItemCount = Convert.ToInt32(ShoppingWrapper.Instance.CartItems.Compute("Sum(Quantity)", null));
+            ProductItemsCount = Convert.ToInt32(ShoppingWrapper.Instance.CartItems.Compute("Sum(Quantity)", null));
             TotalValue = Convert.ToDouble(ShoppingWrapper.Instance.CartItems.Compute("Sum(Value)", null));
         }
 
         public static readonly DependencyProperty ProductItemCountProperty =
-            DependencyProperty.Register("ProductItemCount", typeof(int), typeof(ShoppingCartViewModel), new PropertyMetadata(0));
+            DependencyProperty.Register("ProductItemsCount", typeof(int), typeof(ShoppingCartViewModel), new PropertyMetadata(0));
 
-        public int ProductItemCount
+        public int ProductItemsCount
         {
             get { return (int)GetValue(ProductItemCountProperty); }
             set { SetValue(ProductItemCountProperty, value); }

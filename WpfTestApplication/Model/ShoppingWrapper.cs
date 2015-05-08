@@ -1,16 +1,20 @@
 ﻿using System;
+using System.Data;
 using WpfTestApplication.Model.ProductsDataSetTableAdapters;
 using ProductCategoriesDataTable = WpfTestApplication.Model.ProductsDataSet.ProductCategoriesDataTable;
 using ProductDetailsDataTable = WpfTestApplication.Model.ProductsDataSet.ProductDetailsDataTable;
 using ProductDetailsRow = WpfTestApplication.Model.ProductsDataSet.ProductDetailsRow;
 using ProductsOverviewDataTable = WpfTestApplication.Model.ProductsDataSet.ProductsOverviewDataTable;
+using ProductsOverviewRow = WpfTestApplication.Model.ProductsDataSet.ProductsOverviewRow;
 using ProductSubcategoriesDataTable = WpfTestApplication.Model.ProductsDataSet.ProductSubcategoriesDataTable;
 using ShoppingCartItemsDataTable = WpfTestApplication.Model.ProductsDataSet.ShoppingCartItemsDataTable;
+using ShoppingCartItemsRow = WpfTestApplication.Model.ProductsDataSet.ShoppingCartItemsRow;
 using ShoppingCartsDataTable = WpfTestApplication.Model.ProductsDataSet.ShoppingCartsDataTable;
 using ShoppingCartsRow = WpfTestApplication.Model.ProductsDataSet.ShoppingCartsRow;
 
 namespace WpfTestApplication.Model
 {
+    // TODO Maybe put this functionality into the partial sub classes of ProductsDataSet. Problem: would not be able to have a singleton ProductsDataSet.
     class ShoppingWrapper
     {
         private ShoppingWrapper()
@@ -145,6 +149,32 @@ namespace WpfTestApplication.Model
                 // It is only kept in memory and not preserved. It is anticipated that only real orders are preserved.
                 return productsDataSet.ShoppingCartItems;
             }
+        }
+
+        public void AddToCart(int productId)
+        {
+            string productQuery = string.Format("ProductID = {0}", productId);
+            DataRow[] existingCartItems = CartItems.Select(productQuery);
+
+            ShoppingCartItemsRow cartItem;
+
+            if (existingCartItems.Length == 1)
+            {
+                cartItem = existingCartItems[0] as ShoppingCartItemsRow;
+                cartItem.Quantity += 1;
+            }
+            else
+            {
+                DateTime now = DateTime.Now;
+
+                // Need acces to ProductsOverviewDataTable, or just a row.
+                // In case of a row: this could be passed from ProductsViewModel, but not from ProductViewModel (it is still desirable to order there too).
+                ProductsOverviewRow productRow = Products.FindByProductID(productId);
+
+                cartItem = CartItems.AddShoppingCartItemsRow(Cart, 1, productRow, now, now);
+            }
+
+            CartItems.AcceptChanges();
         }
     }
 }

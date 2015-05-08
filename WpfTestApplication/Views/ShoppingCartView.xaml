@@ -24,7 +24,7 @@
                         <TextBlock Text="{Binding ItemsCount}" Margin="{StaticResource StandardHorizontalSeparation}" FontWeight="Bold"/>
                         <TextBlock Text="Products" Margin="{StaticResource StandardHorizontalSeparation}"/>
 
-                        <TextBlock Text="{Binding ProductItemCount}" Margin="{StaticResource StandardHorizontalSeparation}" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding ProductItemsCount}" Margin="{StaticResource StandardHorizontalSeparation}" FontWeight="Bold"/>
                         <TextBlock Text="Items" Margin="{StaticResource StandardHorizontalSeparation}"/>
 
                         <TextBlock Text="{Binding TotalValue, StringFormat=\{0:C2\}}" Margin="{StaticResource StandardHorizontalSeparation}" FontWeight="Bold"/>

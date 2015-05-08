@@ -55,7 +55,7 @@ namespace WpfTestApplication.ViewModels
 
         private void CartProduct(object parameter)
         {
-            ShoppingCartViewModel.Instance.AddProduct((int)parameter);
+            ShoppingCartViewModel.Instance.Add((int)parameter);
         }
     }
 }
