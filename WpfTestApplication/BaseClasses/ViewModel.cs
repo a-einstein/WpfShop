@@ -7,11 +7,8 @@ namespace WpfTestApplication.BaseClasses
     {
         public ViewModel()
         {
-            LoadData();
             SetCommands();
         }
-
-        protected abstract void LoadData();
 
         protected virtual void SetCommands() { }
 

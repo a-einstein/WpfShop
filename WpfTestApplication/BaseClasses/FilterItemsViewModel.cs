@@ -7,6 +7,13 @@ namespace WpfTestApplication.BaseClasses
 {
     abstract class FilterItemsViewModel : ItemsViewModel
     {
+        public FilterItemsViewModel()
+        {
+            SetFilters();
+        }
+
+        protected abstract void SetFilters();
+
         public virtual string MasterFilterLabel { get { return "Category"; } }
         public virtual string MasterFilterDisplayMemberPath { get { return "Name"; } }
         public abstract string MasterFilterSelectedValuePath { get; }

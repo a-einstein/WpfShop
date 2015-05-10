@@ -9,9 +9,14 @@ namespace WpfTestApplication.ViewModels
 {
     class ProductViewModel : ItemViewModel<ProductDetailsRow>, IShopper
     {
-        protected override void LoadData()
+        protected override object GetItemId()
         {
-            Item = ShoppingWrapper.Instance.ProductDetails(ItemId);
+            return Item != null ? Item.ProductID : -1;
+        }
+
+        protected override ProductDetailsRow GetData(object Id)
+        {
+            return ShoppingWrapper.Instance.ProductDetails((int)Id);
         }
 
         protected override void SetCommands()

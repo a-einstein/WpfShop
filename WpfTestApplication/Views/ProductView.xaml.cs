@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using WpfTestApplication.ViewModels;
 
 namespace WpfTestApplication.Views
 {
@@ -8,8 +7,6 @@ namespace WpfTestApplication.Views
         public ProductView()
         {
             InitializeComponent();
-
-            DataContext = new ProductViewModel();
         }
 
         private void closeButton_Click(object sender, RoutedEventArgs e)

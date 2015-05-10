@@ -1,4 +1,5 @@
 ﻿using Microsoft.Practices.Prism.Commands;
+using System.Data;
 using System.Windows;
 using System.Windows.Input;
 using WpfTestApplication.BaseClasses;
@@ -14,11 +15,14 @@ namespace WpfTestApplication.ViewModels
         public override string DetailFilterSelectedValuePath { get { return "ProductSubcategoryID"; } }
         public override string DetailFilterMasterKeyPath { get { return "ProductCategoryID"; } }
 
-        protected override void LoadData()
+        protected override DataView GetData()
         {
             // TODO reduce loading time e.g. by making it asynchronous.
-            Items = ShoppingWrapper.Instance.Products.DefaultView;
+            return ShoppingWrapper.Instance.Products.DefaultView;
+        }
 
+        protected override void SetFilters()
+        {
             MasterFilterItems = ShoppingWrapper.Instance.ProductCategories;
             DetailFilterItems = ShoppingWrapper.Instance.ProductSubcategories;
 
@@ -36,8 +40,6 @@ namespace WpfTestApplication.ViewModels
 
         protected override void ShowDetails(object parameter)
         {
-            RoutedEventArgs routedEventArgs = parameter as RoutedEventArgs;
-
             // TODO Generally distinguish between Windows, Pages and Views. 
             // Like
             // - Windows: Main, Details.
@@ -45,11 +47,12 @@ namespace WpfTestApplication.ViewModels
             // - Views: Products, Product, ShoppingCart.
 
             Window productView = new ProductView();
-
-            ProductViewModel productViewModel = productView.DataContext as ProductViewModel;
-            productViewModel.ItemId = (int)parameter;
-
             productView.Show();
+
+            // Make GUI more responsive by opening first, then get the data.
+            ProductViewModel productViewModel = new ProductViewModel();
+            productViewModel.ItemId = (int)parameter;
+            productView.DataContext = productViewModel;
         }
 
         public ICommand CartCommand { get; set; }

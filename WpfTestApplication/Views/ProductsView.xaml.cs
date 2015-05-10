@@ -9,6 +9,7 @@ namespace WpfTestApplication.Views
         {
             InitializeComponent();
 
+            // TODO Make this explicit, which means this view should  be instantiated explicitly too.
             DataContext = new ProductsViewModel();
         }
     }

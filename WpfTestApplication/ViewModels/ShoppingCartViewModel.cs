@@ -1,5 +1,6 @@
 ﻿using Microsoft.Practices.Prism.Commands;
 using System;
+using System.Data;
 using System.Windows;
 using System.Windows.Input;
 using WpfTestApplication.BaseClasses;
@@ -32,10 +33,10 @@ namespace WpfTestApplication.ViewModels
             }
         }
 
-        protected override void LoadData()
+        protected override DataView GetData()
         {
             // TODO Maybe make a separate property Items for this in a new wrapper class CartItems. And so forth. Check what this means for filtering.
-            Items = ShoppingWrapper.Instance.CartItems.DefaultView;
+            return ShoppingWrapper.Instance.CartItems.DefaultView;
         }
 
         protected override void SetCommands()

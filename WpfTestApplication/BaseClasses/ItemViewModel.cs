@@ -1,31 +1,32 @@
-﻿namespace WpfTestApplication.BaseClasses
+﻿using System.Windows;
+
+namespace WpfTestApplication.BaseClasses
 {
     abstract class ItemViewModel<T> : ViewModel
     {
-        private int itemId;
-
-        // TODO Is this needed? 
-        // TODO Is it updated correctly and smartly?
-        public int ItemId
+        public object ItemId 
         {
-            get { return itemId; }
-            set 
-            { 
-                itemId = value;
-                LoadData();
+            get
+            {
+                return GetItemId();
+            }
+            set
+            {
+                Item = GetData(value);
             }
         }
 
-        private T item;
+        protected abstract object GetItemId();
+
+        public static readonly DependencyProperty ItemProperty =
+            DependencyProperty.Register("Item", typeof(T), typeof(ItemViewModel<T>), new PropertyMetadata(null));
 
         public T Item
         {
-            get { return item; }
-            set
-            {
-                item = value;
-                RaisePropertyChanged("Item");
-            }
+            get { return (T)GetValue(ItemProperty); }
+            set { SetValue(ItemProperty, value); }
         }
-    }
+         
+        protected abstract T GetData(object Id);
+   }
 }

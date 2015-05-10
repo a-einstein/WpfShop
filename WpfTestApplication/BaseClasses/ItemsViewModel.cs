@@ -5,6 +5,12 @@ namespace WpfTestApplication.BaseClasses
 {
     public abstract class ItemsViewModel : ViewModel
     {
+        public ItemsViewModel()
+        {
+            // TODO This should become parameterized (like ItemViewModel), currently it assumes retrieval of entire table.
+            Items = GetData();
+        }
+
         public static readonly DependencyProperty ItemsProperty =
             DependencyProperty.Register("Items", typeof(DataView), typeof(ItemsViewModel));
 
@@ -22,5 +28,7 @@ namespace WpfTestApplication.BaseClasses
         // Convenience property to signal changes.
         // Note that just binding on Items.Count does not work.
         public int ItemsCount { get { return Items.Count; } }
+
+        protected abstract DataView GetData();
     }
 }
