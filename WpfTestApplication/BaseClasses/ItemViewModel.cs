@@ -12,7 +12,7 @@ namespace WpfTestApplication.BaseClasses
             }
             set
             {
-                Item = GetData(value);
+                Refresh(value);
             }
         }
 
@@ -28,5 +28,15 @@ namespace WpfTestApplication.BaseClasses
         }
          
         protected abstract T GetData(object Id);
-   }
+
+        public override void Refresh()
+        {
+            Refresh(ItemId);
+        }
+
+        public void Refresh(object Id)
+        {
+            Item = GetData(Id);
+        }
+    }
 }

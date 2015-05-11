@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data;
+using System.Windows;
 using WpfTestApplication.Model.ProductsDataSetTableAdapters;
 using ProductCategoriesDataTable = WpfTestApplication.Model.ProductsDataSet.ProductCategoriesDataTable;
 using ProductDetailsDataTable = WpfTestApplication.Model.ProductsDataSet.ProductDetailsDataTable;
@@ -16,7 +19,7 @@ namespace WpfTestApplication.Model
 {
     // TODO Maybe put this functionality into the partial sub classes of ProductsDataSet. Problem: would not be able to have a singleton ProductsDataSet.
     // Other option: make properties here on wrapper sub classes which are instantiated with a single dataset. The constructor should be restricted...?
-    class ShoppingWrapper
+    class ShoppingWrapper : DependencyObject, INotifyPropertyChanged
     {
         private ShoppingWrapper()
         {
@@ -52,14 +55,64 @@ namespace WpfTestApplication.Model
             {
                 if (productsDataSet.ProductsOverview.Count == 0)
                 {
-                    ProductsOverviewTableAdapter productsTableAdapter = new ProductsOverviewTableAdapter();
+                    // Asynchronous.
+                    System.ComponentModel.BackgroundWorker backgroundWorker = new System.ComponentModel.BackgroundWorker();
+                    backgroundWorker.DoWork += new DoWorkEventHandler(FillProductsTable);
+                    backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(GetProductsCompleted);
+                    backgroundWorker.RunWorkerAsync();
 
-                    // Note this currently takes in all of the table data. Of course this should be prefiltered and/or paged in a realistic situation. 
-                    // Note this only retrieves the data once. whereas it would probably retrieve it every time in a realistic situation.
-                    productsTableAdapter.Fill(productsDataSet.ProductsOverview);
+                    // Synchronous.
+                    //FillProdTable(this, new DoWorkEventArgs(null));
                 }
 
                 return productsDataSet.ProductsOverview;
+            }
+        }
+
+        public static readonly DependencyProperty ProductCollectionProperty =
+            DependencyProperty.Register("ProductCollection", typeof(ObservableCollection<ProductsOverviewRow>), typeof(ShoppingWrapper), new PropertyMetadata(new ObservableCollection<ProductsOverviewRow>()));
+
+        // Alternative collection to signal CollectionChanged.
+        public ObservableCollection<ProductsOverviewRow> ProductsCollection
+        {
+            get { return (ObservableCollection<ProductsOverviewRow>)GetValue(ProductCollectionProperty); }
+            set { SetValue(ProductCollectionProperty, value); }
+        }
+
+        private void FillProductsTable(object sender, DoWorkEventArgs e)
+        {
+            ProductsOverviewTableAdapter productsTableAdapter = new ProductsOverviewTableAdapter();
+
+            // Note this currently takes in all of the table data. Of course this should be prefiltered and/or paged in a realistic situation. 
+            // Note this only retrieves the data once. whereas it would probably retrieve it every time in a realistic situation.
+            productsTableAdapter.Fill(productsDataSet.ProductsOverview);
+
+            // Should this be used? It does not seem assignable.
+            e.Result = productsDataSet.ProductsOverview;
+        }
+
+        public ProductsOverviewDataTable ProductsHack;
+
+        protected void GetProductsCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error != null)
+                throw new Exception("Error retrieving data.");
+            else
+            {
+                // This doe not seem assignable.
+                //productsDataSet.ProductsOverview.DefaultView = (e.Result  as ProductsOverviewDataTable).DefaultView;
+
+                //ProductsHack = e.Result as ProductsOverviewDataTable;
+
+                ProductsCollection.Clear();
+
+                // Convert.
+                foreach (var row in productsDataSet.ProductsOverview)
+                {
+                    ProductsCollection.Add(row);
+                }
+
+                RaisePropertyChanged("Products");
             }
         }
 
@@ -197,7 +250,7 @@ namespace WpfTestApplication.Model
 
         public int CartProductItemsCount()
         {
-            return  CartItems.Count > 0
+            return CartItems.Count > 0
             ? Convert.ToInt32(ShoppingWrapper.Instance.CartItems.Compute("Sum(Quantity)", null))
             : 0;
         }
@@ -207,6 +260,18 @@ namespace WpfTestApplication.Model
             return CartItems.Count > 0
             ? Convert.ToDouble(CartItems.Compute("Sum(Value)", null))
             : 0.0;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void RaisePropertyChanged(string propertyName)
+        {
+            var handler = PropertyChanged;
+
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }

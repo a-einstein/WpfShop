@@ -49,7 +49,7 @@
             <Border Grid.Row="2" Style="{StaticResource BorderStyle}" Margin="0,10,0,0">
                 <!--Note this does not work within a StackPanel-->
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                    <ItemsControl ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}" Padding="2" Background="#FFEAF7FF">
+                    <ItemsControl ItemsSource="{Binding ItemsDataView, UpdateSourceTrigger=Default}" Padding="2" Background="#FFEAF7FF">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Border Margin="2" BorderThickness="1" BorderBrush="Black" Background="{StaticResource ProductBackgroundBrush}" Padding="3">
