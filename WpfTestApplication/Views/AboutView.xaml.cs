@@ -1,5 +1,4 @@
 ﻿using System.Windows.Controls;
-using WpfTestApplication.ViewModels;
 
 namespace WpfTestApplication.Views
 {
@@ -8,8 +7,6 @@ namespace WpfTestApplication.Views
         public AboutView()
         {
             InitializeComponent();
-
-            DataContext = new AboutViewModel();
         }
     }
 }

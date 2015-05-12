@@ -5,9 +5,9 @@ namespace WpfTestApplication.BaseClasses
 {
     public abstract class ItemsViewModel : ViewModel
     {
-        public ItemsViewModel()
+        // TODO This should become parameterized (like ItemViewModel), currently it assumes retrieval of entire table.
+        public override void Refresh()
         {
-            // TODO This should become parameterized (like ItemViewModel), currently it assumes retrieval of entire table.
             Items = GetData();
         }
 
@@ -22,12 +22,16 @@ namespace WpfTestApplication.BaseClasses
         public DataView Items
         {
             get { return (DataView)GetValue(ItemsProperty); }
-            set { SetValue(ItemsProperty, value); }
+            set 
+            { 
+                SetValue(ItemsProperty, value);
+                RaisePropertyChanged("ItemsCount");
+            }
         }
 
         // Convenience property to signal changes.
         // Note that just binding on Items.Count does not work.
-        public int ItemsCount { get { return Items.Count; } }
+        public int ItemsCount { get { return Items != null ? Items.Count : 0; } }
 
         protected abstract DataView GetData();
     }

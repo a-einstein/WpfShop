@@ -12,6 +12,8 @@ namespace WpfTestApplication.BaseClasses
 
         protected virtual void SetCommands() { }
 
+        public virtual void Refresh() { }
+
         protected static bool NullOrEmpty(string value)
         {
             return (value == null || value.Trim() == string.Empty);

@@ -1,5 +1,4 @@
-﻿using System.Data;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using WpfTestApplication.ViewModels;
 
 namespace WpfTestApplication.Views
@@ -9,9 +8,6 @@ namespace WpfTestApplication.Views
         public ShoppingCartView()
         {
             InitializeComponent();
-
-            // TODO This should generally be assigned elsewhere.
-            DataContext = ShoppingCartViewModel.Instance;
         }
 
         private void QuantityUpDown_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<object> e)

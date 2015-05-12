@@ -164,9 +164,6 @@ namespace WpfTestApplication.Model
             if (existingCartItems.Length == 0)
             {
                 DateTime now = DateTime.Now;
-
-                // Need acces to ProductsOverviewDataTable, or just a row.
-                // In case of a row: this could be passed from ProductsViewModel, but not from ProductViewModel (it is still desirable to order there too).
                 ProductsOverviewRow productRow = Products.FindByProductID(productId);
 
                 cartItem = CartItems.AddShoppingCartItemsRow(Cart, 1, productRow, now, now);
@@ -197,7 +194,7 @@ namespace WpfTestApplication.Model
 
         public int CartProductItemsCount()
         {
-            return  CartItems.Count > 0
+            return CartItems.Count > 0
             ? Convert.ToInt32(ShoppingWrapper.Instance.CartItems.Compute("Sum(Quantity)", null))
             : 0;
         }
