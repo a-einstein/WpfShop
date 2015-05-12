@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using WpfTestApplication.BaseClasses;
 using WpfTestApplication.ViewModels;
 
@@ -25,30 +26,32 @@ namespace WpfTestApplication.Views
             pageFrameView = mainViewModel.AboutView;
             pageFrameViewModel = mainViewModel.AboutViewModel;
 
-            Navigate();
+            Navigate(aboutButton);
         }
 
         private FrameworkElement pageFrameView;
         private ViewModel pageFrameViewModel;
 
-        private void AboutButton_Click(object sender, RoutedEventArgs e)
+        private void aboutButton_Checked(object sender, RoutedEventArgs e)
         {
             pageFrameView = mainViewModel.AboutView;
             pageFrameViewModel = mainViewModel.AboutViewModel;
 
-            Navigate();
+            Navigate(aboutButton);
         }
 
-        private void ProductsButton_Click(object sender, RoutedEventArgs e)
+        private void productsButton_Checked(object sender, RoutedEventArgs e)
         {
             pageFrameView = mainViewModel.ProductsView;
             pageFrameViewModel = mainViewModel.ProductsViewModel;
 
-            Navigate();
+            Navigate(productsButton);
         }
 
-        private void Navigate()
+        private void Navigate(RadioButton radioButton)
         {
+            radioButton.IsChecked = true;
+
             pageFrame.Content = pageFrameView;
             pageFrame.Navigate(pageFrameView);
 

@@ -16,16 +16,22 @@
         <StackPanel Grid.Row="0">
             <TextBlock  TextWrapping="Wrap" Text="WpfTestApplication" FontWeight="Bold" FontSize="20" Foreground="{StaticResource MessageColourBrush}"/>
 
-            <!--TODO Enablements.-->
-            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5">
-                <Button x:Name="aboutButton" Click="AboutButton_Click" Style="{StaticResource NavigationButtonStyle}">
-                    <TextBlock Text="About this project" Style="{StaticResource NavigationTextBlockStyle}"/>
-                </Button>
-                <Button x:Name="productsButton" Click="ProductsButton_Click" Style="{StaticResource NavigationButtonStyle}">
-                    <TextBlock Text="Go shopping" Style="{StaticResource NavigationTextBlockStyle}"/>
-                </Button>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5">
+                <RadioButton x:Name="aboutButton">
+                    <RadioButton.Template>
+                        <ControlTemplate>
+                            <ToggleButton IsChecked="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" Content="About this project" Checked="aboutButton_Checked" Style="{StaticResource NavigationButtonStyle}"/>
+                        </ControlTemplate>
+                    </RadioButton.Template>
+                </RadioButton>
+                <RadioButton x:Name="productsButton">
+                    <RadioButton.Template>
+                        <ControlTemplate>
+                            <ToggleButton IsChecked="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" Content="Go shopping" Checked="productsButton_Checked" Style="{StaticResource NavigationButtonStyle}"/>
+                        </ControlTemplate>
+                    </RadioButton.Template>
+                </RadioButton>
             </StackPanel>
-
             <Views:ShoppingCartView x:Name="shoppingCartView" Margin="0,10,0,0"/>
         </StackPanel>
 
