@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using WpfTestApplication.BaseClasses;
 
 namespace WpfTestApplication.Windows
 {
@@ -9,9 +10,9 @@ namespace WpfTestApplication.Windows
             InitializeComponent();
         }
 
-        public FrameworkElement View
+        public View View
         {
-            get { return viewControl.Content as FrameworkElement; }
+            get { return viewControl.Content as View; }
             set { viewControl.Content = value; }
         }
 

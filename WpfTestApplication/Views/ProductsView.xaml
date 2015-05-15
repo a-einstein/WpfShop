@@ -1,4 +1,4 @@
-﻿<Page
+﻿<BaseClasses:View
     x:Class="WpfTestApplication.Views.ProductsView"  
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,18 +6,19 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:interactivity="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:prism="http://www.codeplex.com/prism"
+    xmlns:BaseClasses="clr-namespace:WpfTestApplication.BaseClasses"
     xmlns:Converters="clr-namespace:WpfTestApplication.Converters"
     mc:Ignorable="d" 
     d:DesignHeight="400" d:DesignWidth="300"
     >
 
-    <Page.Resources>
+    <BaseClasses:View.Resources>
         <ResourceDictionary>
             <Converters:CategoriesFormatter x:Key="CategoriesFormatter"/>
             <Converters:SizeFormatter x:Key="SizeFormatter"/>
             <Converters:ByteArrayToBitmapImageConverter x:Key="ByteArrayToBitmapImageConverter"/>
         </ResourceDictionary>
-    </Page.Resources>
+    </BaseClasses:View.Resources>
 
     <Border BorderBrush="Black" BorderThickness="1" Background="{StaticResource ProductBackgroundBrush}" Padding="3">
         <Grid >
@@ -108,4 +109,4 @@
             </Border>
         </Grid>
     </Border>
-</Page>
+</BaseClasses:View>

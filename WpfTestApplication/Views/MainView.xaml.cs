@@ -1,50 +1,73 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using WpfTestApplication.BaseClasses;
-using WpfTestApplication.ViewModels;
 
 namespace WpfTestApplication.Views
 {
-    public partial class MainView : Window
+    public partial class MainView : View
     {
-        private IMainViewModel mainViewModel;
-
         public MainView()
         {
             InitializeComponent();
+        }
 
-            // TODO Make this explicit, which means this view should  be instantiated explicitly too.
-            // TODO Maybe create a property ViewModel.
-            // TODO Maybe get rid of the ViewModel. Check out examples of navigation, MVVM, ...
-            mainViewModel = new MainViewModel();
-            DataContext = mainViewModel;
+        public View ShoppingCart
+        {
+            get { return shoppingCart.Content as View; }
+            set { shoppingCart.Content = value; }
+        }
 
-            ShoppingCartViewModel shoppingCartViewModel = ShoppingCartViewModel.Instance;
-            shoppingCartView.DataContext = shoppingCartViewModel;
-            shoppingCartViewModel.Refresh();
+        // TODO Should be a row of configurations or controls. How to navigate then?
 
-            Navigate(mainViewModel.AboutView, mainViewModel.AboutViewModel, aboutButton);
+        View aboutView;
+        Page aboutPage;
+
+        public View AboutView
+        {
+            get { return aboutView; }
+            set 
+            { 
+                aboutView = value;
+                aboutPage = new Page() { Content = aboutView };
+            }
         }
 
         private void aboutButton_Checked(object sender, RoutedEventArgs e)
         {
-            Navigate(mainViewModel.AboutView, mainViewModel.AboutViewModel, aboutButton);
+            Navigate(aboutPage, aboutButton);
+        }
+
+        View productsView;
+        Page productsPage;
+
+        public View ProductsView
+        {
+            get { return productsView; }
+            set 
+            { 
+                productsView = value;
+                productsPage = new Page() { Content = productsView };
+            }
         }
 
         private void productsButton_Checked(object sender, RoutedEventArgs e)
         {
-            Navigate(mainViewModel.ProductsView, mainViewModel.ProductsViewModel, productsButton);
+            Navigate(productsPage, productsButton);
         }
 
-        private void Navigate(FrameworkElement pageFrameView, ViewModel pageFrameViewModel, RadioButton radioButton)
+        public void Initialize()
+        {
+            Navigate(aboutPage, aboutButton);
+        }
+
+        private void Navigate(Page page, RadioButton radioButton)
         {
             radioButton.IsChecked = true;
 
-            pageFrame.Content = pageFrameView;
-            pageFrame.Navigate(pageFrameView);
+            pageFrame.Content = page;
+            pageFrame.Navigate(page);
 
-            pageFrameView.DataContext = pageFrameViewModel;
-            pageFrameViewModel.Refresh();
+            (page.Content as View).ViewModel.Refresh();
         }
     }
 }

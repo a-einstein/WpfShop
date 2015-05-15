@@ -1,9 +1,9 @@
-﻿using System.Windows.Controls;
+﻿using WpfTestApplication.BaseClasses;
 using WpfTestApplication.ViewModels;
 
 namespace WpfTestApplication.Views
 {
-    public partial class ShoppingCartView : UserControl
+    public partial class ShoppingCartView : View
     {
         public ShoppingCartView()
         {
@@ -13,6 +13,7 @@ namespace WpfTestApplication.Views
         private void QuantityUpDown_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<object> e)
         {
             // Note that currently a ShoppingCartViewModel is assumed, no interface necessary.
+            // TODO Check this.
             ShoppingCartViewModel viewModel = DataContext as ShoppingCartViewModel;
 
             if (viewModel != null)

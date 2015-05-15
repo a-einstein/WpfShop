@@ -1,8 +1,8 @@
-﻿using System.Windows.Controls;
+﻿using WpfTestApplication.BaseClasses;
 
 namespace WpfTestApplication.Views
 {
-    public partial class AboutView : Page
+    public partial class AboutView : View
     {
         public AboutView()
         {

@@ -1,8 +1,8 @@
-﻿using System.Windows.Controls;
+﻿using WpfTestApplication.BaseClasses;
 
 namespace WpfTestApplication.Views
 {
-    public partial class ProductView : UserControl
+    public partial class ProductView : View
     {
         public ProductView()
         {

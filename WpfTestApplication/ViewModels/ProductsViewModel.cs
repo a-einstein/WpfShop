@@ -42,14 +42,8 @@ namespace WpfTestApplication.ViewModels
 
         protected override void ShowDetails(object parameter)
         {
-            // TODO Generally distinguish between Windows, Pages and Views. 
-            // Like
-            // - Windows: Main, Details.
-            // - Pages: About, Shopping.
-            // - Views: Products, Product, ShoppingCart.
-
             ProductViewModel productViewModel = new ProductViewModel();
-            FrameworkElement productView = new ProductView() { DataContext = productViewModel };
+            View productView = new ProductView() { DataContext = productViewModel };
 
             OkWindow productWindow = new OkWindow() { View = productView, };
             productWindow.SetBinding(Window.TitleProperty, new Binding("Item.Name") { Source = productViewModel });

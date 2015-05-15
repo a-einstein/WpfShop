@@ -1,10 +1,8 @@
-﻿<Window
+﻿<BaseClasses:View
     x:Class="WpfTestApplication.Views.MainView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:Views="clr-namespace:WpfTestApplication.Views" 
-    Title="WpfTestApplication"
-    Height="900" Width="700"
+    xmlns:BaseClasses="clr-namespace:WpfTestApplication.BaseClasses"
     >
 
     <Grid Margin="10">
@@ -32,9 +30,10 @@
                     </RadioButton.Template>
                 </RadioButton>
             </StackPanel>
-            <Views:ShoppingCartView x:Name="shoppingCartView" Margin="0,10,0,0"/>
+            
+            <ContentControl x:Name="shoppingCart"/>
         </StackPanel>
 
         <Frame Grid.Row="1" x:Name="pageFrame" Margin="0,10,0,0"/>
     </Grid>
-</Window>
+</BaseClasses:View>
