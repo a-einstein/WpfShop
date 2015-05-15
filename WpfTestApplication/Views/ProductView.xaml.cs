@@ -1,17 +1,12 @@
-﻿using System.Windows;
+﻿using System.Windows.Controls;
 
 namespace WpfTestApplication.Views
 {
-    public partial class ProductView : Window
+    public partial class ProductView : UserControl
     {
         public ProductView()
         {
             InitializeComponent();
-        }
-
-        private void closeButton_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
         }
     }
 }

@@ -103,6 +103,9 @@
     <Compile Include="Views\ShoppingCartView.xaml.cs">
       <DependentUpon>ShoppingCartView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\OkWindow.xaml.cs">
+      <DependentUpon>OkWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\ProductsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -147,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ShoppingCartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\OkWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

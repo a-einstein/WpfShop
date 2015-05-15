@@ -1,11 +1,13 @@
 ﻿using Microsoft.Practices.Prism.Commands;
 using System.Data;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 using WpfTestApplication.BaseClasses;
 using WpfTestApplication.Interfaces;
 using WpfTestApplication.Model;
 using WpfTestApplication.Views;
+using WpfTestApplication.Windows;
 
 namespace WpfTestApplication.ViewModels
 {
@@ -46,13 +48,15 @@ namespace WpfTestApplication.ViewModels
             // - Pages: About, Shopping.
             // - Views: Products, Product, ShoppingCart.
 
-            Window productView = new ProductView();
-            productView.Show();
+            ProductViewModel productViewModel = new ProductViewModel();
+            FrameworkElement productView = new ProductView() { DataContext = productViewModel };
+
+            OkWindow productWindow = new OkWindow() { View = productView, };
+            productWindow.SetBinding(Window.TitleProperty, new Binding("Item.Name") { Source = productViewModel });
+            productWindow.Show();
 
             // Make GUI more responsive by opening first, then get the data.
-            ProductViewModel productViewModel = new ProductViewModel();
-            productViewModel.ItemId = (int)parameter;
-            productView.DataContext = productViewModel;
+            productViewModel.Refresh((int)parameter);
         }
 
         public ICommand CartCommand { get; set; }

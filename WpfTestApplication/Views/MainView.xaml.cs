@@ -23,32 +23,20 @@ namespace WpfTestApplication.Views
             shoppingCartView.DataContext = shoppingCartViewModel;
             shoppingCartViewModel.Refresh();
 
-            pageFrameView = mainViewModel.AboutView;
-            pageFrameViewModel = mainViewModel.AboutViewModel;
-
-            Navigate(aboutButton);
+            Navigate(mainViewModel.AboutView, mainViewModel.AboutViewModel, aboutButton);
         }
-
-        private FrameworkElement pageFrameView;
-        private ViewModel pageFrameViewModel;
 
         private void aboutButton_Checked(object sender, RoutedEventArgs e)
         {
-            pageFrameView = mainViewModel.AboutView;
-            pageFrameViewModel = mainViewModel.AboutViewModel;
-
-            Navigate(aboutButton);
+            Navigate(mainViewModel.AboutView, mainViewModel.AboutViewModel, aboutButton);
         }
 
         private void productsButton_Checked(object sender, RoutedEventArgs e)
         {
-            pageFrameView = mainViewModel.ProductsView;
-            pageFrameViewModel = mainViewModel.ProductsViewModel;
-
-            Navigate(productsButton);
+            Navigate(mainViewModel.ProductsView, mainViewModel.ProductsViewModel, productsButton);
         }
 
-        private void Navigate(RadioButton radioButton)
+        private void Navigate(FrameworkElement pageFrameView, ViewModel pageFrameViewModel, RadioButton radioButton)
         {
             radioButton.IsChecked = true;
 
