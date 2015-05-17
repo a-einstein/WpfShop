@@ -30,7 +30,7 @@ namespace WpfTestApplication.ViewModels
 
         private void CartProduct(object parameter)
         {
-            ShoppingCartViewModel.Instance.Increase((int)parameter);
+            ShoppingCartViewModel.Instance.CartProduct((int)parameter);
         }
     }
 }

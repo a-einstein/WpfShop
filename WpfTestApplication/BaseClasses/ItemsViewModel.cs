@@ -5,7 +5,7 @@ namespace WpfTestApplication.BaseClasses
 {
     public abstract class ItemsViewModel : ViewModel
     {
-        // TODO This should become parameterized (like ItemViewModel), currently it assumes retrieval of entire table.
+        // TODO This should become parameterized (like ItemViewModel), currently it assumes retrieval of an entire table.
         public override void Refresh()
         {
             Items = GetData();

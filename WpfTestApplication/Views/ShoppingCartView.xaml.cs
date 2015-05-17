@@ -8,12 +8,5 @@ namespace WpfTestApplication.Views
         {
             InitializeComponent();
         }
-
-        private void QuantityUpDown_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<object> e)
-        {
-            (ViewModel as ItemsViewModel).OnItemChanged();
-
-            e.Handled = true;
-        }
     }
 }

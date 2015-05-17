@@ -85,7 +85,7 @@ namespace WpfTestApplication.Model
                     productsDataSet.ProductCategories.AddProductCategoriesRow(string.Empty);
 
                     categoriesTableAdapter.ClearBeforeFill = false;
-                    // Note this only retrieves the data once. whereas it would probably retrieve it every time in a realistic situation.
+                    // Note this only retrieves the data once, whereas it would probably retrieve it every time in a realistic situation.
                     categoriesTableAdapter.Fill(productsDataSet.ProductCategories);
                 }
 
@@ -105,7 +105,7 @@ namespace WpfTestApplication.Model
                     productsDataSet.ProductSubcategories.AddProductSubcategoriesRow(string.Empty, ProductCategories.FindByProductCategoryID(-1));
 
                     subcategoriesTableAdapter.ClearBeforeFill = false;
-                    // Note this only retrieves the data once. whereas it would probably retrieve it every time in a realistic situation.
+                    // Note this only retrieves the data once, whereas it would probably retrieve it every time in a realistic situation.
                     subcategoriesTableAdapter.Fill(productsDataSet.ProductSubcategories);
                 }
 
@@ -124,7 +124,7 @@ namespace WpfTestApplication.Model
 
         private ShoppingCartsRow cart;
 
-        public ShoppingCartsRow Cart
+        private ShoppingCartsRow Cart
         {
             get
             {
@@ -152,31 +152,29 @@ namespace WpfTestApplication.Model
             }
         }
 
-        const string cartItemsNumberExceptionMessage = "Unexpected number of found ShoppingCartItemsRows.";
+        private const string cartItemsNumberExceptionMessage = "Unexpected number of found ShoppingCartItemsRows.";
 
-        public void CartItemQuantityIncrease(int productId)
+        public void CartProduct(int productId)
         {
             string productQuery = string.Format("ProductID = {0}", productId);
             DataRow[] existingCartItems = CartItems.Select(productQuery);
-
-            ShoppingCartItemsRow cartItem;
 
             if (existingCartItems.Length == 0)
             {
                 DateTime now = DateTime.Now;
                 ProductsOverviewRow productRow = Products.FindByProductID(productId);
 
-                cartItem = CartItems.AddShoppingCartItemsRow(Cart, 1, productRow, now, now);
+                CartItems.AddShoppingCartItemsRow(Cart, 1, productRow, now, now);
+                CartItems.AcceptChanges();
             }
             else if (existingCartItems.Length == 1)
             {
-                cartItem = existingCartItems[0] as ShoppingCartItemsRow;
+                ShoppingCartItemsRow cartItem = existingCartItems[0] as ShoppingCartItemsRow;
                 cartItem.Quantity += 1;
+                cartItem.AcceptChanges();
             }
             else
                 throw new Exception(cartItemsNumberExceptionMessage);
-
-            CartItems.AcceptChanges();
         }
 
         public void CartItemDelete(int cartItemID)
