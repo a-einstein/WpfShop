@@ -11,6 +11,13 @@ namespace WpfTestApplication.Views
             InitializeComponent();
         }
 
+        protected override void View_Loaded(object sender, RoutedEventArgs e)
+        {
+            base.View_Loaded(sender, e);
+
+            Navigate(aboutPage, aboutButton);
+        }
+
         public View ShoppingCart
         {
             get { return shoppingCart.Content as View; }
@@ -53,11 +60,6 @@ namespace WpfTestApplication.Views
         private void productsButton_Checked(object sender, RoutedEventArgs e)
         {
             Navigate(productsPage, productsButton);
-        }
-
-        public void Initialize()
-        {
-            Navigate(aboutPage, aboutButton);
         }
 
         private void Navigate(Page page, RadioButton radioButton)

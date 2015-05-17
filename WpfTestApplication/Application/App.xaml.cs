@@ -10,7 +10,6 @@ namespace WpfTestApplication
         {
             ShoppingCartViewModel shoppingCartViewModel = ShoppingCartViewModel.Instance;
             ShoppingCartView shoppingCartView = new ShoppingCartView() { DataContext = shoppingCartViewModel };
-            shoppingCartViewModel.Refresh();
 
             AboutViewModel aboutViewModel = new AboutViewModel();
             AboutView aboutView = new AboutView() { DataContext = aboutViewModel };
@@ -26,7 +25,6 @@ namespace WpfTestApplication
                 AboutView = aboutView,
                 ProductsView = productsView
             };
-            mainView.Initialize();
 
             Window mainWindow = new Window()
             {

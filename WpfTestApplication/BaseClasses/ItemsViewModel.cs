@@ -34,7 +34,5 @@ namespace WpfTestApplication.BaseClasses
         // Convenience property to signal changes.
         // Note that just binding on Items.Count does not work.
         public int ItemsCount { get { return Items != null ? Items.Count : 0; } }
-
-        public virtual void OnItemChanged() {}
     }
 }

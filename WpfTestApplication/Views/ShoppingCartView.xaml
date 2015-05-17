@@ -27,7 +27,7 @@
                         <TextBlock Text="Items" Margin="{StaticResource StandardHorizontalSeparation}"/>
 
                         <TextBlock Text="{Binding TotalValue, StringFormat=\{0:C2\}}" Margin="{StaticResource StandardHorizontalSeparation}" FontWeight="Bold"/>
-                        <TextBlock Text="Total" Margin="{StaticResource StandardHorizontalSeparation}"/>
+                        <TextBlock Text="Total value" Margin="{StaticResource StandardHorizontalSeparation}"/>
                     </StackPanel>
                 </Expander.Header>
                 <Expander.Content>

@@ -5,13 +5,18 @@ using System.Windows;
 using System.Windows.Input;
 using WpfTestApplication.BaseClasses;
 using WpfTestApplication.Model;
-using ShoppingCartItemsRow = WpfTestApplication.Model.ProductsDataSet.ShoppingCartItemsRow;
 
 namespace WpfTestApplication.ViewModels
 {
     public class ShoppingCartViewModel : ItemsViewModel
     {
-        private ShoppingCartViewModel() { }
+        private ShoppingCartViewModel() 
+        {
+            ShoppingWrapper.Instance.CartItems.ShoppingCartItemsRowChanged += CartItems_ShoppingCartItemsRowChanged;
+            ShoppingWrapper.Instance.CartItems.ShoppingCartItemsRowDeleted += CartItems_ShoppingCartItemsRowChanged;
+
+            Refresh();
+        }
 
         private static volatile ShoppingCartViewModel instance;
         private static object syncRoot = new Object();
@@ -36,12 +41,6 @@ namespace WpfTestApplication.ViewModels
 
         protected override DataView GetData()
         {
-            ShoppingWrapper.Instance.CartItems.ShoppingCartItemsRowChanged -= CartItems_ShoppingCartItemsRowChanged;
-            ShoppingWrapper.Instance.CartItems.ShoppingCartItemsRowChanged += CartItems_ShoppingCartItemsRowChanged;
-
-            ShoppingWrapper.Instance.CartItems.ShoppingCartItemsRowDeleted -= CartItems_ShoppingCartItemsRowChanged;
-            ShoppingWrapper.Instance.CartItems.ShoppingCartItemsRowDeleted += CartItems_ShoppingCartItemsRowChanged;
-
             // TODO Maybe make a separate property Items for this in a new wrapper class CartItems. And so forth. Check what this means for filtering.
             return ShoppingWrapper.Instance.CartItems.DefaultView;
         }
@@ -65,6 +64,30 @@ namespace WpfTestApplication.ViewModels
             int cartItemID = (int)parameter;
 
             ShoppingWrapper.Instance.CartItemDelete(cartItemID);
+        }
+
+        private void CartItems_ShoppingCartItemsRowChanged(object sender, ProductsDataSet.ShoppingCartItemsRowChangeEvent e)
+        {
+            switch (e.Action)
+            {
+                case DataRowAction.Change:
+                    // For directly bound controls. Currently only on Quantity.
+                    e.Row.AcceptChanges();
+
+                    UpdateTotals();
+                    break;
+                case DataRowAction.Add:
+                case DataRowAction.Delete:
+                    UpdateTotals();
+                    break;
+                case DataRowAction.ChangeCurrentAndOriginal:
+                case DataRowAction.ChangeOriginal:
+                case DataRowAction.Commit:
+                case DataRowAction.Nothing:
+                case DataRowAction.Rollback:
+                default:
+                    break;
+            }
         }
 
         private void UpdateTotals()
@@ -91,30 +114,6 @@ namespace WpfTestApplication.ViewModels
         {
             get { return (Double)GetValue(TotalProperty); }
             set { SetValue(TotalProperty, value); }
-        }
-
-        private void CartItems_ShoppingCartItemsRowChanged(object sender, ProductsDataSet.ShoppingCartItemsRowChangeEvent e)
-        {
-            switch (e.Action)
-            {
-                case DataRowAction.Change:
-                    // For directly bound controls. Currently only on Quantity.
-                    e.Row.AcceptChanges();
-
-                    UpdateTotals();
-                    break;
-                case DataRowAction.Add:
-                case DataRowAction.Delete:
-                    UpdateTotals();
-                    break;
-                case DataRowAction.ChangeCurrentAndOriginal:
-                case DataRowAction.ChangeOriginal:
-                case DataRowAction.Commit:
-                case DataRowAction.Nothing:
-                case DataRowAction.Rollback:
-                default:
-                    break;
-            }
         }
     }
 }
