@@ -88,7 +88,7 @@ namespace WpfTestApplication.ViewModels
             set { SetValue(TotalProperty, value); }
         }
 
-        public void OnItemChanged()
+        public override void OnItemChanged()
         {
             // TODO This could be an OnItemChanged on a (new) wrapper class.
             ShoppingWrapper.Instance.CartItems.AcceptChanges();

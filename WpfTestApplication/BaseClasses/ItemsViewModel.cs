@@ -11,6 +11,8 @@ namespace WpfTestApplication.BaseClasses
             Items = GetData();
         }
 
+        protected abstract DataView GetData();
+
         public static readonly DependencyProperty ItemsProperty =
             DependencyProperty.Register("Items", typeof(DataView), typeof(ItemsViewModel));
 
@@ -33,6 +35,6 @@ namespace WpfTestApplication.BaseClasses
         // Note that just binding on Items.Count does not work.
         public int ItemsCount { get { return Items != null ? Items.Count : 0; } }
 
-        protected abstract DataView GetData();
+        public virtual void OnItemChanged() {}
     }
 }
