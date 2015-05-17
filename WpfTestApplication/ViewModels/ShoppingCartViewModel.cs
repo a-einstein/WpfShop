@@ -93,7 +93,7 @@ namespace WpfTestApplication.ViewModels
             set { SetValue(TotalProperty, value); }
         }
 
-        void CartItems_ShoppingCartItemsRowChanged(object sender, ProductsDataSet.ShoppingCartItemsRowChangeEvent e)
+        private void CartItems_ShoppingCartItemsRowChanged(object sender, ProductsDataSet.ShoppingCartItemsRowChangeEvent e)
         {
             switch (e.Action)
             {
