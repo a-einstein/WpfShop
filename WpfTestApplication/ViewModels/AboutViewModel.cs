@@ -4,7 +4,7 @@ namespace WpfTestApplication.ViewModels
 {
     class AboutViewModel : ViewModel
     {
-        private string text = "About this project \n\nTODO Make a project description. \nCan this be formatted better? \n\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+        private string text = "This project is built by Robert Stroethoff for demonstration of various technical aspects in WPF.\n\nVery briefly said it contains the following.\n- The MVVM pattern.\n- Data manipulation based on a DataSet, asynchronously working on a database.\n- Xaml binding, converting, updating, layout, and styling.";
 
         public string Text
         {

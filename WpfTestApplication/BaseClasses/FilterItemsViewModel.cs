@@ -42,14 +42,16 @@ namespace WpfTestApplication.BaseClasses
             viewModel.SetDetailFilterItems();
         }
 
+        private const int noId = -1;
+
         private void SetDetailFilterItems()
         {
             string filter = null;
 
             // Preserve empty value.
-            filter = string.Format("({0} = {1})", DetailFilterMasterKeyPath, -1);
+            filter = string.Format("({0} = {1})", DetailFilterMasterKeyPath, noId);
 
-            filter += (int)MasterFilterValue != -1 ? string.Format(" OR ({0} = {1})", DetailFilterMasterKeyPath, MasterFilterValue) : null;
+            filter += (int)MasterFilterValue != noId ? string.Format(" OR ({0} = {1})", DetailFilterMasterKeyPath, MasterFilterValue) : null;
 
             DetailFilterItems.RowFilter = filter;
         }
@@ -107,10 +109,10 @@ namespace WpfTestApplication.BaseClasses
 
         private string AddFilter(string filter, string newFilterValuePath, int newFilterValue)
         {
-            // Note that newFilterValue is assumed int and Nullable, which is represented as -1.
+            // Note that newFilterValue is assumed int and Nullable, which is represented as noId.
 
-            filter += !NullOrEmpty(filter) && newFilterValue != -1 ? " AND " : null;
-            filter += (int)newFilterValue != -1 ? string.Format("({0} = {1})", newFilterValuePath, newFilterValue) : null;
+            filter += !NullOrEmpty(filter) && newFilterValue != noId ? " AND " : null;
+            filter += (int)newFilterValue != noId ? string.Format("({0} = {1})", newFilterValuePath, newFilterValue) : null;
 
             return filter;
         }

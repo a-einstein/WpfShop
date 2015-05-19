@@ -28,9 +28,9 @@ namespace WpfTestApplication
 
             Window mainWindow = new Window()
             {
+                Content = mainView,
                 Height = 900,
-                Width = 700,
-                Content = mainView
+                Width = 700
             };
 
             mainWindow.Show();

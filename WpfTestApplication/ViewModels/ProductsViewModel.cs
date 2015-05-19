@@ -81,7 +81,6 @@ namespace WpfTestApplication.ViewModels
             productWindow.SetBinding(Window.TitleProperty, new Binding("Item.Name") { Source = productViewModel });
             productWindow.Show();
 
-            // Make GUI more responsive by opening first, then get the data.
             productViewModel.Refresh((int)parameter);
         }
 
