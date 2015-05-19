@@ -9,18 +9,18 @@ namespace WpfTestApplication
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             ShoppingCartViewModel shoppingCartViewModel = ShoppingCartViewModel.Instance;
-            ShoppingCartView shoppingCartView = new ShoppingCartView() { DataContext = shoppingCartViewModel };
+            ShoppingCartView shoppingCartView = new ShoppingCartView() { ViewModel = shoppingCartViewModel };
 
             AboutViewModel aboutViewModel = new AboutViewModel();
-            AboutView aboutView = new AboutView() { DataContext = aboutViewModel };
+            AboutView aboutView = new AboutView() { ViewModel = aboutViewModel };
 
             ProductsViewModel productsViewModel = new ProductsViewModel();
-            ProductsView productsView = new ProductsView() { DataContext = productsViewModel };
+            ProductsView productsView = new ProductsView() { ViewModel = productsViewModel };
 
             MainViewModel mainViewModel = new MainViewModel();
             MainView mainView = new MainView()
             {
-                DataContext = mainViewModel,
+                ViewModel = mainViewModel,
                 ShoppingCart = shoppingCartView,
                 AboutView = aboutView,
                 ProductsView = productsView

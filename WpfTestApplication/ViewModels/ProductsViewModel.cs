@@ -75,7 +75,7 @@ namespace WpfTestApplication.ViewModels
         protected override void ShowDetails(object parameter)
         {
             ProductViewModel productViewModel = new ProductViewModel();
-            View productView = new ProductView() { DataContext = productViewModel };
+            View productView = new ProductView() { ViewModel = productViewModel };
 
             OkWindow productWindow = new OkWindow() { View = productView, };
             productWindow.SetBinding(Window.TitleProperty, new Binding("Item.Name") { Source = productViewModel });
