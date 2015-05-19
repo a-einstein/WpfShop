@@ -1,8 +1,11 @@
-﻿using System.Windows;
+﻿using System;
+using System.ComponentModel;
+using System.Data;
+using System.Windows;
 
 namespace WpfTestApplication.BaseClasses
 {
-    abstract class ItemViewModel<T> : ViewModel
+    abstract class ItemViewModel<T> : ViewModel where T : DataRow
     {
         public object ItemId
         {
@@ -21,16 +24,19 @@ namespace WpfTestApplication.BaseClasses
             set { SetValue(ItemProperty, value); }
         }
 
-        protected abstract T GetData(object Id);
-
         public override void Refresh()
         {
             Refresh(ItemId);
         }
 
-        public void Refresh(object Id)
+        public abstract void Refresh(object Id);
+
+        protected void GetItemCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            Item = GetData(Id);
+            if (e.Error != null)
+                throw new Exception(databaseErrorMessage, e.Error);
+            else
+                Item = e.Result as T;
         }
     }
 }

@@ -19,11 +19,11 @@ namespace WpfTestApplication.BaseClasses
         public abstract string MasterFilterSelectedValuePath { get; }
 
         public static readonly DependencyProperty MasterFilterItemsProperty =
-            DependencyProperty.Register("MasterFilterItems", typeof(DataTable), typeof(ItemsViewModel));
+            DependencyProperty.Register("MasterFilterItems", typeof(DataView), typeof(ItemsViewModel));
 
-        public DataTable MasterFilterItems
+        public DataView MasterFilterItems
         {
-            get { return (DataTable)GetValue(MasterFilterItemsProperty); }
+            get { return (DataView)GetValue(MasterFilterItemsProperty); }
             set { SetValue(MasterFilterItemsProperty, value); }
         }
 
@@ -51,7 +51,7 @@ namespace WpfTestApplication.BaseClasses
 
             filter += (int)MasterFilterValue != -1 ? string.Format(" OR ({0} = {1})", DetailFilterMasterKeyPath, MasterFilterValue) : null;
 
-            DetailFilterItems.DefaultView.RowFilter = filter;
+            DetailFilterItems.RowFilter = filter;
         }
 
         public virtual string DetailFilterLabel { get { return "Subcategory"; } }
@@ -60,11 +60,11 @@ namespace WpfTestApplication.BaseClasses
         public abstract string DetailFilterMasterKeyPath { get; }
 
         public static readonly DependencyProperty DetailFilterItemsProperty =
-            DependencyProperty.Register("DetailFilterItems", typeof(DataTable), typeof(ItemsViewModel));
+            DependencyProperty.Register("DetailFilterItems", typeof(DataView), typeof(ItemsViewModel));
 
-        public DataTable DetailFilterItems
+        public DataView DetailFilterItems
         {
-            get { return (DataTable)GetValue(DetailFilterItemsProperty); }
+            get { return (DataView)GetValue(DetailFilterItemsProperty); }
             set { SetValue(DetailFilterItemsProperty, value); }
         }
 

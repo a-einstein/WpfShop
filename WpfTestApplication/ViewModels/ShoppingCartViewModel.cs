@@ -39,10 +39,10 @@ namespace WpfTestApplication.ViewModels
             }
         }
 
-        protected override DataView GetData()
+        public override void Refresh()
         {
             // TODO Maybe make a separate property Items for this in a new wrapper class CartItems. And so forth. Check what this means for filtering.
-            return ShoppingWrapper.Instance.CartItems.DefaultView;
+            Items = ShoppingWrapper.Instance.CartItems.DefaultView;
         }
 
         protected override void SetCommands()

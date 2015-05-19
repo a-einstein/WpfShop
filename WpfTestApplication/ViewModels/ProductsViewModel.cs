@@ -1,4 +1,6 @@
 ﻿using Microsoft.Practices.Prism.Commands;
+using System;
+using System.ComponentModel;
 using System.Data;
 using System.Windows;
 using System.Windows.Data;
@@ -17,20 +19,50 @@ namespace WpfTestApplication.ViewModels
         public override string DetailFilterSelectedValuePath { get { return "ProductSubcategoryID"; } }
         public override string DetailFilterMasterKeyPath { get { return "ProductCategoryID"; } }
 
-        protected override DataView GetData()
+        // TODO This should become parameterized, currently it assumes retrieval of an entire table.
+        public override void Refresh()
         {
-            // TODO reduce loading time e.g. by making it asynchronous.
-            return ShoppingWrapper.Instance.Products.DefaultView;
+            ShoppingWrapper.Instance.BeginGetProducts(new RunWorkerCompletedEventHandler(GetItemsCompleted));
         }
 
         protected override void SetFilters()
         {
-            MasterFilterItems = ShoppingWrapper.Instance.ProductCategories;
-            DetailFilterItems = ShoppingWrapper.Instance.ProductSubcategories;
+            ShoppingWrapper.Instance.BeginGetProductCategories(GetCategoriesCompleted);
+        }
 
-            // Note that MasterFilterValue also determines DetailFilterItems.
-            MasterFilterValue = -1;
-            DetailFilterValue = -1;
+        protected void GetCategoriesCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error != null)
+                throw new Exception(databaseErrorMessage, e.Error);
+            else
+            {
+                MasterFilterItems = (e.Result as DataTable).DefaultView;
+
+                // Note that Categories have been retrieved first.
+                ShoppingWrapper.Instance.BeginGetProductSubcategories(GetSubcategoriesCompleted);
+            }
+        }
+
+        protected void GetSubcategoriesCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error != null)
+                throw new Exception(databaseErrorMessage, e.Error);
+            else
+            {
+                DetailFilterItems = (e.Result as DataTable).DefaultView;
+
+                // Note that both Categories and Subcategories have been retrieved.
+                // Note that MasterFilterValue also determines DetailFilterItems.
+                MasterFilterValue = -1;
+                DetailFilterValue = -1;
+            }
+        }
+
+        protected void GetFiltervaluesCompleted()
+        {
+            if (MasterFilterItems != null && DetailFilterItems != null)
+            {
+            }
         }
 
         protected override void SetCommands()

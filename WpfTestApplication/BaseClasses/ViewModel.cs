@@ -12,6 +12,8 @@ namespace WpfTestApplication.BaseClasses
 
         protected virtual void SetCommands() { }
 
+        protected const string databaseErrorMessage = "Error retrieving data from database.";
+
         public virtual void Refresh() { }
 
         protected static bool NullOrEmpty(string value)

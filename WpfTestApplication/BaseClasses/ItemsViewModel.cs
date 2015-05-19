@@ -1,17 +1,19 @@
-﻿using System.Data;
+﻿using System;
+using System.ComponentModel;
+using System.Data;
 using System.Windows;
 
 namespace WpfTestApplication.BaseClasses
 {
     public abstract class ItemsViewModel : ViewModel
     {
-        // TODO This should become parameterized (like ItemViewModel), currently it assumes retrieval of an entire table.
-        public override void Refresh()
+        protected void GetItemsCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            Items = GetData();
+            if (e.Error != null)
+                throw new Exception(databaseErrorMessage, e.Error);
+            else
+                Items = (e.Result as DataTable).DefaultView;
         }
-
-        protected abstract DataView GetData();
 
         public static readonly DependencyProperty ItemsProperty =
             DependencyProperty.Register("Items", typeof(DataView), typeof(ItemsViewModel));

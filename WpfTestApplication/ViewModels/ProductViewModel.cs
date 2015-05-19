@@ -1,4 +1,5 @@
 ﻿using Microsoft.Practices.Prism.Commands;
+using System.ComponentModel;
 using System.Windows.Input;
 using WpfTestApplication.BaseClasses;
 using WpfTestApplication.Interfaces;
@@ -14,9 +15,9 @@ namespace WpfTestApplication.ViewModels
             return Item != null ? Item.ProductID : -1;
         }
 
-        protected override ProductDetailsRow GetData(object Id)
+        public override void Refresh(object id)
         {
-            return ShoppingWrapper.Instance.ProductDetails((int)Id);
+            ShoppingWrapper.Instance.BeginGetProductDetails(id, new RunWorkerCompletedEventHandler(GetItemCompleted));
         }
 
         protected override void SetCommands()

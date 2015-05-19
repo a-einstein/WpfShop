@@ -1,12 +1,9 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Data;
 using WpfTestApplication.Model.ProductsDataSetTableAdapters;
-using ProductCategoriesDataTable = WpfTestApplication.Model.ProductsDataSet.ProductCategoriesDataTable;
 using ProductDetailsDataTable = WpfTestApplication.Model.ProductsDataSet.ProductDetailsDataTable;
-using ProductDetailsRow = WpfTestApplication.Model.ProductsDataSet.ProductDetailsRow;
-using ProductsOverviewDataTable = WpfTestApplication.Model.ProductsDataSet.ProductsOverviewDataTable;
 using ProductsOverviewRow = WpfTestApplication.Model.ProductsDataSet.ProductsOverviewRow;
-using ProductSubcategoriesDataTable = WpfTestApplication.Model.ProductsDataSet.ProductSubcategoriesDataTable;
 using ShoppingCartItemsDataTable = WpfTestApplication.Model.ProductsDataSet.ShoppingCartItemsDataTable;
 using ShoppingCartItemsRow = WpfTestApplication.Model.ProductsDataSet.ShoppingCartItemsRow;
 using ShoppingCartsDataTable = WpfTestApplication.Model.ProductsDataSet.ShoppingCartsDataTable;
@@ -46,71 +43,93 @@ namespace WpfTestApplication.Model
 
         private ProductsDataSet productsDataSet;
 
-        public ProductsOverviewDataTable Products
+        public void BeginGetProducts(RunWorkerCompletedEventHandler completer)
         {
-            get
-            {
-                if (productsDataSet.ProductsOverview.Count == 0)
-                {
-                    ProductsOverviewTableAdapter productsTableAdapter = new ProductsOverviewTableAdapter();
-
-                    // Note this currently takes in all of the table data. Of course this should be prefiltered and/or paged in a realistic situation. 
-                    // Note this only retrieves the data once. whereas it would probably retrieve it every time in a realistic situation.
-                    productsTableAdapter.Fill(productsDataSet.ProductsOverview);
-                }
-
-                return productsDataSet.ProductsOverview;
-            }
+            BeginGetData(new DoWorkEventHandler(FillProductsTable), completer);
         }
 
-        public ProductDetailsRow ProductDetails(int productID)
+        private void FillProductsTable(object sender, DoWorkEventArgs e)
         {
+            // Note this only retrieves the data once. whereas it would probably retrieve it every time in a realistic situation.
+            if (productsDataSet.ProductsOverview.Count == 0)
+            {
+                ProductsOverviewTableAdapter productsTableAdapter = new ProductsOverviewTableAdapter();
+
+                // Note this currently takes in all of the table data. Of course this should be prefiltered and/or paged in a realistic situation. 
+                productsTableAdapter.Fill(productsDataSet.ProductsOverview);
+            }
+
+            e.Result = productsDataSet.ProductsOverview;
+        }
+
+        public void BeginGetProductDetails(object productID, RunWorkerCompletedEventHandler completer)
+        {
+            BeginGetData(new DoWorkEventHandler(GetProductDetails), completer, productID);
+        }
+
+        private void GetProductDetails(object sender, DoWorkEventArgs e)
+        {
+            int productID = (int)e.Argument;
+
             ProductDetailsTableAdapter productTableAdapter = new ProductDetailsTableAdapter();
 
             // Note this always tries to retrieve a record from the DB.
             ProductDetailsDataTable productDetailsTable = productTableAdapter.GetDataBy(productID);
 
-            return productDetailsTable.FindByProductID(productID);
+            e.Result = productDetailsTable.FindByProductID(productID);
         }
 
-        public ProductCategoriesDataTable ProductCategories
+        public void BeginGetProductCategories(RunWorkerCompletedEventHandler completer)
         {
-            get
-            {
-                if (productsDataSet.ProductCategories.Count == 0)
-                {
-                    ProductCategoriesTableAdapter categoriesTableAdapter = new ProductCategoriesTableAdapter();
-
-                    // Add an empty element.
-                    productsDataSet.ProductCategories.AddProductCategoriesRow(string.Empty);
-
-                    categoriesTableAdapter.ClearBeforeFill = false;
-                    // Note this only retrieves the data once, whereas it would probably retrieve it every time in a realistic situation.
-                    categoriesTableAdapter.Fill(productsDataSet.ProductCategories);
-                }
-
-                return productsDataSet.ProductCategories;
-            }
+            BeginGetData(new DoWorkEventHandler(FillProductCategoriesTable), completer);
         }
 
-        public ProductSubcategoriesDataTable ProductSubcategories
+        private void FillProductCategoriesTable(object sender, DoWorkEventArgs e)
         {
-            get
+            if (productsDataSet.ProductCategories.Count == 0)
             {
-                if (productsDataSet.ProductSubcategories.Count == 0)
-                {
-                    ProductSubcategoriesTableAdapter subcategoriesTableAdapter = new ProductSubcategoriesTableAdapter();
+                ProductCategoriesTableAdapter categoriesTableAdapter = new ProductCategoriesTableAdapter();
 
-                    // Add an empty element.
-                    productsDataSet.ProductSubcategories.AddProductSubcategoriesRow(string.Empty, ProductCategories.FindByProductCategoryID(-1));
+                // Add an empty element.
+                productsDataSet.ProductCategories.AddProductCategoriesRow(string.Empty);
 
-                    subcategoriesTableAdapter.ClearBeforeFill = false;
-                    // Note this only retrieves the data once, whereas it would probably retrieve it every time in a realistic situation.
-                    subcategoriesTableAdapter.Fill(productsDataSet.ProductSubcategories);
-                }
-
-                return productsDataSet.ProductSubcategories;
+                categoriesTableAdapter.ClearBeforeFill = false;
+                // Note this only retrieves the data once, whereas it would probably retrieve it every time in a realistic situation.
+                categoriesTableAdapter.Fill(productsDataSet.ProductCategories);
             }
+
+            e.Result = productsDataSet.ProductCategories;
+        }
+
+        public void BeginGetProductSubcategories(RunWorkerCompletedEventHandler completer)
+        {
+            BeginGetData(new DoWorkEventHandler(FillProductSubcategoriesTable), completer);
+        }
+
+        private void FillProductSubcategoriesTable(object sender, DoWorkEventArgs e)
+        {
+            if (productsDataSet.ProductSubcategories.Count == 0)
+            {
+                ProductSubcategoriesTableAdapter subcategoriesTableAdapter = new ProductSubcategoriesTableAdapter();
+
+                // Add an empty element.
+                productsDataSet.ProductSubcategories.AddProductSubcategoriesRow(string.Empty, productsDataSet.ProductCategories.FindByProductCategoryID(-1));
+
+                subcategoriesTableAdapter.ClearBeforeFill = false;
+                // Note this only retrieves the data once, whereas it would probably retrieve it every time in a realistic situation.
+                subcategoriesTableAdapter.Fill(productsDataSet.ProductSubcategories);
+            }
+
+            e.Result = productsDataSet.ProductSubcategories;
+        }
+
+        private void BeginGetData(DoWorkEventHandler worker, RunWorkerCompletedEventHandler completer, object argument = null)
+        {
+            BackgroundWorker backgroundWorker = new BackgroundWorker();
+            backgroundWorker.DoWork += worker;
+            backgroundWorker.RunWorkerCompleted += completer;
+
+            backgroundWorker.RunWorkerAsync(argument);
         }
 
         // TODO This table might be removed alltogether, as only one cart is used.
@@ -162,7 +181,7 @@ namespace WpfTestApplication.Model
             if (existingCartItems.Length == 0)
             {
                 DateTime now = DateTime.Now;
-                ProductsOverviewRow productRow = Products.FindByProductID(productId);
+                ProductsOverviewRow productRow = productsDataSet.ProductsOverview.FindByProductID(productId);
 
                 CartItems.AddShoppingCartItemsRow(Cart, 1, productRow, now, now);
                 CartItems.AcceptChanges();
