@@ -11,8 +11,8 @@ using ShoppingCartsRow = WpfTestApplication.Model.ProductsDataSet.ShoppingCartsR
 
 namespace WpfTestApplication.Model
 {
-    // TODO Maybe put this functionality into the partial sub classes of ProductsDataSet. Problem: would not be able to have a singleton ProductsDataSet.
-    // Other option: make properties here on wrapper sub classes which are instantiated with a single dataset. The constructor should be restricted...?
+    // TODO Maybe put this functionality into the partial sub classes of ProductsDataSet. But ProductsDataSet could not be a singleton .
+    // Other option: make properties here on wrapper sub classes which are instantiated with a single dataset. The constructor should be restricted some way.
     class ShoppingWrapper
     {
         private ShoppingWrapper()
@@ -132,7 +132,7 @@ namespace WpfTestApplication.Model
             backgroundWorker.RunWorkerAsync(argument);
         }
 
-        // TODO This table might be removed alltogether, as only one cart is used.
+        // TODO This table might be removed alltogether, as only one cart is used. Then the current relation and non nullable key should be remove, or made nullable.
         private ShoppingCartsDataTable Carts
         {
             get
@@ -183,6 +183,7 @@ namespace WpfTestApplication.Model
                 DateTime now = DateTime.Now;
                 ProductsOverviewRow productRow = productsDataSet.ProductsOverview.FindByProductID(productId);
 
+                // Note that ShoppingCartId currently is non nullable.
                 CartItems.AddShoppingCartItemsRow(Cart, 1, productRow, now, now);
                 CartItems.AcceptChanges();
             }

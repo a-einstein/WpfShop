@@ -58,7 +58,8 @@
                                 <GridViewColumn Width="Auto">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource TextBlockStyle}"/>
+                                            <!--TODO HorizontalAlignment does not work here, but is desirable to work out some way.--> 
+                                            <TextBlock Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Right"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -74,7 +75,8 @@
                                 <GridViewColumn Width="Auto">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Value, StringFormat=\{0:C2\}}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold"/>
+                                            <!--TODO HorizontalAlignment does not work here, but is desirable to work out some way.-->
+                                            <TextBlock Text="{Binding Value, StringFormat=\{0:C2\}}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold" HorizontalAlignment="Right"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

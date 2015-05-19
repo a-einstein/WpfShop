@@ -24,7 +24,7 @@ namespace WpfTestApplication.Views
             set { shoppingCart.Content = value; }
         }
 
-        // TODO Should be a row of configurations or controls. How to navigate then?
+        // TODO Should be a row of configurations or controls. Navigation is to be worked out priorly.
 
         View aboutView;
         Page aboutPage;
