@@ -20,14 +20,14 @@
             <Expander>
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding ItemsCount}" Margin="{StaticResource StandardHorizontalSeparation}" FontWeight="Bold"/>
-                        <TextBlock Text="Products" Margin="{StaticResource StandardHorizontalSeparation}"/>
+                        <TextBlock Text="{Binding ItemsCount}" Style="{StaticResource LineValueTextBlockStyle}"/>
+                        <TextBlock Text="Products" Style="{StaticResource LineTextBlockStyle}"/>
 
-                        <TextBlock Text="{Binding ProductItemsCount}" Margin="{StaticResource StandardHorizontalSeparation}" FontWeight="Bold"/>
-                        <TextBlock Text="Items" Margin="{StaticResource StandardHorizontalSeparation}"/>
+                        <TextBlock Text="{Binding ProductItemsCount}" Style="{StaticResource LineValueTextBlockStyle}"/>
+                        <TextBlock Text="Items" Style="{StaticResource LineTextBlockStyle}"/>
 
-                        <TextBlock Text="{Binding TotalValue, StringFormat=\{0:C2\}}" Margin="{StaticResource StandardHorizontalSeparation}" FontWeight="Bold"/>
-                        <TextBlock Text="Total value" Margin="{StaticResource StandardHorizontalSeparation}"/>
+                        <TextBlock Text="{Binding TotalValue, StringFormat=\{0:C2\}}" Style="{StaticResource LineValueTextBlockStyle}"/>
+                        <TextBlock Text="Total value" Style="{StaticResource LineTextBlockStyle}"/>
                     </StackPanel>
                 </Expander.Header>
                 <Expander.Content>

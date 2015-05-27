@@ -31,20 +31,20 @@
             <TextBlock Grid.Row="0" Text="Products" FontSize="16" FontWeight="Bold" Margin="3"/>
 
             <StackPanel Grid.Row="1" Orientation="Horizontal">
-                <TextBlock Text="{Binding MasterFilterLabel}" Margin="{StaticResource StandardHorizontalSeparation}"/>
+                <TextBlock Text="{Binding MasterFilterLabel}" Style="{StaticResource LineTextBlockStyle}"/>
                 <ComboBox ItemsSource="{Binding MasterFilterItems}" DisplayMemberPath="{Binding MasterFilterDisplayMemberPath}" SelectedValuePath="{Binding MasterFilterSelectedValuePath}" SelectedValue="{Binding MasterFilterValue}" Style="{StaticResource FilterComboBoxStyle}"/>
 
-                <TextBlock Text="{Binding DetailFilterLabel}" Margin="{StaticResource StandardHorizontalSeparation}"/>
+                <TextBlock Text="{Binding DetailFilterLabel}" Style="{StaticResource LineTextBlockStyle}"/>
                 <ComboBox ItemsSource="{Binding DetailFilterItems}" DisplayMemberPath="{Binding DetailFilterDisplayMemberPath}" SelectedValuePath="{Binding DetailFilterSelectedValuePath}" SelectedValue="{Binding DetailFilterValue}" Style="{StaticResource FilterComboBoxStyle}"/>
 
-                <TextBlock Text="{Binding TextFilterLabel}" Margin="{StaticResource StandardHorizontalSeparation}"/>
+                <TextBlock Text="{Binding TextFilterLabel}" Style="{StaticResource LineTextBlockStyle}"/>
                 <!--Note this field has to be tabbed out to reach the default button by the enter key.-->
-                <TextBox Text="{Binding TextFilterValue, Mode=TwoWay}" Width="200" Margin="{StaticResource StandardHorizontalSeparation}"/>
+                <TextBox Text="{Binding TextFilterValue, Mode=TwoWay}" Width="200" Style="{StaticResource LineTextBoxStyle}"/>
 
                 <Button Content="Filter" Command="{Binding FilterCommand}" IsDefault="True" Margin="{StaticResource StandardHorizontalSeparation}"/>
 
-                <TextBlock Text="{Binding ItemsCount}" Margin="{StaticResource StandardHorizontalSeparation}"/>
-                <TextBlock Text="Products" Margin="{StaticResource StandardHorizontalSeparation}"/>
+                <TextBlock Text="{Binding ItemsCount}" Style="{StaticResource LineValueTextBlockStyle}"/>
+                <TextBlock Text="Products" Style="{StaticResource LineTextBlockStyle}"/>
             </StackPanel>
 
             <Border Grid.Row="2" Style="{StaticResource BorderStyle}" Margin="0,10,0,0">
