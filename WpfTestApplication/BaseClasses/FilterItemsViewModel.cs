@@ -1,4 +1,5 @@
 ﻿using Microsoft.Practices.Prism.Commands;
+using System.Collections;
 using System.Data;
 using System.Windows;
 using System.Windows.Input;
@@ -42,20 +43,18 @@ namespace WpfTestApplication.BaseClasses
         {
             FilterItemsViewModel viewModel = dependencyObject as FilterItemsViewModel;
 
-            viewModel.DetailFilterValue = noId;
+            viewModel.DetailFilterValue = viewModel.NoId;
             viewModel.SetDetailFilterItems();
         }
-
-        protected const int noId = -1;
 
         private void SetDetailFilterItems()
         {
             string filter = null;
 
             // Preserve empty value.
-            filter = string.Format("({0} = {1})", DetailFilterMasterKeyPath, noId);
+            filter = string.Format("({0} = {1})", DetailFilterMasterKeyPath, NoId);
 
-            filter += (int)MasterFilterValue != noId ? string.Format(" OR ({0} = {1})", DetailFilterMasterKeyPath, MasterFilterValue) : null;
+            filter += MasterFilterValue != NoId ? string.Format(" OR ({0} = {1})", DetailFilterMasterKeyPath, MasterFilterValue) : null;
 
             DetailFilterItems.RowFilter = filter;
         }
@@ -101,8 +100,8 @@ namespace WpfTestApplication.BaseClasses
         {
             string filter = null;
 
-            filter = AddFilter(filter, MasterFilterSelectedValuePath, (int)MasterFilterValue);
-            filter = AddFilter(filter, DetailFilterSelectedValuePath, (int)DetailFilterValue);
+            filter = AddFilter(filter, MasterFilterSelectedValuePath, MasterFilterValue);
+            filter = AddFilter(filter, DetailFilterSelectedValuePath, DetailFilterValue);
             filter = AddFilter(filter, TextFilterValuePath, TextFilterValue);
 
             Items.Table.CaseSensitive = false;
@@ -111,12 +110,13 @@ namespace WpfTestApplication.BaseClasses
             RaisePropertyChanged("ItemsCount");
         }
 
-        private string AddFilter(string filter, string newFilterValuePath, int newFilterValue)
+        private string AddFilter(string filter, string newFilterValuePath, object newFilterValue)
         {
-            // Note that newFilterValue is assumed int and Nullable, which is represented as noId.
+            // Note that newFilterValue is assumed int and Nullable, which is represented as NoId.
+            // Note that the ToString is needed to enable value comparison of the object. TODO Could be better. Also see remark at NoId.
 
-            filter += !NullOrEmpty(filter) && newFilterValue != noId ? " AND " : null;
-            filter += (int)newFilterValue != noId ? string.Format("({0} = {1})", newFilterValuePath, newFilterValue) : null;
+            filter += !NullOrEmpty(filter) && newFilterValue.ToString() != NoId.ToString() ? " AND " : null;
+            filter += newFilterValue.ToString() != NoId.ToString() ? string.Format("({0} = {1})", newFilterValuePath, newFilterValue) : null;
 
             return filter;
         }

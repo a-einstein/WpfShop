@@ -7,6 +7,12 @@ namespace WpfTestApplication.BaseClasses
 {
     abstract class ItemViewModel<T> : ViewModel where T : DataRow
     {
+        /// <summary>
+        /// A value enabling recognition of empty Items.
+        /// Note that adding a type to the class as a parameter instead of using object did not work in the comparison.
+        /// </summary>
+        public abstract object NoId { get; }
+
         public object ItemId
         {
             get { return GetItemId(); }

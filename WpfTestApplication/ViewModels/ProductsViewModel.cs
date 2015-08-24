@@ -53,8 +53,8 @@ namespace WpfTestApplication.ViewModels
 
                 // Note that both Categories and Subcategories have been retrieved.
                 // Note that MasterFilterValue also determines DetailFilterItems.
-                MasterFilterValue = noId;
-                DetailFilterValue = noId;
+                MasterFilterValue = NoId;
+                DetailFilterValue = NoId;
             }
         }
 
@@ -90,5 +90,7 @@ namespace WpfTestApplication.ViewModels
         {
             ShoppingCartViewModel.Instance.CartProduct((int)parameter);
         }
+
+        public override object NoId { get { return ShoppingWrapper.Instance.NoId; } }
     }
 }

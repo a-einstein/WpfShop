@@ -52,6 +52,8 @@ namespace WpfTestApplication.ViewModels
             DeleteCommand = new DelegateCommand<object>(Delete);
         }
 
+        public override object NoId { get { return ShoppingWrapper.Instance.NoId; } }
+
         public void CartProduct(int productId)
         {
             ShoppingWrapper.Instance.CartProduct(productId);

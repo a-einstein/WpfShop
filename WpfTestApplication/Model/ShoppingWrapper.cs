@@ -41,6 +41,9 @@ namespace WpfTestApplication.Model
             }
         }
 
+        // Choose for an int as this is the actual type of the Id.
+        public int NoId { get { return -1; } }
+
         private ProductsDataSet productsDataSet;
 
         public void BeginGetProducts(RunWorkerCompletedEventHandler completer)
@@ -181,7 +184,7 @@ namespace WpfTestApplication.Model
             if (existingCartItems.Length == 0)
             {
                 DateTime now = DateTime.Now;
-                ProductsOverviewRow productRow = productsDataSet.ProductsOverview.FindByProductID(productId);
+                ProductsOverviewRow productRow = productsDataSet.ProductsOverview.FindByProductID((int)productId);
 
                 // Note that ShoppingCartId currently is non nullable.
                 CartItems.AddShoppingCartItemsRow(Cart, 1, productRow, now, now);
