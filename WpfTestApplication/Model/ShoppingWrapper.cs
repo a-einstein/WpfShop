@@ -48,7 +48,7 @@ namespace WpfTestApplication.Model
             BeginGetData(new DoWorkEventHandler(FillProductsTable), completer);
         }
 
-        private void FillProductsTable(object sender, DoWorkEventArgs e)
+        private void FillProductsTable(object sender, DoWorkEventArgs workEventArgs)
         {
             // Note this only retrieves the data once. whereas it would probably retrieve it every time in a realistic situation.
             if (productsDataSet.ProductsOverview.Count == 0)
@@ -59,7 +59,7 @@ namespace WpfTestApplication.Model
                 productsTableAdapter.Fill(productsDataSet.ProductsOverview);
             }
 
-            e.Result = productsDataSet.ProductsOverview;
+            workEventArgs.Result = productsDataSet.ProductsOverview;
         }
 
         public void BeginGetProductDetails(object productID, RunWorkerCompletedEventHandler completer)
@@ -67,16 +67,16 @@ namespace WpfTestApplication.Model
             BeginGetData(new DoWorkEventHandler(GetProductDetails), completer, productID);
         }
 
-        private void GetProductDetails(object sender, DoWorkEventArgs e)
+        private void GetProductDetails(object sender, DoWorkEventArgs workEventArgs)
         {
-            int productID = (int)e.Argument;
+            int productID = (int)workEventArgs.Argument;
 
             ProductDetailsTableAdapter productTableAdapter = new ProductDetailsTableAdapter();
 
             // Note this always tries to retrieve a record from the DB.
             ProductDetailsDataTable productDetailsTable = productTableAdapter.GetDataBy(productID);
 
-            e.Result = productDetailsTable.FindByProductID(productID);
+            workEventArgs.Result = productDetailsTable.FindByProductID(productID);
         }
 
         public void BeginGetProductCategories(RunWorkerCompletedEventHandler completer)
@@ -84,7 +84,7 @@ namespace WpfTestApplication.Model
             BeginGetData(new DoWorkEventHandler(FillProductCategoriesTable), completer);
         }
 
-        private void FillProductCategoriesTable(object sender, DoWorkEventArgs e)
+        private void FillProductCategoriesTable(object sender, DoWorkEventArgs workEventArgs)
         {
             if (productsDataSet.ProductCategories.Count == 0)
             {
@@ -98,7 +98,7 @@ namespace WpfTestApplication.Model
                 categoriesTableAdapter.Fill(productsDataSet.ProductCategories);
             }
 
-            e.Result = productsDataSet.ProductCategories;
+            workEventArgs.Result = productsDataSet.ProductCategories;
         }
 
         public void BeginGetProductSubcategories(RunWorkerCompletedEventHandler completer)
@@ -106,7 +106,7 @@ namespace WpfTestApplication.Model
             BeginGetData(new DoWorkEventHandler(FillProductSubcategoriesTable), completer);
         }
 
-        private void FillProductSubcategoriesTable(object sender, DoWorkEventArgs e)
+        private void FillProductSubcategoriesTable(object sender, DoWorkEventArgs workEventArgs)
         {
             if (productsDataSet.ProductSubcategories.Count == 0)
             {
@@ -120,7 +120,7 @@ namespace WpfTestApplication.Model
                 subcategoriesTableAdapter.Fill(productsDataSet.ProductSubcategories);
             }
 
-            e.Result = productsDataSet.ProductSubcategories;
+            workEventArgs.Result = productsDataSet.ProductSubcategories;
         }
 
         private void BeginGetData(DoWorkEventHandler worker, RunWorkerCompletedEventHandler completer, object argument = null)
