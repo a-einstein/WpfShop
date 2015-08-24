@@ -36,13 +36,17 @@ namespace WpfTestApplication.BaseClasses
             set { SetValue(MasterFilterValueProperty, value); }
         }
 
+        // Note this function does NOT filter Items, just updates DetailFilterValue and SetDetailFilterItems.
+        // Currently the FilterCommand is just bound to a Button, implying it always has to be activated explicitly.
         private static void OnMasterFilterValueChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
         {
             FilterItemsViewModel viewModel = dependencyObject as FilterItemsViewModel;
+
+            viewModel.DetailFilterValue = noId;
             viewModel.SetDetailFilterItems();
         }
 
-        private const int noId = -1;
+        protected const int noId = -1;
 
         private void SetDetailFilterItems()
         {

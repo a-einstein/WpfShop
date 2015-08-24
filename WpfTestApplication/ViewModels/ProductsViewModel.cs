@@ -53,8 +53,8 @@ namespace WpfTestApplication.ViewModels
 
                 // Note that both Categories and Subcategories have been retrieved.
                 // Note that MasterFilterValue also determines DetailFilterItems.
-                MasterFilterValue = -1;
-                DetailFilterValue = -1;
+                MasterFilterValue = noId;
+                DetailFilterValue = noId;
             }
         }
 
