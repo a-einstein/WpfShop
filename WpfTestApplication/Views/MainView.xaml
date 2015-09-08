@@ -12,8 +12,6 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0">
-            <TextBlock  TextWrapping="Wrap" Text="WpfTestApplication" FontWeight="Bold" FontSize="20" Foreground="{StaticResource MessageColourBrush}"/>
-
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5">
                 <RadioButton x:Name="aboutButton">
                     <RadioButton.Template>

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Data;
 using WpfTestApplication.ViewModels;
 using WpfTestApplication.Views;
 
@@ -6,6 +7,11 @@ namespace WpfTestApplication
 {
     public partial class App : Application
     {
+        public string Title
+        {
+            get { return "WpfTestApplication"; }
+        }
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             ShoppingCartViewModel shoppingCartViewModel = ShoppingCartViewModel.Instance;
@@ -26,14 +32,17 @@ namespace WpfTestApplication
                 ProductsView = productsView
             };
 
-            Window mainWindow = new Window()
+            Window applicationWindow = new Window()
             {
                 Content = mainView,
                 Height = 900,
                 Width = 700
             };
 
-            mainWindow.Show();
+            // This might be made dependent of navigation, so following the mainView.Model.
+            applicationWindow.SetBinding(Window.TitleProperty, new Binding("Title") { Source = this });
+
+            applicationWindow.Show();
         }
     }
 }

@@ -78,6 +78,7 @@ namespace WpfTestApplication.ViewModels
             View productView = new ProductView() { ViewModel = productViewModel };
 
             OkWindow productWindow = new OkWindow() { View = productView, };
+            // TODO Make the type of the Item and Items explicit for this model by a parameter?
             productWindow.SetBinding(Window.TitleProperty, new Binding("Item.Name") { Source = productViewModel });
             productWindow.Show();
 
