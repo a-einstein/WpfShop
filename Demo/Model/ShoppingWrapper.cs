@@ -1,9 +1,12 @@
-﻿using System;
-using System.ComponentModel;
+﻿using ServiceClients.Products.ServiceReference;
+using System;
 using System.Data;
-using Demo.Model.ProductsDataSetTableAdapters;
+using System.Threading.Tasks;
+using ProductCategoriesDataTable = Demo.Model.ProductsDataSet.ProductCategoriesDataTable;
 using ProductDetailsDataTable = Demo.Model.ProductsDataSet.ProductDetailsDataTable;
-using ProductsOverviewRow = Demo.Model.ProductsDataSet.ProductsOverviewRow;
+using ProductDetailsRow = Demo.Model.ProductsDataSet.ProductDetailsRow;
+using ProductsOverviewDataTable = Demo.Model.ProductsDataSet.ProductsOverviewDataTable;
+using ProductSubcategoriesDataTable = Demo.Model.ProductsDataSet.ProductSubcategoriesDataTable;
 using ShoppingCartItemsDataTable = Demo.Model.ProductsDataSet.ShoppingCartItemsDataTable;
 using ShoppingCartItemsRow = Demo.Model.ProductsDataSet.ShoppingCartItemsRow;
 using ShoppingCartsDataTable = Demo.Model.ProductsDataSet.ShoppingCartsDataTable;
@@ -13,6 +16,9 @@ namespace Demo.Model
 {
     // TODO Maybe put this functionality into the partial sub classes of ProductsDataSet. But ProductsDataSet could not be a singleton .
     // Other option: make properties here on wrapper sub classes which are instantiated with a single dataset. The constructor should be restricted some way.
+
+    // TODO After having moved data retrieval to a service, on both sides is still hung on to a DataSet, with conversions as a result. That may be optimized.
+
     class ShoppingWrapper
     {
         private ShoppingWrapper()
@@ -46,93 +52,181 @@ namespace Demo.Model
 
         private ProductsDataSet productsDataSet;
 
-        public void BeginGetProducts(RunWorkerCompletedEventHandler completer)
-        {
-            BeginGetData(new DoWorkEventHandler(FillProductsTable), completer);
-        }
+        private ProductsServiceClient productsServiceClient;
 
-        private void FillProductsTable(object sender, DoWorkEventArgs workEventArgs)
+        protected ProductsServiceClient ProductsServiceClient
         {
-            // Note this only retrieves the data once. whereas it would probably retrieve it every time in a realistic situation.
-            if (productsDataSet.ProductsOverview.Count == 0)
+            get
             {
-                ProductsOverviewTableAdapter productsTableAdapter = new ProductsOverviewTableAdapter();
+                // HACK Make shared some other way.
+                if (productsServiceClient == null)
+                    productsServiceClient = new ProductsServiceClient();
 
-                // Note this currently takes in all of the table data. Of course this should be prefiltered and/or paged in a realistic situation. 
-                productsTableAdapter.Fill(productsDataSet.ProductsOverview);
+                return productsServiceClient;
             }
-
-            workEventArgs.Result = productsDataSet.ProductsOverview;
         }
 
-        public void BeginGetProductDetails(object productID, RunWorkerCompletedEventHandler completer)
+        public async Task<DataView> GetProductsOverview()
         {
-            BeginGetData(new DoWorkEventHandler(GetProductDetails), completer, productID);
-        }
+            var table = productsDataSet.ProductsOverview;
 
-        private void GetProductDetails(object sender, DoWorkEventArgs workEventArgs)
-        {
-            int productID = (int)workEventArgs.Argument;
-
-            ProductDetailsTableAdapter productTableAdapter = new ProductDetailsTableAdapter();
-
-            // Note this always tries to retrieve a record from the DB.
-            ProductDetailsDataTable productDetailsTable = productTableAdapter.GetDataBy(productID);
-
-            workEventArgs.Result = productDetailsTable.FindByProductID(productID);
-        }
-
-        public void BeginGetProductCategories(RunWorkerCompletedEventHandler completer)
-        {
-            BeginGetData(new DoWorkEventHandler(FillProductCategoriesTable), completer);
-        }
-
-        private void FillProductCategoriesTable(object sender, DoWorkEventArgs workEventArgs)
-        {
-            if (productsDataSet.ProductCategories.Count == 0)
+            var task = Task.Factory.StartNew(async () =>
             {
-                ProductCategoriesTableAdapter categoriesTableAdapter = new ProductCategoriesTableAdapter();
+                if (table.Count == 0)
+                {
+                    // Note this currently takes in all of the table data. Of course this should be prefiltered and/or paged in a realistic situation. 
+                    var productOverviewDto = await ProductsServiceClient.GetProductsOverviewAsync();
 
-                // Add an empty element.
-                productsDataSet.ProductCategories.AddProductCategoriesRow(string.Empty);
+                    ConvertInto(table, productOverviewDto);
+                }
 
-                categoriesTableAdapter.ClearBeforeFill = false;
-                // Note this only retrieves the data once, whereas it would probably retrieve it every time in a realistic situation.
-                categoriesTableAdapter.Fill(productsDataSet.ProductCategories);
-            }
+                return table.DefaultView;
+            });
 
-            workEventArgs.Result = productsDataSet.ProductCategories;
+            // TODO ?!
+            return await task.Result;
         }
 
-        public void BeginGetProductSubcategories(RunWorkerCompletedEventHandler completer)
+        // Use the table as a reference, cannot assign to.
+        // TODO Is this a reference?
+        private static void ConvertInto(ProductsOverviewDataTable overview, ProductsOverviewListDto listDto)
         {
-            BeginGetData(new DoWorkEventHandler(FillProductSubcategoriesTable), completer);
-        }
-
-        private void FillProductSubcategoriesTable(object sender, DoWorkEventArgs workEventArgs)
-        {
-            if (productsDataSet.ProductSubcategories.Count == 0)
+            foreach (var dtoRow in listDto)
             {
-                ProductSubcategoriesTableAdapter subcategoriesTableAdapter = new ProductSubcategoriesTableAdapter();
-
-                // Add an empty element.
-                productsDataSet.ProductSubcategories.AddProductSubcategoriesRow(string.Empty, productsDataSet.ProductCategories.FindByProductCategoryID(-1));
-
-                subcategoriesTableAdapter.ClearBeforeFill = false;
-                // Note this only retrieves the data once, whereas it would probably retrieve it every time in a realistic situation.
-                subcategoriesTableAdapter.Fill(productsDataSet.ProductSubcategories);
+                var overviewRow = overview.AddProductsOverviewRow
+                (
+                    dtoRow.ProductID,
+                    dtoRow.Name,
+                    dtoRow.Color,
+                    dtoRow.ListPrice,
+                    dtoRow.Size,
+                    dtoRow.SizeUnitMeasureCode,
+                    dtoRow.WeightUnitMeasureCode,
+                    dtoRow.ThumbNailPhoto,
+                    dtoRow.ProductCategoryID,
+                    dtoRow.ProductCategory,
+                    dtoRow.ProductSubcategoryID,
+                    dtoRow.ProductSubcategory
+                 );
             }
-
-            workEventArgs.Result = productsDataSet.ProductSubcategories;
         }
 
-        private void BeginGetData(DoWorkEventHandler worker, RunWorkerCompletedEventHandler completer, object argument = null)
+        public async Task<ProductDetailsRow> GetProductDetails(int productID)
         {
-            BackgroundWorker backgroundWorker = new BackgroundWorker();
-            backgroundWorker.DoWork += worker;
-            backgroundWorker.RunWorkerCompleted += completer;
+            var table = productsDataSet.ProductDetails;
 
-            backgroundWorker.RunWorkerAsync(argument);
+            var task = Task.Factory.StartNew(async () =>
+            {
+                var productDetailsDto = await ProductsServiceClient.GetProductDetailsAsync(productID);
+
+                // TODO This step may not be necessary in the future, when working directly with the Dto.
+                var productDetailsRow = Convert(table, productDetailsDto);
+
+                return productDetailsRow;
+            });
+
+            // TODO ?!
+            return await task.Result;
+        }
+
+        private static ProductDetailsRow Convert(ProductDetailsDataTable table, ProductDetailsRowDto productDto)
+        {
+            var productRow = table.NewRow
+            (
+                productDto.ProductID,
+                productDto.Name,
+                productDto.ListPrice,
+                productDto.Color,
+                productDto.Size,
+                productDto.SizeUnitMeasureCode,
+                productDto.Weight,
+                productDto.WeightUnitMeasureCode,
+                productDto.LargePhoto,
+                productDto.ModelName,
+                productDto.Description,
+                productDto.ProductCategoryID,
+                productDto.ProductCategory,
+                productDto.ProductSubcategoryID,
+                productDto.ProductSubcategory
+            );
+
+            return productRow;
+        }
+
+        public async Task<DataView> GetProductCategories()
+        {
+            var table = productsDataSet.ProductCategories;
+
+            var task = Task.Factory.StartNew(async () =>
+            {
+
+                if (table.Count == 0)
+                {
+                    var listDto = await ProductsServiceClient.GetProductCategoriesAsync();
+
+                    // Add an empty element.
+                    var overviewRow = table.AddProductCategoriesRow(NoId, string.Empty);
+
+                    ConvertInto(table, listDto);
+                }
+
+                return table.DefaultView;
+            });
+
+            // TODO ?!
+            return await task.Result;
+        }
+
+        // Use the table as a reference, cannot assign to.
+        // TODO Is this a reference?
+        private static void ConvertInto(ProductCategoriesDataTable overview, ProductCategoryListDto listDto)
+        {
+            foreach (var dtoRow in listDto)
+            {
+                var overviewRow = overview.AddProductCategoriesRow
+                (
+                    dtoRow.ProductCategoryID,
+                    dtoRow.Name
+                );
+            }
+        }
+
+        public async Task<DataView> GetProductSubcategories()
+        {
+            var table = productsDataSet.ProductSubcategories;
+
+            var task = Task.Factory.StartNew(async () =>
+            {
+                if (table.Count == 0)
+                {
+                    var listDto = await ProductsServiceClient.GetProductSubcategoriesAsync();
+
+                    // Add an empty element.
+                    table.AddProductSubcategoriesRow(NoId, string.Empty, NoId);
+
+                    ConvertInto(table, listDto);
+                }
+
+                return table.DefaultView;
+            });
+
+            // TODO ?!
+            return await task.Result;
+        }
+
+        // Use the table as a reference, cannot assign to.
+        // TODO Is this a reference?
+        private static void ConvertInto(ProductSubcategoriesDataTable overview, ProductSubcategoryListDto listDto)
+        {
+            foreach (var dtoRow in listDto)
+            {
+                var overviewRow = overview.AddProductSubcategoriesRow
+                (
+                    dtoRow.ProductSubcategoryID,
+                    dtoRow.Name,
+                    dtoRow.ProductCategoryID
+                );
+            }
         }
 
         // TODO This table might be removed alltogether, as only one cart is used. Then the current relation and non nullable key should be remove, or made nullable.
@@ -178,13 +272,13 @@ namespace Demo.Model
 
         public void CartProduct(int productId)
         {
-            string productQuery = string.Format("ProductID = {0}", productId);
-            DataRow[] existingCartItems = CartItems.Select(productQuery);
+            var productQuery = string.Format("ProductID = {0}", productId);
+            var existingCartItems = CartItems.Select(productQuery);
 
             if (existingCartItems.Length == 0)
             {
-                DateTime now = DateTime.Now;
-                ProductsOverviewRow productRow = productsDataSet.ProductsOverview.FindByProductID((int)productId);
+                var now = DateTime.Now;
+                var productRow = productsDataSet.ProductsOverview.FindByProductID((int)productId);
 
                 // Note that ShoppingCartId currently is non nullable.
                 CartItems.AddShoppingCartItemsRow(Cart, 1, productRow, now, now);
@@ -192,7 +286,7 @@ namespace Demo.Model
             }
             else if (existingCartItems.Length == 1)
             {
-                ShoppingCartItemsRow cartItem = existingCartItems[0] as ShoppingCartItemsRow;
+                var cartItem = existingCartItems[0] as ShoppingCartItemsRow;
                 cartItem.Quantity += 1;
                 cartItem.AcceptChanges();
             }
@@ -202,7 +296,7 @@ namespace Demo.Model
 
         public void CartItemDelete(int cartItemID)
         {
-            ShoppingCartItemsRow cartItem = CartItems.FindByShoppingCartItemID(cartItemID);
+            var cartItem = CartItems.FindByShoppingCartItemID(cartItemID);
 
             if (cartItem != null)
             {
@@ -216,14 +310,14 @@ namespace Demo.Model
         public int CartProductItemsCount()
         {
             return CartItems.Count > 0
-            ? Convert.ToInt32(ShoppingWrapper.Instance.CartItems.Compute("Sum(Quantity)", null))
+            ? System.Convert.ToInt32(ShoppingWrapper.Instance.CartItems.Compute("Sum(Quantity)", null))
             : 0;
         }
 
         public double CartValue()
         {
             return CartItems.Count > 0
-            ? Convert.ToDouble(CartItems.Compute("Sum(Value)", null))
+            ? System.Convert.ToDouble(CartItems.Compute("Sum(Value)", null))
             : 0.0;
         }
     }

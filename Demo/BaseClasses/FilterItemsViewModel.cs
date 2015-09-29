@@ -1,5 +1,4 @@
 ﻿using Microsoft.Practices.Prism.Commands;
-using System.Collections;
 using System.Data;
 using System.Windows;
 using System.Windows.Input;
@@ -11,6 +10,17 @@ namespace Demo.BaseClasses
         public FilterItemsViewModel()
         {
             SetFilters();
+        }
+
+        public override DataView Items
+        {
+            get { return base.Items; }
+            set
+            {
+                SetValue(ItemsProperty, value);
+                FilterCommand.Execute(null);
+                RaisePropertyChanged("ItemsCount");
+            }
         }
 
         protected abstract void SetFilters();
@@ -54,6 +64,7 @@ namespace Demo.BaseClasses
             // Preserve empty value.
             filter = string.Format("({0} = {1})", DetailFilterMasterKeyPath, NoId);
 
+            // TODO Comparisons with NoId fail.
             filter += MasterFilterValue != NoId ? string.Format(" OR ({0} = {1})", DetailFilterMasterKeyPath, MasterFilterValue) : null;
 
             DetailFilterItems.RowFilter = filter;
@@ -115,8 +126,8 @@ namespace Demo.BaseClasses
             // Note that newFilterValue is assumed int and Nullable, which is represented as NoId.
             // Note that the ToString is needed to enable value comparison of the object. TODO Could be better. Also see remark at NoId.
 
-            filter += !NullOrEmpty(filter) && newFilterValue.ToString() != NoId.ToString() ? " AND " : null;
-            filter += newFilterValue.ToString() != NoId.ToString() ? string.Format("({0} = {1})", newFilterValuePath, newFilterValue) : null;
+            filter += !NullOrEmpty(filter) && newFilterValue != null && newFilterValue.ToString() != NoId.ToString() ? " AND " : null;
+            filter += newFilterValue != null && newFilterValue.ToString() != NoId.ToString() ? string.Format("({0} = {1})", newFilterValuePath, newFilterValue) : null;
 
             return filter;
         }

@@ -1,9 +1,8 @@
-﻿using Microsoft.Practices.Prism.Commands;
-using System.ComponentModel;
-using System.Windows.Input;
-using Demo.BaseClasses;
+﻿using Demo.BaseClasses;
 using Demo.Interfaces;
 using Demo.Model;
+using Microsoft.Practices.Prism.Commands;
+using System.Windows.Input;
 using ProductDetailsRow = Demo.Model.ProductsDataSet.ProductDetailsRow;
 
 namespace Demo.ViewModels
@@ -17,9 +16,10 @@ namespace Demo.ViewModels
             return Item != null ? Item.ProductID : NoId;
         }
 
-        public override void Refresh(object id)
+        public override async void Refresh(object productId)
         {
-            ShoppingWrapper.Instance.BeginGetProductDetails(id, new RunWorkerCompletedEventHandler(GetItemCompleted));
+            // TODO Check for errors.
+            Item = await ShoppingWrapper.Instance.GetProductDetails((int)productId);
         }
 
         protected override void SetCommands()

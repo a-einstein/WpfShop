@@ -1,4 +1,6 @@
-﻿namespace Demo.Model
+﻿using System.Diagnostics;
+
+namespace Demo.Model
 {
     // Note that nullable properties are changed in the xsd to have NullValue to be 'Null' instead of 'Throw exception'. 
     // For value types like int a true value may have been chosen, like 0.
@@ -11,5 +13,152 @@
 
     partial class ProductsDataSet
     {
+        [DebuggerDisplay("{ProductID}, {Name}")]
+        public partial class ProductsOverviewRow { }
+
+        public partial class ProductsOverviewDataTable
+        {
+
+            public ProductsOverviewRow AddProductsOverviewRow(
+            int productID,
+            string Name,
+            string Color,
+            decimal ListPrice,
+            string Size,
+            string SizeUnitMeasureCode,
+            string WeightUnitMeasureCode,
+            byte[] ThumbNailPhoto,
+            int productCategoryID,
+            string ProductCategory,
+            int productSubcategoryID,
+            string ProductSubcategory)
+            {
+                ProductsOverviewRow rowProductsOverviewRow = ((ProductsOverviewRow)(this.NewRow()));
+
+                // HACK Because there was no full version of this function and direct assignment to the missing properties was not allowed.
+                // TODO Check how to determine certain order of parameters.
+                object[] columnValuesArray = new object[] {
+                        productID,
+                        Name,
+                        Color,
+                        ListPrice,
+                        Size,
+                        SizeUnitMeasureCode,
+                        WeightUnitMeasureCode,
+                        ThumbNailPhoto,
+                        productCategoryID,
+                        ProductCategory,
+                        productSubcategoryID,
+                        ProductSubcategory};
+
+                rowProductsOverviewRow.ItemArray = columnValuesArray;
+
+                Rows.Add(rowProductsOverviewRow);
+
+                return rowProductsOverviewRow;
+            }
+        }
+
+        [DebuggerDisplay("{ProductID}, {Name}")]
+        public partial class ProductDetailsRow { }
+
+        public partial class ProductDetailsDataTable
+        {
+            public ProductDetailsRow NewRow(
+                int productID,
+                string Name,
+                decimal ListPrice,
+                string Color,
+                string Size,
+                string SizeUnitMeasureCode,
+                decimal Weight,
+                string WeightUnitMeasureCode,
+                byte[] LargePhoto,
+                string ModelName,
+                string Description,
+                int productCategoryID,
+                string ProductCategory,
+                int productSubcategoryID,
+                string ProductSubcategory)
+            {
+                ProductDetailsRow rowProductDetailsRow = ((ProductDetailsRow)(this.NewRow()));
+
+                // HACK Because there was no full version of this function and direct assignment to the missing properties was not allowed.
+                // TODO Check how to determine certain order of parameters.
+                object[] columnValuesArray = new object[] {
+                        Name,
+                        ListPrice,
+                        Color,
+                        Size,
+                        SizeUnitMeasureCode,
+                        Weight,
+                        WeightUnitMeasureCode,
+                        LargePhoto,
+                        ModelName,
+                        Description,
+                        productID,
+                        productCategoryID,
+                        ProductCategory,
+                        productSubcategoryID,
+                        ProductSubcategory};
+
+                rowProductDetailsRow.ItemArray = columnValuesArray;
+
+                return rowProductDetailsRow;
+            }
+        }
+
+        [DebuggerDisplay("{ProductCategoryID}, {Name}")]
+        public partial class ProductCategoriesRow { }
+
+        public partial class ProductCategoriesDataTable
+        {
+            public ProductCategoriesRow AddProductCategoriesRow(
+                int ProductCategoryID,
+                string Name)
+            {
+                ProductCategoriesRow rowProductCategoriesRow = ((ProductCategoriesRow)(this.NewRow()));
+
+                // HACK Because there was no full version of this function and direct assignment to the missing properties was not allowed.
+                // TODO Check how to determine certain order of parameters.
+                object[] columnValuesArray = new object[] {
+                        ProductCategoryID,
+                        Name};
+
+                rowProductCategoriesRow.ItemArray = columnValuesArray;
+
+                this.Rows.Add(rowProductCategoriesRow);
+
+                return rowProductCategoriesRow;
+            }
+        }
+
+        [DebuggerDisplay("{ProductCategoryID}, {ProductSubcategoryID}, {Name}")]
+        public partial class ProductSubcategoriesRow { }
+
+        public partial class ProductSubcategoriesDataTable
+        {
+            public ProductSubcategoriesRow AddProductSubcategoriesRow(
+                int ProductSubcategoryID,
+                string Name,
+                int ProductCategoryID)
+            {
+                ProductSubcategoriesRow rowProductSubcategoriesRow = ((ProductSubcategoriesRow)(this.NewRow()));
+
+                // HACK Because there was no full version of this function and direct assignment to the missing properties was not allowed.
+                // TODO Check how to determine certain order of parameters.
+                object[] columnValuesArray = new object[] {
+                        ProductSubcategoryID,
+                        Name,
+                        ProductCategoryID
+                };
+
+                rowProductSubcategoriesRow.ItemArray = columnValuesArray;
+
+                this.Rows.Add(rowProductSubcategoriesRow);
+
+                return rowProductSubcategoriesRow;
+            }
+        }
     }
 }

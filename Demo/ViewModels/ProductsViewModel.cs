@@ -1,15 +1,13 @@
-﻿using Microsoft.Practices.Prism.Commands;
-using System;
-using System.ComponentModel;
-using System.Data;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Input;
-using Demo.BaseClasses;
+﻿using Demo.BaseClasses;
 using Demo.Interfaces;
 using Demo.Model;
 using Demo.Views;
 using Demo.Windows;
+using Microsoft.Practices.Prism.Commands;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Input;
 
 namespace Demo.ViewModels
 {
@@ -20,49 +18,28 @@ namespace Demo.ViewModels
         public override string DetailFilterMasterKeyPath { get { return "ProductCategoryID"; } }
 
         // TODO This should become parameterized, currently it assumes retrieval of an entire table.
-        public override void Refresh()
+        public override async void Refresh()
         {
-            ShoppingWrapper.Instance.BeginGetProducts(new RunWorkerCompletedEventHandler(GetItemsCompleted));
+            // TODO Possibly maintain static collections in ShoppingWrapper again.
+            // TODO Check for errors.
+            Items = await ShoppingWrapper.Instance.GetProductsOverview();
         }
 
-        protected override void SetFilters()
+        protected override async void SetFilters()
         {
-            ShoppingWrapper.Instance.BeginGetProductCategories(GetCategoriesCompleted);
-        }
+            // TODO Possibly maintain static collections in ShoppingWrapper again.
+            var getProductCategories = ShoppingWrapper.Instance.GetProductCategories();
+            var getProductSubcategories = ShoppingWrapper.Instance.GetProductSubcategories();
 
-        protected void GetCategoriesCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (e.Error != null)
-                throw new Exception(databaseErrorMessage, e.Error);
-            else
-            {
-                MasterFilterItems = (e.Result as DataTable).DefaultView;
+            await Task.WhenAll(getProductCategories, getProductSubcategories);
 
-                // Note that Categories have been retrieved first.
-                ShoppingWrapper.Instance.BeginGetProductSubcategories(GetSubcategoriesCompleted);
-            }
-        }
+            // Make sure that both Categories and Subcategories have been retrieved.
+            MasterFilterItems = getProductCategories.Result;
+            DetailFilterItems = getProductSubcategories.Result;
 
-        protected void GetSubcategoriesCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (e.Error != null)
-                throw new Exception(databaseErrorMessage, e.Error);
-            else
-            {
-                DetailFilterItems = (e.Result as DataTable).DefaultView;
-
-                // Note that both Categories and Subcategories have been retrieved.
-                // Note that MasterFilterValue also determines DetailFilterItems.
-                MasterFilterValue = NoId;
-                DetailFilterValue = NoId;
-            }
-        }
-
-        protected void GetFiltervaluesCompleted()
-        {
-            if (MasterFilterItems != null && DetailFilterItems != null)
-            {
-            }
+            // Note that MasterFilterValue also determines the filter on DetailFilterItems.
+            MasterFilterValue = NoId;
+            DetailFilterValue = NoId;
         }
 
         protected override void SetCommands()

@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Data;
+﻿using System.Data;
 using System.Windows;
 
 namespace Demo.BaseClasses
@@ -36,13 +34,5 @@ namespace Demo.BaseClasses
         }
 
         public abstract void Refresh(object Id);
-
-        protected void GetItemCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (e.Error != null)
-                throw new Exception(databaseErrorMessage, e.Error);
-            else
-                Item = e.Result as T;
-        }
     }
 }

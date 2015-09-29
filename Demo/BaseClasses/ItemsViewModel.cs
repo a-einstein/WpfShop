@@ -1,20 +1,10 @@
-﻿using System;
-using System.ComponentModel;
-using System.Data;
+﻿using System.Data;
 using System.Windows;
 
 namespace Demo.BaseClasses
 {
     public abstract class ItemsViewModel : ViewModel
     {
-        protected void GetItemsCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (e.Error != null)
-                throw new Exception(databaseErrorMessage, e.Error);
-            else
-                Items = (e.Result as DataTable).DefaultView;
-        }
-
         public static readonly DependencyProperty ItemsProperty =
             DependencyProperty.Register("Items", typeof(DataView), typeof(ItemsViewModel));
 
@@ -22,7 +12,7 @@ namespace Demo.BaseClasses
         // Note this signals its own changes by IBindingListView, IBindingList.
         // Note a CollectionViewSource.View apparently is not able to filter.
         // This could also be implemented using a ObservableCollection and/or IQueryable.
-        public DataView Items
+        public virtual DataView Items
         {
             get { return (DataView)GetValue(ItemsProperty); }
             set 

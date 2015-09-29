@@ -2856,11 +2856,11 @@ namespace Demo.Model {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int ProductCategoryID {
                 get {
-                    try {
-                        return ((int)(this[this.tableProductsOverview.ProductCategoryIDColumn]));
+                    if (this.IsProductCategoryIDNull()) {
+                        return -1;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ProductCategoryID\' in table \'ProductsOverview\' is DBNull.", e);
+                    else {
+                        return ((int)(this[this.tableProductsOverview.ProductCategoryIDColumn]));
                     }
                 }
                 set {
@@ -2888,12 +2888,11 @@ namespace Demo.Model {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int ProductSubcategoryID {
                 get {
-                    try {
-                        return ((int)(this[this.tableProductsOverview.ProductSubcategoryIDColumn]));
+                    if (this.IsProductSubcategoryIDNull()) {
+                        return -1;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ProductSubcategoryID\' in table \'ProductsOverview\' is DBNull" +
-                                ".", e);
+                    else {
+                        return ((int)(this[this.tableProductsOverview.ProductSubcategoryIDColumn]));
                     }
                 }
                 set {
@@ -4380,7 +4379,7 @@ ORDER BY Production.Product.Name";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        Production.Product.ProductID, Production.Product.Name, Production.P" +
@@ -4410,37 +4409,6 @@ ORDER BY Production.Product.Name";
                 "                         Production.Product.ProductID = Production.ProductProduc" +
                 "tPhoto.ProductID\r\nORDER BY Production.Product.Name";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        Production.Product.ProductID, Production.Product.Name, Production.P" +
-                "roduct.ListPrice, Production.Product.Color, Production.Product.Size, Production." +
-                "Product.SizeUnitMeasureCode, Production.Product.Weight, \r\n                      " +
-                "   Production.Product.WeightUnitMeasureCode, Production.ProductPhoto.LargePhoto," +
-                " Production.ProductModel.Name AS ModelName, Production.ProductDescription.Descri" +
-                "ption, \r\n                         Production.ProductCategory.ProductCategoryID, " +
-                "Production.ProductCategory.Name AS ProductCategory, Production.ProductSubcategor" +
-                "y.ProductSubcategoryID, \r\n                         Production.ProductSubcategory" +
-                ".Name AS ProductSubcategory\r\nFROM            Production.ProductSubcategory INNER" +
-                " JOIN\r\n                         Production.ProductCategory ON Production.Product" +
-                "Subcategory.ProductCategoryID = Production.ProductCategory.ProductCategoryID RIG" +
-                "HT OUTER JOIN\r\n                         Production.Product ON Production.Product" +
-                "Subcategory.ProductSubcategoryID = Production.Product.ProductSubcategoryID LEFT " +
-                "OUTER JOIN\r\n                         Production.ProductModelProductDescriptionCu" +
-                "lture INNER JOIN\r\n                         Production.ProductDescription ON Prod" +
-                "uction.ProductModelProductDescriptionCulture.ProductDescriptionID = Production.P" +
-                "roductDescription.ProductDescriptionID INNER JOIN\r\n                         Prod" +
-                "uction.ProductModel ON Production.ProductModelProductDescriptionCulture.CultureI" +
-                "D = N\'en\' AND \r\n                         Production.ProductModelProductDescripti" +
-                "onCulture.ProductModelID = Production.ProductModel.ProductModelID ON \r\n         " +
-                "                Production.Product.ProductModelID = Production.ProductModel.Prod" +
-                "uctModelID LEFT OUTER JOIN\r\n                         Production.ProductPhoto INN" +
-                "ER JOIN\r\n                         Production.ProductProductPhoto ON Production.P" +
-                "roductPhoto.ProductPhotoID = Production.ProductProductPhoto.ProductPhotoID ON \r\n" +
-                "                         Production.Product.ProductID = Production.ProductProduc" +
-                "tPhoto.ProductID\r\nWHERE        (Production.Product.ProductID = @productID)\r\nORDE" +
-                "R BY Production.Product.Name";
-            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@productID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ProductID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4462,32 +4430,6 @@ ORDER BY Production.Product.Name";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual ProductsDataSet.ProductDetailsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            ProductsDataSet.ProductDetailsDataTable dataTable = new ProductsDataSet.ProductDetailsDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillBy(ProductsDataSet.ProductDetailsDataTable dataTable, int productID) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(productID));
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual ProductsDataSet.ProductDetailsDataTable GetDataBy(int productID) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(productID));
             ProductsDataSet.ProductDetailsDataTable dataTable = new ProductsDataSet.ProductDetailsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
