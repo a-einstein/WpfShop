@@ -4,7 +4,7 @@ using System.Windows.Data;
 
 namespace Demo.Converters
 {
-    class SizeFormatter : IMultiValueConverter 
+    public class SizeFormatter : IMultiValueConverter 
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {

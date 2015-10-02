@@ -4,7 +4,7 @@ using System.Windows.Data;
 
 namespace Demo.Converters
 {
-    class CategoriesFormatter : IMultiValueConverter 
+    public class CategoriesFormatter : IMultiValueConverter 
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {

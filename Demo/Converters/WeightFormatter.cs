@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace Demo.Converters
 {
-    class WeightFormatter : IMultiValueConverter 
+    public class WeightFormatter : IMultiValueConverter 
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
