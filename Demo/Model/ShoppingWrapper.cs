@@ -1,4 +1,4 @@
-﻿using ServiceClients.Products.ServiceReference;
+﻿using Demo.ServiceClients.Products.ServiceReference;
 using System;
 using System.Data;
 using System.Threading.Tasks;

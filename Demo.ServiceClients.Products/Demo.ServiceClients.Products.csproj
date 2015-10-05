@@ -7,8 +7,8 @@
     <ProjectGuid>{24156B78-6E6C-438C-BF1E-B34FD3C68800}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ServiceClients.Products</RootNamespace>
-    <AssemblyName>ServiceClients.Products</AssemblyName>
+    <RootNamespace>Demo.ServiceClients.Products</RootNamespace>
+    <AssemblyName>Demo.ServiceClients.Products</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -56,6 +56,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Service References\ServiceReference\Demo.ServiceClients.Products.ServiceReference.ProductCategoryListDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference\Demo.ServiceClients.Products.ServiceReference.ProductDetailsRowDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference\Demo.ServiceClients.Products.ServiceReference.ProductsOverviewListDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference\Demo.ServiceClients.Products.ServiceReference.ProductSubcategoryListDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ServiceReference\ProductsService1.wsdl" />
     <None Include="Service References\ServiceReference\ProductsService3.xsd" />
     <None Include="Service References\ServiceReference\ProductsService31.xsd" />

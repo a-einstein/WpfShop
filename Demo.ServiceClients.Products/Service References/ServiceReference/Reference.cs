@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ServiceClients.Products.ServiceReference {
+namespace Demo.ServiceClients.Products.ServiceReference {
     using System.Runtime.Serialization;
     using System;
     
@@ -17,7 +17,7 @@ namespace ServiceClients.Products.ServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductsOverviewListDto", Namespace="http://schemas.datacontract.org/2004/07/ProductsService", ItemName="ProductsOverviewRowDto")]
     [System.SerializableAttribute()]
-    public class ProductsOverviewListDto : System.Collections.Generic.List<ServiceClients.Products.ServiceReference.ProductsOverviewRowDto> {
+    public class ProductsOverviewListDto : System.Collections.Generic.List<Demo.ServiceClients.Products.ServiceReference.ProductsOverviewRowDto> {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -514,7 +514,7 @@ namespace ServiceClients.Products.ServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductCategoryListDto", Namespace="http://schemas.datacontract.org/2004/07/ProductsService", ItemName="ProductCategoryRowDto")]
     [System.SerializableAttribute()]
-    public class ProductCategoryListDto : System.Collections.Generic.List<ServiceClients.Products.ServiceReference.ProductCategoryRowDto> {
+    public class ProductCategoryListDto : System.Collections.Generic.List<Demo.ServiceClients.Products.ServiceReference.ProductCategoryRowDto> {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -582,7 +582,7 @@ namespace ServiceClients.Products.ServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductSubcategoryListDto", Namespace="http://schemas.datacontract.org/2004/07/ProductsService", ItemName="ProductSubcategoryRowDto")]
     [System.SerializableAttribute()]
-    public class ProductSubcategoryListDto : System.Collections.Generic.List<ServiceClients.Products.ServiceReference.ProductSubcategoryRowDto> {
+    public class ProductSubcategoryListDto : System.Collections.Generic.List<Demo.ServiceClients.Products.ServiceReference.ProductSubcategoryRowDto> {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -667,37 +667,37 @@ namespace ServiceClients.Products.ServiceReference {
     public interface IProductsService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductsOverview", ReplyAction="http://tempuri.org/IProductsService/GetProductsOverviewResponse")]
-        ServiceClients.Products.ServiceReference.ProductsOverviewListDto GetProductsOverview();
+        Demo.ServiceClients.Products.ServiceReference.ProductsOverviewListDto GetProductsOverview();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductsOverview", ReplyAction="http://tempuri.org/IProductsService/GetProductsOverviewResponse")]
-        System.Threading.Tasks.Task<ServiceClients.Products.ServiceReference.ProductsOverviewListDto> GetProductsOverviewAsync();
+        System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductsOverviewListDto> GetProductsOverviewAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductDetails", ReplyAction="http://tempuri.org/IProductsService/GetProductDetailsResponse")]
-        ServiceClients.Products.ServiceReference.ProductDetailsRowDto GetProductDetails(int productId);
+        Demo.ServiceClients.Products.ServiceReference.ProductDetailsRowDto GetProductDetails(int productId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductDetails", ReplyAction="http://tempuri.org/IProductsService/GetProductDetailsResponse")]
-        System.Threading.Tasks.Task<ServiceClients.Products.ServiceReference.ProductDetailsRowDto> GetProductDetailsAsync(int productId);
+        System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductDetailsRowDto> GetProductDetailsAsync(int productId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductCategories", ReplyAction="http://tempuri.org/IProductsService/GetProductCategoriesResponse")]
-        ServiceClients.Products.ServiceReference.ProductCategoryListDto GetProductCategories();
+        Demo.ServiceClients.Products.ServiceReference.ProductCategoryListDto GetProductCategories();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductCategories", ReplyAction="http://tempuri.org/IProductsService/GetProductCategoriesResponse")]
-        System.Threading.Tasks.Task<ServiceClients.Products.ServiceReference.ProductCategoryListDto> GetProductCategoriesAsync();
+        System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductCategoryListDto> GetProductCategoriesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductSubcategories", ReplyAction="http://tempuri.org/IProductsService/GetProductSubcategoriesResponse")]
-        ServiceClients.Products.ServiceReference.ProductSubcategoryListDto GetProductSubcategories();
+        Demo.ServiceClients.Products.ServiceReference.ProductSubcategoryListDto GetProductSubcategories();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductSubcategories", ReplyAction="http://tempuri.org/IProductsService/GetProductSubcategoriesResponse")]
-        System.Threading.Tasks.Task<ServiceClients.Products.ServiceReference.ProductSubcategoryListDto> GetProductSubcategoriesAsync();
+        System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductSubcategoryListDto> GetProductSubcategoriesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IProductsServiceChannel : ServiceClients.Products.ServiceReference.IProductsService, System.ServiceModel.IClientChannel {
+    public interface IProductsServiceChannel : Demo.ServiceClients.Products.ServiceReference.IProductsService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ProductsServiceClient : System.ServiceModel.ClientBase<ServiceClients.Products.ServiceReference.IProductsService>, ServiceClients.Products.ServiceReference.IProductsService {
+    public partial class ProductsServiceClient : System.ServiceModel.ClientBase<Demo.ServiceClients.Products.ServiceReference.IProductsService>, Demo.ServiceClients.Products.ServiceReference.IProductsService {
         
         public ProductsServiceClient() {
         }
@@ -718,35 +718,35 @@ namespace ServiceClients.Products.ServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public ServiceClients.Products.ServiceReference.ProductsOverviewListDto GetProductsOverview() {
+        public Demo.ServiceClients.Products.ServiceReference.ProductsOverviewListDto GetProductsOverview() {
             return base.Channel.GetProductsOverview();
         }
         
-        public System.Threading.Tasks.Task<ServiceClients.Products.ServiceReference.ProductsOverviewListDto> GetProductsOverviewAsync() {
+        public System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductsOverviewListDto> GetProductsOverviewAsync() {
             return base.Channel.GetProductsOverviewAsync();
         }
         
-        public ServiceClients.Products.ServiceReference.ProductDetailsRowDto GetProductDetails(int productId) {
+        public Demo.ServiceClients.Products.ServiceReference.ProductDetailsRowDto GetProductDetails(int productId) {
             return base.Channel.GetProductDetails(productId);
         }
         
-        public System.Threading.Tasks.Task<ServiceClients.Products.ServiceReference.ProductDetailsRowDto> GetProductDetailsAsync(int productId) {
+        public System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductDetailsRowDto> GetProductDetailsAsync(int productId) {
             return base.Channel.GetProductDetailsAsync(productId);
         }
         
-        public ServiceClients.Products.ServiceReference.ProductCategoryListDto GetProductCategories() {
+        public Demo.ServiceClients.Products.ServiceReference.ProductCategoryListDto GetProductCategories() {
             return base.Channel.GetProductCategories();
         }
         
-        public System.Threading.Tasks.Task<ServiceClients.Products.ServiceReference.ProductCategoryListDto> GetProductCategoriesAsync() {
+        public System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductCategoryListDto> GetProductCategoriesAsync() {
             return base.Channel.GetProductCategoriesAsync();
         }
         
-        public ServiceClients.Products.ServiceReference.ProductSubcategoryListDto GetProductSubcategories() {
+        public Demo.ServiceClients.Products.ServiceReference.ProductSubcategoryListDto GetProductSubcategories() {
             return base.Channel.GetProductSubcategories();
         }
         
-        public System.Threading.Tasks.Task<ServiceClients.Products.ServiceReference.ProductSubcategoryListDto> GetProductSubcategoriesAsync() {
+        public System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductSubcategoryListDto> GetProductSubcategoriesAsync() {
             return base.Channel.GetProductSubcategoriesAsync();
         }
     }

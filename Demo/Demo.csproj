@@ -197,9 +197,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServiceClients.Products\ServiceClients.Products.csproj">
+    <ProjectReference Include="C:\Users\Robert\Documents\Visual Studio 2015\Projects\WpfTestApplication\Demo.ServiceClients.Products\Demo.ServiceClients.Products.csproj">
       <Project>{24156b78-6e6c-438c-bf1e-b34fd3c68800}</Project>
-      <Name>ServiceClients.Products</Name>
+      <Name>Demo.ServiceClients.Products</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
