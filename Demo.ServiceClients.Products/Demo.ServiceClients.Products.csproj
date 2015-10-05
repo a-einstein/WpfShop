@@ -56,18 +56,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Service References\ServiceReference\Demo.ServiceClients.Products.ServiceReference.ProductCategoryListDto.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference\Demo.ServiceClients.Products.ServiceReference.ProductDetailsRowDto.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference\Demo.ServiceClients.Products.ServiceReference.ProductsOverviewListDto.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference\Demo.ServiceClients.Products.ServiceReference.ProductSubcategoryListDto.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\ServiceReference\ProductsService1.wsdl" />
     <None Include="Service References\ServiceReference\ProductsService3.xsd" />
     <None Include="Service References\ServiceReference\ProductsService31.xsd" />
