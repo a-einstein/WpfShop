@@ -51,8 +51,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ConvertersTest\BooleanInverterTest.cs" />
-    <Compile Include="ConvertersTest\WeightFormatterTest.cs" />
+    <Compile Include="Converters\BooleanInverterTest.cs" />
+    <Compile Include="Converters\WeightFormatterTest.cs" />
+    <Compile Include="Converters\SizeFormatterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

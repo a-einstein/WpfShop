@@ -1,14 +1,13 @@
-﻿using Demo.Converters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Demo.Test.ConvertersTest
+namespace Demo.Converters.Test
 {
-    [TestClass]
+    [TestClass()]
     public class WeightFormatterTest
     {
-        [TestMethod]
-        public void Convert()
+        [TestMethod()]
+        public void ConvertTest()
         {
             var target = new WeightFormatter();
             var weight = (decimal)1;
@@ -20,9 +19,9 @@ namespace Demo.Test.ConvertersTest
             Assert.AreEqual(result, expected);
         }
 
-        [TestMethod]
+        [TestMethod()]
         [ExpectedException(typeof(NotImplementedException))]
-        public void ConvertBack()
+        public void ConvertBackTest()
         {
             var target = new WeightFormatter();
 

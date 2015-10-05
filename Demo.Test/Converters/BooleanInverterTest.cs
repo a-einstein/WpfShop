@@ -1,14 +1,13 @@
-﻿using Demo.Converters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Demo.Test.ConvertersTest
+namespace Demo.Converters.Test
 {
-    [TestClass]
+    [TestClass()]
     public class BooleanInverterTest
     {
-        [TestMethod]
-        public void Convert()
+        [TestMethod()]
+        public void ConvertTest()
         {
             var target = new BooleanInverter();
 
@@ -17,8 +16,8 @@ namespace Demo.Test.ConvertersTest
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        public void ConvertBack()
+        [TestMethod()]
+        public void ConvertBackTest()
         {
             var target = new BooleanInverter();
 
