@@ -93,6 +93,7 @@
     <Compile Include="Converters\WeightFormatter.cs" />
     <Compile Include="Converters\SizeFormatter.cs" />
     <Compile Include="Interfaces\IShopper.cs" />
+    <Compile Include="Model\CartsRepository.cs" />
     <Compile Include="Model\ProductsDataSet.cs">
       <DependentUpon>ProductsDataSet.xsd</DependentUpon>
     </Compile>
@@ -101,6 +102,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProductsDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Model\ProductsRepository.cs" />
     <Compile Include="Model\ShoppingWrapper.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />

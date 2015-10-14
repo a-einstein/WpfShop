@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace Demo.BaseClasses
 {
-    abstract class FilterItemsViewModel : ItemsViewModel
+    public abstract class FilterItemsViewModel : ItemsViewModel
     {
         public FilterItemsViewModel()
         {

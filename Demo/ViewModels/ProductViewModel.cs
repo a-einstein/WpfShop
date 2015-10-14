@@ -9,7 +9,7 @@ namespace Demo.ViewModels
 {
     class ProductViewModel : ItemViewModel<ProductDetailsRow>, IShopper
     {
-        public override object NoId { get { return ShoppingWrapper.Instance.NoId; } }
+        public override object NoId { get { return ShoppingWrapper.NoId; } }
 
         protected override object GetItemId()
         {
@@ -19,7 +19,7 @@ namespace Demo.ViewModels
         public override async void Refresh(object productId)
         {
             // TODO Check for errors.
-            Item = await ShoppingWrapper.Instance.GetProductDetails((int)productId);
+            Item = await ProductsRepository.Instance.ReadDetails((int)productId);
         }
 
         protected override void SetCommands()

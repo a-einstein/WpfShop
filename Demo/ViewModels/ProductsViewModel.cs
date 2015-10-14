@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace Demo.ViewModels
 {
-    class ProductsViewModel : FilterItemsViewModel, IShopper
+    public class ProductsViewModel : FilterItemsViewModel, IShopper
     {
         public override string MasterFilterSelectedValuePath { get { return "ProductCategoryID"; } }
         public override string DetailFilterSelectedValuePath { get { return "ProductSubcategoryID"; } }
@@ -20,22 +20,21 @@ namespace Demo.ViewModels
         // TODO This should become parameterized, currently it assumes retrieval of an entire table.
         public override async void Refresh()
         {
-            // TODO Possibly maintain static collections in ShoppingWrapper again.
             // TODO Check for errors.
-            Items = await ShoppingWrapper.Instance.GetProductsOverview();
+            Items = await ProductsRepository.Instance.ReadOverview();
         }
 
         protected override async void SetFilters()
         {
             // TODO Possibly maintain static collections in ShoppingWrapper again.
-            var getProductCategories = ShoppingWrapper.Instance.GetProductCategories();
-            var getProductSubcategories = ShoppingWrapper.Instance.GetProductSubcategories();
+            var getCategoriesTask = ProductsRepository.Instance.ReadProductCategories();
+            var getSubcategoriesTask = ProductsRepository.Instance.ReadProductSubcategories();
 
-            await Task.WhenAll(getProductCategories, getProductSubcategories);
+            await Task.WhenAll(getCategoriesTask, getSubcategoriesTask);
 
             // Make sure that both Categories and Subcategories have been retrieved.
-            MasterFilterItems = getProductCategories.Result;
-            DetailFilterItems = getProductSubcategories.Result;
+            MasterFilterItems = getCategoriesTask.Result;
+            DetailFilterItems = getSubcategoriesTask.Result;
 
             // Note that MasterFilterValue also determines the filter on DetailFilterItems.
             MasterFilterValue = NoId;
@@ -69,6 +68,6 @@ namespace Demo.ViewModels
             ShoppingCartViewModel.Instance.CartProduct((int)parameter);
         }
 
-        public override object NoId { get { return ShoppingWrapper.Instance.NoId; } }
+        public override object NoId { get { return ShoppingWrapper.NoId; } }
     }
 }

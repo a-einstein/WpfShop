@@ -1,19 +1,19 @@
-﻿using Microsoft.Practices.Prism.Commands;
+﻿using Demo.BaseClasses;
+using Demo.Model;
+using Microsoft.Practices.Prism.Commands;
 using System;
-using System.Data;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
-using Demo.BaseClasses;
-using Demo.Model;
 
 namespace Demo.ViewModels
 {
     public class ShoppingCartViewModel : ItemsViewModel
     {
-        private ShoppingCartViewModel() 
+        private ShoppingCartViewModel()
         {
-            ShoppingWrapper.Instance.CartItems.ShoppingCartItemsRowChanged += CartItems_ShoppingCartItemsRowChanged;
-            ShoppingWrapper.Instance.CartItems.ShoppingCartItemsRowDeleted += CartItems_ShoppingCartItemsRowChanged;
+            CartItemsRepository.Instance.Items.ListChanged += CartItems_ListChanged;
+            CartItemsRepository.Instance.Items.ListChanged += CartItems_ListChanged;
 
             Refresh();
         }
@@ -41,8 +41,7 @@ namespace Demo.ViewModels
 
         public override void Refresh()
         {
-            // TODO Maybe make a separate property Items for this in a new wrapper class CartItems. And so forth. Check what this means for filtering.
-            Items = ShoppingWrapper.Instance.CartItems.DefaultView;
+            Items = CartItemsRepository.Instance.Items;
         }
 
         protected override void SetCommands()
@@ -52,11 +51,11 @@ namespace Demo.ViewModels
             DeleteCommand = new DelegateCommand<object>(Delete);
         }
 
-        public override object NoId { get { return ShoppingWrapper.Instance.NoId; } }
+        public override object NoId { get { return ShoppingWrapper.NoId; } }
 
         public void CartProduct(int productId)
         {
-            ShoppingWrapper.Instance.CartProduct(productId);
+            CartItemsRepository.Instance.AddProduct(productId);
         }
 
         public ICommand DeleteCommand { get; set; }
@@ -65,28 +64,31 @@ namespace Demo.ViewModels
         {
             int cartItemID = (int)parameter;
 
-            ShoppingWrapper.Instance.CartItemDelete(cartItemID);
+            CartItemsRepository.Instance.DeleteProduct(cartItemID);
         }
 
-        private void CartItems_ShoppingCartItemsRowChanged(object sender, ProductsDataSet.ShoppingCartItemsRowChangeEvent e)
+        private void CartItems_ListChanged(object sender, ListChangedEventArgs e)
         {
-            switch (e.Action)
+             switch (e.ListChangedType)
             {
-                case DataRowAction.Change:
-                    // For directly bound controls. Currently only on Quantity.
-                    e.Row.AcceptChanges();
+                case ListChangedType.ItemAdded:
+                case ListChangedType.ItemDeleted:
+                    // HACK Otherwise this event is fired before the accept.
+                    // Does not help.
+                    //Items.Table.AcceptChanges();
 
-                    UpdateTotals();
+                    //UpdateTotals();
                     break;
-                case DataRowAction.Add:
-                case DataRowAction.Delete:
-                    UpdateTotals();
+                case ListChangedType.ItemChanged:
+                    if (e.PropertyDescriptor != null && e.PropertyDescriptor.Name == "Quantity")
+                    {
+                        // TODO This should not be here.
+                        //Items.Table.AcceptChanges();
+                        // TODO Maybe it does. Even do this on row level, as explanation for the current problem.
+
+                        UpdateTotals();
+                    }
                     break;
-                case DataRowAction.ChangeCurrentAndOriginal:
-                case DataRowAction.ChangeOriginal:
-                case DataRowAction.Commit:
-                case DataRowAction.Nothing:
-                case DataRowAction.Rollback:
                 default:
                     break;
             }
@@ -96,8 +98,8 @@ namespace Demo.ViewModels
         {
             RaisePropertyChanged("ItemsCount");
 
-            ProductItemsCount = ShoppingWrapper.Instance.CartProductItemsCount();
-            TotalValue = ShoppingWrapper.Instance.CartValue();
+            ProductItemsCount = CartItemsRepository.Instance.ProductsCount();
+            TotalValue = CartItemsRepository.Instance.CartValue();
         }
 
         public static readonly DependencyProperty ProductItemCountProperty =

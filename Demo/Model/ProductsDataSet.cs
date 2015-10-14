@@ -18,22 +18,21 @@ namespace Demo.Model
 
         public partial class ProductsOverviewDataTable
         {
-
-            public ProductsOverviewRow AddProductsOverviewRow(
-            int productID,
-            string Name,
-            string Color,
-            decimal ListPrice,
-            string Size,
-            string SizeUnitMeasureCode,
-            string WeightUnitMeasureCode,
-            byte[] ThumbNailPhoto,
-            int productCategoryID,
-            string ProductCategory,
-            int productSubcategoryID,
-            string ProductSubcategory)
+            public ProductsOverviewRow NewRow(
+                int productID, 
+                string Name, 
+                string Color, 
+                decimal ListPrice, 
+                string Size, 
+                string SizeUnitMeasureCode, 
+                string WeightUnitMeasureCode, 
+                byte[] ThumbNailPhoto, 
+                int productCategoryID, 
+                string ProductCategory, 
+                int productSubcategoryID, 
+                string ProductSubcategory)
             {
-                ProductsOverviewRow rowProductsOverviewRow = ((ProductsOverviewRow)(this.NewRow()));
+                ProductsOverviewRow newRow = ((ProductsOverviewRow)(NewRow()));
 
                 // HACK Because there was no full version of this function and direct assignment to the missing properties was not allowed.
                 // TODO Check how to determine certain order of parameters.
@@ -51,11 +50,9 @@ namespace Demo.Model
                         productSubcategoryID,
                         ProductSubcategory};
 
-                rowProductsOverviewRow.ItemArray = columnValuesArray;
+                newRow.ItemArray = columnValuesArray;
 
-                Rows.Add(rowProductsOverviewRow);
-
-                return rowProductsOverviewRow;
+                return newRow;
             }
         }
 
@@ -81,7 +78,7 @@ namespace Demo.Model
                 int productSubcategoryID,
                 string ProductSubcategory)
             {
-                ProductDetailsRow rowProductDetailsRow = ((ProductDetailsRow)(this.NewRow()));
+                ProductDetailsRow newRow = ((ProductDetailsRow)(NewRow()));
 
                 // HACK Because there was no full version of this function and direct assignment to the missing properties was not allowed.
                 // TODO Check how to determine certain order of parameters.
@@ -102,9 +99,9 @@ namespace Demo.Model
                         productSubcategoryID,
                         ProductSubcategory};
 
-                rowProductDetailsRow.ItemArray = columnValuesArray;
+                newRow.ItemArray = columnValuesArray;
 
-                return rowProductDetailsRow;
+                return newRow;
             }
         }
 
@@ -113,11 +110,12 @@ namespace Demo.Model
 
         public partial class ProductCategoriesDataTable
         {
+            // TODO Refactor this like elsewhere.
             public ProductCategoriesRow AddProductCategoriesRow(
                 int ProductCategoryID,
                 string Name)
             {
-                ProductCategoriesRow rowProductCategoriesRow = ((ProductCategoriesRow)(this.NewRow()));
+                ProductCategoriesRow newRow = ((ProductCategoriesRow)(NewRow()));
 
                 // HACK Because there was no full version of this function and direct assignment to the missing properties was not allowed.
                 // TODO Check how to determine certain order of parameters.
@@ -125,11 +123,11 @@ namespace Demo.Model
                         ProductCategoryID,
                         Name};
 
-                rowProductCategoriesRow.ItemArray = columnValuesArray;
+                newRow.ItemArray = columnValuesArray;
 
-                this.Rows.Add(rowProductCategoriesRow);
+                Rows.Add(newRow);
 
-                return rowProductCategoriesRow;
+                return newRow;
             }
         }
 
@@ -138,12 +136,13 @@ namespace Demo.Model
 
         public partial class ProductSubcategoriesDataTable
         {
+            // TODO Refactor this like elsewhere.
             public ProductSubcategoriesRow AddProductSubcategoriesRow(
                 int ProductSubcategoryID,
                 string Name,
                 int ProductCategoryID)
             {
-                ProductSubcategoriesRow rowProductSubcategoriesRow = ((ProductSubcategoriesRow)(this.NewRow()));
+                ProductSubcategoriesRow newRow = ((ProductSubcategoriesRow)(NewRow()));
 
                 // HACK Because there was no full version of this function and direct assignment to the missing properties was not allowed.
                 // TODO Check how to determine certain order of parameters.
@@ -153,11 +152,11 @@ namespace Demo.Model
                         ProductCategoryID
                 };
 
-                rowProductSubcategoriesRow.ItemArray = columnValuesArray;
+                newRow.ItemArray = columnValuesArray;
 
-                this.Rows.Add(rowProductSubcategoriesRow);
+                Rows.Add(newRow);
 
-                return rowProductSubcategoriesRow;
+                return newRow;
             }
         }
     }

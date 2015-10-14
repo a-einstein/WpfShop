@@ -37,6 +37,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -51,15 +53,22 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Converters\BooleanInverterTest.cs" />
-    <Compile Include="Converters\WeightFormatterTest.cs" />
-    <Compile Include="Converters\SizeFormatterTest.cs" />
+    <Compile Include="ConvertersTest\BooleanInverterTest.cs" />
+    <Compile Include="ConvertersTest\WeightFormatterTest.cs" />
+    <Compile Include="ConvertersTest\SizeFormatterTest.cs" />
+    <Compile Include="ModelTest\ModelTest.cs" />
+    <Compile Include="ModelTest\ProductsRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModelsTest\ProductsViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Demo\Demo.csproj">
       <Project>{961240dc-9fe9-4642-b877-fcbdcde9e07c}</Project>
       <Name>Demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Robert\Documents\Visual Studio 2015\Projects\WpfTestApplication\Demo.ServiceClients.Products\Demo.ServiceClients.Products.csproj">
+      <Project>{24156b78-6e6c-438c-bf1e-b34fd3c68800}</Project>
+      <Name>Demo.ServiceClients.Products</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
