@@ -1,6 +1,6 @@
 ﻿using Demo.ServiceClients.Products.ServiceReference;
 
-namespace Demo.Test.ModelTest
+namespace Demo.Model.Test
 {
     public abstract class ModelTest
     {

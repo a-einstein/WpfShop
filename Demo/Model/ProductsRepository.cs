@@ -57,11 +57,18 @@ namespace Demo.Model
             get { return ShoppingWrapper.Instance.ProductsDataSet.ProductsOverview; }
         }
 
+        public void Clear()
+        {
+            ProductsOverviewDataTable.Clear();
+            ProductsOverviewDataTable.AcceptChanges();
+        }
+
         // Currently this only made for testpurposes and stores only locally.
         public void CreateOverviewProduct(ProductsOverviewRowDto rowDto)
         {
             var tableRow = Convert(rowDto);
             ProductsOverviewDataTable.Rows.Add(tableRow);
+            ProductsOverviewDataTable.AcceptChanges();
         }
 
         public async Task<DataView> ReadOverview()
@@ -71,6 +78,7 @@ namespace Demo.Model
             var task = Task.Factory.StartNew(async () =>
             {
                 // Note that currently data is cached and read only once.
+                // This also enables testing without a connection.
                 if (table.Count == 0)
                 {
                     // Note this currently takes in all of the table data. Of course this should be prefiltered and/or paged in a realistic situation. 
