@@ -7,6 +7,7 @@ namespace Demo.Model.Test
     public class ProductsRepositoryTest : ModelTest
     {
         [TestMethod()]
+        // Note this conforms to asynchronous tests since VS 2012.
         public async Task ReadOverviewTest()
         {
             var target = ProductsRepository.Instance;
@@ -15,7 +16,6 @@ namespace Demo.Model.Test
             target.Clear();
             target.CreateOverviewProduct(dto);
 
-            // TODO This calls for a service client.
             var result = await ProductsRepository.Instance.ReadOverview();
 
             Assert.AreEqual(1, result.Count);
