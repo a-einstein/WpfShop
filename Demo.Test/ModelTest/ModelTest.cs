@@ -4,19 +4,19 @@ namespace Demo.Model.Test
 {
     public abstract class ModelTest
     {
-        public static ProductsOverviewRowDto ProductsOverviewRowDto(int id, object noId)
+        public static ProductsOverviewRowDto ProductsOverviewRowDto(int dtoId, object noId)
         {
             // TODO Put definition of dto in other project and reuse in service client to remove that dependency ?
             var dto = new ProductsOverviewRowDto()
             {
                 Color = "a Color",
-                ListPrice = (decimal)id,
+                ListPrice = (decimal)dtoId,
                 Name = "a Name",
-                ProductCategory = Format("ProductCategory", id),
+                ProductCategory = Format("ProductCategory", dtoId),
                 ProductCategoryID = (int)noId,
                 ProductID = (int)noId,
-                ProductSubcategory = Format("ProductSubcategory", id),
-                Size = id.ToString(),
+                ProductSubcategory = Format("ProductSubcategory", dtoId),
+                Size = dtoId.ToString(),
                 SizeUnitMeasureCode = "SUM",
                 ThumbNailPhoto = new byte[0],
                 WeightUnitMeasureCode = "WUM"

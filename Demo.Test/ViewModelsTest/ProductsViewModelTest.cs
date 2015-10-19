@@ -22,7 +22,7 @@ namespace Demo.ViewModels.Test
             var repository = ProductsRepository.Instance;
 
             repository.Clear();
-            repository.CreateOverviewProduct(dto);
+            repository.CreateListElement(dto);
 
             target.Refresh();
 

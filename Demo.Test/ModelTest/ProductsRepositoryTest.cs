@@ -8,15 +8,15 @@ namespace Demo.Model.Test
     {
         [TestMethod()]
         // Note this conforms to asynchronous tests since VS 2012.
-        public async Task ReadOverviewTest()
+        public async Task ReadListest()
         {
             var target = ProductsRepository.Instance;
             var dto = ProductsOverviewRowDto(1, target.NoId);
 
             target.Clear();
-            target.CreateOverviewProduct(dto);
+            target.CreateListElement(dto);
 
-            var result = await ProductsRepository.Instance.ReadOverview();
+            var result = await target.ReadList();
 
             Assert.AreEqual(1, result.Count);
         }

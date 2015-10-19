@@ -58,6 +58,8 @@
     <Compile Include="ConvertersTest\SizeFormatterTest.cs" />
     <Compile Include="ModelTest\ModelTest.cs" />
     <Compile Include="ModelTest\ProductsRepositoryTest.cs" />
+    <Compile Include="ModelTest\ProductCategoriesRepositoryTest.cs" />
+    <Compile Include="ModelTest\ProductSubcategoriesRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModelsTest\ProductsViewModelTest.cs" />
   </ItemGroup>

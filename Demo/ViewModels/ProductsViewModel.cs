@@ -21,14 +21,14 @@ namespace Demo.ViewModels
         public override async void Refresh()
         {
             // TODO Check for errors.
-            Items = await ProductsRepository.Instance.ReadOverview();
+            Items = await ProductsRepository.Instance.ReadList();
         }
 
         protected override async void SetFilters()
         {
             // TODO Possibly maintain static collections in ShoppingWrapper again.
-            var getCategoriesTask = ProductsRepository.Instance.ReadProductCategories();
-            var getSubcategoriesTask = ProductsRepository.Instance.ReadProductSubcategories();
+            var getCategoriesTask = ProductCategoriesRepository.Instance.ReadList();
+            var getSubcategoriesTask = ProductSubcategoriesRepository.Instance.ReadList();
 
             await Task.WhenAll(getCategoriesTask, getSubcategoriesTask);
 
