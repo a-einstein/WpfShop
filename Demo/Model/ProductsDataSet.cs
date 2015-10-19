@@ -110,8 +110,7 @@ namespace Demo.Model
 
         public partial class ProductCategoriesDataTable
         {
-            // TODO Refactor this like elsewhere.
-            public ProductCategoriesRow AddProductCategoriesRow(
+            public ProductCategoriesRow NewRow(
                 int ProductCategoryID,
                 string Name)
             {
@@ -125,8 +124,6 @@ namespace Demo.Model
 
                 newRow.ItemArray = columnValuesArray;
 
-                Rows.Add(newRow);
-
                 return newRow;
             }
         }
@@ -136,8 +133,7 @@ namespace Demo.Model
 
         public partial class ProductSubcategoriesDataTable
         {
-            // TODO Refactor this like elsewhere.
-            public ProductSubcategoriesRow AddProductSubcategoriesRow(
+            public ProductSubcategoriesRow NewRow(
                 int ProductSubcategoryID,
                 string Name,
                 int ProductCategoryID)
@@ -153,8 +149,6 @@ namespace Demo.Model
                 };
 
                 newRow.ItemArray = columnValuesArray;
-
-                Rows.Add(newRow);
 
                 return newRow;
             }

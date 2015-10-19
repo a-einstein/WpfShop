@@ -3,11 +3,13 @@ using System;
 using System.Data;
 using System.Threading.Tasks;
 using ProductCategoriesDataTable = Demo.Model.ProductsDataSet.ProductCategoriesDataTable;
+using ProductCategoriesRow = Demo.Model.ProductsDataSet.ProductCategoriesRow;
 using ProductDetailsDataTable = Demo.Model.ProductsDataSet.ProductDetailsDataTable;
 using ProductDetailsRow = Demo.Model.ProductsDataSet.ProductDetailsRow;
 using ProductsOverviewDataTable = Demo.Model.ProductsDataSet.ProductsOverviewDataTable;
 using ProductsOverviewRow = Demo.Model.ProductsDataSet.ProductsOverviewRow;
 using ProductSubcategoriesDataTable = Demo.Model.ProductsDataSet.ProductSubcategoriesDataTable;
+using ProductSubcategoriesRow = Demo.Model.ProductsDataSet.ProductSubcategoriesRow;
 
 namespace Demo.Model
 {
@@ -73,13 +75,11 @@ namespace Demo.Model
 
         public async Task<DataView> ReadOverview()
         {
-            var table = ShoppingWrapper.Instance.ProductsDataSet.ProductsOverview;
-
             var task = Task.Factory.StartNew(async () =>
             {
                 // Note that currently data is cached and read only once.
                 // This also enables testing without a connection.
-                if (table.Count == 0)
+                if (ProductsOverviewDataTable.Count == 0)
                 {
                     // Note this currently takes in all of the table data. Of course this should be prefiltered and/or paged in a realistic situation. 
                     var productOverviewDto = await ProductsServiceClient.GetProductsOverviewAsync();
@@ -87,11 +87,13 @@ namespace Demo.Model
                     foreach (var dtoRow in productOverviewDto)
                     {
                         var tableRow = Convert(dtoRow);
-                        table.Rows.Add(tableRow);
+                        ProductsOverviewDataTable.Rows.Add(tableRow);
                     }
                 }
 
-                return table.DefaultView;
+                ProductsOverviewDataTable.AcceptChanges();
+
+                return ProductsOverviewDataTable.DefaultView;
             });
 
             // TODO ?!
@@ -164,84 +166,102 @@ namespace Demo.Model
             return tableRow;
         }
 
-        // TODO Put categories stuff into separate repository?
-        public async Task<DataView> ReadProductCategories()
+        private ProductCategoriesDataTable ProductCategoriesDataTable
         {
-            var table = ShoppingWrapper.Instance.ProductsDataSet.ProductCategories;
+            get { return ShoppingWrapper.Instance.ProductsDataSet.ProductCategories; }
+        }
 
+        // TODO Put categories stuff into separate repository?
+        public async Task<DataView> ReadProductCategories(bool addEmptyElement = true)
+        {
             var task = Task.Factory.StartNew(async () =>
             {
                 // Note that currently data is cached and read only once.
-                if (table.Count == 0)
+                if (ProductCategoriesDataTable.Count == 0)
                 {
                     var listDto = await ProductsServiceClient.GetProductCategoriesAsync();
 
-                    // Add an empty element.
-                    var overviewRow = table.AddProductCategoriesRow(NoId, string.Empty);
+                    if (addEmptyElement)
+                    {
+                    var tableRow = ProductCategoriesDataTable.NewRow(NoId, string.Empty);
+                    ProductCategoriesDataTable.Rows.Add(tableRow);
+                    }
 
-                    ConvertInto(table, listDto);
+                    foreach (var dtoRow in listDto)
+                    {
+                        var tableRow = Convert(dtoRow);
+                        ProductCategoriesDataTable.Rows.Add(tableRow);
+                    }
+
+                    ProductCategoriesDataTable.AcceptChanges();
                 }
 
-                return table.DefaultView;
+                return ProductCategoriesDataTable.DefaultView;
             });
 
             // TODO ?!
             return await task.Result;
         }
 
-        // Use the table as a reference, cannot assign to.
-        // TODO Is this a reference?
-        // TODO Refactor this like elsewhere.
-        private static void ConvertInto(ProductCategoriesDataTable table, ProductCategoryListDto listDto)
+        private ProductCategoriesRow Convert(ProductCategoryRowDto dtoRow)
         {
-            foreach (var dtoRow in listDto)
-            {
-                var tableRow = table.AddProductCategoriesRow
-                (
-                    dtoRow.ProductCategoryID,
-                    dtoRow.Name
-                );
-            }
+            var tableRow = ProductCategoriesDataTable.NewRow
+            (
+                dtoRow.ProductCategoryID,
+                dtoRow.Name
+            );
+
+            return tableRow;
         }
 
-        public async Task<DataView> ReadProductSubcategories()
+        private ProductSubcategoriesDataTable ProductSubcategoriesDataTable
+        {
+            get { return ShoppingWrapper.Instance.ProductsDataSet.ProductSubcategories; }
+        }
+
+        public async Task<DataView> ReadProductSubcategories(bool addEmptyElement = true)
         {
             var table = ShoppingWrapper.Instance.ProductsDataSet.ProductSubcategories;
 
             var task = Task.Factory.StartNew(async () =>
             {
                 // Note that currently data is cached and read only once.
-                if (table.Count == 0)
+                if (ProductSubcategoriesDataTable.Count == 0)
                 {
                     var listDto = await ProductsServiceClient.GetProductSubcategoriesAsync();
 
-                    // Add an empty element.
-                    table.AddProductSubcategoriesRow(ShoppingWrapper.NoId, string.Empty, ShoppingWrapper.NoId);
+                    if (addEmptyElement)
+                    {
+                        var tableRow = ProductSubcategoriesDataTable.NewRow(ShoppingWrapper.NoId, string.Empty, ShoppingWrapper.NoId);
+                        ProductSubcategoriesDataTable.Rows.Add(tableRow);
+                    }
 
-                    ConvertInto(table, listDto);
+                    foreach (var dtoRow in listDto)
+                    {
+                        var tableRow = Convert(dtoRow);
+                        ProductSubcategoriesDataTable.Rows.Add(tableRow);
+                    }
+
+                    ProductSubcategoriesDataTable.AcceptChanges();
                 }
 
-                return table.DefaultView;
+                return ProductSubcategoriesDataTable.DefaultView;
             });
 
             // TODO ?!
             return await task.Result;
         }
 
-        // Use the table as a reference, cannot assign to.
-        // TODO Is this a reference?
-        // TODO Refactor this like elsewhere.
-        private static void ConvertInto(ProductSubcategoriesDataTable table, ProductSubcategoryListDto listDto)
+        private ProductSubcategoriesRow Convert(ProductSubcategoryRowDto dtoRow)
         {
-            foreach (var dtoRow in listDto)
-            {
-                var tableRow = table.AddProductSubcategoriesRow
-                (
-                    dtoRow.ProductSubcategoryID,
-                    dtoRow.Name,
-                    dtoRow.ProductCategoryID
-                );
-            }
+            var tableRow = ProductSubcategoriesDataTable.NewRow
+            (
+                dtoRow.ProductSubcategoryID,
+                dtoRow.Name,
+                dtoRow.ProductCategoryID
+            );
+
+            return tableRow;
         }
     }
 }
