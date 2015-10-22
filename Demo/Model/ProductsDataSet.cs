@@ -19,17 +19,17 @@ namespace Demo.Model
         public partial class ProductsOverviewDataTable
         {
             public ProductsOverviewRow NewRow(
-                int productID, 
-                string Name, 
-                string Color, 
-                decimal ListPrice, 
-                string Size, 
-                string SizeUnitMeasureCode, 
-                string WeightUnitMeasureCode, 
-                byte[] ThumbNailPhoto, 
-                int productCategoryID, 
-                string ProductCategory, 
-                int productSubcategoryID, 
+                int productID,
+                string Name,
+                string Color,
+                decimal ListPrice,
+                string Size,
+                string SizeUnitMeasureCode,
+                string WeightUnitMeasureCode,
+                byte[] ThumbNailPhoto,
+                int productCategoryID,
+                string ProductCategory,
+                int productSubcategoryID,
                 string ProductSubcategory)
             {
                 ProductsOverviewRow newRow = ((ProductsOverviewRow)(NewRow()));
@@ -153,5 +153,9 @@ namespace Demo.Model
                 return newRow;
             }
         }
+
+        [DebuggerDisplay("{ProductName}, {Quantity}, {ProductListPrice}, {Value}")]
+        public partial class ShoppingCartItemsRow
+        { }
     }
 }

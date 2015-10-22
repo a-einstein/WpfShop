@@ -13,7 +13,6 @@ namespace Demo.ViewModels
         private ShoppingCartViewModel()
         {
             CartItemsRepository.Instance.Items.ListChanged += CartItems_ListChanged;
-            CartItemsRepository.Instance.Items.ListChanged += CartItems_ListChanged;
 
             Refresh();
         }
@@ -69,37 +68,29 @@ namespace Demo.ViewModels
 
         private void CartItems_ListChanged(object sender, ListChangedEventArgs e)
         {
-             switch (e.ListChangedType)
+            switch (e.ListChangedType)
             {
-                case ListChangedType.ItemAdded:
-                case ListChangedType.ItemDeleted:
-                    // HACK Otherwise this event is fired before the accept.
-                    // Does not help.
-                    //Items.Table.AcceptChanges();
-
-                    //UpdateTotals();
-                    break;
                 case ListChangedType.ItemChanged:
+                    // Note that Quantity may become 0, which results in correct totals, but with an 'empty' CartItem still present, which can be removed by the delete button.
+                    // This may either be considered handy as the user can correct a mistake, or be considered confusing.
+                    // TODO Maybe remove CartItem on Quantity == 0, but that can not trivially be done here.
                     if (e.PropertyDescriptor != null && e.PropertyDescriptor.Name == "Quantity")
-                    {
-                        // TODO This should not be here.
-                        //Items.Table.AcceptChanges();
-                        // TODO Maybe it does. Even do this on row level, as explanation for the current problem.
+                        ProductItemsCount = CartItemsRepository.Instance.ProductsCount();
 
-                        UpdateTotals();
-                    }
+                    // Note that Value is calculated once AFTER setting of Quantity. So that is the trigger to calculate totals.
+                    // Note that the price may be 0, so that Value does not change on changes of Quantity.
+                    if (e.PropertyDescriptor != null && e.PropertyDescriptor.Name == "Value")
+                        TotalValue = CartItemsRepository.Instance.CartValue();
+
                     break;
-                default:
+
+                // Note that this turned out a more reliable event than ItemAdded and ItemDeleted.
+                case ListChangedType.Reset:
+                    RaisePropertyChanged("ItemsCount");
+                    ProductItemsCount = CartItemsRepository.Instance.ProductsCount();
+                    TotalValue = CartItemsRepository.Instance.CartValue();
                     break;
             }
-        }
-
-        private void UpdateTotals()
-        {
-            RaisePropertyChanged("ItemsCount");
-
-            ProductItemsCount = CartItemsRepository.Instance.ProductsCount();
-            TotalValue = CartItemsRepository.Instance.CartValue();
         }
 
         public static readonly DependencyProperty ProductItemCountProperty =

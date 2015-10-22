@@ -83,8 +83,8 @@ namespace Demo.Model
                 if (productRow != null)
                 {
                     // Note that ShoppingCartId currently is non nullable.
-                    // TODO This already fires ListChanged through the View which causes problemes.
                     CartItems.AddShoppingCartItemsRow(Cart, 1, productRow, now, now);
+
                     CartItems.AcceptChanges();
                 }
                 else
@@ -94,6 +94,7 @@ namespace Demo.Model
             {
                 var cartItem = existingCartItems[0] as ShoppingCartItemsRow;
                 cartItem.Quantity += 1;
+
                 cartItem.AcceptChanges();
             }
             else
