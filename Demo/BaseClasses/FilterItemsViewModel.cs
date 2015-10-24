@@ -12,6 +12,16 @@ namespace Demo.BaseClasses
             SetFilters();
         }
 
+        // Note this uses the DataView's standard filtering functionality.
+        // Note this signals its own changes by IBindingListView, IBindingList.
+
+        // Alternatively a CollectionViewSource could be used. Particularly note the Source and View properties.
+        // Approach to View.Filter should change significantly.
+
+        // This could also be implemented using a ObservableCollection and/or IQueryable.
+
+        // TODO Determine most desirable approach. 
+
         public override DataView Items
         {
             get { return base.Items; }

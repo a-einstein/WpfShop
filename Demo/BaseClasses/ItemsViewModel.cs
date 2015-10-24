@@ -8,12 +8,6 @@ namespace Demo.BaseClasses
         public static readonly DependencyProperty ItemsProperty =
             DependencyProperty.Register("Items", typeof(DataView), typeof(ItemsViewModel));
 
-        // Note this uses the DataView's standard filtering functionality.
-        // Note this signals its own changes by IBindingListView, IBindingList.
-        // Note a CollectionViewSource.View apparently is not able to filter.
-        // TODO Check this, should be possible by CollectionViewSource.View.Filter.
-        // This could also be implemented using a ObservableCollection and/or IQueryable.
-        // TODO Determine most desirable approach. ICollectionView might be more generalized.
         public virtual DataView Items
         {
             get { return (DataView)GetValue(ItemsProperty); }
