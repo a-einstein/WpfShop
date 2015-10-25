@@ -4184,7 +4184,7 @@ namespace Demo.Model.ProductsDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Demo.Properties.Settings.Default.AdventureWorks2014ConnectionString;
+            this._connection.ConnectionString = global::Demo.Model.Properties.Settings.Default.AdventureWorks2014ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4374,7 +4374,7 @@ ORDER BY Production.Product.Name";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Demo.Properties.Settings.Default.AdventureWorks2014ConnectionString;
+            this._connection.ConnectionString = global::Demo.Model.Properties.Settings.Default.AdventureWorks2014ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4567,7 +4567,7 @@ ORDER BY Production.Product.Name";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Demo.Properties.Settings.Default.AdventureWorks2014ConnectionString;
+            this._connection.ConnectionString = global::Demo.Model.Properties.Settings.Default.AdventureWorks2014ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4737,7 +4737,7 @@ ORDER BY Production.Product.Name";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Demo.Properties.Settings.Default.AdventureWorks2014ConnectionString;
+            this._connection.ConnectionString = global::Demo.Model.Properties.Settings.Default.AdventureWorks2014ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4910,7 +4910,7 @@ ORDER BY Production.Product.Name";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Demo.Properties.Settings.Default.AdventureWorks2014ConnectionString;
+            this._connection.ConnectionString = global::Demo.Model.Properties.Settings.Default.AdventureWorks2014ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

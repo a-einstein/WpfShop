@@ -12,16 +12,18 @@
               <DbSource ConnectionRef="AdventureWorks2014ConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT        Production.Product.ProductID, Production.Product.Name, Production.Product.Color, Production.Product.ListPrice, Production.Product.Size, Production.Product.SizeUnitMeasureCode, 
-                         Production.Product.WeightUnitMeasureCode, Production.Product.Weight, Production.ProductPhoto.ThumbNailPhoto, Production.ProductCategory.ProductCategoryID, 
-                         Production.ProductCategory.Name AS ProductCategory, Production.ProductSubcategory.ProductSubcategoryID, Production.ProductSubcategory.Name AS ProductSubcategory
-FROM            Production.ProductSubcategory INNER JOIN
-                         Production.ProductCategory ON Production.ProductSubcategory.ProductCategoryID = Production.ProductCategory.ProductCategoryID RIGHT OUTER JOIN
-                         Production.Product ON Production.ProductSubcategory.ProductSubcategoryID = Production.Product.ProductSubcategoryID LEFT OUTER JOIN
-                         Production.ProductPhoto INNER JOIN
-                         Production.ProductProductPhoto ON Production.ProductPhoto.ProductPhotoID = Production.ProductProductPhoto.ProductPhotoID ON 
-                         Production.Product.ProductID = Production.ProductProductPhoto.ProductID
-ORDER BY Production.Product.Name</CommandText>
+                    <CommandText>
+                      SELECT        Production.Product.ProductID, Production.Product.Name, Production.Product.Color, Production.Product.ListPrice, Production.Product.Size, Production.Product.SizeUnitMeasureCode,
+                      Production.Product.WeightUnitMeasureCode, Production.Product.Weight, Production.ProductPhoto.ThumbNailPhoto, Production.ProductCategory.ProductCategoryID,
+                      Production.ProductCategory.Name AS ProductCategory, Production.ProductSubcategory.ProductSubcategoryID, Production.ProductSubcategory.Name AS ProductSubcategory
+                      FROM            Production.ProductSubcategory INNER JOIN
+                      Production.ProductCategory ON Production.ProductSubcategory.ProductCategoryID = Production.ProductCategory.ProductCategoryID RIGHT OUTER JOIN
+                      Production.Product ON Production.ProductSubcategory.ProductSubcategoryID = Production.Product.ProductSubcategoryID LEFT OUTER JOIN
+                      Production.ProductPhoto INNER JOIN
+                      Production.ProductProductPhoto ON Production.ProductPhoto.ProductPhotoID = Production.ProductProductPhoto.ProductPhotoID ON
+                      Production.Product.ProductID = Production.ProductProductPhoto.ProductID
+                      ORDER BY Production.Product.Name
+                    </CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -48,22 +50,24 @@ ORDER BY Production.Product.Name</CommandText>
               <DbSource ConnectionRef="AdventureWorks2014ConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT        Production.Product.ProductID, Production.Product.Name, Production.Product.ListPrice, Production.Product.Color, Production.Product.Size, Production.Product.SizeUnitMeasureCode, Production.Product.Weight, 
-                         Production.Product.WeightUnitMeasureCode, Production.ProductPhoto.LargePhoto, Production.ProductModel.Name AS ModelName, Production.ProductDescription.Description, 
-                         Production.ProductCategory.ProductCategoryID, Production.ProductCategory.Name AS ProductCategory, Production.ProductSubcategory.ProductSubcategoryID, 
-                         Production.ProductSubcategory.Name AS ProductSubcategory
-FROM            Production.ProductSubcategory INNER JOIN
-                         Production.ProductCategory ON Production.ProductSubcategory.ProductCategoryID = Production.ProductCategory.ProductCategoryID RIGHT OUTER JOIN
-                         Production.Product ON Production.ProductSubcategory.ProductSubcategoryID = Production.Product.ProductSubcategoryID LEFT OUTER JOIN
-                         Production.ProductModelProductDescriptionCulture INNER JOIN
-                         Production.ProductDescription ON Production.ProductModelProductDescriptionCulture.ProductDescriptionID = Production.ProductDescription.ProductDescriptionID INNER JOIN
-                         Production.ProductModel ON Production.ProductModelProductDescriptionCulture.CultureID = N'en' AND 
-                         Production.ProductModelProductDescriptionCulture.ProductModelID = Production.ProductModel.ProductModelID ON 
-                         Production.Product.ProductModelID = Production.ProductModel.ProductModelID LEFT OUTER JOIN
-                         Production.ProductPhoto INNER JOIN
-                         Production.ProductProductPhoto ON Production.ProductPhoto.ProductPhotoID = Production.ProductProductPhoto.ProductPhotoID ON 
-                         Production.Product.ProductID = Production.ProductProductPhoto.ProductID
-ORDER BY Production.Product.Name</CommandText>
+                    <CommandText>
+                      SELECT        Production.Product.ProductID, Production.Product.Name, Production.Product.ListPrice, Production.Product.Color, Production.Product.Size, Production.Product.SizeUnitMeasureCode, Production.Product.Weight,
+                      Production.Product.WeightUnitMeasureCode, Production.ProductPhoto.LargePhoto, Production.ProductModel.Name AS ModelName, Production.ProductDescription.Description,
+                      Production.ProductCategory.ProductCategoryID, Production.ProductCategory.Name AS ProductCategory, Production.ProductSubcategory.ProductSubcategoryID,
+                      Production.ProductSubcategory.Name AS ProductSubcategory
+                      FROM            Production.ProductSubcategory INNER JOIN
+                      Production.ProductCategory ON Production.ProductSubcategory.ProductCategoryID = Production.ProductCategory.ProductCategoryID RIGHT OUTER JOIN
+                      Production.Product ON Production.ProductSubcategory.ProductSubcategoryID = Production.Product.ProductSubcategoryID LEFT OUTER JOIN
+                      Production.ProductModelProductDescriptionCulture INNER JOIN
+                      Production.ProductDescription ON Production.ProductModelProductDescriptionCulture.ProductDescriptionID = Production.ProductDescription.ProductDescriptionID INNER JOIN
+                      Production.ProductModel ON Production.ProductModelProductDescriptionCulture.CultureID = N'en' AND
+                      Production.ProductModelProductDescriptionCulture.ProductModelID = Production.ProductModel.ProductModelID ON
+                      Production.Product.ProductModelID = Production.ProductModel.ProductModelID LEFT OUTER JOIN
+                      Production.ProductPhoto INNER JOIN
+                      Production.ProductProductPhoto ON Production.ProductPhoto.ProductPhotoID = Production.ProductProductPhoto.ProductPhotoID ON
+                      Production.Product.ProductID = Production.ProductProductPhoto.ProductID
+                      ORDER BY Production.Product.Name
+                    </CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -93,9 +97,11 @@ ORDER BY Production.Product.Name</CommandText>
               <DbSource ConnectionRef="AdventureWorks2014ConnectionString (Settings)" DbObjectName="AdventureWorks2014.Production.ProductCategory" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        ProductCategoryID, Name
-FROM            Production.ProductCategory
-ORDER BY Name</CommandText>
+                    <CommandText>
+                      SELECT        ProductCategoryID, Name
+                      FROM            Production.ProductCategory
+                      ORDER BY Name
+                    </CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -112,9 +118,11 @@ ORDER BY Name</CommandText>
               <DbSource ConnectionRef="AdventureWorks2014ConnectionString (Settings)" DbObjectName="AdventureWorks2014.Production.ProductSubcategory" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        ProductSubcategoryID, Name, ProductCategoryID
-FROM            Production.ProductSubcategory
-ORDER BY Name</CommandText>
+                    <CommandText>
+                      SELECT        ProductSubcategoryID, Name, ProductCategoryID
+                      FROM            Production.ProductSubcategory
+                      ORDER BY Name
+                    </CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -132,8 +140,10 @@ ORDER BY Name</CommandText>
               <DbSource ConnectionRef="AdventureWorks2014ConnectionString (Settings)" DbObjectName="AdventureWorks2014.Sales.ShoppingCartItem" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        Sales.ShoppingCartItem.*
-FROM            Sales.ShoppingCartItem</CommandText>
+                    <CommandText>
+                      SELECT        Sales.ShoppingCartItem.*
+                      FROM            Sales.ShoppingCartItem
+                    </CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
