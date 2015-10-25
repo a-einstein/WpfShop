@@ -9,7 +9,7 @@ using ProductsOverviewRow = Demo.Model.ProductsDataSet.ProductsOverviewRow;
 
 namespace Demo.Model
 {
-    // TODO At lot of elements of this and similar classes could be made generic.
+    // TODO At lot of elements of this and similar classes could be made generic (parameterized) or put in an interface..
     public class ProductsRepository : ProductsServiceConsumer
     {
         private ProductsRepository()
