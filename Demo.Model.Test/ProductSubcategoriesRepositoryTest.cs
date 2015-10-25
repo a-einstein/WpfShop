@@ -9,7 +9,7 @@ namespace Demo.Model.Test
     {
         [TestMethod()]
         // Note this conforms to asynchronous tests since VS 2012.
-        public async Task ReadListest()
+        public async Task ReadListTest()
         {
             var target = ProductSubcategoriesRepository.Instance;
             var dto = ProductSubcategoryRowDto(target.NoId);
