@@ -103,11 +103,11 @@ namespace Demo.ViewModels
         }
 
         public static readonly DependencyProperty TotalProperty =
-            DependencyProperty.Register("TotalValue", typeof(Double), typeof(ShoppingCartViewModel), new PropertyMetadata(0.0));
+            DependencyProperty.Register("TotalValue", typeof(Decimal), typeof(ShoppingCartViewModel), new PropertyMetadata((Decimal)0));
 
-        public Double TotalValue
+        public Decimal TotalValue
         {
-            get { return (Double)GetValue(TotalProperty); }
+            get { return (Decimal)GetValue(TotalProperty); }
             set { SetValue(TotalProperty, value); }
         }
     }

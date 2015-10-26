@@ -127,12 +127,15 @@ namespace Demo.Model
             : 0;
         }
 
-        // TODO make this decimal.
-        public double CartValue()
+        public Decimal CartValue()
         {
+            var value = CartItems.Compute("Sum(Value)", null);
+            var dec = (decimal)value;
+            var conv = Convert.ToDecimal(value);
+
             return CartItems.Count > 0
-            ? Convert.ToDouble(CartItems.Compute("Sum(Value)", null))
-            : 0.0;
+            ? Convert.ToDecimal(CartItems.Compute("Sum(Value)", null))
+            : 0;
         }
     }
 }

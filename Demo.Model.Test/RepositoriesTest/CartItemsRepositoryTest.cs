@@ -27,19 +27,19 @@ namespace Demo.Model.Test
 
             var cartItemId1 = target.AddProduct(productId1);
             Assert.AreEqual(1, target.ProductsCount());
-            Assert.AreEqual(price1, (decimal)target.CartValue());
+            Assert.AreEqual(price1, target.CartValue());
 
             var cartItemId2 = target.AddProduct(productId2);
             Assert.AreEqual(2, target.ProductsCount());
-            Assert.AreEqual(price1 + price2, (decimal)target.CartValue());
+            Assert.AreEqual(price1 + price2, target.CartValue());
 
             target.AddProduct(productId2);
             Assert.AreEqual(3, target.ProductsCount());
-            Assert.AreEqual(price1 + 2*price2, (decimal)target.CartValue());
+            Assert.AreEqual(price1 + 2*price2, target.CartValue());
 
             target.DeleteProduct(cartItemId1);
             Assert.AreEqual(2, target.ProductsCount());
-            Assert.AreEqual(2*price2, (decimal)target.CartValue());
+            Assert.AreEqual(2*price2, target.CartValue());
         }
 
         // Overloaded to clarify price.
