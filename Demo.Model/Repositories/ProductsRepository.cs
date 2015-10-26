@@ -2,10 +2,10 @@
 using System;
 using System.Data;
 using System.Threading.Tasks;
-using ProductDetailsDataTable = Demo.Model.ProductsDataSet.ProductDetailsDataTable;
-using ProductDetailsRow = Demo.Model.ProductsDataSet.ProductDetailsRow;
-using ProductsOverviewDataTable = Demo.Model.ProductsDataSet.ProductsOverviewDataTable;
-using ProductsOverviewRow = Demo.Model.ProductsDataSet.ProductsOverviewRow;
+using ProductDetailsDataTable = Demo.Model.DataSet.ProductsDataSet.ProductDetailsDataTable;
+using ProductDetailsRow = Demo.Model.DataSet.ProductsDataSet.ProductDetailsRow;
+using ProductsOverviewDataTable = Demo.Model.DataSet.ProductsDataSet.ProductsOverviewDataTable;
+using ProductsOverviewRow = Demo.Model.DataSet.ProductsDataSet.ProductsOverviewRow;
 
 namespace Demo.Model
 {

@@ -2,8 +2,8 @@
 using System;
 using System.Data;
 using System.Threading.Tasks;
-using ProductCategoriesDataTable = Demo.Model.ProductsDataSet.ProductCategoriesDataTable;
-using ProductCategoriesRow = Demo.Model.ProductsDataSet.ProductCategoriesRow;
+using ProductCategoriesDataTable = Demo.Model.DataSet.ProductsDataSet.ProductCategoriesDataTable;
+using ProductCategoriesRow = Demo.Model.DataSet.ProductsDataSet.ProductCategoriesRow;
 
 namespace Demo.Model
 {

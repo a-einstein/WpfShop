@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Demo.Model {
+namespace Demo.Model.DataSet {
     
     
     /// <summary>
@@ -4041,7 +4041,7 @@ namespace Demo.Model {
         }
     }
 }
-namespace Demo.Model.ProductsDataSetTableAdapters {
+namespace Demo.Model.DataSet.ProductsDataSetTableAdapters {
     
     
     /// <summary>
@@ -4193,16 +4193,18 @@ namespace Demo.Model.ProductsDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        Production.Product.ProductID, Production.Product.Name, Production.Product.Color, Production.Product.ListPrice, Production.Product.Size, Production.Product.SizeUnitMeasureCode, 
-                         Production.Product.WeightUnitMeasureCode, Production.Product.Weight, Production.ProductPhoto.ThumbNailPhoto, Production.ProductCategory.ProductCategoryID, 
-                         Production.ProductCategory.Name AS ProductCategory, Production.ProductSubcategory.ProductSubcategoryID, Production.ProductSubcategory.Name AS ProductSubcategory
-FROM            Production.ProductSubcategory INNER JOIN
-                         Production.ProductCategory ON Production.ProductSubcategory.ProductCategoryID = Production.ProductCategory.ProductCategoryID RIGHT OUTER JOIN
-                         Production.Product ON Production.ProductSubcategory.ProductSubcategoryID = Production.Product.ProductSubcategoryID LEFT OUTER JOIN
-                         Production.ProductPhoto INNER JOIN
-                         Production.ProductProductPhoto ON Production.ProductPhoto.ProductPhotoID = Production.ProductProductPhoto.ProductPhotoID ON 
-                         Production.Product.ProductID = Production.ProductProductPhoto.ProductID
-ORDER BY Production.Product.Name";
+            this._commandCollection[0].CommandText = @"
+                      SELECT        Production.Product.ProductID, Production.Product.Name, Production.Product.Color, Production.Product.ListPrice, Production.Product.Size, Production.Product.SizeUnitMeasureCode,
+                      Production.Product.WeightUnitMeasureCode, Production.Product.Weight, Production.ProductPhoto.ThumbNailPhoto, Production.ProductCategory.ProductCategoryID,
+                      Production.ProductCategory.Name AS ProductCategory, Production.ProductSubcategory.ProductSubcategoryID, Production.ProductSubcategory.Name AS ProductSubcategory
+                      FROM            Production.ProductSubcategory INNER JOIN
+                      Production.ProductCategory ON Production.ProductSubcategory.ProductCategoryID = Production.ProductCategory.ProductCategoryID RIGHT OUTER JOIN
+                      Production.Product ON Production.ProductSubcategory.ProductSubcategoryID = Production.Product.ProductSubcategoryID LEFT OUTER JOIN
+                      Production.ProductPhoto INNER JOIN
+                      Production.ProductProductPhoto ON Production.ProductPhoto.ProductPhotoID = Production.ProductProductPhoto.ProductPhotoID ON
+                      Production.Product.ProductID = Production.ProductProductPhoto.ProductID
+                      ORDER BY Production.Product.Name
+                    ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4383,32 +4385,33 @@ ORDER BY Production.Product.Name";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        Production.Product.ProductID, Production.Product.Name, Production.P" +
-                "roduct.ListPrice, Production.Product.Color, Production.Product.Size, Production." +
-                "Product.SizeUnitMeasureCode, Production.Product.Weight, \r\n                      " +
-                "   Production.Product.WeightUnitMeasureCode, Production.ProductPhoto.LargePhoto," +
-                " Production.ProductModel.Name AS ModelName, Production.ProductDescription.Descri" +
-                "ption, \r\n                         Production.ProductCategory.ProductCategoryID, " +
-                "Production.ProductCategory.Name AS ProductCategory, Production.ProductSubcategor" +
-                "y.ProductSubcategoryID, \r\n                         Production.ProductSubcategory" +
-                ".Name AS ProductSubcategory\r\nFROM            Production.ProductSubcategory INNER" +
-                " JOIN\r\n                         Production.ProductCategory ON Production.Product" +
-                "Subcategory.ProductCategoryID = Production.ProductCategory.ProductCategoryID RIG" +
-                "HT OUTER JOIN\r\n                         Production.Product ON Production.Product" +
-                "Subcategory.ProductSubcategoryID = Production.Product.ProductSubcategoryID LEFT " +
-                "OUTER JOIN\r\n                         Production.ProductModelProductDescriptionCu" +
-                "lture INNER JOIN\r\n                         Production.ProductDescription ON Prod" +
-                "uction.ProductModelProductDescriptionCulture.ProductDescriptionID = Production.P" +
-                "roductDescription.ProductDescriptionID INNER JOIN\r\n                         Prod" +
-                "uction.ProductModel ON Production.ProductModelProductDescriptionCulture.CultureI" +
-                "D = N\'en\' AND \r\n                         Production.ProductModelProductDescripti" +
-                "onCulture.ProductModelID = Production.ProductModel.ProductModelID ON \r\n         " +
-                "                Production.Product.ProductModelID = Production.ProductModel.Prod" +
-                "uctModelID LEFT OUTER JOIN\r\n                         Production.ProductPhoto INN" +
-                "ER JOIN\r\n                         Production.ProductProductPhoto ON Production.P" +
-                "roductPhoto.ProductPhotoID = Production.ProductProductPhoto.ProductPhotoID ON \r\n" +
-                "                         Production.Product.ProductID = Production.ProductProduc" +
-                "tPhoto.ProductID\r\nORDER BY Production.Product.Name";
+            this._commandCollection[0].CommandText = "\r\n                      SELECT        Production.Product.ProductID, Production.Pr" +
+                "oduct.Name, Production.Product.ListPrice, Production.Product.Color, Production.P" +
+                "roduct.Size, Production.Product.SizeUnitMeasureCode, Production.Product.Weight,\r" +
+                "\n                      Production.Product.WeightUnitMeasureCode, Production.Prod" +
+                "uctPhoto.LargePhoto, Production.ProductModel.Name AS ModelName, Production.Produ" +
+                "ctDescription.Description,\r\n                      Production.ProductCategory.Pro" +
+                "ductCategoryID, Production.ProductCategory.Name AS ProductCategory, Production.P" +
+                "roductSubcategory.ProductSubcategoryID,\r\n                      Production.Produc" +
+                "tSubcategory.Name AS ProductSubcategory\r\n                      FROM            P" +
+                "roduction.ProductSubcategory INNER JOIN\r\n                      Production.Produc" +
+                "tCategory ON Production.ProductSubcategory.ProductCategoryID = Production.Produc" +
+                "tCategory.ProductCategoryID RIGHT OUTER JOIN\r\n                      Production.P" +
+                "roduct ON Production.ProductSubcategory.ProductSubcategoryID = Production.Produc" +
+                "t.ProductSubcategoryID LEFT OUTER JOIN\r\n                      Production.Product" +
+                "ModelProductDescriptionCulture INNER JOIN\r\n                      Production.Prod" +
+                "uctDescription ON Production.ProductModelProductDescriptionCulture.ProductDescri" +
+                "ptionID = Production.ProductDescription.ProductDescriptionID INNER JOIN\r\n       " +
+                "               Production.ProductModel ON Production.ProductModelProductDescript" +
+                "ionCulture.CultureID = N\'en\' AND\r\n                      Production.ProductModelP" +
+                "roductDescriptionCulture.ProductModelID = Production.ProductModel.ProductModelID" +
+                " ON\r\n                      Production.Product.ProductModelID = Production.Produc" +
+                "tModel.ProductModelID LEFT OUTER JOIN\r\n                      Production.ProductP" +
+                "hoto INNER JOIN\r\n                      Production.ProductProductPhoto ON Product" +
+                "ion.ProductPhoto.ProductPhotoID = Production.ProductProductPhoto.ProductPhotoID " +
+                "ON\r\n                      Production.Product.ProductID = Production.ProductProdu" +
+                "ctPhoto.ProductID\r\n                      ORDER BY Production.Product.Name\r\n     " +
+                "               ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4576,8 +4579,9 @@ ORDER BY Production.Product.Name";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        ProductCategoryID, Name\r\nFROM            Production.ProductCategory" +
-                "\r\nORDER BY Name";
+            this._commandCollection[0].CommandText = "\r\n                      SELECT        ProductCategoryID, Name\r\n                  " +
+                "    FROM            Production.ProductCategory\r\n                      ORDER BY N" +
+                "ame\r\n                    ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4746,8 +4750,9 @@ ORDER BY Production.Product.Name";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        ProductSubcategoryID, Name, ProductCategoryID\r\nFROM            Prod" +
-                "uction.ProductSubcategory\r\nORDER BY Name";
+            this._commandCollection[0].CommandText = "\r\n                      SELECT        ProductSubcategoryID, Name, ProductCategory" +
+                "ID\r\n                      FROM            Production.ProductSubcategory\r\n       " +
+                "               ORDER BY Name\r\n                    ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4919,7 +4924,8 @@ ORDER BY Production.Product.Name";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        Sales.ShoppingCartItem.*\r\nFROM            Sales.ShoppingCartItem";
+            this._commandCollection[0].CommandText = "\r\n                      SELECT        Sales.ShoppingCartItem.*\r\n                 " +
+                "     FROM            Sales.ShoppingCartItem\r\n                    ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

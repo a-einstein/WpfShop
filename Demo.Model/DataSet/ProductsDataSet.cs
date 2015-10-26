@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Demo.Model
+namespace Demo.Model.DataSet
 {
     // Note that nullable properties are changed in the xsd to have NullValue to be 'Null' instead of 'Throw exception'. 
     // For value types like int a true value may have been chosen, like 0.

@@ -3,7 +3,7 @@ using Demo.Interfaces;
 using Demo.Model;
 using Microsoft.Practices.Prism.Commands;
 using System.Windows.Input;
-using ProductDetailsRow = Demo.Model.ProductsDataSet.ProductDetailsRow;
+using ProductDetailsRow = Demo.Model.DataSet.ProductsDataSet.ProductDetailsRow;
 
 namespace Demo.ViewModels
 {

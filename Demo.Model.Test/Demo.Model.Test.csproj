@@ -52,11 +52,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ModelTest.cs" />
-    <Compile Include="ProductCategoriesRepositoryTest.cs" />
-    <Compile Include="ProductsRepositoryTest.cs" />
-    <Compile Include="ProductSubcategoriesRepositoryTest.cs" />
+    <Compile Include="RepositoriesTest\ModelTest.cs" />
+    <Compile Include="RepositoriesTest\ProductCategoriesRepositoryTest.cs" />
+    <Compile Include="RepositoriesTest\ProductsRepositoryTest.cs" />
+    <Compile Include="RepositoriesTest\ProductSubcategoriesRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoriesTest\CartItemsRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Demo.Model\Demo.Model.csproj">

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data;
-using ShoppingCartItemsDataTable = Demo.Model.ProductsDataSet.ShoppingCartItemsDataTable;
-using ShoppingCartItemsRow = Demo.Model.ProductsDataSet.ShoppingCartItemsRow;
-using ShoppingCartsDataTable = Demo.Model.ProductsDataSet.ShoppingCartsDataTable;
-using ShoppingCartsRow = Demo.Model.ProductsDataSet.ShoppingCartsRow;
+using ShoppingCartItemsDataTable = Demo.Model.DataSet.ProductsDataSet.ShoppingCartItemsDataTable;
+using ShoppingCartItemsRow = Demo.Model.DataSet.ProductsDataSet.ShoppingCartItemsRow;
+using ShoppingCartsDataTable = Demo.Model.DataSet.ProductsDataSet.ShoppingCartsDataTable;
+using ShoppingCartsRow = Demo.Model.DataSet.ProductsDataSet.ShoppingCartsRow;
 
 namespace Demo.Model
 {
@@ -70,7 +70,8 @@ namespace Demo.Model
         private const string cartItemsNumberExceptionMessage = "Unexpected number of found ShoppingCartItems.";
         private const string productNotFoundExceptionMessage = "Product not found.";
 
-        public void AddProduct(int productId)
+        // TODO Make ProductId the key. Then returning ShoppingCartItemID is no longer necessary.
+        public int AddProduct(int productId)
         {
             var productQuery = string.Format("ProductID = {0}", productId);
             var existingCartItems = Items.Table.Select(productQuery);
@@ -83,9 +84,11 @@ namespace Demo.Model
                 if (productRow != null)
                 {
                     // Note that ShoppingCartId currently is non nullable.
-                    CartItems.AddShoppingCartItemsRow(Cart, 1, productRow, now, now);
+                    var cartItem = CartItems.AddShoppingCartItemsRow(Cart, 1, productRow, now, now);
 
                     CartItems.AcceptChanges();
+
+                    return cartItem.ShoppingCartItemID;
                 }
                 else
                     throw new Exception(productNotFoundExceptionMessage);
@@ -96,11 +99,14 @@ namespace Demo.Model
                 cartItem.Quantity += 1;
 
                 cartItem.AcceptChanges();
+
+                return cartItem.ShoppingCartItemID;
             }
             else
                 throw new Exception(cartItemsNumberExceptionMessage);
         }
 
+        // TODO Make ProductId the key. Is more logical and makes it easy to get a FindByProductID.
         public void DeleteProduct(int cartItemID)
         {
             var cartItem = CartItems.FindByShoppingCartItemID(cartItemID);
@@ -121,6 +127,7 @@ namespace Demo.Model
             : 0;
         }
 
+        // TODO make this decimal.
         public double CartValue()
         {
             return CartItems.Count > 0
