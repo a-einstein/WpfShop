@@ -70,11 +70,9 @@ namespace Demo.Model
         private const string cartItemsNumberExceptionMessage = "Unexpected number of found ShoppingCartItems.";
         private const string productNotFoundExceptionMessage = "Product not found.";
 
-        // TODO Make ProductId the key. Then returning ShoppingCartItemID is no longer necessary.
-        public int AddProduct(int productId)
+        public void AddProduct(int productId)
         {
-            var productQuery = string.Format("ProductID = {0}", productId);
-            var existingCartItems = Items.Table.Select(productQuery);
+            DataRow[] existingCartItems = CartItems.GetByProductId(productId);
 
             if (existingCartItems.Length == 0)
             {
@@ -87,8 +85,6 @@ namespace Demo.Model
                     var cartItem = CartItems.AddShoppingCartItemsRow(Cart, 1, productRow, now, now);
 
                     CartItems.AcceptChanges();
-
-                    return cartItem.ShoppingCartItemID;
                 }
                 else
                     throw new Exception(productNotFoundExceptionMessage);
@@ -99,20 +95,21 @@ namespace Demo.Model
                 cartItem.Quantity += 1;
 
                 cartItem.AcceptChanges();
-
-                return cartItem.ShoppingCartItemID;
             }
             else
                 throw new Exception(cartItemsNumberExceptionMessage);
         }
 
-        // TODO Make ProductId the key. Is more logical and makes it easy to get a FindByProductID.
-        public void DeleteProduct(int cartItemID)
+        public void DeleteProduct(int productId)
         {
-            var cartItem = CartItems.FindByShoppingCartItemID(cartItemID);
+            // It would be more convenient if ProductId was the key. Is more logical and makes it easy to get the cartItem by FindByProductID. 
+            // Unfortunately this is table is linked to an actual table in the DB which has key ShoppingCartItemID.
+            DataRow[] existingCartItems = CartItems.GetByProductId(productId);
 
-            if (cartItem != null)
+            if (existingCartItems.Length == 1)
             {
+                var cartItem = existingCartItems[0] as ShoppingCartItemsRow;
+
                 cartItem.Delete();
                 CartItems.AcceptChanges();
             }
@@ -129,10 +126,6 @@ namespace Demo.Model
 
         public Decimal CartValue()
         {
-            var value = CartItems.Compute("Sum(Value)", null);
-            var dec = (decimal)value;
-            var conv = Convert.ToDecimal(value);
-
             return CartItems.Count > 0
             ? Convert.ToDecimal(CartItems.Compute("Sum(Value)", null))
             : 0;

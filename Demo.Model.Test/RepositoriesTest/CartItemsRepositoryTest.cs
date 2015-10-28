@@ -25,11 +25,11 @@ namespace Demo.Model.Test
 
             var target = CartItemsRepository.Instance;
 
-            var cartItemId1 = target.AddProduct(productId1);
+            target.AddProduct(productId1);
             Assert.AreEqual(1, target.ProductsCount());
             Assert.AreEqual(price1, target.CartValue());
 
-            var cartItemId2 = target.AddProduct(productId2);
+            target.AddProduct(productId2);
             Assert.AreEqual(2, target.ProductsCount());
             Assert.AreEqual(price1 + price2, target.CartValue());
 
@@ -37,7 +37,7 @@ namespace Demo.Model.Test
             Assert.AreEqual(3, target.ProductsCount());
             Assert.AreEqual(price1 + 2*price2, target.CartValue());
 
-            target.DeleteProduct(cartItemId1);
+            target.DeleteProduct(productId1);
             Assert.AreEqual(2, target.ProductsCount());
             Assert.AreEqual(2*price2, target.CartValue());
         }

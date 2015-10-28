@@ -65,16 +65,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="DataSet\ProductsDataSet.xsc">
-      <DependentUpon>ProductsDataSet.xsd</DependentUpon>
-    </None>
     <None Include="DataSet\ProductsDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ProductsDataSet.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="DataSet\ProductsDataSet.xss">
-      <DependentUpon>ProductsDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

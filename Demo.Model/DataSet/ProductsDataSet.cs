@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Data;
+using System.Diagnostics;
 
 namespace Demo.Model.DataSet
 {
@@ -151,6 +152,18 @@ namespace Demo.Model.DataSet
                 newRow.ItemArray = columnValuesArray;
 
                 return newRow;
+            }
+        }
+
+        [DebuggerDisplay("{Count} rows")]
+        public partial class ShoppingCartItemsDataTable
+        {
+            public DataRow[] GetByProductId(int productId)
+            {
+                var productQuery = string.Format("ProductID = {0}", productId);
+                var cartItems = Select(productQuery);
+
+                return cartItems;
             }
         }
 
