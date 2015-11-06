@@ -64,7 +64,7 @@
       <Project>{7ee41183-8fef-4dd8-96f3-ee926ad409de}</Project>
       <Name>Demo.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Robert\Documents\Visual Studio 2015\Projects\WpfTestApplication\Demo.ServiceClients.Products\Demo.ServiceClients.Products.csproj">
+    <ProjectReference Include="..\Demo.ServiceClients.Products\Demo.ServiceClients.Products.csproj">
       <Project>{24156b78-6e6c-438c-bf1e-b34fd3c68800}</Project>
       <Name>Demo.ServiceClients.Products</Name>
     </ProjectReference>
