@@ -7,6 +7,7 @@ namespace Demo.Model
  
     // TODO After having moved data retrieval to a service, on both sides is still hung on to a DataSet, with conversions as a result. That may be optimized.
 
+
     // TODO What to do with this class and its contents?
 
     public class ShoppingWrapper

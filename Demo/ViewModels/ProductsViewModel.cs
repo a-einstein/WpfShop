@@ -26,7 +26,6 @@ namespace Demo.ViewModels
 
         protected override async void SetFilters()
         {
-            // TODO Possibly maintain static collections in ShoppingWrapper again.
             var getCategoriesTask = ProductCategoriesRepository.Instance.ReadList();
             var getSubcategoriesTask = ProductSubcategoriesRepository.Instance.ReadList();
 
