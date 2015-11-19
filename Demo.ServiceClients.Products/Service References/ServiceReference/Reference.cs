@@ -15,680 +15,52 @@ namespace Demo.ServiceClients.Products.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductsOverviewListDto", Namespace="http://schemas.datacontract.org/2004/07/ProductsService", ItemName="ProductsOverviewRowDto")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductsOverviewList", Namespace="http://schemas.datacontract.org/2004/07/Common.Dtos", ItemName="ProductsOverviewObject")]
     [System.SerializableAttribute()]
-    public class ProductsOverviewListDto : System.Collections.Generic.List<Demo.ServiceClients.Products.ServiceReference.ProductsOverviewRowDto> {
+    public class ProductsOverviewList : System.Collections.Generic.List<Common.DomainClasses.ProductsOverviewObject> {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductsOverviewRowDto", Namespace="http://schemas.datacontract.org/2004/07/ProductsService")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductCategoryList", Namespace="http://schemas.datacontract.org/2004/07/Common.Dtos", ItemName="ProductCategory")]
     [System.SerializableAttribute()]
-    public partial class ProductsOverviewRowDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ColorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal ListPriceField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ProductCategoryField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ProductCategoryIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ProductIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ProductSubcategoryField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ProductSubcategoryIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string SizeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string SizeUnitMeasureCodeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] ThumbNailPhotoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string WeightUnitMeasureCodeField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Color {
-            get {
-                return this.ColorField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ColorField, value) != true)) {
-                    this.ColorField = value;
-                    this.RaisePropertyChanged("Color");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal ListPrice {
-            get {
-                return this.ListPriceField;
-            }
-            set {
-                if ((this.ListPriceField.Equals(value) != true)) {
-                    this.ListPriceField = value;
-                    this.RaisePropertyChanged("ListPrice");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ProductCategory {
-            get {
-                return this.ProductCategoryField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ProductCategoryField, value) != true)) {
-                    this.ProductCategoryField = value;
-                    this.RaisePropertyChanged("ProductCategory");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ProductCategoryID {
-            get {
-                return this.ProductCategoryIDField;
-            }
-            set {
-                if ((this.ProductCategoryIDField.Equals(value) != true)) {
-                    this.ProductCategoryIDField = value;
-                    this.RaisePropertyChanged("ProductCategoryID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ProductID {
-            get {
-                return this.ProductIDField;
-            }
-            set {
-                if ((this.ProductIDField.Equals(value) != true)) {
-                    this.ProductIDField = value;
-                    this.RaisePropertyChanged("ProductID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ProductSubcategory {
-            get {
-                return this.ProductSubcategoryField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ProductSubcategoryField, value) != true)) {
-                    this.ProductSubcategoryField = value;
-                    this.RaisePropertyChanged("ProductSubcategory");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ProductSubcategoryID {
-            get {
-                return this.ProductSubcategoryIDField;
-            }
-            set {
-                if ((this.ProductSubcategoryIDField.Equals(value) != true)) {
-                    this.ProductSubcategoryIDField = value;
-                    this.RaisePropertyChanged("ProductSubcategoryID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Size {
-            get {
-                return this.SizeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SizeField, value) != true)) {
-                    this.SizeField = value;
-                    this.RaisePropertyChanged("Size");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string SizeUnitMeasureCode {
-            get {
-                return this.SizeUnitMeasureCodeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SizeUnitMeasureCodeField, value) != true)) {
-                    this.SizeUnitMeasureCodeField = value;
-                    this.RaisePropertyChanged("SizeUnitMeasureCode");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] ThumbNailPhoto {
-            get {
-                return this.ThumbNailPhotoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ThumbNailPhotoField, value) != true)) {
-                    this.ThumbNailPhotoField = value;
-                    this.RaisePropertyChanged("ThumbNailPhoto");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string WeightUnitMeasureCode {
-            get {
-                return this.WeightUnitMeasureCodeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.WeightUnitMeasureCodeField, value) != true)) {
-                    this.WeightUnitMeasureCodeField = value;
-                    this.RaisePropertyChanged("WeightUnitMeasureCode");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
+    public class ProductCategoryList : System.Collections.Generic.List<Common.DomainClasses.ProductCategory> {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductDetailsRowDto", Namespace="http://schemas.datacontract.org/2004/07/ProductsService")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductSubcategoryList", Namespace="http://schemas.datacontract.org/2004/07/Common.Dtos", ItemName="ProductSubcategory")]
     [System.SerializableAttribute()]
-    public partial class ProductDetailsRowDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ColorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] LargePhotoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal ListPriceField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ModelNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ProductCategoryField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ProductCategoryIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ProductIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ProductSubcategoryField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ProductSubcategoryIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string SizeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string SizeUnitMeasureCodeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal WeightField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string WeightUnitMeasureCodeField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Color {
-            get {
-                return this.ColorField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ColorField, value) != true)) {
-                    this.ColorField = value;
-                    this.RaisePropertyChanged("Color");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description {
-            get {
-                return this.DescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] LargePhoto {
-            get {
-                return this.LargePhotoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LargePhotoField, value) != true)) {
-                    this.LargePhotoField = value;
-                    this.RaisePropertyChanged("LargePhoto");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal ListPrice {
-            get {
-                return this.ListPriceField;
-            }
-            set {
-                if ((this.ListPriceField.Equals(value) != true)) {
-                    this.ListPriceField = value;
-                    this.RaisePropertyChanged("ListPrice");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ModelName {
-            get {
-                return this.ModelNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ModelNameField, value) != true)) {
-                    this.ModelNameField = value;
-                    this.RaisePropertyChanged("ModelName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ProductCategory {
-            get {
-                return this.ProductCategoryField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ProductCategoryField, value) != true)) {
-                    this.ProductCategoryField = value;
-                    this.RaisePropertyChanged("ProductCategory");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ProductCategoryID {
-            get {
-                return this.ProductCategoryIDField;
-            }
-            set {
-                if ((this.ProductCategoryIDField.Equals(value) != true)) {
-                    this.ProductCategoryIDField = value;
-                    this.RaisePropertyChanged("ProductCategoryID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ProductID {
-            get {
-                return this.ProductIDField;
-            }
-            set {
-                if ((this.ProductIDField.Equals(value) != true)) {
-                    this.ProductIDField = value;
-                    this.RaisePropertyChanged("ProductID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ProductSubcategory {
-            get {
-                return this.ProductSubcategoryField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ProductSubcategoryField, value) != true)) {
-                    this.ProductSubcategoryField = value;
-                    this.RaisePropertyChanged("ProductSubcategory");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ProductSubcategoryID {
-            get {
-                return this.ProductSubcategoryIDField;
-            }
-            set {
-                if ((this.ProductSubcategoryIDField.Equals(value) != true)) {
-                    this.ProductSubcategoryIDField = value;
-                    this.RaisePropertyChanged("ProductSubcategoryID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Size {
-            get {
-                return this.SizeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SizeField, value) != true)) {
-                    this.SizeField = value;
-                    this.RaisePropertyChanged("Size");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string SizeUnitMeasureCode {
-            get {
-                return this.SizeUnitMeasureCodeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SizeUnitMeasureCodeField, value) != true)) {
-                    this.SizeUnitMeasureCodeField = value;
-                    this.RaisePropertyChanged("SizeUnitMeasureCode");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal Weight {
-            get {
-                return this.WeightField;
-            }
-            set {
-                if ((this.WeightField.Equals(value) != true)) {
-                    this.WeightField = value;
-                    this.RaisePropertyChanged("Weight");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string WeightUnitMeasureCode {
-            get {
-                return this.WeightUnitMeasureCodeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.WeightUnitMeasureCodeField, value) != true)) {
-                    this.WeightUnitMeasureCodeField = value;
-                    this.RaisePropertyChanged("WeightUnitMeasureCode");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductCategoryListDto", Namespace="http://schemas.datacontract.org/2004/07/ProductsService", ItemName="ProductCategoryRowDto")]
-    [System.SerializableAttribute()]
-    public class ProductCategoryListDto : System.Collections.Generic.List<Demo.ServiceClients.Products.ServiceReference.ProductCategoryRowDto> {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductCategoryRowDto", Namespace="http://schemas.datacontract.org/2004/07/ProductsService")]
-    [System.SerializableAttribute()]
-    public partial class ProductCategoryRowDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ProductCategoryIDField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ProductCategoryID {
-            get {
-                return this.ProductCategoryIDField;
-            }
-            set {
-                if ((this.ProductCategoryIDField.Equals(value) != true)) {
-                    this.ProductCategoryIDField = value;
-                    this.RaisePropertyChanged("ProductCategoryID");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductSubcategoryListDto", Namespace="http://schemas.datacontract.org/2004/07/ProductsService", ItemName="ProductSubcategoryRowDto")]
-    [System.SerializableAttribute()]
-    public class ProductSubcategoryListDto : System.Collections.Generic.List<Demo.ServiceClients.Products.ServiceReference.ProductSubcategoryRowDto> {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductSubcategoryRowDto", Namespace="http://schemas.datacontract.org/2004/07/ProductsService")]
-    [System.SerializableAttribute()]
-    public partial class ProductSubcategoryRowDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ProductCategoryIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ProductSubcategoryIDField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ProductCategoryID {
-            get {
-                return this.ProductCategoryIDField;
-            }
-            set {
-                if ((this.ProductCategoryIDField.Equals(value) != true)) {
-                    this.ProductCategoryIDField = value;
-                    this.RaisePropertyChanged("ProductCategoryID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ProductSubcategoryID {
-            get {
-                return this.ProductSubcategoryIDField;
-            }
-            set {
-                if ((this.ProductSubcategoryIDField.Equals(value) != true)) {
-                    this.ProductSubcategoryIDField = value;
-                    this.RaisePropertyChanged("ProductSubcategoryID");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
+    public class ProductSubcategoryList : System.Collections.Generic.List<Common.DomainClasses.ProductSubcategory> {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IProductsService")]
     public interface IProductsService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductsOverview", ReplyAction="http://tempuri.org/IProductsService/GetProductsOverviewResponse")]
-        Demo.ServiceClients.Products.ServiceReference.ProductsOverviewListDto GetProductsOverview();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductsOverviewBy", ReplyAction="http://tempuri.org/IProductsService/GetProductsOverviewByResponse")]
+        Demo.ServiceClients.Products.ServiceReference.ProductsOverviewList GetProductsOverviewBy(int productCategoryID, int productSubcategoryID, string productNameString);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductsOverview", ReplyAction="http://tempuri.org/IProductsService/GetProductsOverviewResponse")]
-        System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductsOverviewListDto> GetProductsOverviewAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductDetails", ReplyAction="http://tempuri.org/IProductsService/GetProductDetailsResponse")]
-        Demo.ServiceClients.Products.ServiceReference.ProductDetailsRowDto GetProductDetails(int productId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductsOverviewBy", ReplyAction="http://tempuri.org/IProductsService/GetProductsOverviewByResponse")]
+        System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductsOverviewList> GetProductsOverviewByAsync(int productCategoryID, int productSubcategoryID, string productNameString);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductDetails", ReplyAction="http://tempuri.org/IProductsService/GetProductDetailsResponse")]
-        System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductDetailsRowDto> GetProductDetailsAsync(int productId);
+        Common.DomainClasses.Product GetProductDetails(int productId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductDetails", ReplyAction="http://tempuri.org/IProductsService/GetProductDetailsResponse")]
+        System.Threading.Tasks.Task<Common.DomainClasses.Product> GetProductDetailsAsync(int productId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductCategories", ReplyAction="http://tempuri.org/IProductsService/GetProductCategoriesResponse")]
-        Demo.ServiceClients.Products.ServiceReference.ProductCategoryListDto GetProductCategories();
+        Demo.ServiceClients.Products.ServiceReference.ProductCategoryList GetProductCategories();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductCategories", ReplyAction="http://tempuri.org/IProductsService/GetProductCategoriesResponse")]
-        System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductCategoryListDto> GetProductCategoriesAsync();
+        System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductCategoryList> GetProductCategoriesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductSubcategories", ReplyAction="http://tempuri.org/IProductsService/GetProductSubcategoriesResponse")]
-        Demo.ServiceClients.Products.ServiceReference.ProductSubcategoryListDto GetProductSubcategories();
+        Demo.ServiceClients.Products.ServiceReference.ProductSubcategoryList GetProductSubcategories();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductSubcategories", ReplyAction="http://tempuri.org/IProductsService/GetProductSubcategoriesResponse")]
-        System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductSubcategoryListDto> GetProductSubcategoriesAsync();
+        System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductSubcategoryList> GetProductSubcategoriesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -718,35 +90,35 @@ namespace Demo.ServiceClients.Products.ServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public Demo.ServiceClients.Products.ServiceReference.ProductsOverviewListDto GetProductsOverview() {
-            return base.Channel.GetProductsOverview();
+        public Demo.ServiceClients.Products.ServiceReference.ProductsOverviewList GetProductsOverviewBy(int productCategoryID, int productSubcategoryID, string productNameString) {
+            return base.Channel.GetProductsOverviewBy(productCategoryID, productSubcategoryID, productNameString);
         }
         
-        public System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductsOverviewListDto> GetProductsOverviewAsync() {
-            return base.Channel.GetProductsOverviewAsync();
+        public System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductsOverviewList> GetProductsOverviewByAsync(int productCategoryID, int productSubcategoryID, string productNameString) {
+            return base.Channel.GetProductsOverviewByAsync(productCategoryID, productSubcategoryID, productNameString);
         }
         
-        public Demo.ServiceClients.Products.ServiceReference.ProductDetailsRowDto GetProductDetails(int productId) {
+        public Common.DomainClasses.Product GetProductDetails(int productId) {
             return base.Channel.GetProductDetails(productId);
         }
         
-        public System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductDetailsRowDto> GetProductDetailsAsync(int productId) {
+        public System.Threading.Tasks.Task<Common.DomainClasses.Product> GetProductDetailsAsync(int productId) {
             return base.Channel.GetProductDetailsAsync(productId);
         }
         
-        public Demo.ServiceClients.Products.ServiceReference.ProductCategoryListDto GetProductCategories() {
+        public Demo.ServiceClients.Products.ServiceReference.ProductCategoryList GetProductCategories() {
             return base.Channel.GetProductCategories();
         }
         
-        public System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductCategoryListDto> GetProductCategoriesAsync() {
+        public System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductCategoryList> GetProductCategoriesAsync() {
             return base.Channel.GetProductCategoriesAsync();
         }
         
-        public Demo.ServiceClients.Products.ServiceReference.ProductSubcategoryListDto GetProductSubcategories() {
+        public Demo.ServiceClients.Products.ServiceReference.ProductSubcategoryList GetProductSubcategories() {
             return base.Channel.GetProductSubcategories();
         }
         
-        public System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductSubcategoryListDto> GetProductSubcategoriesAsync() {
+        public System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductSubcategoryList> GetProductSubcategoriesAsync() {
             return base.Channel.GetProductSubcategoriesAsync();
         }
     }

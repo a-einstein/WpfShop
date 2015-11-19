@@ -169,15 +169,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
     <AppDesigner Include="Properties\" />
@@ -188,6 +179,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\AdventureWorksServices\Common\Common.csproj">
+      <Project>{493d8ed2-1ba9-436c-981f-3a84523fa8a0}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Demo.Model\Demo.Model.csproj">
       <Project>{7ee41183-8fef-4dd8-96f3-ee926ad409de}</Project>
       <Name>Demo.Model</Name>

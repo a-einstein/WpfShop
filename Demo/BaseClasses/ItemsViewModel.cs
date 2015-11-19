@@ -1,21 +1,18 @@
-﻿using System.Data;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace Demo.BaseClasses
 {
-    public abstract class ItemsViewModel : ViewModel
+    public abstract class ItemsViewModel<T, U> : ViewModel
     {
         public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register("Items", typeof(DataView), typeof(ItemsViewModel));
+            DependencyProperty.Register("Items", typeof(ObservableCollection<T>), typeof(ItemsViewModel<T,U>));
 
-        public virtual DataView Items
+        // TODO Some sort of view would be more convenient to enable sorting in situ (filtering is no longer done so). But remember: that no longer applies when paging.
+        public virtual ObservableCollection<T> Items
         {
-            get { return (DataView)GetValue(ItemsProperty); }
-            set 
-            { 
-                SetValue(ItemsProperty, value);
-                RaisePropertyChanged("ItemsCount");
-            }
+            get { return (ObservableCollection<T>)GetValue(ItemsProperty); }
+            set { SetValue(ItemsProperty, value); }
         }
 
         // Convenience property to signal changes.
@@ -24,8 +21,7 @@ namespace Demo.BaseClasses
 
         /// <summary>
         /// A value enabling recognition of empty Items.
-        /// Note that adding a type to the class as a parameter instead of using object did not work in the comparison.
         /// </summary>
-        public abstract object NoId { get; }
+        public abstract U NoId { get; }
     }
 }

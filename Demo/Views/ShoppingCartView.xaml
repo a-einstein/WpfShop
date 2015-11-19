@@ -36,7 +36,7 @@
                             <!--Note that Width Auto of GridViewColumns does not work and seems to be a bug according to the web. Therefor a thin empty header row is used to enable resizing.-->
                             <!--TODO Make Height of row smaller.-->
                             <GridView ColumnHeaderContainerStyle="{StaticResource ShoppingCartColumnHeaderStyle}">
-                                <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=ProductName}"/>
+                                <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Name}"/>
 
                                 <GridViewColumn Width="Auto">
                                     <GridViewColumn.CellTemplate>
@@ -84,7 +84,7 @@
                                 <GridViewColumn Width="Auto">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Content="X" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding ProductID}" Style="{StaticResource DeleteButtonStyle}"/>
+                                            <Button Content="X" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding}" Style="{StaticResource DeleteButtonStyle}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

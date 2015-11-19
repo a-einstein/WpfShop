@@ -1,20 +1,22 @@
-﻿using Demo.BaseClasses;
+﻿using Common.DomainClasses;
+using Demo.BaseClasses;
 using Demo.Model;
 using Microsoft.Practices.Prism.Commands;
 using System;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 
 namespace Demo.ViewModels
 {
-    public class ShoppingCartViewModel : ItemsViewModel
+    public class ShoppingCartViewModel : ItemsViewModel<CartItem, object>
     {
         private ShoppingCartViewModel()
         {
-            CartItemsRepository.Instance.Items.ListChanged += CartItems_ListChanged;
+            Items = CartItemsRepository.Instance.List;
 
-            Refresh();
+            CartItemsRepository.Instance.List.CollectionChanged += List_CollectionChanged;
         }
 
         private static volatile ShoppingCartViewModel instance;
@@ -38,59 +40,58 @@ namespace Demo.ViewModels
             }
         }
 
-        public override void Refresh()
-        {
-            Items = CartItemsRepository.Instance.Items;
-        }
-
         protected override void SetCommands()
         {
             base.SetCommands();
 
-            DeleteCommand = new DelegateCommand<object>(Delete);
+            DeleteCommand = new DelegateCommand<CartItem>(Delete);
         }
 
-        public override object NoId { get { return ShoppingWrapper.NoId; } }
+        public override object NoId { get { return CartItemsRepository.Instance.NoId; } }
 
-        public void CartProduct(int productId)
+        public void CartProduct(IShoppingProduct productsOverviewObject)
         {
-            CartItemsRepository.Instance.AddProduct(productId);
+            CartItemsRepository.Instance.AddProduct(productsOverviewObject);
         }
 
         public ICommand DeleteCommand { get; set; }
 
-        private void Delete(object parameter)
+        private void Delete(CartItem cartItem)
         {
-            int cartItemID = (int)parameter;
-
-            CartItemsRepository.Instance.DeleteProduct(cartItemID);
+            CartItemsRepository.Instance.DeleteProduct(cartItem);
         }
 
-        private void CartItems_ListChanged(object sender, ListChangedEventArgs e)
+        private void List_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            switch (e.ListChangedType)
+            switch (e.Action)
             {
-                case ListChangedType.ItemChanged:
-                    // Note that Quantity may become 0, which results in correct totals, but with an 'empty' CartItem still present, which can be removed by the delete button.
-                    // This may either be considered handy as the user can correct a mistake, or be considered confusing.
-                    // TODO Maybe remove CartItem on Quantity == 0, but that can not trivially be done here.
-                    if (e.PropertyDescriptor != null && e.PropertyDescriptor.Name == "Quantity")
-                        ProductItemsCount = CartItemsRepository.Instance.ProductsCount();
-
-                    // Note that Value is calculated once AFTER setting of Quantity. So that is the trigger to calculate totals.
-                    // Note that the price may be 0, so that Value does not change on changes of Quantity.
-                    if (e.PropertyDescriptor != null && e.PropertyDescriptor.Name == "Value")
-                        TotalValue = CartItemsRepository.Instance.CartValue();
-
+                case NotifyCollectionChangedAction.Add:
+                    (e.NewItems[0] as CartItem).PropertyChanged += CartItem_PropertyChanged;
                     break;
-
-                // Note that this turned out a more reliable event than ItemAdded and ItemDeleted.
-                case ListChangedType.Reset:
-                    RaisePropertyChanged("ItemsCount");
-                    ProductItemsCount = CartItemsRepository.Instance.ProductsCount();
-                    TotalValue = CartItemsRepository.Instance.CartValue();
+                case NotifyCollectionChangedAction.Remove:
+                    (e.OldItems[0] as CartItem).PropertyChanged -= CartItem_PropertyChanged;
                     break;
             }
+
+            // TODO Put this as calculated set in UpdateAggregates too?
+            RaisePropertyChanged("ItemsCount");
+
+            UpdateAggregates();
+
+        }
+
+        private void CartItem_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName== "Quantity")
+            {
+                UpdateAggregates();
+            }
+        }
+
+        private void UpdateAggregates()
+        {
+            ProductItemsCount = CartItemsRepository.Instance.ProductsCount();
+            TotalValue = CartItemsRepository.Instance.CartValue();
         }
 
         public static readonly DependencyProperty ProductItemCountProperty =
@@ -102,13 +103,13 @@ namespace Demo.ViewModels
             set { SetValue(ProductItemCountProperty, value); }
         }
 
-        public static readonly DependencyProperty TotalProperty =
+        public static readonly DependencyProperty TotalValueProperty =
             DependencyProperty.Register("TotalValue", typeof(Decimal), typeof(ShoppingCartViewModel), new PropertyMetadata((Decimal)0));
 
         public Decimal TotalValue
         {
-            get { return (Decimal)GetValue(TotalProperty); }
-            set { SetValue(TotalProperty, value); }
+            get { return (Decimal)GetValue(TotalValueProperty); }
+            set { SetValue(TotalValueProperty, value); }
         }
     }
 }

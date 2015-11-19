@@ -1,19 +1,19 @@
-﻿using Demo.BaseClasses;
+﻿using Common.DomainClasses;
+using Demo.BaseClasses;
 using Demo.Interfaces;
 using Demo.Model;
 using Microsoft.Practices.Prism.Commands;
 using System.Windows.Input;
-using ProductDetailsRow = Demo.Model.DataSet.ProductsDataSet.ProductDetailsRow;
 
 namespace Demo.ViewModels
 {
-    class ProductViewModel : ItemViewModel<ProductDetailsRow>, IShopper
+    class ProductViewModel : ItemViewModel<Product, int>, IShopper
     {
-        public override object NoId { get { return ShoppingWrapper.NoId; } }
+        public override int NoId { get { return ProductsRepository.Instance.NoId; } }
 
         protected override object GetItemId()
         {
-            return Item != null ? Item.ProductID : NoId;
+            return Item != null ? Item.Id : NoId;
         }
 
         public override async void Refresh(object productId)
@@ -26,14 +26,14 @@ namespace Demo.ViewModels
         {
             base.SetCommands();
 
-            CartCommand = new DelegateCommand<object>(CartProduct);
+            CartCommand = new DelegateCommand<Product>(CartProduct);
         }
 
         public ICommand CartCommand { get; set; }
 
-        private void CartProduct(object parameter)
+        private void CartProduct(Product product)
         {
-            ShoppingCartViewModel.Instance.CartProduct((int)parameter);
+            ShoppingCartViewModel.Instance.CartProduct(product);
         }
     }
 }

@@ -32,7 +32,7 @@
         <Image Grid.Row="0" Grid.Column="0" Source="{Binding Item.LargePhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}" Style="{StaticResource ImageStyle}" MaxWidth="240" MaxHeight="240"/>
 
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-            <Button Content="Shop +" Command="{Binding CartCommand}" CommandParameter="{Binding Item.ProductID}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"/>
+            <Button Content="Shop +" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="2">

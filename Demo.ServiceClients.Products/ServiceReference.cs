@@ -3,14 +3,14 @@
 namespace ServiceClients.Products.ServiceReference
 {
     [DebuggerDisplay("{ProductID}, {Name}")]
-    public partial class ProductsOverviewRowDto { }
+    public partial class ProductsOverviewObject { }
 
     [DebuggerDisplay("{ProductID}, {Name}")]
-    public partial class ProductDetailsRowDto { }
+    public partial class Product { }
 
     [DebuggerDisplay("{ProductCategoryID}, {Name}")]
-    public partial class ProductCategoryRowDto { }
+    public partial class ProductCategory { }
 
     [DebuggerDisplay("{ProductCategoryID}, {ProductSubcategoryID}, {Name}")]
-    public partial class ProductSubcategoryRowDto { }
+    public partial class ProductSubcategory { }
 }

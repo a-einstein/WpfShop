@@ -32,10 +32,10 @@
 
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <TextBlock Text="{Binding MasterFilterLabel}" Style="{StaticResource LineTextBlockStyle}"/>
-                <ComboBox ItemsSource="{Binding MasterFilterItems}" DisplayMemberPath="{Binding MasterFilterDisplayMemberPath}" SelectedValuePath="{Binding MasterFilterSelectedValuePath}" SelectedValue="{Binding MasterFilterValue}" Style="{StaticResource FilterComboBoxStyle}"/>
+                <ComboBox ItemsSource="{Binding MasterFilterItems}" DisplayMemberPath="{Binding MasterFilterDisplayMemberPath}" SelectedValue="{Binding MasterFilterValue}" Style="{StaticResource FilterComboBoxStyle}"/>
 
                 <TextBlock Text="{Binding DetailFilterLabel}" Style="{StaticResource LineTextBlockStyle}"/>
-                <ComboBox ItemsSource="{Binding DetailFilterItems}" DisplayMemberPath="{Binding DetailFilterDisplayMemberPath}" SelectedValuePath="{Binding DetailFilterSelectedValuePath}" SelectedValue="{Binding DetailFilterValue}" Style="{StaticResource FilterComboBoxStyle}"/>
+                <ComboBox ItemsSource="{Binding DetailFilterItems}" DisplayMemberPath="{Binding DetailFilterDisplayMemberPath}" SelectedValue="{Binding DetailFilterValue}" Style="{StaticResource FilterComboBoxStyle}"/>
 
                 <TextBlock Text="{Binding TextFilterLabel}" Style="{StaticResource LineTextBlockStyle}"/>
                 <!--Note this field has to be tabbed out to reach the default button by the enter key.-->
@@ -50,7 +50,7 @@
             <Border Grid.Row="2" Style="{StaticResource BorderStyle}" Margin="0,10,0,0">
                 <!--Note this does not work within a StackPanel-->
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                    <ItemsControl ItemsSource="{Binding Items, UpdateSourceTrigger=Default}" Padding="2" Background="#FFEAF7FF">
+                    <ItemsControl ItemsSource="{Binding Items}" Padding="2" Background="#FFEAF7FF">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Border Margin="2" BorderThickness="1" BorderBrush="Black" Background="{StaticResource ProductBackgroundBrush}" Padding="3">
@@ -64,8 +64,8 @@
                                         <Image Grid.Column="0" Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}" Style="{StaticResource ImageStyle}" MaxWidth="80" MaxHeight="80" />
 
                                         <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                                            <Button Content="Shop +" Command="{Binding DataContext.CartCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding ProductID}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"/>
-                                            <Button Content="Details" Command="{Binding DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding ProductID}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource ProductBackgroundBrush}"/>
+                                            <Button Content="Shop +" Command="{Binding DataContext.CartCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"/>
+                                            <Button Content="Details" Command="{Binding DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource ProductBackgroundBrush}"/>
                                         </StackPanel>
 
                                         <StackPanel Grid.Column="2">

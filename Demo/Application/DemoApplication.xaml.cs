@@ -36,7 +36,7 @@ namespace Demo
             {
                 Content = mainView,
                 Height = 900,
-                Width = 700
+                Width = 900
             };
 
             // This might be made dependent of navigation, so following the mainView.Model.

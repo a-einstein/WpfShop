@@ -57,9 +57,12 @@
     <Compile Include="ConvertersTest\WeightFormatterTest.cs" />
     <Compile Include="ConvertersTest\SizeFormatterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModelsTest\ProductsViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\AdventureWorksServices\Common\Common.csproj">
+      <Project>{493d8ed2-1ba9-436c-981f-3a84523fa8a0}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Demo.Model.Test\Demo.Model.Test.csproj">
       <Project>{f9e6a8cd-84ab-4ce3-aec6-2dcd63b94ee9}</Project>
       <Name>Demo.Model.Test</Name>

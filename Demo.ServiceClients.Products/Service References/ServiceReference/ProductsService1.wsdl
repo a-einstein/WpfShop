@@ -96,7 +96,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IProductsService_GetProductsOverview_Input_policy">
+  <wsp:Policy wsu:Id="WSHttpBinding_IProductsService_GetProductsOverviewBy_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -115,7 +115,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IProductsService_GetProductsOverview_output_policy">
+  <wsp:Policy wsu:Id="WSHttpBinding_IProductsService_GetProductsOverviewBy_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -252,14 +252,15 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:65348/ProductsService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:65348/ProductsService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:65348/ProductsService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ProductsService" />
+      <xsd:import schemaLocation="http://localhost:65348/ProductsService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Common.Dtos" />
+      <xsd:import schemaLocation="http://localhost:65348/ProductsService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Common.DomainClasses" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IProductsService_GetProductsOverview_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetProductsOverview" />
+  <wsdl:message name="IProductsService_GetProductsOverviewBy_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductsOverviewBy" />
   </wsdl:message>
-  <wsdl:message name="IProductsService_GetProductsOverview_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetProductsOverviewResponse" />
+  <wsdl:message name="IProductsService_GetProductsOverviewBy_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductsOverviewByResponse" />
   </wsdl:message>
   <wsdl:message name="IProductsService_GetProductDetails_InputMessage">
     <wsdl:part name="parameters" element="tns:GetProductDetails" />
@@ -280,9 +281,9 @@
     <wsdl:part name="parameters" element="tns:GetProductSubcategoriesResponse" />
   </wsdl:message>
   <wsdl:portType name="IProductsService">
-    <wsdl:operation name="GetProductsOverview">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProductsService/GetProductsOverview" message="tns:IProductsService_GetProductsOverview_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProductsService/GetProductsOverviewResponse" message="tns:IProductsService_GetProductsOverview_OutputMessage" />
+    <wsdl:operation name="GetProductsOverviewBy">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductsService/GetProductsOverviewBy" message="tns:IProductsService_GetProductsOverviewBy_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductsService/GetProductsOverviewByResponse" message="tns:IProductsService_GetProductsOverviewBy_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetProductDetails">
       <wsdl:input wsaw:Action="http://tempuri.org/IProductsService/GetProductDetails" message="tns:IProductsService_GetProductDetails_InputMessage" />
@@ -300,14 +301,14 @@
   <wsdl:binding name="WSHttpBinding_IProductsService" type="tns:IProductsService">
     <wsp:PolicyReference URI="#WSHttpBinding_IProductsService_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetProductsOverview">
-      <soap12:operation soapAction="http://tempuri.org/IProductsService/GetProductsOverview" style="document" />
+    <wsdl:operation name="GetProductsOverviewBy">
+      <soap12:operation soapAction="http://tempuri.org/IProductsService/GetProductsOverviewBy" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IProductsService_GetProductsOverview_Input_policy" />
+        <wsp:PolicyReference URI="#WSHttpBinding_IProductsService_GetProductsOverviewBy_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IProductsService_GetProductsOverview_output_policy" />
+        <wsp:PolicyReference URI="#WSHttpBinding_IProductsService_GetProductsOverviewBy_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

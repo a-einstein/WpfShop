@@ -1,113 +1,98 @@
 ﻿using Microsoft.Practices.Prism.Commands;
-using System.Data;
+using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
 namespace Demo.BaseClasses
 {
-    public abstract class FilterItemsViewModel : ItemsViewModel
+    public abstract class FilterItemsViewModel<T,U,V,W> : ItemsViewModel<T,U>
     {
         public FilterItemsViewModel()
         {
-            SetFilters();
+            DetailFilterItems = new ObservableCollection<W>();
+
+            InitializeFilters();
         }
 
-        // Note this uses the DataView's standard filtering functionality.
-        // Note this signals its own changes by IBindingListView, IBindingList.
-
-        // Alternatively a CollectionViewSource could be used. Particularly note the Source and View properties.
-        // Approach to View.Filter should change significantly.
-
-        // This could also be implemented using a ObservableCollection and/or IQueryable.
-
-        // TODO Determine most desirable approach. 
-
-        public override DataView Items
-        {
-            get { return base.Items; }
-            set
-            {
-                SetValue(ItemsProperty, value);
-                FilterCommand.Execute(null);
-                RaisePropertyChanged("ItemsCount");
-            }
-        }
-
-        protected abstract void SetFilters();
+        protected abstract void InitializeFilters();
 
         public virtual string MasterFilterLabel { get { return "Category"; } }
         public virtual string MasterFilterDisplayMemberPath { get { return "Name"; } }
-        public abstract string MasterFilterSelectedValuePath { get; }
 
         public static readonly DependencyProperty MasterFilterItemsProperty =
-            DependencyProperty.Register("MasterFilterItems", typeof(DataView), typeof(ItemsViewModel));
+            DependencyProperty.Register("MasterFilterItems", typeof(ObservableCollection<V>), typeof(ItemsViewModel<T,U>));
 
-        public DataView MasterFilterItems
+        public ObservableCollection<V> MasterFilterItems
         {
-            get { return (DataView)GetValue(MasterFilterItemsProperty); }
+            get { return (ObservableCollection<V>)GetValue(MasterFilterItemsProperty); }
             set { SetValue(MasterFilterItemsProperty, value); }
         }
 
         public static readonly DependencyProperty MasterFilterValueProperty =
-            DependencyProperty.Register("MasterFilterValue", typeof(object), typeof(ItemsViewModel), new PropertyMetadata(new PropertyChangedCallback(OnMasterFilterValueChanged)));
+            DependencyProperty.Register("MasterFilterValue", typeof(V), typeof(ItemsViewModel<T,U>), new PropertyMetadata(new PropertyChangedCallback(OnMasterFilterValueChanged)));
 
-        public object MasterFilterValue
+        public V MasterFilterValue
         {
-            get { return (object)GetValue(MasterFilterValueProperty); }
+            get { return (V)GetValue(MasterFilterValueProperty); }
             set { SetValue(MasterFilterValueProperty, value); }
         }
 
-        // Note this function does NOT filter Items, just updates DetailFilterValue and SetDetailFilterItems.
+        // Note this function does NOT filter Items, just updates DetailFilterItems and DetailFilterValue.
         // Currently the FilterCommand is just bound to a Button, implying it always has to be activated explicitly.
         private static void OnMasterFilterValueChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
         {
-            FilterItemsViewModel viewModel = dependencyObject as FilterItemsViewModel;
+            var viewModel = dependencyObject as FilterItemsViewModel<T, U, V, W>;
 
-            viewModel.DetailFilterValue = viewModel.NoId;
+            viewModel.DetailFilterValue = default(W);
             viewModel.SetDetailFilterItems();
         }
 
-        private void SetDetailFilterItems()
+        // TODO Some sort of view would be more convenient.
+        private void SetDetailFilterItems(bool addEmptyElement = true)
         {
-            string filter = null;
+            var detailItemsSelection = detailFilterItemsSource.Where(DetailItemsSelector());
 
-            // Preserve empty value.
-            filter = string.Format("({0} = {1})", DetailFilterMasterKeyPath, NoId);
+            DetailFilterItems.Clear();
 
-            // TODO Comparisons with NoId fail.
-            filter += MasterFilterValue != NoId ? string.Format(" OR ({0} = {1})", DetailFilterMasterKeyPath, MasterFilterValue) : null;
-
-            DetailFilterItems.RowFilter = filter;
+            foreach (var item in detailItemsSelection)
+            {
+                DetailFilterItems.Add(item);
+            }
         }
+
+        protected abstract Func<W, bool> DetailItemsSelector(bool addEmptyElement = true);
 
         public virtual string DetailFilterLabel { get { return "Subcategory"; } }
         public virtual string DetailFilterDisplayMemberPath { get { return "Name"; } }
-        public abstract string DetailFilterSelectedValuePath { get; }
         public abstract string DetailFilterMasterKeyPath { get; }
 
-        public static readonly DependencyProperty DetailFilterItemsProperty =
-            DependencyProperty.Register("DetailFilterItems", typeof(DataView), typeof(ItemsViewModel));
+        protected ObservableCollection<W> detailFilterItemsSource;
 
-        public DataView DetailFilterItems
+        public static readonly DependencyProperty DetailFilterItemsProperty =
+            DependencyProperty.Register("DetailFilterItems", typeof(ObservableCollection<W>), typeof(ItemsViewModel<T, U>));
+
+        public ObservableCollection<W> DetailFilterItems
         {
-            get { return (DataView)GetValue(DetailFilterItemsProperty); }
+            get { return (ObservableCollection<W>)GetValue(DetailFilterItemsProperty); }
             set { SetValue(DetailFilterItemsProperty, value); }
         }
 
-        public object DetailFilterValue
+        public W DetailFilterValue
         {
-            get { return (object)GetValue(DetailFilterValueProperty); }
+            get { return (W)GetValue(DetailFilterValueProperty); }
             set { SetValue(DetailFilterValueProperty, value); }
         }
 
         public static readonly DependencyProperty DetailFilterValueProperty =
-            DependencyProperty.Register("DetailFilterValue", typeof(object), typeof(ItemsViewModel));
+            DependencyProperty.Register("DetailFilterValue", typeof(W), typeof(ItemsViewModel<T,U>));
 
         public virtual string TextFilterLabel { get { return "Name"; } }
         public virtual string TextFilterValuePath { get { return "Name"; } }
 
         public static readonly DependencyProperty TextFilterValueProperty =
-            DependencyProperty.Register("TextFilterValue", typeof(string), typeof(ItemsViewModel));
+            DependencyProperty.Register("TextFilterValue", typeof(string), typeof(ItemsViewModel<T,U>));
 
         public string TextFilterValue
         {
@@ -117,46 +102,18 @@ namespace Demo.BaseClasses
 
         public ICommand FilterCommand { get; private set; }
 
-        protected virtual void SetFilter(object p)
+        protected virtual void Filter()
         {
-            string filter = null;
-
-            filter = AddFilter(filter, MasterFilterSelectedValuePath, MasterFilterValue);
-            filter = AddFilter(filter, DetailFilterSelectedValuePath, DetailFilterValue);
-            filter = AddFilter(filter, TextFilterValuePath, TextFilterValue);
-
-            Items.Table.CaseSensitive = false;
-            Items.RowFilter = filter;
-
-            RaisePropertyChanged("ItemsCount");
-        }
-
-        private string AddFilter(string filter, string newFilterValuePath, object newFilterValue)
-        {
-            // Note that newFilterValue is assumed int and Nullable, which is represented as NoId.
-            // Note that the ToString is needed to enable value comparison of the object. TODO Could be better. Also see remark at NoId.
-
-            filter += !NullOrEmpty(filter) && newFilterValue != null && newFilterValue.ToString() != NoId.ToString() ? " AND " : null;
-            filter += newFilterValue != null && newFilterValue.ToString() != NoId.ToString() ? string.Format("({0} = {1})", newFilterValuePath, newFilterValue) : null;
-
-            return filter;
-        }
-
-        private string AddFilter(string filter, string newFilterValuePath, string newFilterValue)
-        {
-            filter += !NullOrEmpty(filter) && !NullOrEmpty(newFilterValue) ? " AND " : null;
-            filter += !NullOrEmpty(newFilterValue) ? string.Format("({0} LIKE '%{1}%')", newFilterValuePath, newFilterValue) : null;
-
-            return filter;
+            Refresh();
         }
 
         public ICommand DetailsCommand { get; private set; }
-        protected abstract void ShowDetails(object p);
+        protected abstract void ShowDetails(T p);
 
         protected override void SetCommands()
         {
-            FilterCommand = new DelegateCommand<object>(SetFilter);
-            DetailsCommand = new DelegateCommand<object>(ShowDetails);
+            FilterCommand = new DelegateCommand(Filter);
+            DetailsCommand = new DelegateCommand<T>(ShowDetails);
         }
     }
 }

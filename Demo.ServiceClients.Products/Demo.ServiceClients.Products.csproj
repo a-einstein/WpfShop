@@ -56,6 +56,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Properties\DataSources\Common.DomainClasses.Product.datasource" />
+    <None Include="Service References\ServiceReference\Demo.ServiceClients.Products.ServiceReference.ProductCategoryList.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference\Demo.ServiceClients.Products.ServiceReference.ProductsOverviewList.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference\Demo.ServiceClients.Products.ServiceReference.ProductSubcategoryList.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference\ProductsService.xsd" />
     <None Include="Service References\ServiceReference\ProductsService1.wsdl" />
     <None Include="Service References\ServiceReference\ProductsService3.xsd" />
     <None Include="Service References\ServiceReference\ProductsService31.xsd" />
@@ -78,6 +89,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ServiceReference\ProductsService1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\AdventureWorksServices\Common\Common.csproj">
+      <Project>{493d8ed2-1ba9-436c-981f-3a84523fa8a0}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

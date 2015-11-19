@@ -113,7 +113,7 @@
     <!--TODO Set the Background of the presented item to InputBackgroundColourBrush. This might need adapting of the ControlTemplate.-->
     <Style x:Key="FilterComboBoxStyle" TargetType="ComboBox">
         <Setter Property="Margin" Value="{StaticResource StandardHorizontalSeparation}"/>
-        <Setter Property="Width" Value="100"/>
+        <Setter Property="Width" Value="150"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 

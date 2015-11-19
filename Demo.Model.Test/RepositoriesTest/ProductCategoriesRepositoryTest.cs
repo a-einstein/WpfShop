@@ -1,6 +1,5 @@
-﻿using Demo.ServiceClients.Products.ServiceReference;
+﻿using Common.DomainClasses;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Threading.Tasks;
 
 namespace Demo.Model.Test
 {
@@ -8,30 +7,28 @@ namespace Demo.Model.Test
     public class ProductCategoriesRepositoryTest
     {
         [TestMethod()]
-        // Note this conforms to asynchronous tests since VS 2012.
-        public async Task ReadListTest()
+        public void ListTest()
         {
             var target = ProductCategoriesRepository.Instance;
-            var dto = ProductCategoryRowDto(target.NoId);
+            var element = ProductCategory(target.NoId);
 
             target.Clear();
-            target.CreateListElement(dto);
+            target.List.Add(element);
 
-            var result = await target.ReadList();
+            var result = target.List.Count;
 
-            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(1, result);
         }
 
-        public static ProductCategoryRowDto ProductCategoryRowDto(object noId)
+        public static ProductCategory ProductCategory(object noId)
         {
-            // TODO Put definition of dto in other project and reuse in service client to remove that dependency ?
-            var dto = new ProductCategoryRowDto()
+            var instance = new ProductCategory()
             {
                 Name = "a Name",
-                ProductCategoryID = (int)noId
+                Id = (int)noId
             };
 
-            return dto;
+            return instance;
         }
     }
 }

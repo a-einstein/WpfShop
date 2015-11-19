@@ -42,40 +42,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataSet\ProductsDataSet.cs">
-      <DependentUpon>ProductsDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DataSet\ProductsDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProductsDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DataSet\ShoppingWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
     <Compile Include="Repositories\CartItemsRepository.cs" />
     <Compile Include="Repositories\ProductCategoriesRepository.cs" />
     <Compile Include="Repositories\ProductsRepository.cs" />
     <Compile Include="Repositories\ProductsServiceConsumer.cs" />
     <Compile Include="Repositories\ProductSubcategoriesRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="DataSet\ProductsDataSet.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ProductsDataSet.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\AdventureWorksServices\Common\Common.csproj">
+      <Project>{493d8ed2-1ba9-436c-981f-3a84523fa8a0}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Demo.ServiceClients.Products\Demo.ServiceClients.Products.csproj">
       <Project>{24156b78-6e6c-438c-bf1e-b34fd3c68800}</Project>
       <Name>Demo.ServiceClients.Products</Name>

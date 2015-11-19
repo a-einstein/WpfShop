@@ -1,13 +1,11 @@
-﻿using Demo.ServiceClients.Products.ServiceReference;
+﻿using Common.DomainClasses;
+using Demo.ServiceClients.Products.ServiceReference;
 using System;
-using System.Data;
 using System.Threading.Tasks;
-using ProductCategoriesDataTable = Demo.Model.DataSet.ProductsDataSet.ProductCategoriesDataTable;
-using ProductCategoriesRow = Demo.Model.DataSet.ProductsDataSet.ProductCategoriesRow;
 
 namespace Demo.Model
 {
-    public class ProductCategoriesRepository : ProductsServiceConsumer
+    public class ProductCategoriesRepository : Repository<ProductCategory>
     {
         private ProductCategoriesRepository()
         { }
@@ -32,67 +30,27 @@ namespace Demo.Model
             }
         }
 
-        private ProductCategoriesDataTable ListTable
+        public async Task ReadList(bool addEmptyElement = true)
         {
-            get { return ShoppingWrapper.Instance.ProductsDataSet.ProductCategories; }
-        }
+            Clear();
 
-        public void Clear()
-        {
-            ListTable.Clear();
-            ListTable.AcceptChanges();
-        }
-
-        // Currently this only made for testpurposes and stores only locally.
-        public ProductCategoriesRow CreateListElement(ProductCategoryRowDto rowDto)
-        {
-            var tableRow = Convert(rowDto);
-            ListTable.Rows.Add(tableRow);
-            ListTable.AcceptChanges();
-
-            return tableRow;
-        }
-
-        public async Task<DataView> ReadList(bool addEmptyElement = true)
-        {
-            var task = Task.Factory.StartNew(async () =>
+            var task = Task.Run(async () =>
             {
-                // Note that currently data is cached and read only once.
-                if (ListTable.Count == 0)
+                var categories = await ProductsServiceClient.GetProductCategoriesAsync();
+
+                if (addEmptyElement)
                 {
-                    var listDto = await ProductsServiceClient.GetProductCategoriesAsync();
-
-                    if (addEmptyElement)
-                    {
-                        var tableRow = ListTable.NewRow(NoId, string.Empty);
-                        ListTable.Rows.Add(tableRow);
-                    }
-
-                    foreach (var dtoRow in listDto)
-                    {
-                        var tableRow = Convert(dtoRow);
-                        ListTable.Rows.Add(tableRow);
-                    }
-
-                    ListTable.AcceptChanges();
+                    var category = new ProductCategory() { Id = NoId, Name = string.Empty };
+                    list.Add(category);
                 }
 
-                return ListTable.DefaultView;
+                foreach (var category in categories)
+                {
+                    list.Add(category);
+                }
             });
 
-            // TODO ?!
-            return await task.Result;
-        }
-
-        private ProductCategoriesRow Convert(ProductCategoryRowDto dtoRow)
-        {
-            var tableRow = ListTable.NewRow
-            (
-                dtoRow.ProductCategoryID,
-                dtoRow.Name
-            );
-
-            return tableRow;
+            await task;
         }
     }
 }

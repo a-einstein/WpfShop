@@ -1,15 +1,14 @@
-﻿using System.Data;
+﻿using Common.DomainClasses;
 using System.Windows;
 
 namespace Demo.BaseClasses
 {
-    abstract class ItemViewModel<T> : ViewModel where T : DataRow
+    abstract class ItemViewModel<T,U> : ViewModel where T : DomainClass
     {
         /// <summary>
         /// A value enabling recognition of empty Items.
-        /// Note that adding a type to the class as a parameter instead of using object did not work in the comparison.
         /// </summary>
-        public abstract object NoId { get; }
+        public abstract U NoId { get; }
 
         public object ItemId
         {
@@ -20,7 +19,7 @@ namespace Demo.BaseClasses
         protected abstract object GetItemId();
 
         public static readonly DependencyProperty ItemProperty =
-            DependencyProperty.Register("Item", typeof(T), typeof(ItemViewModel<T>), new PropertyMetadata(null));
+            DependencyProperty.Register("Item", typeof(T), typeof(ItemViewModel<T,U>), new PropertyMetadata(null));
 
         public T Item
         {

@@ -1,20 +1,19 @@
-﻿using Demo.ServiceClients.Products.ServiceReference;
+﻿using Common.DomainClasses;
 
 namespace Demo.Model.Test
 {
     public abstract class ModelTest
     {
-        public static ProductsOverviewRowDto ProductsOverviewRowDto(int id, object noId)
+        public static ProductsOverviewObject ProductsOverviewObject(int id, object noId)
         {
-            // TODO Put definition of dto in other project and reuse in service client to remove that dependency ?
-            var dto = new ProductsOverviewRowDto()
+            var instance = new ProductsOverviewObject()
             {
                 Color = "a Color",
                 ListPrice = (decimal)id,
                 Name = Format("Name", id),
                 ProductCategory = Format("ProductCategory", id),
                 ProductCategoryID = (int)noId,
-                ProductID = id,
+                Id = id,
                 ProductSubcategory = Format("ProductSubcategory", id),
                 Size = id.ToString(),
                 SizeUnitMeasureCode = "SUM",
@@ -22,7 +21,7 @@ namespace Demo.Model.Test
                 WeightUnitMeasureCode = "WUM"
             };
 
-            return dto;
+            return instance;
         }
 
         public static string Format(string aString, int anInt)

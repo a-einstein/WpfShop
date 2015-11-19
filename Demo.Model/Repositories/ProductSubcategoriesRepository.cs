@@ -1,13 +1,11 @@
-﻿using Demo.ServiceClients.Products.ServiceReference;
+﻿using Common.DomainClasses;
+using Demo.ServiceClients.Products.ServiceReference;
 using System;
-using System.Data;
 using System.Threading.Tasks;
-using ProductSubcategoriesDataTable = Demo.Model.DataSet.ProductsDataSet.ProductSubcategoriesDataTable;
-using ProductSubcategoriesRow = Demo.Model.DataSet.ProductsDataSet.ProductSubcategoriesRow;
 
 namespace Demo.Model
 {
-    public class ProductSubcategoriesRepository : ProductsServiceConsumer
+    public class ProductSubcategoriesRepository : Repository<ProductSubcategory>
     {
         private ProductSubcategoriesRepository()
         { }
@@ -32,70 +30,27 @@ namespace Demo.Model
             }
         }
 
-        private ProductSubcategoriesDataTable ListTable
+        public async Task ReadList(bool addEmptyElement = true)
         {
-            get { return ShoppingWrapper.Instance.ProductsDataSet.ProductSubcategories; }
-        }
+            Clear();
 
-        public void Clear()
-        {
-            ListTable.Clear();
-            ListTable.AcceptChanges();
-        }
-
-        // Currently this only made for testpurposes and stores only locally.
-        public ProductSubcategoriesRow CreateListElement(ProductSubcategoryRowDto rowDto)
-        {
-            var tableRow = Convert(rowDto);
-            ListTable.Rows.Add(tableRow);
-            ListTable.AcceptChanges();
-
-            return tableRow;
-        }
-
-        public async Task<DataView> ReadList(bool addEmptyElement = true)
-        {
-            var table = ShoppingWrapper.Instance.ProductsDataSet.ProductSubcategories;
-
-            var task = Task.Factory.StartNew(async () =>
+            var task = Task.Run(async () =>
             {
-                // Note that currently data is cached and read only once.
-                if (ListTable.Count == 0)
+                var subcategories = await ProductsServiceClient.GetProductSubcategoriesAsync();
+
+                if (addEmptyElement)
                 {
-                    var listDto = await ProductsServiceClient.GetProductSubcategoriesAsync();
-
-                    if (addEmptyElement)
-                    {
-                        var tableRow = ListTable.NewRow(ShoppingWrapper.NoId, string.Empty, ShoppingWrapper.NoId);
-                        ListTable.Rows.Add(tableRow);
-                    }
-
-                    foreach (var dtoRow in listDto)
-                    {
-                        var tableRow = Convert(dtoRow);
-                        ListTable.Rows.Add(tableRow);
-                    }
-
-                    ListTable.AcceptChanges();
+                    var subcategory = new ProductSubcategory() { ProductCategoryID = NoId, Id=NoId, Name = string.Empty };
+                    list.Add(subcategory);
                 }
 
-                return ListTable.DefaultView;
+                foreach (var subcategory in subcategories)
+                {
+                    list.Add(subcategory);
+                }
             });
 
-            // TODO ?!
-            return await task.Result;
-        }
-
-        private ProductSubcategoriesRow Convert(ProductSubcategoryRowDto dtoRow)
-        {
-            var tableRow = ListTable.NewRow
-            (
-                dtoRow.ProductSubcategoryID,
-                dtoRow.Name,
-                dtoRow.ProductCategoryID
-            );
-
-            return tableRow;
+            await task;
         }
     }
 }

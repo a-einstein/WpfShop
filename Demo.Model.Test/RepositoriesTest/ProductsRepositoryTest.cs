@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Threading.Tasks;
 
 namespace Demo.Model.Test
 {
@@ -7,18 +6,17 @@ namespace Demo.Model.Test
     public class ProductsRepositoryTest : ModelTest
     {
         [TestMethod()]
-        // Note this conforms to asynchronous tests since VS 2012.
-        public async Task ReadListTest()
+        public void ListTest()
         {
             var target = ProductsRepository.Instance;
-            var dto = ProductsOverviewRowDto(1, target.NoId);
+            var element = ProductsOverviewObject(1, target.NoId);
 
             target.Clear();
-            target.CreateListElement(dto);
+            target.List.Add(element);
 
-            var result = await target.ReadList();
+            var result = target.List.Count;
 
-            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(1, result);
         }
     }
 }

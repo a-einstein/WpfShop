@@ -4,8 +4,7 @@ namespace Demo.Model
 {
     public abstract class ProductsServiceConsumer
     {
-        // TODO Decide where to put this.
-        public int NoId { get { return ShoppingWrapper.NoId; } }
+        public int NoId { get { return -1; } }
 
         private ProductsServiceClient productsServiceClient;
 
