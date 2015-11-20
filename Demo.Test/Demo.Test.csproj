@@ -36,6 +36,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\AdventureWorksServices\Common\bin\Debug\Common.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="WindowsBase" />
@@ -59,10 +63,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AdventureWorksServices\Common\Common.csproj">
-      <Project>{493d8ed2-1ba9-436c-981f-3a84523fa8a0}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Demo.Model.Test\Demo.Model.Test.csproj">
       <Project>{f9e6a8cd-84ab-4ce3-aec6-2dcd63b94ee9}</Project>
       <Name>Demo.Model.Test</Name>

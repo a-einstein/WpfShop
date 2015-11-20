@@ -36,6 +36,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\AdventureWorksServices\Common\bin\Debug\Common.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
   </ItemGroup>
@@ -60,10 +64,6 @@
     <Compile Include="RepositoriesTest\CartItemsRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AdventureWorksServices\Common\Common.csproj">
-      <Project>{493d8ed2-1ba9-436c-981f-3a84523fa8a0}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Demo.Model\Demo.Model.csproj">
       <Project>{7ee41183-8fef-4dd8-96f3-ee926ad409de}</Project>
       <Name>Demo.Model</Name>

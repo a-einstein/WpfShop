@@ -2,7 +2,6 @@
 using System;
 using System.Data;
 using System.Linq;
-using Common.Dtos;
 
 namespace Demo.Model
 {

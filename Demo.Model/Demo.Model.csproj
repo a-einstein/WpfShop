@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\AdventureWorksServices\Common\bin\Debug\Common.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
@@ -54,10 +58,6 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AdventureWorksServices\Common\Common.csproj">
-      <Project>{493d8ed2-1ba9-436c-981f-3a84523fa8a0}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Demo.ServiceClients.Products\Demo.ServiceClients.Products.csproj">
       <Project>{24156b78-6e6c-438c-bf1e-b34fd3c68800}</Project>
       <Name>Demo.ServiceClients.Products</Name>
