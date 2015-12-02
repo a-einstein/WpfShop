@@ -1,5 +1,6 @@
 ﻿using Common.DomainClasses;
 using System;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 
@@ -8,7 +9,9 @@ namespace Demo.Model
     public class CartItemsRepository : Repository<CartItem>
     {
         private CartItemsRepository()
-        { }
+        {
+            List = new ObservableCollection<CartItem>();
+        }
 
         private static volatile CartItemsRepository instance;
         private static object syncRoot = new Object();

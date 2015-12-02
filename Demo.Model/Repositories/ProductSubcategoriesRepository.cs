@@ -41,12 +41,12 @@ namespace Demo.Model
                 if (addEmptyElement)
                 {
                     var subcategory = new ProductSubcategory() { ProductCategoryID = NoId, Id=NoId, Name = string.Empty };
-                    list.Add(subcategory);
+                    List.Add(subcategory);
                 }
 
                 foreach (var subcategory in subcategories)
                 {
-                    list.Add(subcategory);
+                    List.Add(subcategory);
                 }
             });
 

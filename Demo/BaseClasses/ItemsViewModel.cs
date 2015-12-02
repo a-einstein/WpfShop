@@ -5,6 +5,11 @@ namespace Demo.BaseClasses
 {
     public abstract class ItemsViewModel<T, U> : ViewModel
     {
+        public ItemsViewModel()
+        {
+            Items = new ObservableCollection<T>();
+        }
+
         public static readonly DependencyProperty ItemsProperty =
             DependencyProperty.Register("Items", typeof(ObservableCollection<T>), typeof(ItemsViewModel<T,U>));
 

@@ -32,10 +32,10 @@
 
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <TextBlock Text="{Binding MasterFilterLabel}" Style="{StaticResource LineTextBlockStyle}"/>
-                <ComboBox ItemsSource="{Binding MasterFilterItems}" DisplayMemberPath="{Binding MasterFilterDisplayMemberPath}" SelectedValue="{Binding MasterFilterValue}" Style="{StaticResource FilterComboBoxStyle}"/>
+                <ComboBox ItemsSource="{Binding MasterFilterItems}" SelectedValue="{Binding MasterFilterValue}" Style="{StaticResource FilterComboBoxStyle}"/>
 
                 <TextBlock Text="{Binding DetailFilterLabel}" Style="{StaticResource LineTextBlockStyle}"/>
-                <ComboBox ItemsSource="{Binding DetailFilterItems}" DisplayMemberPath="{Binding DetailFilterDisplayMemberPath}" SelectedValue="{Binding DetailFilterValue}" Style="{StaticResource FilterComboBoxStyle}"/>
+                <ComboBox ItemsSource="{Binding DetailFilterItems}" SelectedValue="{Binding DetailFilterValue}" Style="{StaticResource FilterComboBoxStyle}"/>
 
                 <TextBlock Text="{Binding TextFilterLabel}" Style="{StaticResource LineTextBlockStyle}"/>
                 <!--Note this field has to be tabbed out to reach the default button by the enter key.-->

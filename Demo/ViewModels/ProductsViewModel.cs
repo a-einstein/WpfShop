@@ -11,65 +11,108 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace Demo.ViewModels
 {
     public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, int, ProductCategory, ProductSubcategory>, IShopper
     {
-        public override string DetailFilterMasterKeyPath { get { return "ProductCategoryID"; } }
-
-        private static object productsLock = new object();
-        private static object masterFilterItemsLock = new object();
-        private static object detailFilterItemsLock = new object();
+        private Dispatcher uiDispatcher;
 
         public ProductsViewModel()
         {
-            // TODO The other way around, pass a collection from here?
-            // No, as long as ProductsRepository and CartItemsRepository remain a coherent set of singletons, or a least coherent sets.
-            Items = ProductsRepository.Instance.List;
-            BindingOperations.EnableCollectionSynchronization(Items, productsLock);
-
-            MasterFilterItems = ProductCategoriesRepository.Instance.List;
-            BindingOperations.EnableCollectionSynchronization(MasterFilterItems, masterFilterItemsLock);
-
-            detailFilterItemsSource = ProductSubcategoriesRepository.Instance.List;
-            BindingOperations.EnableCollectionSynchronization(detailFilterItemsSource, detailFilterItemsLock);
+            uiDispatcher = Dispatcher.CurrentDispatcher;
         }
 
-        public override async void Refresh()
+        private bool filterInitialized;
+
+        public override void Refresh()
         {
-            // TODO >> Assure that InitializeFilters has terminated.
+            Items.Clear();
 
-            // Note this implicitly works on Items.
-            // TODO This is not very clear.
-
-            // TODO Check for errors.
-            await ProductsRepository.Instance.ReadList(MasterFilterValue, DetailFilterValue, TextFilterValue);
-
-            RaisePropertyChanged("ItemsCount");
+            if (!filterInitialized)
+            {
+                Task.Run(async () => await InitializeFilters()).
+                ContinueWith((previous) => ReadFiltered());
+            }
+            else
+            {
+                ReadFiltered();
+            }
         }
 
-        // TODO This may be generalized.
-        protected override async void InitializeFilters()
+        // TODO > This would better be handled inside the repository.
+        protected override async Task InitializeFilters()
         {
-            var getCategoriesTask = ProductCategoriesRepository.Instance.ReadList();
-            var getSubcategoriesTask = ProductSubcategoriesRepository.Instance.ReadList();
+            await Task.WhenAll
+            (
+                ProductCategoriesRepository.Instance.ReadList(),
+                ProductSubcategoriesRepository.Instance.ReadList()
+            ).ContinueWith((previous) =>
+            {
+                // Need to update on the UI thread.
+                uiDispatcher.Invoke(delegate
+                {
+                    foreach (var item in ProductCategoriesRepository.Instance.List)
+                    {
+                        MasterFilterItems.Add(item);
+                    }
 
-            await Task.WhenAll(getCategoriesTask, getSubcategoriesTask);
+                    foreach (var item in ProductSubcategoriesRepository.Instance.List)
+                    {
+                        detailFilterItemsSource.Add(item);
+                    }
 
-            int masterDefaultId = 1;
-            MasterFilterValue = MasterFilterItems.FirstOrDefault(category => category.Id == masterDefaultId);
+                    int masterDefaultId = 1;
+                    MasterFilterValue = MasterFilterItems.FirstOrDefault(category => category.Id == masterDefaultId);
 
-            // Note that MasterFilterValue also determines DetailFilterItems.
-            int detailDefaultId = 1;
-            DetailFilterValue = DetailFilterItems.FirstOrDefault(subcategory => subcategory.Id == detailDefaultId);
+                    // Note that MasterFilterValue also determines DetailFilterItems.
+                    int detailDefaultId = 1;
+                    DetailFilterValue = DetailFilterItems.FirstOrDefault(subcategory => subcategory.Id == detailDefaultId);
 
-            TextFilterValue = default(string);
+                    TextFilterValue = default(string);
+
+                    filterInitialized = true;
+                });
+            });
+        }
+
+        protected void ReadFiltered()
+        {
+            Task.Run(async () =>
+            {
+                ProductCategory masterFilterValue = null;
+                ProductSubcategory detailFilterValue = null;
+                string textFilterValue = null;
+
+                // Need to get these from the UI thread.
+                uiDispatcher.Invoke(delegate
+                {
+                    masterFilterValue = MasterFilterValue;
+                    detailFilterValue = DetailFilterValue;
+                    textFilterValue = TextFilterValue;
+                });
+
+                await ProductsRepository.Instance.ReadList(masterFilterValue, detailFilterValue, textFilterValue);
+            })
+            .ContinueWith((previous) =>
+            {
+                // Need to update on the UI thread.
+                uiDispatcher.Invoke(delegate
+                {
+                    foreach (var item in ProductsRepository.Instance.List)
+                    {
+                        Items.Add(item);
+                    }
+
+                    RaisePropertyChanged("ItemsCount");
+                });
+            });
         }
 
         protected override Func<ProductSubcategory, bool> DetailItemsSelector(bool preserveEmptyElement = true)
         {
-            return subcategory => (preserveEmptyElement && subcategory.Id == NoId) || (subcategory.ProductCategoryID == MasterFilterValue.Id);
+            return subcategory => (preserveEmptyElement && subcategory.Id == NoId) || (MasterFilterValue != null && subcategory.ProductCategoryID == MasterFilterValue.Id);
         }
 
         protected override void SetCommands()

@@ -3,6 +3,7 @@ using Demo.BaseClasses;
 using Demo.Model;
 using Microsoft.Practices.Prism.Commands;
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows;
@@ -14,9 +15,11 @@ namespace Demo.ViewModels
     {
         private ShoppingCartViewModel()
         {
-            Items = CartItemsRepository.Instance.List;
+            // HACK Typing is unclear here.
+            // Besides, this currently is the only binding to a repository List.
+            Items = CartItemsRepository.Instance.List as ObservableCollection<CartItem>;
 
-            CartItemsRepository.Instance.List.CollectionChanged += List_CollectionChanged;
+            (CartItemsRepository.Instance.List as ObservableCollection<CartItem>).CollectionChanged += List_CollectionChanged;
         }
 
         private static volatile ShoppingCartViewModel instance;

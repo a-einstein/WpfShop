@@ -30,21 +30,24 @@ namespace Demo.Model
             }
         }
 
+        // TODO > Better return a Task.Result like in ReadDetails, maybe even the list straight from the service.
+        // The List does need to hold items, except for testing currently.
+
+        // TODO This should get paged with an optional pagesize.
         public async Task ReadList(ProductCategory category, ProductSubcategory subcategory, string namePart)
         {
             Clear();
 
             var task = Task.Run(async () =>
             {
-                // Of course this should be paged in a realistic situation. 
                 var productOverview = await ProductsServiceClient.GetProductsOverviewByAsync(
-                    category != null ? category.Id : NoId, 
-                    subcategory != null ? subcategory.Id : NoId, 
+                    category != null ? category.Id : NoId,
+                    subcategory != null ? subcategory.Id : NoId,
                     namePart);
 
                 foreach (var product in productOverview)
                 {
-                    list.Add(product);
+                    List.Add(product);
                 }
             });
 
