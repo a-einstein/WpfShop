@@ -1,6 +1,7 @@
 ﻿using Common.DomainClasses;
 using Demo.ServiceClients.Products.ServiceReference;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Demo.Model
@@ -30,14 +31,9 @@ namespace Demo.Model
             }
         }
 
-        // TODO > Better return a Task.Result like in ReadDetails, maybe even the list straight from the service.
-        // The List does need to hold items, except for testing currently.
-
         // TODO This should get paged with an optional pagesize.
-        public async Task ReadList(ProductCategory category, ProductSubcategory subcategory, string namePart)
+        public async Task<IList<ProductsOverviewObject>> ReadList(ProductCategory category, ProductSubcategory subcategory, string namePart)
         {
-            Clear();
-
             var task = Task.Run(async () =>
             {
                 var productOverview = await ProductsServiceClient.GetProductsOverviewByAsync(
@@ -45,13 +41,12 @@ namespace Demo.Model
                     subcategory != null ? subcategory.Id : NoId,
                     namePart);
 
-                foreach (var product in productOverview)
-                {
-                    List.Add(product);
-                }
+                return productOverview;
             });
 
             await task;
+
+            return task.Result;
         }
 
         public async Task<Product> ReadDetails(int productID)

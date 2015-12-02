@@ -6,6 +6,7 @@ using Demo.Views;
 using Demo.Windows;
 using Microsoft.Practices.Prism.Commands;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -79,28 +80,28 @@ namespace Demo.ViewModels
 
         protected void ReadFiltered()
         {
-            Task.Run(async () =>
+            ProductCategory masterFilterValue = null;
+            ProductSubcategory detailFilterValue = null;
+            string textFilterValue = null;
+
+            // Need to get these from the UI thread.
+            uiDispatcher.Invoke(delegate
             {
-                ProductCategory masterFilterValue = null;
-                ProductSubcategory detailFilterValue = null;
-                string textFilterValue = null;
+                masterFilterValue = MasterFilterValue;
+                detailFilterValue = DetailFilterValue;
+                textFilterValue = TextFilterValue;
+            });
 
-                // Need to get these from the UI thread.
-                uiDispatcher.Invoke(delegate
-                {
-                    masterFilterValue = MasterFilterValue;
-                    detailFilterValue = DetailFilterValue;
-                    textFilterValue = TextFilterValue;
-                });
-
-                await ProductsRepository.Instance.ReadList(masterFilterValue, detailFilterValue, textFilterValue);
+            Task<IList<ProductsOverviewObject>>.Run(() =>
+            {
+                return ProductsRepository.Instance.ReadList(masterFilterValue, detailFilterValue, textFilterValue).Result;
             })
             .ContinueWith((previous) =>
             {
                 // Need to update on the UI thread.
                 uiDispatcher.Invoke(delegate
                 {
-                    foreach (var item in ProductsRepository.Instance.List)
+                    foreach (var item in previous.Result)
                     {
                         Items.Add(item);
                     }
