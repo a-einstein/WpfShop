@@ -94,6 +94,7 @@ namespace Demo.ViewModels
 
             Task<IList<ProductsOverviewObject>>.Run(() =>
             {
+                // TODO There is something wrong with at least empty category plus subcategory.
                 return ProductsRepository.Instance.ReadList(masterFilterValue, detailFilterValue, textFilterValue).Result;
             })
             .ContinueWith((previous) =>
@@ -113,7 +114,9 @@ namespace Demo.ViewModels
 
         protected override Func<ProductSubcategory, bool> DetailItemsSelector(bool preserveEmptyElement = true)
         {
-            return subcategory => (preserveEmptyElement && subcategory.Id == NoId) || (MasterFilterValue != null && subcategory.ProductCategoryID == MasterFilterValue.Id);
+            // TODO Value should be null value when there is no selection.
+            // TODO An empty list should disable the selector. Currently it shows a blank list of apparently a default length 4.
+            return subcategory => /*(MasterFilterValue != null) && (MasterFilterValue.Id != NoId) &&*/ ((preserveEmptyElement && subcategory.Id == NoId) || (subcategory.ProductCategoryID == MasterFilterValue.Id));
         }
 
         protected override void SetCommands()

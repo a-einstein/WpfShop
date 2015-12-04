@@ -35,8 +35,8 @@ namespace Demo.BaseClasses
         {
             var viewModel = dependencyObject as FilterItemsViewModel<T, U, V, W>;
 
-            viewModel.DetailFilterValue = default(W);
             viewModel.SetDetailFilterItems();
+            viewModel.DetailFilterValue = viewModel.DetailFilterItems.FirstOrDefault();
         }
 
         // TODO Some sort of view would be more convenient.
@@ -46,6 +46,7 @@ namespace Demo.BaseClasses
 
             DetailFilterItems.Clear();
 
+            // Note that the query is executed on the foreach.
             foreach (var item in detailItemsSelection)
             {
                 DetailFilterItems.Add(item);
