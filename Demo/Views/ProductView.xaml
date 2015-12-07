@@ -49,7 +49,9 @@
 
             <TextBlock Text="{Binding Item.Name}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold" FontSize="16"/>
 
-            <TextBlock Text="{Binding Item.ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold" FontSize="12"/>
+            <TextBlock Text="{Binding Item.ProductNumber}" Style="{StaticResource TextBlockStyle}"/>
+
+            <TextBlock Text="{Binding Item.ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold" FontSize="16"/>
 
             <TextBlock Style="{StaticResource TextBlockStyle}">
                 <TextBlock.Text>

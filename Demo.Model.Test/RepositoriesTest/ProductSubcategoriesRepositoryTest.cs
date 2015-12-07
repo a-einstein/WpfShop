@@ -25,7 +25,7 @@ namespace Demo.Model.Test
              var instance = new ProductSubcategory()
              {
                  Name = "a Name",
-                 ProductCategoryID = (int)noId,
+                 ProductCategoryId = (int)noId,
                  Id = (int)noId
              };
 

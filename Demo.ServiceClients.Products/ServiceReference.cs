@@ -8,9 +8,9 @@ namespace ServiceClients.Products.ServiceReference
     [DebuggerDisplay("{ProductID}, {Name}")]
     public partial class Product { }
 
-    [DebuggerDisplay("{ProductCategoryID}, {Name}")]
+    [DebuggerDisplay("{ProductCategoryId}, {Name}")]
     public partial class ProductCategory { }
 
-    [DebuggerDisplay("{ProductCategoryID}, {ProductSubcategoryID}, {Name}")]
+    [DebuggerDisplay("{ProductCategoryId}, {ProductSubcategoryId}, {Name}")]
     public partial class ProductSubcategory { }
 }

@@ -7,6 +7,7 @@ namespace Demo.Converters
 {
     public class WeightFormatter : IMultiValueConverter 
     {
+        // TODO Should convert from Lb to Kg too.
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             // Note this test should not be necessary as Weight ought to have a default of 0.

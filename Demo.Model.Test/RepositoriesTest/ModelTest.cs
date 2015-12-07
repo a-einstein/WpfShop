@@ -12,7 +12,7 @@ namespace Demo.Model.Test
                 ListPrice = (decimal)id,
                 Name = Format("Name", id),
                 ProductCategory = Format("ProductCategory", id),
-                ProductCategoryID = (int)noId,
+                ProductCategoryId = (int)noId,
                 Id = id,
                 ProductSubcategory = Format("ProductSubcategory", id),
                 Size = id.ToString(),
