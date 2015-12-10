@@ -94,9 +94,6 @@ namespace Demo.ViewModels
 
             Task<IList<ProductsOverviewObject>>.Run(() =>
             {
-                // TODO There is something wrong with at least empty category plus subcategory.
-                // This might also be caused by nullable Id's (is that junk in the DB?). At least that should be handled. 
-                // Note that ProductCategory is reached through ProductSubcategory.
                 return ProductsRepository.Instance.ReadList(masterFilterValue, detailFilterValue, textFilterValue).Result;
             })
             .ContinueWith((previous) =>
