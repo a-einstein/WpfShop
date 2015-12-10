@@ -6,6 +6,8 @@ namespace Demo.Model
     {
         public int NoId { get { return -1; } }
 
+        public string TextFilterDescription { get { return "Name or Colour"; } }
+
         private ProductsServiceClient productsServiceClient;
 
         protected ProductsServiceClient ProductsServiceClient
