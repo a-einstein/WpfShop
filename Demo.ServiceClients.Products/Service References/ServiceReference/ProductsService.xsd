@@ -7,9 +7,9 @@
           <xs:element minOccurs="0" name="Color" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ListPrice" type="xs:decimal" />
           <xs:element minOccurs="0" name="ProductCategory" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="ProductCategoryID" type="xs:int" />
+          <xs:element minOccurs="0" name="ProductCategoryId" type="xs:int" />
           <xs:element minOccurs="0" name="ProductSubcategory" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="ProductSubcategoryID" type="xs:int" />
+          <xs:element minOccurs="0" name="ProductSubcategoryId" type="xs:int" />
           <xs:element minOccurs="0" name="Size" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="SizeUnitMeasureCode" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ThumbNailPhoto" nillable="true" type="xs:base64Binary" />
@@ -36,12 +36,13 @@
           <xs:element minOccurs="0" name="ListPrice" type="xs:decimal" />
           <xs:element minOccurs="0" name="ModelName" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ProductCategory" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="ProductCategoryID" type="xs:int" />
+          <xs:element minOccurs="0" name="ProductCategoryId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="ProductNumber" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ProductSubcategory" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="ProductSubcategoryID" type="xs:int" />
+          <xs:element minOccurs="0" name="ProductSubcategoryId" nillable="true" type="xs:int" />
           <xs:element minOccurs="0" name="Size" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="SizeUnitMeasureCode" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Weight" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Weight" nillable="true" type="xs:decimal" />
           <xs:element minOccurs="0" name="WeightUnitMeasureCode" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
@@ -60,7 +61,7 @@
     <xs:complexContent mixed="false">
       <xs:extension base="tns:DomainClass">
         <xs:sequence>
-          <xs:element minOccurs="0" name="ProductCategoryID" type="xs:int" />
+          <xs:element minOccurs="0" name="ProductCategoryId" type="xs:int" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
