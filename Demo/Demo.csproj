@@ -29,6 +29,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <UICulture>en-GB</UICulture>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -187,6 +188,10 @@
     <ProjectReference Include="..\Demo.Model\Demo.Model.csproj">
       <Project>{7ee41183-8fef-4dd8-96f3-ee926ad409de}</Project>
       <Name>Demo.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Demo.Resources\Demo.Resources.csproj">
+      <Project>{46a45e36-c4eb-4ca2-9b98-120038fcb2d7}</Project>
+      <Name>Demo.Resources</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

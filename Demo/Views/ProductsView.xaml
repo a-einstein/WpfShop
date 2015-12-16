@@ -8,6 +8,7 @@
     xmlns:prism="http://www.codeplex.com/prism"
     xmlns:BaseClasses="clr-namespace:Demo.BaseClasses"
     xmlns:Converters="clr-namespace:Demo.Converters"
+    xmlns:Resources="clr-namespace:Demo.Resources;assembly=Demo.Resources"
     mc:Ignorable="d" 
     d:DesignHeight="400" d:DesignWidth="300"
     >
@@ -17,6 +18,7 @@
             <Converters:CategoriesFormatter x:Key="CategoriesFormatter"/>
             <Converters:SizeFormatter x:Key="SizeFormatter"/>
             <Converters:ByteArrayToBitmapImageConverter x:Key="ByteArrayToBitmapImageConverter"/>
+            <Resources:Wrapper x:Key="Resources" />
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
@@ -28,23 +30,23 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Text="Products" FontSize="16" FontWeight="Bold" Margin="3"/>
+            <TextBlock Grid.Row="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.Products}" FontSize="16" FontWeight="Bold" Margin="3"/>
 
             <StackPanel Grid.Row="1" Orientation="Horizontal">
-                <TextBlock Text="{Binding MasterFilterLabel}" Style="{StaticResource LineTextBlockStyle}"/>
+                <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.MasterFilter}" Style="{StaticResource LineTextBlockStyle}"/>
                 <ComboBox ItemsSource="{Binding MasterFilterItems}" SelectedValue="{Binding MasterFilterValue}" Style="{StaticResource FilterComboBoxStyle}"/>
 
-                <TextBlock Text="{Binding DetailFilterLabel}" Style="{StaticResource LineTextBlockStyle}"/>
+                <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.DetailFilter}" Style="{StaticResource LineTextBlockStyle}"/>
                 <ComboBox ItemsSource="{Binding DetailFilterItems}" SelectedValue="{Binding DetailFilterValue}" Style="{StaticResource FilterComboBoxStyle}"/>
 
-                <TextBlock Text="{Binding TextFilterLabel}" Style="{StaticResource LineTextBlockStyle}"/>
+                <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.TextFilter}" Style="{StaticResource LineTextBlockStyle}"/>
                 <!--Note this field has to be tabbed out to reach the default button by the enter key.-->
                 <TextBox Text="{Binding TextFilterValue, Mode=TwoWay}" Width="200" Style="{StaticResource LineTextBoxStyle}"/>
 
-                <Button Content="Filter" Command="{Binding FilterCommand}" IsDefault="True" Margin="{StaticResource StandardHorizontalSeparation}"/>
+                <Button Content="{Binding Source={StaticResource Resources}, Path=Labels.Filter}" Command="{Binding FilterCommand}" IsDefault="True" Margin="{StaticResource StandardHorizontalSeparation}"/>
 
                 <TextBlock Text="{Binding ItemsCount}" Style="{StaticResource LineValueTextBlockStyle}"/>
-                <TextBlock Text="Products" Style="{StaticResource LineTextBlockStyle}"/>
+                <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Products}" Style="{StaticResource LineTextBlockStyle}"/>
             </StackPanel>
 
             <Border Grid.Row="2" Style="{StaticResource BorderStyle}" Margin="0,10,0,0">
@@ -64,8 +66,8 @@
                                         <Image Grid.Column="0" Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}" Style="{StaticResource ImageStyle}" MaxWidth="80" MaxHeight="80" />
 
                                         <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                                            <Button Content="Shop +" Command="{Binding DataContext.CartCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"/>
-                                            <Button Content="Details" Command="{Binding DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource ProductBackgroundBrush}"/>
+                                            <Button Content="{Binding Source={StaticResource Resources}, Path=Labels.IncreaseProduct}" Command="{Binding DataContext.CartCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"/>
+                                            <Button Content="{Binding Source={StaticResource Resources}, Path=Labels.Details}" Command="{Binding DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource ProductBackgroundBrush}"/>
                                         </StackPanel>
 
                                         <StackPanel Grid.Column="2">

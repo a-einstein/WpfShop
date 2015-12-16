@@ -145,7 +145,5 @@ namespace Demo.ViewModels
         }
 
         public override int NoId { get { return ProductsRepository.Instance.NoId; } }
-
-        public override string TextFilterLabel { get { return ProductsRepository.Instance.TextFilterDescription; } }
     }
 }

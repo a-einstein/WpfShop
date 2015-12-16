@@ -67,8 +67,6 @@ namespace Demo.BaseClasses
             set { SetValue(DetailFilterValueProperty, value); }
         }
 
-        public virtual string TextFilterLabel { get { return "Name"; } }
-
         public static readonly DependencyProperty TextFilterValueProperty =
             DependencyProperty.Register("TextFilterValue", typeof(string), typeof(ItemsViewModel<T, U>));
 
