@@ -137,6 +137,7 @@ namespace Demo.ViewModels
             productViewModel.Refresh(productsOverviewObject.Id);
         }
 
+        // Note this does not work as explicit interface implementation.
         public ICommand CartCommand { get; set; }
 
         private void CartProduct(ProductsOverviewObject productsOverviewObject)
