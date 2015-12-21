@@ -3,7 +3,7 @@ using System.Windows;
 
 namespace Demo.BaseClasses
 {
-    abstract class ItemViewModel<T,U> : ViewModel where T : DomainClass
+    public abstract class ItemViewModel<T,U> : ViewModel where T : DomainClass
     {
         /// <summary>
         /// A value enabling recognition of empty Items.

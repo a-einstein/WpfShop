@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace Demo.ViewModels
 {
-    class ProductViewModel : ItemViewModel<Product, int>, IShopper
+    public class ProductViewModel : ItemViewModel<Product, int>, IShopper
     {
         public override int NoId { get { return ProductsRepository.Instance.NoId; } }
 
@@ -29,6 +29,7 @@ namespace Demo.ViewModels
             CartCommand = new DelegateCommand<Product>(CartProduct);
         }
 
+        // Note this does not work as explicit interface implementation.
         public ICommand CartCommand { get; set; }
 
         private void CartProduct(Product product)
