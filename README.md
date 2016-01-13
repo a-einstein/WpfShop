@@ -5,7 +5,17 @@
 * Manage the code by Git and GitHub. Some changes & branches & merges are deliberately created for this reason.
 
 #### Aspects
-* Basic styling, MVVM, asynchronisity, client-server, unit testing, ...
+* Prism
+* MEF
+* MVVM
+* Client-server
+* WCF
+* Asynchronisity
+* Globalized resources
+* Basic styling
+* Unit testing
+* NuGet
+* ...
 
 #### Prerequisites
 * The application assumes the presence of my AdventureWorksServices, to which a connection should be configured.

@@ -1,6 +1,6 @@
-﻿using System.Windows;
+﻿using Demo.Common;
+using System.Windows;
 using System.Windows.Controls;
-using Demo.BaseClasses;
 
 namespace Demo.Views
 {
@@ -15,53 +15,62 @@ namespace Demo.Views
         {
             base.View_Loaded(sender, e);
 
-            Navigate(aboutPage, aboutButton);
+            // TODO > Should become first view available.
+            Navigate(infoPage, infoButton);
         }
 
-        public View ShoppingCart
+        public View WidgetView
         {
             get { return shoppingCart.Content as View; }
             set { shoppingCart.Content = value; }
         }
 
-        // TODO Should be a row of configurations or controls. Navigation is to be worked out priorly.
+        // TODO > Views should be a abstract row of configurations or controls.
 
-        View aboutView;
-        Page aboutPage;
+        #region InfoView
 
-        public View AboutView
+        View infoView;
+        Page infoPage;
+
+        public View InfoView
         {
-            get { return aboutView; }
+            get { return infoView; }
             set 
             { 
-                aboutView = value;
-                aboutPage = new Page() { Content = aboutView };
+                infoView = value;
+                infoPage = new Page() { Content = infoView };
             }
         }
 
-        private void aboutButton_Checked(object sender, RoutedEventArgs e)
+        private void InfoButton_Checked(object sender, RoutedEventArgs e)
         {
-            Navigate(aboutPage, aboutButton);
+            Navigate(infoPage, infoButton);
         }
 
-        View productsView;
-        Page productsPage;
+        #endregion
+
+        #region OverView
+
+        View overView;
+        Page overViewPage;
 
         public View ProductsView
         {
-            get { return productsView; }
+            get { return overView; }
             set 
             { 
-                productsView = value;
-                productsPage = new Page() { Content = productsView };
+                overView = value;
+                overViewPage = new Page() { Content = overView };
             }
         }
 
         private void productsButton_Checked(object sender, RoutedEventArgs e)
         {
-            Navigate(productsPage, productsButton);
+            Navigate(overViewPage, overViewButton);
         }
 
+        #endregion
+        
         private void Navigate(Page page, RadioButton radioButton)
         {
             radioButton.IsChecked = true;

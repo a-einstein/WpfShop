@@ -1,4 +1,4 @@
-﻿using Demo.BaseClasses;
+﻿using Demo.Common;
 
 namespace Demo.ViewModels
 {
