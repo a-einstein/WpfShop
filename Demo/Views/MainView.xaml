@@ -36,7 +36,7 @@
                 </RadioButton>
             </StackPanel>
             
-            <ContentControl x:Name="shoppingCart"/>
+            <ContentControl x:Name="widget"/>
         </StackPanel>
 
         <Frame Grid.Row="1" x:Name="pageFrame" Margin="0,10,0,0"/>

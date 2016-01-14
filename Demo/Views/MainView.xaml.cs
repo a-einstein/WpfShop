@@ -21,8 +21,8 @@ namespace Demo.Views
 
         public View WidgetView
         {
-            get { return shoppingCart.Content as View; }
-            set { shoppingCart.Content = value; }
+            get { return widget.Content as View; }
+            set { widget.Content = value; }
         }
 
         // TODO > Views should be a abstract row of configurations or controls.
