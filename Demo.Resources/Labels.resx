@@ -139,6 +139,9 @@
   <data name="Items" xml:space="preserve">
     <value />
   </data>
+  <data name="MainTitle" xml:space="preserve">
+    <value />
+  </data>
   <data name="NavigateAbout" xml:space="preserve">
     <value />
   </data>

@@ -145,6 +145,9 @@ Zeer beknopt gesteld bevat het o.a. het volgende.
   <data name="Items" xml:space="preserve">
     <value>Objecten</value>
   </data>
+  <data name="MainTitle" xml:space="preserve">
+    <value>Uw Merknaam Kan Hier Staan</value>
+  </data>
   <data name="NavigateAbout" xml:space="preserve">
     <value>Over dit project</value>
   </data>

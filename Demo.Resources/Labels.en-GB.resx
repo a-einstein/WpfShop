@@ -146,6 +146,9 @@ Very briefly said it contains the following, amongst others.
   <data name="Items" xml:space="preserve">
     <value>Items</value>
   </data>
+  <data name="MainTitle" xml:space="preserve">
+    <value>Your Brand Name Could Be Here</value>
+  </data>
   <data name="NavigateAbout" xml:space="preserve">
     <value>About this project</value>
   </data>

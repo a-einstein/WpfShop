@@ -126,6 +126,15 @@ namespace Demo.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string MainTitle {
+            get {
+                return ResourceManager.GetString("MainTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string NavigateAbout {
             get {
                 return ResourceManager.GetString("NavigateAbout", resourceCulture);
