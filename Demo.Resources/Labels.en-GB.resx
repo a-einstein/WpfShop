@@ -118,13 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>This project is built by Robert Stroethoff for test and demonstration of various technical concepts in WPF.
+    <value>This project is built by Robert for test and demonstration of various concepts in WPF. 
 
-Very briefly said it contains the following, amongst others.
-- The MVVM pattern.
-- Asynchronous client-server connection to a database.
-- Xaml binding, converting, updating, layout, styling, triggering.
-- Unit testing.
+For further details please check the descriptions (ReadMe) of the involved repositories.
+
 </value>
     <comment>Use shift-enter to break lines.</comment>
   </data>

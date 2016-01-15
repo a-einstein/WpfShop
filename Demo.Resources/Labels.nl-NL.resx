@@ -118,13 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>Dit is een project van Robert Stroethoff voor test en demonstratie van diverse technische concepten in WPF.
+    <value>Dit project is gebouwd door Robert voor test en demonstratie van diverse concepten in WPF.
 
-Zeer beknopt gesteld bevat het o.a. het volgende.
-- Het MVVM-concept
-- Asynchrone client-server-verbinding met een database.
-- Xaml binding, converting, updating, layout, styling, triggering.
-- Unit testing.</value>
+Zie voor meer details de beschrijvingen (ReadMe) van de betrokken repositories.</value>
     <comment>Use shift-enter to break lines.</comment>
   </data>
   <data name="Cart" xml:space="preserve">
