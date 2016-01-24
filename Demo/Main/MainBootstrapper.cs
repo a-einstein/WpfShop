@@ -7,7 +7,7 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Windows;
 
-namespace Demo
+namespace Demo.Main
 {
     class MainBootstrapper : MefBootstrapper
     {

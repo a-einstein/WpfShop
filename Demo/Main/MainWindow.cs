@@ -9,7 +9,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
-namespace Demo
+namespace Demo.Main
 {
     public class MainWindow : Window, IPartImportsSatisfiedNotification
     {

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Demo
+namespace Demo.Main
 {
     public partial class MainApplication : Application
     {

@@ -141,17 +141,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="Application\MainApplication.xaml">
+    <ApplicationDefinition Include="Main\MainApplication.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Application\MainBootstrapper.cs" />
-    <Compile Include="Application\MainWindow.cs" />
+    <Compile Include="Main\MainBootstrapper.cs" />
+    <Compile Include="Main\MainWindow.cs" />
     <Page Include="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Application\MainApplication.xaml.cs">
+    <Compile Include="Main\MainApplication.xaml.cs">
       <DependentUpon>MainApplication.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
