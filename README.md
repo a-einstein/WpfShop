@@ -5,16 +5,17 @@
 * Manage the code by Git and GitHub. Some changes & branches & merges are deliberately created for this reason.
 
 #### Aspects
-* Prism
-* MEF
-* MVVM
-* Client-server
-* WCF
-* Asynchronisity
-* Globalized resources
-* Basic styling
-* Unit testing
-* NuGet
+* Prism.
+* MEF.
+* Regions.
+* MVVM.
+* Client-server.
+* WCF.
+* Asynchronisity.
+* Globalized resources.
+* Basic styling.
+* Unit testing.
+* NuGet.
 * ...
 
 #### Prerequisites
