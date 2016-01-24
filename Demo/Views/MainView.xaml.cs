@@ -1,84 +1,74 @@
 ﻿using Demo.Common;
+using Demo.Common.Regions;
+using Demo.ViewModels;
+using Prism.Modularity;
+using Prism.Regions;
+using System;
+using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace Demo.Views
 {
-    public partial class MainView : View
+    // Note that apparently this class needs to be exported to get its imports right.
+    [Export]
+    public partial class MainView : View, IPartImportsSatisfiedNotification
     {
+        [Import(AllowRecomposition = false)]
+        public IRegionManager RegionManager;
+
         public MainView()
         {
             InitializeComponent();
         }
 
-        protected override void View_Loaded(object sender, RoutedEventArgs e)
+        // Note this couples to a specific class.
+        // To avoid this the ViewModel should be set by an explicit import again.
+        // There seem to be no other options on the attribute.
+        [ImportingConstructor]
+        public MainView(MainViewModel viewModel)
+            : this()
         {
-            base.View_Loaded(sender, e);
-
-            // TODO > Should become first view available.
-            Navigate(infoPage, infoButton);
+            ViewModel = viewModel;
         }
 
-        public View WidgetView
+        public void OnImportsSatisfied()
         {
-            get { return widget.Content as View; }
-            set { widget.Content = value; }
+            // TODO This way of ordering actually does not work. Also see elsewhere.
+            // The first view to be shown depends on the registering order, which depends on loading order of modules, 
+            // which currrently is by alphabetic order in the modules directory, which currently gives the about module as first.
+
+            //RegionManager.RequestNavigate(RegionNames.MainRegion, infoViewUri);
         }
 
-        // TODO > Views should be a abstract row of configurations or controls.
+        #region WidgetView
+
+        private static Uri widgetViewUri = new Uri("ShoppingCartView", UriKind.Relative);
+
+        #endregion
+
+        // TODO These views should be an abstract row of configurations or controls which could be discovered or configured externally.
 
         #region InfoView
 
-        View infoView;
-        Page infoPage;
-
-        public View InfoView
-        {
-            get { return infoView; }
-            set 
-            { 
-                infoView = value;
-                infoPage = new Page() { Content = infoView };
-            }
-        }
+        private static Uri infoViewUri = new Uri("AboutView", UriKind.Relative);
 
         private void InfoButton_Checked(object sender, RoutedEventArgs e)
         {
-            Navigate(infoPage, infoButton);
+            RegionManager.RequestNavigate(RegionNames.MainRegion, infoViewUri);
         }
 
         #endregion
 
         #region OverView
 
-        View overView;
-        Page overViewPage;
+        private static Uri overViewUri = new Uri("ProductsView", UriKind.Relative);
 
-        public View ProductsView
+        private void OverviewButton_Checked(object sender, RoutedEventArgs e)
         {
-            get { return overView; }
-            set 
-            { 
-                overView = value;
-                overViewPage = new Page() { Content = overView };
-            }
-        }
-
-        private void productsButton_Checked(object sender, RoutedEventArgs e)
-        {
-            Navigate(overViewPage, overViewButton);
+            RegionManager.RequestNavigate(RegionNames.MainRegion, overViewUri);
         }
 
         #endregion
-        
-        private void Navigate(Page page, RadioButton radioButton)
-        {
-            radioButton.IsChecked = true;
-
-            pageFrame.Content = page;
-            pageFrame.Navigate(page);
-
-            (page.Content as View).ViewModel.Refresh();
-        }
     }
 }

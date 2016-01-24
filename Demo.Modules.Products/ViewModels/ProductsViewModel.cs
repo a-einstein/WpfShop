@@ -16,8 +16,8 @@ using System.Windows.Threading;
 
 namespace Demo.Modules.Products.ViewModels
 {
-    [Export("OverViewModel", typeof(ViewModel))]
-    public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, int, ProductCategory, ProductSubcategory>, IShopper
+    [Export]
+    public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, int, ProductCategory, ProductSubcategory>, IShopper, IPartImportsSatisfiedNotification
     {
         private Dispatcher uiDispatcher;
 
@@ -27,6 +27,13 @@ namespace Demo.Modules.Products.ViewModels
         }
 
         private bool filterInitialized;
+
+        // Note this also works without actual imports.
+        // TODO This seems to come too early, before navigation.
+        public void OnImportsSatisfied()
+        {
+            Refresh();
+        }
 
         public override void Refresh()
         {
@@ -43,7 +50,7 @@ namespace Demo.Modules.Products.ViewModels
             }
         }
 
-        // TODO > This would better be handled inside the repository.
+        // TODO This would better be handled inside the repository.
         protected override async Task InitializeFilters()
         {
             await Task.WhenAll

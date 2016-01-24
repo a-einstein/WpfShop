@@ -164,7 +164,7 @@
     <ProjectReference Include="..\Demo.ServiceClients.Products\Demo.ServiceClients.Products.csproj">
       <Project>{24156b78-6e6c-438c-bf1e-b34fd3c68800}</Project>
       <Name>Demo.ServiceClients.Products</Name>
-      <Private>False</Private>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -2,6 +2,7 @@
     x:Class="Demo.Views.MainView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:prism="http://www.codeplex.com/prism"
     xmlns:BaseClasses="clr-namespace:Demo.Common;assembly=Demo.Common"
     xmlns:Resources="clr-namespace:Demo.Resources;assembly=Demo.Resources"
     >
@@ -30,15 +31,15 @@
                 <RadioButton x:Name="overViewButton">
                     <RadioButton.Template>
                         <ControlTemplate>
-                            <ToggleButton IsChecked="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" Content="{Binding Source={StaticResource Resources}, Path=Labels.NavigateShop}" Checked="productsButton_Checked" Style="{StaticResource NavigationButtonStyle}"/>
+                            <ToggleButton IsChecked="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" Content="{Binding Source={StaticResource Resources}, Path=Labels.NavigateShop}" Checked="OverviewButton_Checked" Style="{StaticResource NavigationButtonStyle}"/>
                         </ControlTemplate>
                     </RadioButton.Template>
                 </RadioButton>
             </StackPanel>
-            
-            <ContentControl x:Name="widget"/>
+
+            <ContentControl x:Name="widgetControl" prism:RegionManager.RegionName="WidgetRegion"/>
         </StackPanel>
 
-        <Frame Grid.Row="1" x:Name="pageFrame" Margin="0,10,0,0"/>
+        <ContentControl Grid.Row="1" x:Name="mainControl" Margin="0,10,0,0" prism:RegionManager.RegionName="MainRegion"/>
     </Grid>
 </BaseClasses:View>

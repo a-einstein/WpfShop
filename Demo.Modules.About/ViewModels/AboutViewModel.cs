@@ -3,7 +3,7 @@ using System.ComponentModel.Composition;
 
 namespace Demo.Modules.About.ViewModels
 {
-    [Export("InfoViewModel", typeof(ViewModel))]
+    [Export]
     public class AboutViewModel : ViewModel
     {
     }

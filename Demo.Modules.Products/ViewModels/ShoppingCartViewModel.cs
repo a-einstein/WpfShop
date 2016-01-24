@@ -12,6 +12,7 @@ using System.Windows.Input;
 
 namespace Demo.Modules.Products.ViewModels
 {
+    [Export]
     public class ShoppingCartViewModel : ItemsViewModel<CartItem, object>
     {
         private ShoppingCartViewModel()

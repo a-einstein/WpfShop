@@ -172,11 +172,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Application\MainApplication.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Demo.Common\Demo.Common.csproj">
       <Project>{9b4e52e2-c3e5-4a2f-bd05-520440da673a}</Project>
       <Name>Demo.Common</Name>

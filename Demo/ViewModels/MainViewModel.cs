@@ -1,7 +1,9 @@
 ﻿using Demo.Common;
+using System.ComponentModel.Composition;
 
 namespace Demo.ViewModels
 {
-    class MainViewModel : ViewModel
+    [Export]
+    public class MainViewModel : ViewModel
     { }
 }

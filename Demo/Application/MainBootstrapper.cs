@@ -16,7 +16,12 @@ namespace Demo
         {
             base.ConfigureAggregateCatalog();
 
+            // Discover anything in my own assembly. 
+            AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(MainBootstrapper).Assembly));
+
             // Discover modules in the directory.
+            // Module assemlies have to be copied there.
+            // Note that this mechanism seems to need more cleanings than expected.
             var directoryCatalog = new DirectoryCatalog("Modules");
             AggregateCatalog.Catalogs.Add(directoryCatalog);
         }
