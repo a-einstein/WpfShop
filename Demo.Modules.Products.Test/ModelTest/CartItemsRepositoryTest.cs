@@ -6,6 +6,7 @@ namespace Demo.Modules.Products.Model.Test
     [TestClass()]
     public class CartItemsRepositoryTest : ModelTest
     {
+        [TestMethod()]
         public void CombinationTest()
         {
             var products = ProductsRepository.Instance;
