@@ -7,7 +7,7 @@ namespace Demo.Modules.Products.Views
     [Export]
     // TODO This way of ordering actually does not work. Also see elsewhere.
     //[ViewSortHint("20")]
-    public partial class ProductsView : View//, IPartImportsSatisfiedNotification
+    public partial class ProductsView : View
     {
         public ProductsView()
         {
