@@ -14,7 +14,7 @@ namespace Demo.Common
             DependencyProperty.Register("Items", typeof(ObservableCollection<T>), typeof(ItemsViewModel<T,U>));
 
         // TODO Some sort of view would be more convenient to enable sorting in situ (filtering is no longer done so). But remember: that no longer applies when paging.
-        public virtual ObservableCollection<T> Items
+        public ObservableCollection<T> Items
         {
             get { return (ObservableCollection<T>)GetValue(ItemsProperty); }
             set { SetValue(ItemsProperty, value); }
