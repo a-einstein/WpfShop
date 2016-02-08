@@ -33,7 +33,6 @@ namespace Demo.Modules.Products.Model
         }
 
         private const string cartItemsNumberExceptionMessage = "Unexpected number of found ShoppingCartItems.";
-        private const string productNotFoundExceptionMessage = "Product not found.";
 
         // Note that the cart is only kept in memory and is not preserved. 
         // It is anticipated that only real orders would be preserved and stored on the server.
