@@ -17,7 +17,9 @@
             <Converters:CategoriesFormatter x:Key="CategoriesFormatter"/>
             <Converters:SizeFormatter x:Key="SizeFormatter"/>
             <Converters:ByteArrayToBitmapImageConverter x:Key="ByteArrayToBitmapImageConverter"/>
-            <Resources:Wrapper x:Key="Resources" />
+            <Converters:HasValueTester x:Key="HasValueTester"/>
+            <Converters:HasValueMultiTester x:Key="HasValueMultiTester"/>
+            <Resources:Wrapper x:Key="Resources"/>
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
@@ -33,16 +35,24 @@
 
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.MasterFilter}" Style="{StaticResource LineTextBlockStyle}"/>
-                <ComboBox ItemsSource="{Binding MasterFilterItems}" SelectedValue="{Binding MasterFilterValue}" Style="{StaticResource FilterComboBoxStyle}"/>
+                <ComboBox ItemsSource="{Binding MasterFilterItems}" SelectedValue="{Binding MasterFilterValue}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" Style="{StaticResource FilterComboBoxStyle}"/>
 
                 <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.DetailFilter}" Style="{StaticResource LineTextBlockStyle}"/>
-                <ComboBox ItemsSource="{Binding DetailFilterItems}" SelectedValue="{Binding DetailFilterValue}" Style="{StaticResource FilterComboBoxStyle}"/>
+                <ComboBox ItemsSource="{Binding DetailFilterItems}" SelectedValue="{Binding DetailFilterValue}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" Style="{StaticResource FilterComboBoxStyle}"/>
 
                 <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.TextFilter}" Style="{StaticResource LineTextBlockStyle}"/>
                 <!--Note this field has to be tabbed out to reach the default button by the enter key.-->
                 <TextBox Text="{Binding TextFilterValue, Mode=TwoWay}" Width="200" Style="{StaticResource LineTextBoxStyle}"/>
 
-                <Button Content="{Binding Source={StaticResource Resources}, Path=Labels.Filter}" Command="{Binding FilterCommand}" IsDefault="True" Margin="{StaticResource StandardHorizontalSeparation}"/>
+                <Button Content="{Binding Source={StaticResource Resources}, Path=Labels.Filter}" Command="{Binding FilterCommand}" IsDefault="True" Margin="{StaticResource StandardHorizontalSeparation}">
+                    <Button.IsEnabled>
+                        <MultiBinding Converter="{StaticResource HasValueMultiTester}">
+                            <Binding Path="MasterFilterValue"/>
+                            <Binding Path="DetailFilterValue"/>
+                            <Binding Path="TextFilterValue"/>
+                        </MultiBinding>
+                    </Button.IsEnabled>
+                </Button>
 
                 <TextBlock Text="{Binding ItemsCount}" Style="{StaticResource LineValueTextBlockStyle}"/>
                 <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Products}" Style="{StaticResource LineTextBlockStyle}"/>

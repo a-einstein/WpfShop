@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
-using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
 namespace Demo.Common.Converters
 {
-    public class ByteArrayToBitmapImageConverter : IValueConverter
+    public class ByteArrayToBitmapImageConverter : SingleDirectionConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return Convert(value);
         }
@@ -31,11 +30,6 @@ namespace Demo.Common.Converters
             }
 
             return null;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -54,8 +54,6 @@ namespace Demo.Modules.Products.ViewModels
             DeleteCommand = new DelegateCommand<CartItem>(Delete);
         }
 
-        public override object NoId { get { return CartItemsRepository.Instance.NoId; } }
-
         public void CartProduct(IShoppingProduct productsOverviewObject)
         {
             CartItemsRepository.Instance.AddProduct(productsOverviewObject);

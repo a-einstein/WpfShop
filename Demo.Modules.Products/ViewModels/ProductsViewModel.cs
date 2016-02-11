@@ -67,6 +67,9 @@ namespace Demo.Modules.Products.ViewModels
                         MasterFilterItems.Add(item);
                     }
 
+                    // To trigger the enablement.
+                    RaisePropertyChanged("MasterFilterItems");
+
                     foreach (var item in ProductSubcategoriesRepository.Instance.List)
                     {
                         detailFilterItemsSource.Add(item);
@@ -119,11 +122,12 @@ namespace Demo.Modules.Products.ViewModels
             });
         }
 
-        protected override Func<ProductSubcategory, bool> DetailItemsSelector(bool preserveEmptyElement = true)
+        protected override Func<ProductSubcategory, bool> DetailFilterItemsSelector(bool preserveEmptyElement = true)
         {
-            // TODO Value should be null value when there is no selection.
-            // TODO An empty list should disable the selector. Currently it shows a blank list of apparently a default length 4.
-            return subcategory => /*(MasterFilterValue != null) && (MasterFilterValue.Id != NoId) &&*/ ((preserveEmptyElement && subcategory.Id == NoId) || (subcategory.ProductCategoryId == MasterFilterValue.Id));
+            return subcategory =>
+                MasterFilterValue != null &&
+                !MasterFilterValue.IsEmpty() &&
+                (preserveEmptyElement && subcategory.IsEmpty() || subcategory.ProductCategoryId == MasterFilterValue.Id);
         }
 
         protected override void SetCommands()
@@ -152,7 +156,5 @@ namespace Demo.Modules.Products.ViewModels
         {
             ShoppingCartViewModel.Instance.CartProduct(productsOverviewObject);
         }
-
-        public override int NoId { get { return ProductsRepository.Instance.NoId; } }
     }
 }

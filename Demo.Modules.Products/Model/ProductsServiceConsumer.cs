@@ -5,6 +5,7 @@ namespace Demo.Modules.Products.Model
 {
     public abstract class ProductsServiceConsumer : IDisposable
     {
+        // TODO Make Id nullable?
         public int NoId { get { return -1; } }
 
         private ProductsServiceClient productsServiceClient;

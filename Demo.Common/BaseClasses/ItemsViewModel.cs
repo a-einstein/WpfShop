@@ -23,10 +23,5 @@ namespace Demo.Common
         // Convenience property to signal changes.
         // Note that just binding on Items.Count does not work.
         public int ItemsCount { get { return Items != null ? Items.Count : 0; } }
-
-        /// <summary>
-        /// A value enabling recognition of empty Items.
-        /// </summary>
-        public abstract U NoId { get; }
     }
 }

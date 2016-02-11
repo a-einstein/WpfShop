@@ -42,18 +42,21 @@ namespace Demo.Common
         // TODO Some sort of view would be more convenient.
         private void SetDetailFilterItems(bool addEmptyElement = true)
         {
-            var detailItemsSelection = detailFilterItemsSource.Where(DetailItemsSelector());
+            var detailFilterItemsSelection = detailFilterItemsSource.Where(DetailFilterItemsSelector());
 
             DetailFilterItems.Clear();
 
             // Note that the query is executed on the foreach.
-            foreach (var item in detailItemsSelection)
+            foreach (var item in detailFilterItemsSelection)
             {
                 DetailFilterItems.Add(item);
             }
+
+            // To trigger the enablement.
+            RaisePropertyChanged("DetailFilterItems");
         }
 
-        protected abstract Func<W, bool> DetailItemsSelector(bool addEmptyElement = true);
+        protected abstract Func<W, bool> DetailFilterItemsSelector(bool addEmptyElement = true);
 
         protected Collection<W> detailFilterItemsSource = new Collection<W>();
         public ObservableCollection<W> DetailFilterItems { get; set; }
