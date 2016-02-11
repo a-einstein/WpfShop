@@ -37,8 +37,8 @@ namespace Demo.Modules.Products.Model
             var task = Task.Run(async () =>
             {
                 var productOverview = await ProductsServiceClient.GetProductsOverviewByAsync(
-                    category != null ? category.Id : NoId,
-                    subcategory != null ? subcategory.Id : NoId,
+                    category != null ? category.Id : null,
+                    subcategory != null ? subcategory.Id : null,
                     namePart);
 
                 return productOverview;

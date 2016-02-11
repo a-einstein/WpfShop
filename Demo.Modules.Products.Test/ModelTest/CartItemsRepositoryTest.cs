@@ -14,12 +14,12 @@ namespace Demo.Modules.Products.Model.Test
 
             int productId1 = 1;
             decimal price1 = 10;
-            var product1 = ProductsOverviewObject(productId1, price1, products.NoId);
+            var product1 = ProductsOverviewObject(productId1, price1);
             products.List.Add(product1);
 
             int productId2 = 2;
             decimal price2 = 20;
-            var product2 = ProductsOverviewObject(productId2, price2, products.NoId);
+            var product2 = ProductsOverviewObject(productId2, price2);
             products.List.Add(product2);
 
             var target = CartItemsRepository.Instance;
@@ -42,9 +42,9 @@ namespace Demo.Modules.Products.Model.Test
         }
 
         // Overloaded to clarify price.
-        public static ProductsOverviewObject ProductsOverviewObject(int dtoId, decimal listPrice, object noId)
+        public static ProductsOverviewObject ProductsOverviewObject(int dtoId, decimal listPrice)
         {
-            var instance = ProductsOverviewObject(dtoId, noId);
+            var instance = ProductsOverviewObject(dtoId);
             instance.ListPrice = listPrice;
 
             return instance;

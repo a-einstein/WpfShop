@@ -3,23 +3,16 @@ using System.Windows;
 
 namespace Demo.Common
 {
-    public abstract class ItemViewModel<T,U> : ViewModel where T : DomainClass
+    public abstract class ItemViewModel<T, U> : ViewModel where T : DomainClass
     {
-        /// <summary>
-        /// A value enabling recognition of empty Items.
-        /// </summary>
-        public abstract U NoId { get; }
-
-        public object ItemId
+        public int? ItemId
         {
-            get { return GetItemId(); }
+            get { return Item != null ? Item.Id : null; }
             set { Refresh(value); }
         }
 
-        protected abstract object GetItemId();
-
         public static readonly DependencyProperty ItemProperty =
-            DependencyProperty.Register("Item", typeof(T), typeof(ItemViewModel<T,U>), new PropertyMetadata(null));
+            DependencyProperty.Register("Item", typeof(T), typeof(ItemViewModel<T, U>), new PropertyMetadata(null));
 
         public T Item
         {

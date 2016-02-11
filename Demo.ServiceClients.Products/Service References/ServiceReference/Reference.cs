@@ -39,10 +39,10 @@ namespace Demo.ServiceClients.Products.ServiceReference {
     public interface IProductsService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductsOverviewBy", ReplyAction="http://tempuri.org/IProductsService/GetProductsOverviewByResponse")]
-        Demo.ServiceClients.Products.ServiceReference.ProductsOverviewList GetProductsOverviewBy(int productCategoryID, int productSubcategoryID, string productNameString);
+        Demo.ServiceClients.Products.ServiceReference.ProductsOverviewList GetProductsOverviewBy(System.Nullable<int> productCategoryID, System.Nullable<int> productSubcategoryID, string productNameString);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductsOverviewBy", ReplyAction="http://tempuri.org/IProductsService/GetProductsOverviewByResponse")]
-        System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductsOverviewList> GetProductsOverviewByAsync(int productCategoryID, int productSubcategoryID, string productNameString);
+        System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductsOverviewList> GetProductsOverviewByAsync(System.Nullable<int> productCategoryID, System.Nullable<int> productSubcategoryID, string productNameString);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductDetails", ReplyAction="http://tempuri.org/IProductsService/GetProductDetailsResponse")]
         Common.DomainClasses.Product GetProductDetails(int productId);
@@ -90,11 +90,11 @@ namespace Demo.ServiceClients.Products.ServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public Demo.ServiceClients.Products.ServiceReference.ProductsOverviewList GetProductsOverviewBy(int productCategoryID, int productSubcategoryID, string productNameString) {
+        public Demo.ServiceClients.Products.ServiceReference.ProductsOverviewList GetProductsOverviewBy(System.Nullable<int> productCategoryID, System.Nullable<int> productSubcategoryID, string productNameString) {
             return base.Channel.GetProductsOverviewBy(productCategoryID, productSubcategoryID, productNameString);
         }
         
-        public System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductsOverviewList> GetProductsOverviewByAsync(int productCategoryID, int productSubcategoryID, string productNameString) {
+        public System.Threading.Tasks.Task<Demo.ServiceClients.Products.ServiceReference.ProductsOverviewList> GetProductsOverviewByAsync(System.Nullable<int> productCategoryID, System.Nullable<int> productSubcategoryID, string productNameString) {
             return base.Channel.GetProductsOverviewByAsync(productCategoryID, productSubcategoryID, productNameString);
         }
         

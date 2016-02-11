@@ -8,13 +8,6 @@ namespace Demo.Modules.Products.ViewModels
 {
     public class ProductViewModel : ItemViewModel<Product, int>, IShopper
     {
-        public override int NoId { get { return ProductsRepository.Instance.NoId; } }
-
-        protected override object GetItemId()
-        {
-            return Item != null ? Item.Id : NoId;
-        }
-
         public override async void Refresh(object productId)
         {
             // TODO Check for errors.

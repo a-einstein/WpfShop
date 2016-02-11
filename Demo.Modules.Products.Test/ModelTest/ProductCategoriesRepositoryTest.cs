@@ -10,7 +10,7 @@ namespace Demo.Modules.Products.Model.Test
         public void ListTest()
         {
             var target = ProductCategoriesRepository.Instance;
-            var element = ProductCategory(target.NoId);
+            var element = new ProductCategory() { Name = "CategoryName" };
 
             target.Clear();
             target.List.Add(element);
@@ -18,17 +18,6 @@ namespace Demo.Modules.Products.Model.Test
             var result = target.List.Count;
 
             Assert.AreEqual(1, result);
-        }
-
-        public static ProductCategory ProductCategory(object noId)
-        {
-            var instance = new ProductCategory()
-            {
-                Name = "a Name",
-                Id = (int)noId
-            };
-
-            return instance;
         }
     }
 }

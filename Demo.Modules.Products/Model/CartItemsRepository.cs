@@ -47,7 +47,7 @@ namespace Demo.Modules.Products.Model
             {
                 productCartItem = new CartItem()
                 {
-                    ProductID = product.Id,
+                    ProductID = product.Id.Value,
                     Name = product.Name,
                     ProductSize = product.Size,
                     ProductSizeUnitMeasureCode = product.SizeUnitMeasureCode,

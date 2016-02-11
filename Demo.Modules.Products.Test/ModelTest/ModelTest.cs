@@ -4,7 +4,8 @@ namespace Demo.Modules.Products.Model.Test
 {
     public abstract class ModelTest
     {
-        public static ProductsOverviewObject ProductsOverviewObject(int id, object noId)
+        // Convenience method.
+        public static ProductsOverviewObject ProductsOverviewObject(int id)
         {
             var instance = new ProductsOverviewObject()
             {
@@ -12,7 +13,6 @@ namespace Demo.Modules.Products.Model.Test
                 ListPrice = (decimal)id,
                 Name = Format("Name", id),
                 ProductCategory = Format("ProductCategory", id),
-                ProductCategoryId = (int)noId,
                 Id = id,
                 ProductSubcategory = Format("ProductSubcategory", id),
                 Size = id.ToString(),

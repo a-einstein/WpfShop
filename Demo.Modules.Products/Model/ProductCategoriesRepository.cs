@@ -40,7 +40,7 @@ namespace Demo.Modules.Products.Model
 
                 if (addEmptyElement)
                 {
-                    var category = new ProductCategory() { Id = NoId, Name = string.Empty };
+                    var category = new ProductCategory() { Name = string.Empty };
                     List.Add(category);
                 }
 

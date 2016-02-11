@@ -45,6 +45,7 @@
                 <TextBox Text="{Binding TextFilterValue, Mode=TwoWay}" Width="200" Style="{StaticResource LineTextBoxStyle}"/>
 
                 <Button Content="{Binding Source={StaticResource Resources}, Path=Labels.Filter}" Command="{Binding FilterCommand}" IsDefault="True" Margin="{StaticResource StandardHorizontalSeparation}">
+                    <!--Note this prevents unfiltered queries.-->
                     <Button.IsEnabled>
                         <MultiBinding Converter="{StaticResource HasValueMultiTester}">
                             <Binding Path="MasterFilterValue"/>

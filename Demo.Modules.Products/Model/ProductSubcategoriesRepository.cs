@@ -40,7 +40,7 @@ namespace Demo.Modules.Products.Model
 
                 if (addEmptyElement)
                 {
-                    var subcategory = new ProductSubcategory() { ProductCategoryId = NoId, Id=NoId, Name = string.Empty };
+                    var subcategory = new ProductSubcategory();
                     List.Add(subcategory);
                 }
 

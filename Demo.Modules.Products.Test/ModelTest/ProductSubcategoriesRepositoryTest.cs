@@ -10,7 +10,7 @@ namespace Demo.Modules.Products.Model.Test
         public void ListTest()
         {
             var target = ProductSubcategoriesRepository.Instance;
-            var element = ProductSubcategory(target.NoId);
+            var element = new ProductSubcategory() { Name = "SubcategoryName" };
 
             target.Clear();
             target.List.Add(element);
@@ -19,17 +19,5 @@ namespace Demo.Modules.Products.Model.Test
 
             Assert.AreEqual(1, result);
         }
-
-        public static ProductSubcategory ProductSubcategory(object noId)
-         {
-             var instance = new ProductSubcategory()
-             {
-                 Name = "a Name",
-                 ProductCategoryId = (int)noId,
-                 Id = (int)noId
-             };
-
-             return instance;
-         }
      }
  }

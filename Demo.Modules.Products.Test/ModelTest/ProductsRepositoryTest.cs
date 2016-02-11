@@ -9,7 +9,7 @@ namespace Demo.Modules.Products.Model.Test
         public void ListTest()
         {
             var target = ProductsRepository.Instance;
-            var element = ProductsOverviewObject(1, target.NoId);
+            var element = ProductsOverviewObject(1);
 
             target.Clear();
             target.List.Add(element);
