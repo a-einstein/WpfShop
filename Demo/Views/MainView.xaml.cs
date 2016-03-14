@@ -1,5 +1,6 @@
 ﻿using Demo.Common;
-using Demo.Common.Regions;
+using Demo.Common.ViewModels;
+using Demo.Common.Views;
 using Demo.ViewModels;
 using Prism.Modularity;
 using Prism.Regions;
@@ -38,7 +39,7 @@ namespace Demo.Views
             // The first view to be shown depends on the registering order, which depends on loading order of modules, 
             // which currrently is by alphabetic order in the modules directory, which currently gives the about module as first.
 
-            //RegionManager.RequestNavigate(RegionNames.MainRegion, infoViewUri);
+            //RegionManager.RequestNavigate(Regions.Main, infoViewUri);
         }
 
         #region WidgetView
@@ -55,7 +56,7 @@ namespace Demo.Views
 
         private void InfoButton_Checked(object sender, RoutedEventArgs e)
         {
-            RegionManager.RequestNavigate(RegionNames.MainRegion, infoViewUri);
+            RegionManager.RequestNavigate(Regions.Main, infoViewUri);
         }
 
         #endregion
@@ -66,7 +67,7 @@ namespace Demo.Views
 
         private void OverviewButton_Checked(object sender, RoutedEventArgs e)
         {
-            RegionManager.RequestNavigate(RegionNames.MainRegion, overViewUri);
+            RegionManager.RequestNavigate(Regions.Main, overViewUri);
         }
 
         #endregion

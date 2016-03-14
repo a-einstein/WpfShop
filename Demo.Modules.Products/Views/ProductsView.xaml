@@ -5,7 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:prism="http://www.codeplex.com/prism"
-    xmlns:BaseClasses="clr-namespace:Demo.Common;assembly=Demo.Common"
+    xmlns:BaseClasses="clr-namespace:Demo.Common.Views;assembly=Demo.Common"
     xmlns:Converters="clr-namespace:Demo.Common.Converters;assembly=Demo.Common"
     xmlns:Resources="clr-namespace:Demo.Resources;assembly=Demo.Resources"
     mc:Ignorable="d" 

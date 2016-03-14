@@ -1,5 +1,5 @@
 ﻿using Demo.Common;
-using Demo.Common.Regions;
+using Demo.Common.Modules;
 using Demo.Modules.About.Views;
 using Prism.Mef.Modularity;
 using Prism.Modularity;
@@ -16,7 +16,7 @@ namespace Demo.Modules.About
         {
             // As the type has to be used here, a RequestNavigate elsewhere can only use the class name (as string), 
             // not any other identification like a functional name.
-            RegionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(AboutView));
+            RegionManager.RegisterViewWithRegion(Regions.Main, typeof(AboutView));
         }
     }
 }

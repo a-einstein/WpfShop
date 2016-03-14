@@ -1,4 +1,4 @@
-﻿using Demo.Common;
+﻿using Demo.Common.Views;
 using Demo.Modules.About.ViewModels;
 using System.ComponentModel.Composition;
 

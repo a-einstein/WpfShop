@@ -2,7 +2,7 @@
     x:Class="Demo.Modules.Products.Views.ProductView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:BaseClasses="clr-namespace:Demo.Common;assembly=Demo.Common"
+    xmlns:BaseClasses="clr-namespace:Demo.Common.Views;assembly=Demo.Common"
     xmlns:Converters="clr-namespace:Demo.Common.Converters;assembly=Demo.Common"
     xmlns:Resources="clr-namespace:Demo.Resources;assembly=Demo.Resources"
     Background="{StaticResource ProductBackgroundBrush}" 

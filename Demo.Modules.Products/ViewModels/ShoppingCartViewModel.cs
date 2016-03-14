@@ -1,5 +1,5 @@
 ﻿using Common.DomainClasses;
-using Demo.Common;
+using Demo.Common.ViewModels;
 using Demo.Modules.Products.Model;
 using Prism.Commands;
 using System;

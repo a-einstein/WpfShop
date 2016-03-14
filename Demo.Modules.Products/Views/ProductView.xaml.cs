@@ -1,4 +1,4 @@
-﻿using Demo.Common;
+﻿using Demo.Common.Views;
 
 namespace Demo.Modules.Products.Views
 {

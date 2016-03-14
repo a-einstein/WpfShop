@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Demo.Common.Views;
+using System.Windows;
 
 namespace Demo.Common.Windows
 {

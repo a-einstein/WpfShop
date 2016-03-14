@@ -1,5 +1,6 @@
 ﻿using Common.DomainClasses;
-using Demo.Common;
+using Demo.Common.ViewModels;
+using Demo.Common.Views;
 using Demo.Common.Windows;
 using Demo.Modules.Products.Model;
 using Demo.Modules.Products.Views;
