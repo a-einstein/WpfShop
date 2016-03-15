@@ -1,4 +1,4 @@
-## WpfTestApplication
+## WpfShop
 
 #### Purpose
 * Testing and demoing some WPF techniques.
