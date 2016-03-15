@@ -1,5 +1,5 @@
 ﻿using Common.DomainClasses;
-using Demo.ServiceClients.Products.ServiceReference;
+using Demo.ServiceClients.Products.ProductsService;
 using System;
 using System.Threading.Tasks;
 

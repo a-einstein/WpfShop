@@ -35,7 +35,7 @@
     <Reference Include="Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\AdventureWorksServices\ProductsService\bin\Common.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,7 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\ServiceReference\Reference.cs">
+    <Compile Include="Service References\ProductsService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -62,35 +62,35 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\ServiceReference\" />
+    <WCFMetadataStorage Include="Service References\ProductsService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\ProductsService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceReference\configuration.svcinfo" />
+    <None Include="Service References\ProductsService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceReference\ProductsService.wsdl" />
-    <None Include="Service References\ServiceReference\ProductsService1.xsd">
+    <None Include="Service References\ProductsService\ProductsService.wsdl" />
+    <None Include="Service References\ProductsService\ProductsService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference\ProductsService11.xsd">
+    <None Include="Service References\ProductsService\ProductsService11.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference\ProductsService12.xsd">
+    <None Include="Service References\ProductsService\ProductsService12.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference\ProductsService13.xsd">
+    <None Include="Service References\ProductsService\ProductsService13.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference\Reference.svcmap">
+    <None Include="Service References\ProductsService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceReference\ProductsService.disco" />
+    <None Include="Service References\ProductsService\ProductsService.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

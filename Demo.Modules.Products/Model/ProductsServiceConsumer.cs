@@ -1,4 +1,4 @@
-﻿using Demo.ServiceClients.Products.ServiceReference;
+﻿using Demo.ServiceClients.Products.ProductsService;
 using System;
 
 namespace Demo.Modules.Products.Model
