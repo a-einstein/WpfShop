@@ -3,7 +3,7 @@ using System.Windows.Controls;
 
 namespace Demo.Common.Views
 {
-    public class View : UserControl
+    public abstract class View : UserControl
     {
         public ViewModel ViewModel
         {
