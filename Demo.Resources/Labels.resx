@@ -127,6 +127,9 @@
   <data name="Close" xml:space="preserve">
     <value />
   </data>
+  <data name="DetailFilter" xml:space="preserve">
+    <value />
+  </data>
   <data name="Details" xml:space="preserve">
     <value />
   </data>
@@ -140,6 +143,9 @@
     <value />
   </data>
   <data name="MainTitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MasterFilter" xml:space="preserve">
     <value />
   </data>
   <data name="NavigateAbout" xml:space="preserve">

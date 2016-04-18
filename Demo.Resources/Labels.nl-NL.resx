@@ -129,6 +129,9 @@ Zie voor meer details de beschrijvingen (ReadMe) van de betrokken repositories.<
   <data name="Close" xml:space="preserve">
     <value>Sluit</value>
   </data>
+  <data name="DetailFilter" xml:space="preserve">
+    <value>Subcategorie</value>
+  </data>
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
@@ -143,6 +146,9 @@ Zie voor meer details de beschrijvingen (ReadMe) van de betrokken repositories.<
   </data>
   <data name="MainTitle" xml:space="preserve">
     <value>Uw Merknaam Kan Hier Staan</value>
+  </data>
+  <data name="MasterFilter" xml:space="preserve">
+    <value>Categorie</value>
   </data>
   <data name="NavigateAbout" xml:space="preserve">
     <value>Over dit project</value>

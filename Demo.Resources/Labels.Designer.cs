@@ -90,6 +90,15 @@ namespace Demo.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string DetailFilter {
+            get {
+                return ResourceManager.GetString("DetailFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string Details {
             get {
                 return ResourceManager.GetString("Details", resourceCulture);
@@ -129,6 +138,15 @@ namespace Demo.Resources {
         public static string MainTitle {
             get {
                 return ResourceManager.GetString("MainTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string MasterFilter {
+            get {
+                return ResourceManager.GetString("MasterFilter", resourceCulture);
             }
         }
         

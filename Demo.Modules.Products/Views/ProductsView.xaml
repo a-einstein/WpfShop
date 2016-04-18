@@ -23,49 +23,50 @@
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
-    <Border BorderBrush="Black" BorderThickness="1" Background="{StaticResource ProductBackgroundBrush}" Padding="3">
+    <Border Style="{StaticResource BorderStyle}" Background="{StaticResource ProductBackgroundBrush}">
         <Grid >
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.Products}" FontSize="16" FontWeight="Bold" Margin="3"/>
+            <StackPanel Margin="0,0,0,2">
+                <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Products}" Style="{StaticResource MainHeaderTextBlockStyle}"/>
 
-            <StackPanel Grid.Row="1" Orientation="Horizontal">
-                <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.MasterFilter}" Style="{StaticResource LineTextBlockStyle}"/>
-                <ComboBox ItemsSource="{Binding MasterFilterItems}" SelectedValue="{Binding MasterFilterValue}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" Style="{StaticResource FilterComboBoxStyle}"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.MasterFilter}" Style="{StaticResource LineTextBlockStyle}"/>
+                    <ComboBox ItemsSource="{Binding MasterFilterItems}" SelectedValue="{Binding MasterFilterValue}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" Style="{StaticResource FilterComboBoxStyle}"/>
 
-                <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.DetailFilter}" Style="{StaticResource LineTextBlockStyle}"/>
-                <ComboBox ItemsSource="{Binding DetailFilterItems}" SelectedValue="{Binding DetailFilterValue}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" Style="{StaticResource FilterComboBoxStyle}"/>
+                    <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.DetailFilter}" Style="{StaticResource LineTextBlockStyle}"/>
+                    <ComboBox ItemsSource="{Binding DetailFilterItems}" SelectedValue="{Binding DetailFilterValue}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" Style="{StaticResource FilterComboBoxStyle}"/>
 
-                <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.TextFilter}" Style="{StaticResource LineTextBlockStyle}"/>
-                <!--Note this field has to be tabbed out to reach the default button by the enter key.-->
-                <TextBox Text="{Binding TextFilterValue, Mode=TwoWay}" Width="200" Style="{StaticResource LineTextBoxStyle}"/>
+                    <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.TextFilter}" Style="{StaticResource LineTextBlockStyle}"/>
+                    <!--Note this field has to be tabbed out to reach the default button by the enter key.-->
+                    <TextBox Text="{Binding TextFilterValue, Mode=TwoWay}" Width="200" Style="{StaticResource LineTextBoxStyle}"/>
 
-                <Button Content="{Binding Source={StaticResource Resources}, Path=Labels.Filter}" Command="{Binding FilterCommand}" IsDefault="True" Margin="{StaticResource StandardHorizontalSeparation}">
-                    <!--Note this prevents unfiltered queries.-->
-                    <Button.IsEnabled>
-                        <MultiBinding Converter="{StaticResource HasValueMultiTester}">
-                            <Binding Path="MasterFilterValue"/>
-                            <Binding Path="DetailFilterValue"/>
-                            <Binding Path="TextFilterValue"/>
-                        </MultiBinding>
-                    </Button.IsEnabled>
-                </Button>
+                    <Button Content="{Binding Source={StaticResource Resources}, Path=Labels.Filter}" Command="{Binding FilterCommand}" IsDefault="True" Margin="{StaticResource StandardHorizontalSeparation}">
+                        <!--Note this prevents unfiltered queries.-->
+                        <Button.IsEnabled>
+                            <MultiBinding Converter="{StaticResource HasValueMultiTester}">
+                                <Binding Path="MasterFilterValue"/>
+                                <Binding Path="DetailFilterValue"/>
+                                <Binding Path="TextFilterValue"/>
+                            </MultiBinding>
+                        </Button.IsEnabled>
+                    </Button>
 
-                <TextBlock Text="{Binding ItemsCount}" Style="{StaticResource LineValueTextBlockStyle}"/>
-                <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Products}" Style="{StaticResource LineTextBlockStyle}"/>
+                    <TextBlock Text="{Binding ItemsCount}" Style="{StaticResource LineValueTextBlockStyle}"/>
+                    <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Products}" Style="{StaticResource LineTextBlockStyle}"/>
+                </StackPanel>
             </StackPanel>
 
-            <Border Grid.Row="2" Style="{StaticResource BorderStyle}" Margin="0,10,0,0">
+            <Border Grid.Row="1" Style="{StaticResource BorderStyle}">
                 <!--Note this does not work within a StackPanel-->
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                     <ItemsControl ItemsSource="{Binding Items}" Padding="2" Background="#FFEAF7FF">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Margin="2" BorderThickness="1" BorderBrush="Black" Background="{StaticResource ProductBackgroundBrush}" Padding="3">
+                                <Border Style="{StaticResource BorderStyle}" Background="{StaticResource ProductBackgroundBrush}">
                                     <Grid Width="300">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>

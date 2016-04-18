@@ -15,9 +15,9 @@
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
-    <Border BorderBrush="Black" BorderThickness="1" Padding="3" Background="{StaticResource CartBackgroundBrush}">
+    <Border Style="{StaticResource BorderStyle}" Background="{StaticResource CartBackgroundBrush}">
         <StackPanel>
-            <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Cart}" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Cart}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold"/>
 
             <Expander>
                 <Expander.Header>
@@ -33,7 +33,7 @@
                     </StackPanel>
                 </Expander.Header>
                 <Expander.Content>
-                    <ListView ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}" MinHeight="20" Background="#FFFFFDF1">
+                    <ListView ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}" Margin="{StaticResource StandardMargin}" Padding="{StaticResource StandardPadding}" MinHeight="20" Background="#FFFFFDF1">
                         <ListView.View>
                             <!--Note that Width Auto of GridViewColumns does not work and seems to be a bug according to the web. Therefor a thin empty header row is used to enable resizing.-->
                             <!--TODO Make Height of row smaller.-->
