@@ -1,28 +1,28 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 14 for Windows Desktop
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{961240DC-9FE9-4642-B877-FCBDCDE9E07C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.WpfShop", "RCS.WpfShop\RCS.WpfShop.csproj", "{961240DC-9FE9-4642-B877-FCBDCDE9E07C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{08F09C6D-31A0-4E29-B132-A17F90E5321C}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ServiceClients.Products", "Demo.ServiceClients.Products\Demo.ServiceClients.Products.csproj", "{24156B78-6E6C-438C-BF1E-B34FD3C68800}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.WpfShop.ServiceClients.Products", "RCS.WpfShop.ServiceClients.Products\RCS.WpfShop.ServiceClients.Products.csproj", "{24156B78-6E6C-438C-BF1E-B34FD3C68800}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Resources", "Demo.Resources\Demo.Resources.csproj", "{46A45E36-C4EB-4CA2-9B98-120038FCB2D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.WpfShop.Resources", "RCS.WpfShop.Resources\RCS.WpfShop.Resources.csproj", "{46A45E36-C4EB-4CA2-9B98-120038FCB2D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Common", "Demo.Common\Demo.Common.csproj", "{9B4E52E2-C3E5-4A2F-BD05-520440DA673A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.WpfShop.Common", "RCS.WpfShop.Common\RCS.WpfShop.Common.csproj", "{9B4E52E2-C3E5-4A2F-BD05-520440DA673A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Modules.Products", "Demo.Modules.Products\Demo.Modules.Products.csproj", "{46FD7B84-C33F-4A86-AD84-57BDC92313AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.WpfShop.Modules.Products", "RCS.WpfShop.Modules.Products\RCS.WpfShop.Modules.Products.csproj", "{46FD7B84-C33F-4A86-AD84-57BDC92313AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Common.Test", "Demo.Common.Test\Demo.Common.Test.csproj", "{F295C200-1D1F-4949-93E1-439056A6A8B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.WpfShop.Common.Test", "RCS.WpfShop.Common.Test\RCS.WpfShop.Common.Test.csproj", "{F295C200-1D1F-4949-93E1-439056A6A8B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Modules.About", "Demo.Modules.About\Demo.Modules.About.csproj", "{2174C129-E033-4499-A912-6BE4E7FE59B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.WpfShop.Modules.About", "RCS.WpfShop.Modules.About\RCS.WpfShop.Modules.About.csproj", "{2174C129-E033-4499-A912-6BE4E7FE59B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Modules.Products.Test", "Demo.Modules.Products.Test\Demo.Modules.Products.Test.csproj", "{F9E6A8CD-84AB-4CE3-AEC6-2DCD63B94EE9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.WpfShop.Modules.Products.Test", "RCS.WpfShop.Modules.Products.Test\RCS.WpfShop.Modules.Products.Test.csproj", "{F9E6A8CD-84AB-4CE3-AEC6-2DCD63B94EE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
