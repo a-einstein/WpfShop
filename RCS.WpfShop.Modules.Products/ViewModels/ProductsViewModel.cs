@@ -18,7 +18,7 @@ using System.Windows.Threading;
 namespace RCS.WpfShop.Modules.Products.ViewModels
 {
     [Export]
-    public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, int, ProductCategory, ProductSubcategory>, IShopper, IPartImportsSatisfiedNotification
+    public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper, IPartImportsSatisfiedNotification
     {
         private Dispatcher uiDispatcher;
 

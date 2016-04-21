@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace RCS.WpfShop.Common.ViewModels
 {
-    public abstract class FilterItemsViewModel<T, U, V, W> : ItemsViewModel<T, U>
+    public abstract class FilterItemsViewModel<T, V, W> : ItemsViewModel<T>
     {
         public FilterItemsViewModel()
         {
@@ -21,7 +21,7 @@ namespace RCS.WpfShop.Common.ViewModels
         public ObservableCollection<V> MasterFilterItems { get; set; }
 
         public static readonly DependencyProperty MasterFilterValueProperty =
-            DependencyProperty.Register("MasterFilterValue", typeof(V), typeof(ItemsViewModel<T, U>), new PropertyMetadata(new PropertyChangedCallback(OnMasterFilterValueChanged)));
+            DependencyProperty.Register("MasterFilterValue", typeof(V), typeof(ItemsViewModel<T>), new PropertyMetadata(new PropertyChangedCallback(OnMasterFilterValueChanged)));
 
         public V MasterFilterValue
         {
@@ -33,7 +33,7 @@ namespace RCS.WpfShop.Common.ViewModels
         // Currently the FilterCommand is just bound to a Button, implying it always has to be activated explicitly.
         private static void OnMasterFilterValueChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
         {
-            var viewModel = dependencyObject as FilterItemsViewModel<T, U, V, W>;
+            var viewModel = dependencyObject as FilterItemsViewModel<T, V, W>;
 
             viewModel.SetDetailFilterItems();
             viewModel.DetailFilterValue = viewModel.DetailFilterItems.FirstOrDefault();
@@ -62,7 +62,7 @@ namespace RCS.WpfShop.Common.ViewModels
         public ObservableCollection<W> DetailFilterItems { get; set; }
 
         public static readonly DependencyProperty DetailFilterValueProperty =
-            DependencyProperty.Register("DetailFilterValue", typeof(W), typeof(ItemsViewModel<T, U>));
+            DependencyProperty.Register("DetailFilterValue", typeof(W), typeof(ItemsViewModel<T>));
 
         public W DetailFilterValue
         {
@@ -71,7 +71,7 @@ namespace RCS.WpfShop.Common.ViewModels
         }
 
         public static readonly DependencyProperty TextFilterValueProperty =
-            DependencyProperty.Register("TextFilterValue", typeof(string), typeof(ItemsViewModel<T, U>));
+            DependencyProperty.Register("TextFilterValue", typeof(string), typeof(ItemsViewModel<T>));
 
         public string TextFilterValue
         {

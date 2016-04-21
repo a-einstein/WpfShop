@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace RCS.WpfShop.Modules.Products.ViewModels
 {
-    public class ProductViewModel : ItemViewModel<Product, int>, IShopper
+    public class ProductViewModel : ItemViewModel<Product>, IShopper
     {
         public override async void Refresh(object productId)
         {

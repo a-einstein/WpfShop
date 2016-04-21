@@ -3,7 +3,7 @@ using System.Windows;
 
 namespace RCS.WpfShop.Common.ViewModels
 {
-    public abstract class ItemViewModel<T, U> : ViewModel where T : DomainClass
+    public abstract class ItemViewModel<T> : ViewModel where T : DomainClass
     {
         public int? ItemId
         {
@@ -12,7 +12,7 @@ namespace RCS.WpfShop.Common.ViewModels
         }
 
         public static readonly DependencyProperty ItemProperty =
-            DependencyProperty.Register("Item", typeof(T), typeof(ItemViewModel<T, U>), new PropertyMetadata(null));
+            DependencyProperty.Register("Item", typeof(T), typeof(ItemViewModel<T>), new PropertyMetadata(null));
 
         public T Item
         {

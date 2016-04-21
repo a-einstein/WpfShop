@@ -13,7 +13,7 @@ using System.Windows.Input;
 namespace RCS.WpfShop.Modules.Products.ViewModels
 {
     [Export]
-    public class ShoppingCartViewModel : ItemsViewModel<CartItem, object>
+    public class ShoppingCartViewModel : ItemsViewModel<CartItem>
     {
         private ShoppingCartViewModel()
         {
