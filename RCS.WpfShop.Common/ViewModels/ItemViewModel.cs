@@ -1,4 +1,4 @@
-﻿using Common.DomainClasses;
+﻿using RCS.AdventureWorks.Common.DomainClasses;
 using System.Windows;
 
 namespace RCS.WpfShop.Common.ViewModels

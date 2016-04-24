@@ -1,4 +1,4 @@
-﻿using Common.General;
+﻿using RCS.AdventureWorks.Common.General;
 using System;
 using System.Collections;
 using System.Globalization;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://rcs-vostro/ProductsServicePub/ProductsService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Common.Dtos" />
-  <xs:import schemaLocation="http://rcs-vostro/ProductsServicePub/ProductsService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Common.DomainClasses" />
+  <xs:import schemaLocation="http://localhost:65348/ProductsService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos" />
+  <xs:import schemaLocation="http://localhost:65348/ProductsService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.DomainClasses" />
   <xs:element name="GetProductsOverviewBy">
     <xs:complexType>
       <xs:sequence>
@@ -14,7 +14,7 @@
   <xs:element name="GetProductsOverviewByResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Common.Dtos" minOccurs="0" name="GetProductsOverviewByResult" nillable="true" type="q1:ProductsOverviewList" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos" minOccurs="0" name="GetProductsOverviewByResult" nillable="true" type="q1:ProductsOverviewList" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -28,7 +28,7 @@
   <xs:element name="GetProductDetailsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Common.DomainClasses" minOccurs="0" name="GetProductDetailsResult" nillable="true" type="q2:Product" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.DomainClasses" minOccurs="0" name="GetProductDetailsResult" nillable="true" type="q2:Product" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -40,7 +40,7 @@
   <xs:element name="GetProductCategoriesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Common.Dtos" minOccurs="0" name="GetProductCategoriesResult" nillable="true" type="q3:ProductCategoryList" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos" minOccurs="0" name="GetProductCategoriesResult" nillable="true" type="q3:ProductCategoryList" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -52,7 +52,7 @@
   <xs:element name="GetProductSubcategoriesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Common.Dtos" minOccurs="0" name="GetProductSubcategoriesResult" nillable="true" type="q4:ProductSubcategoryList" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos" minOccurs="0" name="GetProductSubcategoriesResult" nillable="true" type="q4:ProductSubcategoryList" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

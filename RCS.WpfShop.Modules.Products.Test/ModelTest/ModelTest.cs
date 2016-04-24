@@ -1,4 +1,4 @@
-﻿using Common.DomainClasses;
+﻿using RCS.AdventureWorks.Common.DomainClasses;
 
 namespace RCS.WpfShop.Modules.Products.Model.Test
 {

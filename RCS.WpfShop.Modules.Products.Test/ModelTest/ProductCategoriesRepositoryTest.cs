@@ -1,5 +1,5 @@
-﻿using Common.DomainClasses;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RCS.AdventureWorks.Common.DomainClasses;
 
 namespace RCS.WpfShop.Modules.Products.Model.Test
 {

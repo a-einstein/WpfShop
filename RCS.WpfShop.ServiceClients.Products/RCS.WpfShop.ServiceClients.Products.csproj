@@ -32,9 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="RCS.AdventureWorks.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\AdventureWorksServices\ProductsService\bin\Common.dll</HintPath>
+      <HintPath>..\..\AdventureWorks\RCS.AdventureWorks.Services.Products\bin\RCS.AdventureWorks.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -59,29 +59,27 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadataStorage Include="Service References\ProductsService\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Service References\ProductsService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ProductsService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ProductsService\ProductsService.wsdl" />
+    <None Include="Service References\ProductsService\ProductsService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductsService\ProductsService1.wsdl" />
     <None Include="Service References\ProductsService\ProductsService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ProductsService\ProductsService11.xsd">
+    <None Include="Service References\ProductsService\ProductsService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ProductsService\ProductsService12.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ProductsService\ProductsService13.xsd">
+    <None Include="Service References\ProductsService\ProductsService3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ProductsService\Reference.svcmap">
@@ -90,7 +88,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ProductsService\ProductsService.disco" />
+    <None Include="Service References\ProductsService\ProductsService1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

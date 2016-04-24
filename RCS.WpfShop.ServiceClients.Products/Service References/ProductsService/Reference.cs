@@ -15,23 +15,23 @@ namespace RCS.WpfShop.ServiceClients.Products.ProductsService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductsOverviewList", Namespace="http://schemas.datacontract.org/2004/07/Common.Dtos", ItemName="ProductsOverviewObject")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductsOverviewList", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos", ItemName="ProductsOverviewObject")]
     [System.SerializableAttribute()]
-    public class ProductsOverviewList : System.Collections.Generic.List<Common.DomainClasses.ProductsOverviewObject> {
+    public class ProductsOverviewList : System.Collections.Generic.List<RCS.AdventureWorks.Common.DomainClasses.ProductsOverviewObject> {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductCategoryList", Namespace="http://schemas.datacontract.org/2004/07/Common.Dtos", ItemName="ProductCategory")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductCategoryList", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos", ItemName="ProductCategory")]
     [System.SerializableAttribute()]
-    public class ProductCategoryList : System.Collections.Generic.List<Common.DomainClasses.ProductCategory> {
+    public class ProductCategoryList : System.Collections.Generic.List<RCS.AdventureWorks.Common.DomainClasses.ProductCategory> {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductSubcategoryList", Namespace="http://schemas.datacontract.org/2004/07/Common.Dtos", ItemName="ProductSubcategory")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductSubcategoryList", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos", ItemName="ProductSubcategory")]
     [System.SerializableAttribute()]
-    public class ProductSubcategoryList : System.Collections.Generic.List<Common.DomainClasses.ProductSubcategory> {
+    public class ProductSubcategoryList : System.Collections.Generic.List<RCS.AdventureWorks.Common.DomainClasses.ProductSubcategory> {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -45,10 +45,10 @@ namespace RCS.WpfShop.ServiceClients.Products.ProductsService {
         System.Threading.Tasks.Task<RCS.WpfShop.ServiceClients.Products.ProductsService.ProductsOverviewList> GetProductsOverviewByAsync(System.Nullable<int> productCategoryID, System.Nullable<int> productSubcategoryID, string productNameString);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductDetails", ReplyAction="http://tempuri.org/IProductsService/GetProductDetailsResponse")]
-        Common.DomainClasses.Product GetProductDetails(int productId);
+        RCS.AdventureWorks.Common.DomainClasses.Product GetProductDetails(int productId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductDetails", ReplyAction="http://tempuri.org/IProductsService/GetProductDetailsResponse")]
-        System.Threading.Tasks.Task<Common.DomainClasses.Product> GetProductDetailsAsync(int productId);
+        System.Threading.Tasks.Task<RCS.AdventureWorks.Common.DomainClasses.Product> GetProductDetailsAsync(int productId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductCategories", ReplyAction="http://tempuri.org/IProductsService/GetProductCategoriesResponse")]
         RCS.WpfShop.ServiceClients.Products.ProductsService.ProductCategoryList GetProductCategories();
@@ -98,11 +98,11 @@ namespace RCS.WpfShop.ServiceClients.Products.ProductsService {
             return base.Channel.GetProductsOverviewByAsync(productCategoryID, productSubcategoryID, productNameString);
         }
         
-        public Common.DomainClasses.Product GetProductDetails(int productId) {
+        public RCS.AdventureWorks.Common.DomainClasses.Product GetProductDetails(int productId) {
             return base.Channel.GetProductDetails(productId);
         }
         
-        public System.Threading.Tasks.Task<Common.DomainClasses.Product> GetProductDetailsAsync(int productId) {
+        public System.Threading.Tasks.Task<RCS.AdventureWorks.Common.DomainClasses.Product> GetProductDetailsAsync(int productId) {
             return base.Channel.GetProductDetailsAsync(productId);
         }
         

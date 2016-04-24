@@ -1,4 +1,4 @@
-﻿using Common.DomainClasses;
+﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.WpfShop.ServiceClients.Products.ProductsService;
 using System;
 using System.Collections.Generic;

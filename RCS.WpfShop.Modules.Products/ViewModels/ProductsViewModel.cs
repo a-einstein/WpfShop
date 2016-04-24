@@ -1,5 +1,5 @@
-﻿using Common.DomainClasses;
-using Prism.Commands;
+﻿using Prism.Commands;
+using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.WpfShop.Common.ViewModels;
 using RCS.WpfShop.Common.Views;
 using RCS.WpfShop.Common.Windows;
