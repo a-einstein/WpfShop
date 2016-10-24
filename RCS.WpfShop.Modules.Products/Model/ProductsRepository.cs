@@ -37,8 +37,8 @@ namespace RCS.WpfShop.Modules.Products.Model
             var task = Task.Run(async () =>
             {
                 var productOverview = await ProductsServiceClient.GetProductsOverviewByAsync(
-                    category != null ? category.Id : null,
-                    subcategory != null ? subcategory.Id : null,
+                    category?.Id,
+                    subcategory?.Id,
                     namePart);
 
                 return productOverview;

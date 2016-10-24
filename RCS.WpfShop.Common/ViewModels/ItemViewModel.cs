@@ -7,7 +7,7 @@ namespace RCS.WpfShop.Common.ViewModels
     {
         public int? ItemId
         {
-            get { return Item != null ? Item.Id : null; }
+            get { return Item?.Id; }
             set { Refresh(value); }
         }
 

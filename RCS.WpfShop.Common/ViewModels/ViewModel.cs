@@ -26,12 +26,7 @@ namespace RCS.WpfShop.Common.ViewModels
         // This signal can be particularly useful if a collection is entirely replaced, as the formerly bound collection no longer can.
         protected void RaisePropertyChanged(string propertyName)
         {
-            var handler = PropertyChanged;
-
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

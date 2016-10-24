@@ -40,8 +40,7 @@ namespace RCS.WpfShop.Modules.Products.Model
             // Free managed objects here.
             if (disposing)
             {
-                if (productsServiceClient != null)
-                    productsServiceClient.Close();
+                productsServiceClient?.Close();
             }
 
             // Free unmanaged objects here.
