@@ -12,7 +12,7 @@ namespace RCS.WpfShop.Common.ViewModels
         }
 
         public static readonly DependencyProperty ItemProperty =
-            DependencyProperty.Register("Item", typeof(T), typeof(ItemViewModel<T>), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(Item), typeof(T), typeof(ItemViewModel<T>), new PropertyMetadata(null));
 
         public T Item
         {

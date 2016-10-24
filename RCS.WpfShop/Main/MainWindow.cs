@@ -19,7 +19,7 @@ namespace RCS.WpfShop.Main
         }
 
         public static readonly DependencyProperty MainTitleProperty =
-            DependencyProperty.Register("MainTitle", typeof(string), typeof(MainWindow), new PropertyMetadata(Labels.MainTitle));
+            DependencyProperty.Register(nameof(MainTitle), typeof(string), typeof(MainWindow), new PropertyMetadata(Labels.MainTitle));
 
         public string MainTitle
         {
@@ -34,7 +34,7 @@ namespace RCS.WpfShop.Main
             Width = 900;
 
             // TODO This might be made dependent of navigation, so following the mainView.Model.
-            SetBinding(Window.TitleProperty, new Binding("MainTitle") { Source = this });
+            SetBinding(Window.TitleProperty, new Binding(nameof(MainTitle)) { Source = this });
         }
 
         // TODO > Maybe combine this view into this window.

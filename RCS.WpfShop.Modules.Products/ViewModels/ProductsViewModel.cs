@@ -69,7 +69,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                     }
 
                     // To trigger the enablement.
-                    RaisePropertyChanged("MasterFilterItems");
+                    RaisePropertyChanged(nameof(MasterFilterItems));
 
                     foreach (var item in ProductSubcategoriesRepository.Instance.List)
                     {
@@ -118,7 +118,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                         Items.Add(item);
                     }
 
-                    RaisePropertyChanged("ItemsCount");
+                    RaisePropertyChanged(nameof(ItemsCount));
                 });
             });
         }
@@ -144,7 +144,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             View productView = new ProductView() { ViewModel = productViewModel };
 
             OkWindow productWindow = new OkWindow() { View = productView, };
-            productWindow.SetBinding(Window.TitleProperty, new Binding("Item.Name") { Source = productViewModel });
+            productWindow.SetBinding(Window.TitleProperty, new Binding(string.Format("{0}.{1}", nameof(productViewModel.Item), nameof(productsOverviewObject.Name))) { Source = productViewModel });
             productWindow.Show();
 
             productViewModel.Refresh(productsOverviewObject.Id);

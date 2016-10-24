@@ -11,7 +11,7 @@ namespace RCS.WpfShop.Common.ViewModels
         }
 
         public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register("Items", typeof(ObservableCollection<T>), typeof(ItemsViewModel<T>));
+            DependencyProperty.Register(nameof(Items), typeof(ObservableCollection<T>), typeof(ItemsViewModel<T>));
 
         // TODO Some sort of view would be more convenient to enable sorting in situ (filtering is no longer done so). But remember: that no longer applies when paging.
         public ObservableCollection<T> Items

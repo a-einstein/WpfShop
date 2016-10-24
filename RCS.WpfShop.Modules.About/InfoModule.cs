@@ -9,7 +9,7 @@ namespace RCS.WpfShop.Modules.About
     // Note that ContractName and TypeIdentity remain IModule despite the parameters.
     // However the moduleName needs to be unique to avoid conflicts.
     // This is just a container in which simple exports have to be discovered.
-    [ModuleExport("AboutModule", typeof(IModule))]
+    [ModuleExport(nameof(AboutModule), typeof(IModule))]
     public class AboutModule : Module
     {
         public override void Initialize()

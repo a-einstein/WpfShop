@@ -9,7 +9,7 @@ namespace RCS.WpfShop.Modules.Products
     // Note that ContractName and TypeIdentity remain IModule despite the parameters.
     // However the moduleName needs to be unique to avoid conflicts.
     // This is just a container in which simple exports have to be discovered.
-    [ModuleExport("ProductsModule", typeof(IModule))]
+    [ModuleExport(nameof(ProductsModule), typeof(IModule))]
     public class ProductsModule : Module
     {
         public override void Initialize()

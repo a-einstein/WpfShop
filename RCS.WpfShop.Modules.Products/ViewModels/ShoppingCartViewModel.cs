@@ -79,7 +79,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             }
 
             // TODO Put this as calculated set in UpdateAggregates too?
-            RaisePropertyChanged("ItemsCount");
+            RaisePropertyChanged(nameof(ItemsCount));
 
             UpdateAggregates();
 
@@ -87,7 +87,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         private void CartItem_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName== "Quantity")
+            if (e.PropertyName == nameof(CartItem.Quantity))
             {
                 UpdateAggregates();
             }
@@ -100,7 +100,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         }
 
         public static readonly DependencyProperty ProductItemCountProperty =
-            DependencyProperty.Register("ProductItemsCount", typeof(int), typeof(ShoppingCartViewModel), new PropertyMetadata(0));
+            DependencyProperty.Register(nameof(ProductItemsCount), typeof(int), typeof(ShoppingCartViewModel), new PropertyMetadata(0));
 
         public int ProductItemsCount
         {
@@ -109,7 +109,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         }
 
         public static readonly DependencyProperty TotalValueProperty =
-            DependencyProperty.Register("TotalValue", typeof(Decimal), typeof(ShoppingCartViewModel), new PropertyMetadata((Decimal)0));
+            DependencyProperty.Register(nameof(TotalValue), typeof(Decimal), typeof(ShoppingCartViewModel), new PropertyMetadata((Decimal)0));
 
         public Decimal TotalValue
         {

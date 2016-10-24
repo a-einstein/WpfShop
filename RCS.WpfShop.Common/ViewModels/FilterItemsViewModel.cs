@@ -21,7 +21,7 @@ namespace RCS.WpfShop.Common.ViewModels
         public ObservableCollection<V> MasterFilterItems { get; set; }
 
         public static readonly DependencyProperty MasterFilterValueProperty =
-            DependencyProperty.Register("MasterFilterValue", typeof(V), typeof(ItemsViewModel<T>), new PropertyMetadata(new PropertyChangedCallback(OnMasterFilterValueChanged)));
+            DependencyProperty.Register(nameof(MasterFilterValue), typeof(V), typeof(ItemsViewModel<T>), new PropertyMetadata(new PropertyChangedCallback(OnMasterFilterValueChanged)));
 
         public V MasterFilterValue
         {
@@ -53,7 +53,7 @@ namespace RCS.WpfShop.Common.ViewModels
             }
 
             // To trigger the enablement.
-            RaisePropertyChanged("DetailFilterItems");
+            RaisePropertyChanged(nameof(DetailFilterItems));
         }
 
         protected abstract Func<W, bool> DetailFilterItemsSelector(bool addEmptyElement = true);
@@ -62,7 +62,7 @@ namespace RCS.WpfShop.Common.ViewModels
         public ObservableCollection<W> DetailFilterItems { get; set; }
 
         public static readonly DependencyProperty DetailFilterValueProperty =
-            DependencyProperty.Register("DetailFilterValue", typeof(W), typeof(ItemsViewModel<T>));
+            DependencyProperty.Register(nameof(DetailFilterValue), typeof(W), typeof(ItemsViewModel<T>));
 
         public W DetailFilterValue
         {
@@ -71,7 +71,7 @@ namespace RCS.WpfShop.Common.ViewModels
         }
 
         public static readonly DependencyProperty TextFilterValueProperty =
-            DependencyProperty.Register("TextFilterValue", typeof(string), typeof(ItemsViewModel<T>));
+            DependencyProperty.Register(nameof(TextFilterValue), typeof(string), typeof(ItemsViewModel<T>));
 
         public string TextFilterValue
         {
