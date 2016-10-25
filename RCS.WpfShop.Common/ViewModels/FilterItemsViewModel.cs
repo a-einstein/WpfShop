@@ -12,7 +12,7 @@ namespace RCS.WpfShop.Common.ViewModels
     {
         protected abstract Task InitializeFilters();
 
-        public ObservableCollection<V> MasterFilterItems { get; set; } = new ObservableCollection<V>();
+        public ObservableCollection<V> MasterFilterItems { get; } = new ObservableCollection<V>();
 
         public static readonly DependencyProperty MasterFilterValueProperty =
             DependencyProperty.Register(nameof(MasterFilterValue), typeof(V), typeof(ItemsViewModel<T>), new PropertyMetadata(new PropertyChangedCallback(OnMasterFilterValueChanged)));
@@ -53,7 +53,7 @@ namespace RCS.WpfShop.Common.ViewModels
         protected abstract Func<W, bool> DetailFilterItemsSelector(bool addEmptyElement = true);
 
         protected Collection<W> detailFilterItemsSource = new Collection<W>();
-        public ObservableCollection<W> DetailFilterItems { get; set; } = new ObservableCollection<W>();
+        public ObservableCollection<W> DetailFilterItems { get; } = new ObservableCollection<W>();
 
         public static readonly DependencyProperty DetailFilterValueProperty =
             DependencyProperty.Register(nameof(DetailFilterValue), typeof(W), typeof(ItemsViewModel<T>));
