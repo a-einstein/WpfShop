@@ -14,7 +14,7 @@ namespace RCS.WpfShop.Common.Converters.Test
             var unit = "Some Unit";
 
             var result = target.Convert(new object[] {weight, unit }, null, null, null);
-            var expected = string.Format("{0} {1}", weight, unit);
+            var expected = $"{weight} {unit}";
 
             Assert.AreEqual(result, expected);
         }

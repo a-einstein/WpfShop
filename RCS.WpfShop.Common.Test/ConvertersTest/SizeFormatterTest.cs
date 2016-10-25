@@ -14,7 +14,7 @@ namespace RCS.WpfShop.Common.Converters.Test
             var parameter2 = "Parameter2";
 
             var result = target.Convert(new object[] { parameter1, parameter2 }, null, null, null);
-            var expected = string.Format("{0} {1}", parameter1, parameter2);
+            var expected = $"{parameter1} {parameter2}";
 
             Assert.AreEqual(result, expected);
         }

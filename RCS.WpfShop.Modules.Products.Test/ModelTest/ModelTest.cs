@@ -26,7 +26,7 @@ namespace RCS.WpfShop.Modules.Products.Model.Test
 
         public static string Format(string aString, int anInt)
         {
-            return string.Format("{0} {1}", aString, anInt);
+            return $"{aString} {anInt}";
         }
     }
 }

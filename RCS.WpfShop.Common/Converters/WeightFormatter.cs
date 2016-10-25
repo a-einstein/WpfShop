@@ -15,7 +15,7 @@ namespace RCS.WpfShop.Common.Converters
             string unit = values[1] as string;
 
             return (weight != 0)
-                ? string.Format("{0} {1}", weight, unit)
+                ? $"{weight} {unit}"
                 : null;
         }
 
