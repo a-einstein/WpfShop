@@ -24,7 +24,7 @@ namespace RCS.WpfShop.Common.Converters
             return !(
                 testObject == null ||
                 testObject is string && (testObject as string) == string.Empty ||
-                testObject is IEmptyAble && (testObject as IEmptyAble).IsEmpty() ||
+                testObject is IEmptyAble && (testObject as IEmptyAble).IsEmpty ||
                 testObject is IList && (testObject as IList).Count == 0 ||
                 testObject is ICollection && (testObject as ICollection).Count == 0
                 );

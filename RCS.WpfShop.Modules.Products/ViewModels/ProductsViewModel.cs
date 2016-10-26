@@ -127,8 +127,8 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         {
             return subcategory =>
                 MasterFilterValue != null &&
-                !MasterFilterValue.IsEmpty() &&
-                (preserveEmptyElement && subcategory.IsEmpty() || subcategory.ProductCategoryId == MasterFilterValue.Id);
+                !MasterFilterValue.IsEmpty &&
+                (preserveEmptyElement && subcategory.IsEmpty || subcategory.ProductCategoryId == MasterFilterValue.Id);
         }
 
         protected override void SetCommands()
