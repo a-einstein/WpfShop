@@ -1,5 +1,8 @@
 ## WpfShop
 
+Submitted to code analysis by **[Better Code Hub](https://bettercodehub.com)**.  
+Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstein/WpfShop)](https://bettercodehub.com)  
+
 #### Purpose
 * Testing and demoing some WPF techniques.
 * Manage the code by Git and GitHub. Some changes & branches & merges are deliberately created for this reason.
