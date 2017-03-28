@@ -4,8 +4,8 @@ Submitted to code analysis by **[Better Code Hub](https://bettercodehub.com)**.
 Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstein/WpfShop)](https://bettercodehub.com)  
 
 #### Purpose
-* Testing and demoing some WPF techniques.
-* Manage the code by Git and GitHub. Some changes & branches & merges are deliberately created for this reason.
+* Creating a working desktop application for test and demo purpose based on WPF.
+* Manage the code by Git and GitHub. Some changes, branches, and merges are deliberately created for this reason.
 
 #### Aspects
 * Prism.
@@ -22,4 +22,4 @@ Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstei
 * ...
 
 #### Prerequisites
-* The application assumes the presence of my AdventureWorks, to which a service connection should be configured.
+* The application assumes the presence of my AdventureWorks services, to which a service connection should be configured.
