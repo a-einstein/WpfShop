@@ -48,8 +48,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="RCS.AdventureWorks.Common">
-      <HintPath>..\..\AdventureWorks\RCS.AdventureWorks.Services.Products\bin\RCS.AdventureWorks.Common.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\services\AdventureWorks\RCS.AdventureWorks.Common\bin\Debug\RCS.AdventureWorks.Common.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>
