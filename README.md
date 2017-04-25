@@ -8,6 +8,7 @@ Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstei
 * Manage the code by Git and GitHub. Some changes, branches, and merges are deliberately created for this reason.
 
 #### Aspects
+* C# + WPF.
 * Prism.
 * MEF.
 * Regions.
@@ -18,7 +19,6 @@ Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstei
 * Globalized resources.
 * Basic styling.
 * Unit testing.
-* NuGet.
 * ...
 
 #### Prerequisites
