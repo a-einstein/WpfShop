@@ -14,7 +14,7 @@ Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstei
 * Regions.
 * MVVM.
 * Client-server.
-* WCF.
+* WCF + https.
 * Asynchronisity.
 * Globalized resources.
 * Basic styling.
