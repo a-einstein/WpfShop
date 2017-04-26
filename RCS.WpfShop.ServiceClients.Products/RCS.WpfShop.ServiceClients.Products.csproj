@@ -65,17 +65,17 @@
     <None Include="Service References\ProductsService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ProductsService\ProductsService.wsdl" />
-    <None Include="Service References\ProductsService\ProductsService4.xsd">
+    <None Include="Service References\ProductsService\ProductsService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ProductsService\ProductsService41.xsd">
+    <None Include="Service References\ProductsService\ProductsService1.wsdl" />
+    <None Include="Service References\ProductsService\ProductsService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ProductsService\ProductsService42.xsd">
+    <None Include="Service References\ProductsService\ProductsService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ProductsService\ProductsService43.xsd">
+    <None Include="Service References\ProductsService\ProductsService3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ProductsService\Reference.svcmap">
@@ -84,7 +84,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ProductsService\ProductsService.disco" />
+    <None Include="Service References\ProductsService\ProductsService1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
