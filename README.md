@@ -8,13 +8,13 @@ Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstei
 * Manage the code by Git and GitHub. Some changes, branches, and merges are deliberately created for this reason.
 
 #### Aspects
-* C# + WPF.
+* C# + XAML.
 * Prism.
 * MEF.
 * Regions.
 * MVVM.
 * Client-server.
-* WCF + https.
+* WCF + SSL.
 * Asynchronisity.
 * Globalized resources.
 * Basic styling.
