@@ -5,6 +5,7 @@ Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstei
 
 #### Purpose
 * Creating a working desktop application for test and demo purpose based on WPF.
+* This is a near equivalent of my [PortableShop](https://github.com/a-einstein/PortableShop).
 * Manage the code by Git and GitHub. Some changes, branches, and merges are deliberately created for this reason.
 
 #### Aspects
