@@ -24,7 +24,6 @@ Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstei
 * Globalized resources.
 * Basic styling.
 * Unit testing.
-* ...
 
 #### Prerequisites
-* The application assumes the presence of my AdventureWorks services, to which a service connection should be configured.
+* The application assumes the presence of my [AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md), to which a service connection should be configured.
