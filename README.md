@@ -7,9 +7,12 @@ Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstei
 * Creating a working desktop application for test and demo purpose based on WPF.
 * Manage the code by Git and GitHub. Some changes, branches, and merges are deliberately created for this reason.
 
+#### Prerequisites
+* The application assumes the presence of my [AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md), to which a service connection should be configured.
+
 #### Notes
 * This is a near equivalent of my [PortableShop](https://github.com/a-einstein/PortableShop).
-* For the time being, the needed data service is hosted on Azure and configured to in this application. That means that this code can be build and run right away, if it can make use of an internet connection.
+* For the time being the data service is configured locally. It may be made available on Azure again in the future. 
 
 #### Aspects
 * C# + XAML.
@@ -24,6 +27,3 @@ Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstei
 * Globalized resources.
 * Basic styling.
 * Unit testing.
-
-#### Prerequisites
-* The application assumes the presence of my [AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md), to which a service connection should be configured.
