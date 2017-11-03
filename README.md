@@ -20,14 +20,13 @@ This application is now plug & play.
 
 #### Aspects
 * C# + XAML.
-* Prism.
-* MEF.
-* Regions.
 * MVVM.
-* Make use of an Azure service.
+* Prism/MEF Modules & Regions
 * Client-server.
+* Azure service.
 * WCF + SSL.
-* Asynchronisity.
+* asynchronicity.
 * Globalized resources.
 * Basic styling.
 * Unit testing.
+* Click Once installation.
