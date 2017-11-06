@@ -1,4 +1,5 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace RCS.WpfShop.Common.ViewModels
@@ -23,12 +24,12 @@ namespace RCS.WpfShop.Common.ViewModels
         #endregion
 
         #region Refresh
-        public override void Refresh()
+        public override async Task Refresh()
         {
-            Refresh(ItemId);
+            await Refresh(ItemId);
         }
 
-        public abstract void Refresh(object Id);
+        public abstract Task Refresh(object Id);
         #endregion
     }
 }

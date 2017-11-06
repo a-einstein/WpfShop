@@ -31,23 +31,23 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         // Note this also works without actual imports.
         // TODO This seems to come too early, before navigation.
-        public void OnImportsSatisfied()
+        public async void OnImportsSatisfied()
         {
-            Refresh();
+            await Refresh();
         }
 
-        public override void Refresh()
+        public override async Task Refresh()
         {
             Items.Clear();
 
             if (!filterInitialized)
             {
-                Task.Run(async () => await InitializeFilters()).
-                ContinueWith((previous) => ReadFiltered());
+                await Task.Run(async () => await InitializeFilters()).
+                ContinueWith(async (previous) => await ReadFiltered());
             }
             else
             {
-                ReadFiltered();
+                await ReadFiltered();
             }
         }
 
@@ -90,7 +90,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             });
         }
 
-        protected void ReadFiltered()
+        protected async Task ReadFiltered()
         {
             ProductCategory masterFilterValue = null;
             ProductSubcategory detailFilterValue = null;
@@ -104,23 +104,20 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                 textFilterValue = TextFilterValue;
             });
 
-            Task<IList<ProductsOverviewObject>>.Run(() =>
-            {
-                return ProductsRepository.Instance.ReadList(masterFilterValue, detailFilterValue, textFilterValue).Result;
-            })
-            .ContinueWith((previous) =>
+            var result = await ProductsRepository.Instance.ReadList(masterFilterValue, detailFilterValue, textFilterValue);
+            var succeeded = result != null;
+
+            if (succeeded)
             {
                 // Need to update on the UI thread.
                 uiDispatcher.Invoke(delegate
                 {
-                    foreach (var item in previous.Result)
-                    {
+                    foreach (var item in result)
                         Items.Add(item);
-                    }
 
                     RaisePropertyChanged(nameof(ItemsCount));
                 });
-            });
+            }
         }
 
         protected override Func<ProductSubcategory, bool> DetailFilterItemsSelector(bool preserveEmptyElement = true)
@@ -138,7 +135,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             CartCommand = new DelegateCommand<ProductsOverviewObject>(CartProduct);
         }
 
-        protected override void ShowDetails(ProductsOverviewObject productsOverviewObject)
+        protected override async void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
             ProductViewModel productViewModel = new ProductViewModel();
             View productView = new ProductView() { ViewModel = productViewModel };
@@ -147,7 +144,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             productWindow.SetBinding(Window.TitleProperty, new Binding($"{nameof(productViewModel.Item)}.{nameof(productsOverviewObject.Name)}") { Source = productViewModel });
             productWindow.Show();
 
-            productViewModel.Refresh(productsOverviewObject.Id);
+            await productViewModel.Refresh(productsOverviewObject.Id);
         }
 
         // Note this does not work as explicit interface implementation.

@@ -2,13 +2,14 @@
 using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.WpfShop.Common.ViewModels;
 using RCS.WpfShop.Modules.Products.Model;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace RCS.WpfShop.Modules.Products.ViewModels
 {
     public class ProductViewModel : ItemViewModel<Product>, IShopper
     {
-        public override async void Refresh(object productId)
+        public override async Task Refresh(object productId)
         {
             // TODO Check for errors.
             Item = await ProductsRepository.Instance.ReadDetails((int)productId);

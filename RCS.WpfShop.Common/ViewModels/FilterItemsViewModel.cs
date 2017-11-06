@@ -13,7 +13,9 @@ namespace RCS.WpfShop.Common.ViewModels
         #region Construct
         protected override void SetCommands()
         {
-            FilterCommand = new DelegateCommand(Refresh);
+            base.SetCommands();
+
+            FilterCommand = new DelegateCommand(async () => await Refresh());
             DetailsCommand = new DelegateCommand<I>(ShowDetails);
         }
         #endregion

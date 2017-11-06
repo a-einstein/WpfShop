@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace RCS.WpfShop.Common.ViewModels
@@ -15,9 +16,7 @@ namespace RCS.WpfShop.Common.ViewModels
         #endregion
 
         #region Refresh
-        protected const string databaseErrorMessage = "Error retrieving data from database.";
-
-        public virtual void Refresh() { }
+        public virtual async Task Refresh() { }
         #endregion
 
         #region Events
