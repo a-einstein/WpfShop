@@ -8,18 +8,27 @@ using System.Windows.Input;
 
 namespace RCS.WpfShop.Common.ViewModels
 {
-    public abstract class FilterItemsViewModel<T, V, W> : ItemsViewModel<T>
+    public abstract class FilterItemsViewModel<I, FM, FD> : ItemsViewModel<I>
     {
+        #region Construct
+        protected override void SetCommands()
+        {
+            FilterCommand = new DelegateCommand(Refresh);
+            DetailsCommand = new DelegateCommand<I>(ShowDetails);
+        }
+        #endregion
+
+        #region Filtering
         protected abstract Task InitializeFilters();
 
-        public ObservableCollection<V> MasterFilterItems { get; } = new ObservableCollection<V>();
+        public ObservableCollection<FM> MasterFilterItems { get; } = new ObservableCollection<FM>();
 
         public static readonly DependencyProperty MasterFilterValueProperty =
-            DependencyProperty.Register(nameof(MasterFilterValue), typeof(V), typeof(ItemsViewModel<T>), new PropertyMetadata(new PropertyChangedCallback(OnMasterFilterValueChanged)));
+            DependencyProperty.Register(nameof(MasterFilterValue), typeof(FM), typeof(ItemsViewModel<I>), new PropertyMetadata(new PropertyChangedCallback(OnMasterFilterValueChanged)));
 
-        public V MasterFilterValue
+        public FM MasterFilterValue
         {
-            get { return (V)GetValue(MasterFilterValueProperty); }
+            get { return (FM)GetValue(MasterFilterValueProperty); }
             set { SetValue(MasterFilterValueProperty, value); }
         }
 
@@ -27,7 +36,7 @@ namespace RCS.WpfShop.Common.ViewModels
         // Currently the FilterCommand is just bound to a Button, implying it always has to be activated explicitly.
         private static void OnMasterFilterValueChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
         {
-            var viewModel = dependencyObject as FilterItemsViewModel<T, V, W>;
+            var viewModel = dependencyObject as FilterItemsViewModel<I, FM, FD>;
 
             viewModel.SetDetailFilterItems();
             viewModel.DetailFilterValue = viewModel.DetailFilterItems.FirstOrDefault();
@@ -50,22 +59,22 @@ namespace RCS.WpfShop.Common.ViewModels
             RaisePropertyChanged(nameof(DetailFilterItems));
         }
 
-        protected abstract Func<W, bool> DetailFilterItemsSelector(bool addEmptyElement = true);
+        protected abstract Func<FD, bool> DetailFilterItemsSelector(bool addEmptyElement = true);
 
-        protected Collection<W> detailFilterItemsSource = new Collection<W>();
-        public ObservableCollection<W> DetailFilterItems { get; } = new ObservableCollection<W>();
+        protected Collection<FD> detailFilterItemsSource = new Collection<FD>();
+        public ObservableCollection<FD> DetailFilterItems { get; } = new ObservableCollection<FD>();
 
         public static readonly DependencyProperty DetailFilterValueProperty =
-            DependencyProperty.Register(nameof(DetailFilterValue), typeof(W), typeof(ItemsViewModel<T>));
+            DependencyProperty.Register(nameof(DetailFilterValue), typeof(FD), typeof(ItemsViewModel<I>));
 
-        public W DetailFilterValue
+        public FD DetailFilterValue
         {
-            get { return (W)GetValue(DetailFilterValueProperty); }
+            get { return (FD)GetValue(DetailFilterValueProperty); }
             set { SetValue(DetailFilterValueProperty, value); }
         }
 
         public static readonly DependencyProperty TextFilterValueProperty =
-            DependencyProperty.Register(nameof(TextFilterValue), typeof(string), typeof(ItemsViewModel<T>));
+            DependencyProperty.Register(nameof(TextFilterValue), typeof(string), typeof(ItemsViewModel<I>));
 
         public string TextFilterValue
         {
@@ -74,15 +83,12 @@ namespace RCS.WpfShop.Common.ViewModels
         }
 
         public ICommand FilterCommand { get; private set; }
+        #endregion
 
+        #region Details
         public ICommand DetailsCommand { get; private set; }
 
-        protected abstract void ShowDetails(T overviewObject);
-
-        protected override void SetCommands()
-        {
-            FilterCommand = new DelegateCommand(Refresh);
-            DetailsCommand = new DelegateCommand<T>(ShowDetails);
-        }
+        protected abstract void ShowDetails(I overviewObject);
+        #endregion
     }
 }
