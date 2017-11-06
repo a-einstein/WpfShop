@@ -15,6 +15,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
     [Export]
     public class ShoppingCartViewModel : ItemsViewModel<CartItem>
     {
+        #region Construct
         private ShoppingCartViewModel()
         {
             // HACK Typing is unclear here.
@@ -53,7 +54,9 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
             DeleteCommand = new DelegateCommand<CartItem>(Delete);
         }
+        #endregion
 
+        #region CRUD
         public void CartProduct(IShoppingProduct productsOverviewObject)
         {
             CartItemsRepository.Instance.AddProduct(productsOverviewObject);
@@ -92,7 +95,9 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                 UpdateAggregates();
             }
         }
+        #endregion
 
+        #region Aggregates
         private void UpdateAggregates()
         {
             ProductItemsCount = CartItemsRepository.Instance.ProductsCount();
@@ -116,5 +121,6 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             get { return (Decimal)GetValue(TotalValueProperty); }
             set { SetValue(TotalValueProperty, value); }
         }
+        #endregion
     }
 }

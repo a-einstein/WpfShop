@@ -6,7 +6,6 @@ using RCS.WpfShop.Common.Windows;
 using RCS.WpfShop.Modules.Products.Model;
 using RCS.WpfShop.Modules.Products.Views;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,6 +19,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
     [Export]
     public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper, IPartImportsSatisfiedNotification
     {
+        #region Construct
         private Dispatcher uiDispatcher;
 
         public ProductsViewModel()
@@ -27,7 +27,12 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             uiDispatcher = Dispatcher.CurrentDispatcher;
         }
 
-        private bool filterInitialized;
+        protected override void SetCommands()
+        {
+            base.SetCommands();
+
+            CartCommand = new DelegateCommand<ProductsOverviewObject>(CartProduct);
+        }
 
         // Note this also works without actual imports.
         // TODO This seems to come too early, before navigation.
@@ -35,6 +40,10 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         {
             await Refresh();
         }
+        #endregion
+
+        #region Filtering
+        private bool filterInitialized;
 
         public override async Task Refresh()
         {
@@ -127,14 +136,9 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                 !MasterFilterValue.IsEmpty &&
                 (preserveEmptyElement && subcategory.IsEmpty || subcategory.ProductCategoryId == MasterFilterValue.Id);
         }
+        #endregion
 
-        protected override void SetCommands()
-        {
-            base.SetCommands();
-
-            CartCommand = new DelegateCommand<ProductsOverviewObject>(CartProduct);
-        }
-
+        #region Details
         protected override async void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
             ProductViewModel productViewModel = new ProductViewModel();
@@ -146,7 +150,9 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
             await productViewModel.Refresh(productsOverviewObject.Id);
         }
+        #endregion
 
+        #region Shopping
         // Note this does not work as explicit interface implementation.
         public ICommand CartCommand { get; set; }
 
@@ -154,5 +160,6 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         {
             ShoppingCartViewModel.Instance.CartProduct(productsOverviewObject);
         }
+        #endregion
     }
 }

@@ -9,19 +9,24 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 {
     public class ProductViewModel : ItemViewModel<Product>, IShopper
     {
-        public override async Task Refresh(object productId)
-        {
-            // TODO Check for errors.
-            Item = await ProductsRepository.Instance.ReadDetails((int)productId);
-        }
-
+        #region Construct
         protected override void SetCommands()
         {
             base.SetCommands();
 
             CartCommand = new DelegateCommand<Product>(CartProduct);
         }
+        #endregion
 
+        #region Refresh
+        public override async Task Refresh(object productId)
+        {
+            // TODO Check for errors.
+            Item = await ProductsRepository.Instance.ReadDetails((int)productId);
+        }
+        #endregion
+
+        #region Shopping
         // Note this does not work as explicit interface implementation.
         public ICommand CartCommand { get; set; }
 
@@ -29,5 +34,6 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         {
             ShoppingCartViewModel.Instance.CartProduct(product);
         }
+        #endregion
     }
 }
