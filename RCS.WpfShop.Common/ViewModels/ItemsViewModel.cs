@@ -5,7 +5,7 @@ namespace RCS.WpfShop.Common.ViewModels
 {
     public abstract class ItemsViewModel<I> : ViewModel
     {
-        #region Construct
+        #region Construction
         public ItemsViewModel()
         {
             Items = new ObservableCollection<I>();

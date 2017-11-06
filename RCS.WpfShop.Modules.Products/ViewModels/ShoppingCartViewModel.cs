@@ -15,7 +15,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
     [Export]
     public class ShoppingCartViewModel : ItemsViewModel<CartItem>
     {
-        #region Construct
+        #region Construction
         private ShoppingCartViewModel()
         {
             // HACK Typing is unclear here.

@@ -7,6 +7,7 @@ namespace RCS.WpfShop.Modules.Products.Model
 {
     public class CartItemsRepository : Repository<CartItem>
     {
+        #region Construction
         private CartItemsRepository()
         {
             List = new ObservableCollection<CartItem>();
@@ -31,7 +32,10 @@ namespace RCS.WpfShop.Modules.Products.Model
                 return instance;
             }
         }
+        #endregion
 
+        #region CRUD
+        // TODO Add messages to views.
         private const string cartItemsNumberExceptionMessage = "Unexpected number of found ShoppingCartItems.";
 
         // Note that the cart is only kept in memory and is not preserved. 
@@ -77,7 +81,9 @@ namespace RCS.WpfShop.Modules.Products.Model
         {
             List.Remove(cartItem);
         }
+        #endregion
 
+        #region Aggregates
         public int ProductsCount()
         {
             return List.Count > 0
@@ -91,5 +97,6 @@ namespace RCS.WpfShop.Modules.Products.Model
                 ? List.Sum(cartItem => cartItem.Value)
                 : 0;
         }
+        #endregion
     }
 }

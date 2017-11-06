@@ -19,7 +19,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
     [Export]
     public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper, IPartImportsSatisfiedNotification
     {
-        #region Construct
+        #region Construction
         private Dispatcher uiDispatcher;
 
         public ProductsViewModel()
@@ -61,14 +61,19 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         }
 
         // TODO This would better be handled inside the repository.
-        protected override async Task InitializeFilters()
+        protected override async Task<bool> InitializeFilters()
         {
-            await Task.WhenAll
-            (
-                ProductCategoriesRepository.Instance.ReadList(),
-                ProductSubcategoriesRepository.Instance.ReadList()
-            ).ContinueWith((previous) =>
+            bool succeeded;
+
+            try
             {
+                var results = await Task.WhenAll
+                (
+                   ProductCategoriesRepository.Instance.ReadList(),
+                    ProductSubcategoriesRepository.Instance.ReadList()
+                );
+                succeeded = results.All<bool>(result => result == true);
+
                 // Need to update on the UI thread.
                 uiDispatcher.Invoke(delegate
                 {
@@ -96,7 +101,13 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
                     filterInitialized = true;
                 });
-            });
+            }
+            catch (Exception)
+            {
+                succeeded = false;
+            }
+
+            return succeeded;
         }
 
         protected async Task ReadFiltered()

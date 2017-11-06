@@ -7,6 +7,7 @@ namespace RCS.WpfShop.Modules.Products.Model
 {
     public class ProductCategoriesRepository : Repository<ProductCategory>
     {
+        #region Construction
         private ProductCategoriesRepository()
         { }
 
@@ -29,28 +30,37 @@ namespace RCS.WpfShop.Modules.Products.Model
                 return instance;
             }
         }
+        #endregion
 
-        public async Task ReadList(bool addEmptyElement = true)
+        #region CRUD
+        public async Task<bool> ReadList(bool addEmptyElement = true)
         {
             Clear();
 
-            var task = Task.Run(async () =>
+            var categories = new ProductCategoryList();
+
+            try
             {
-                var categories = await ProductsServiceClient.GetProductCategoriesAsync();
+                categories = await ProductsServiceClient.GetProductCategoriesAsync();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
 
-                if (addEmptyElement)
-                {
-                    var category = new ProductCategory() { Name = string.Empty };
-                    List.Add(category);
-                }
+            if (addEmptyElement)
+            {
+                var category = new ProductCategory() { Name = string.Empty };
+                List.Add(category);
+            }
 
-                foreach (var category in categories)
-                {
-                    List.Add(category);
-                }
-            });
+            foreach (var category in categories)
+            {
+                List.Add(category);
+            }
 
-            await task;
+            return true;
         }
+        #endregion
     }
 }

@@ -6,7 +6,7 @@ namespace RCS.WpfShop.Common.ViewModels
 {
     public abstract class ViewModel : DependencyObject, INotifyPropertyChanged
     {
-        #region Construct
+        #region Construction
         public ViewModel()
         {
             SetCommands();

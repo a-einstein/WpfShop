@@ -5,6 +5,7 @@ namespace RCS.WpfShop.Modules.Products.Model
 {
     public abstract class ProductsServiceConsumer : IDisposable
     {
+        #region Service
         private ProductsServiceClient productsServiceClient;
 
         protected ProductsServiceClient ProductsServiceClient
@@ -17,6 +18,7 @@ namespace RCS.WpfShop.Modules.Products.Model
                 return productsServiceClient;
             }
         }
+        #endregion
 
         #region IDisposable
 

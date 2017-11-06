@@ -8,6 +8,7 @@ namespace RCS.WpfShop.Modules.Products.Model
 {
     public class ProductsRepository : Repository<ProductsOverviewObject>
     {
+        #region Construction
         private ProductsRepository()
         { }
 
@@ -30,35 +31,43 @@ namespace RCS.WpfShop.Modules.Products.Model
                 return instance;
             }
         }
+        #endregion
 
+        #region CRUD
         // TODO This should get paged with an optional pagesize.
         public async Task<IList<ProductsOverviewObject>> ReadList(ProductCategory category, ProductSubcategory subcategory, string namePart)
         {
-            var task = Task.Run(async () =>
+            var productsOverview = new ProductsOverviewList();
+
+            try
             {
-                var productOverview = await ProductsServiceClient.GetProductsOverviewByAsync(
+                productsOverview = await ProductsServiceClient.GetProductsOverviewByAsync(
                     category?.Id,
                     subcategory?.Id,
                     namePart);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
 
-                return productOverview;
-            });
-
-            await task;
-
-            return task.Result;
+            return productsOverview;
         }
 
         public async Task<Product> ReadDetails(int productID)
         {
-            var task = Task.Factory.StartNew(async () =>
+            Product product = null;
+
+            try
             {
-                var product = await ProductsServiceClient.GetProductDetailsAsync(productID);
+                product = await ProductsServiceClient.GetProductDetailsAsync(productID);
+            }
+            catch (Exception)
+            {
+            }
 
-                return product;
-            });
-
-            return await task.Result;
+            return product;
         }
+        #endregion
     }
 }

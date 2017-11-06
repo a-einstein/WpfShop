@@ -10,7 +10,7 @@ namespace RCS.WpfShop.Common.ViewModels
 {
     public abstract class FilterItemsViewModel<I, FM, FD> : ItemsViewModel<I>
     {
-        #region Construct
+        #region Construction
         protected override void SetCommands()
         {
             base.SetCommands();
@@ -21,7 +21,7 @@ namespace RCS.WpfShop.Common.ViewModels
         #endregion
 
         #region Filtering
-        protected abstract Task InitializeFilters();
+        protected abstract Task<bool> InitializeFilters();
 
         public ObservableCollection<FM> MasterFilterItems { get; } = new ObservableCollection<FM>();
 
