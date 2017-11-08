@@ -5,7 +5,7 @@ Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstei
 
 #### News
 This application is now plug & play.
-* It can be installed directly on Windows from a ZIP file in [releases](https://github.com/a-einstein/WpfShop/releases).
+* It can be installed directly on Windows from my releases, see Installation.
 * It uses my data service permanently running on Azure.
 
 #### Purpose
@@ -30,3 +30,10 @@ This application is now plug & play.
 * Basic styling.
 * Unit testing.
 * Click Once installation.
+
+#### Installation
+* Download and extract the latest ZIP file in [releases](https://github.com/a-einstein/WpfShop/releases)
+* Run *setup*. Note one may have to create exceptions in protection programs on the go.
+* The application should start up right away, but may be hidden behind other windows.
+* The start menu also gets a folder added: *Programs / RCS / Shopping*.
+* Uninstallation is by: *Control Panel / Program and Features / CyclOne*.
