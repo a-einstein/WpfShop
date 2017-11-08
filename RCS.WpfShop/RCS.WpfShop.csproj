@@ -752,7 +752,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>if $(ConfigurationName) == Release (
-rem Documentation files. Do not why they are put there.
+rem Documentation files. Do not know why they are put there.
 del $(TargetDir)*.xml
 
 rem Currently for one remaning pdb file. 
