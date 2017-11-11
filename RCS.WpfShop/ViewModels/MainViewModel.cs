@@ -5,6 +5,5 @@ using System.ComponentModel.Composition;
 namespace RCS.WpfShop.ViewModels
 {
     [Export]
-    public class MainViewModel : ViewModel
-    { }
+    public class MainViewModel : ViewModel { }
 }

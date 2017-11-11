@@ -10,28 +10,26 @@ namespace RCS.WpfShop.Common.ViewModels
 {
     public abstract class FilterItemsViewModel<I, FM, FD> : ItemsViewModel<I>
     {
-        #region Construction
-        protected override void SetCommands()
-        {
-            base.SetCommands();
-
-            FilterCommand = new DelegateCommand(async () => await Refresh());
-        }
-        #endregion
-
         #region Refresh
-        private bool filterInitialized;
+        private bool initialized;
 
         protected override async Task<bool> Initialize()
         {
             var baseInitialized = await base.Initialize();
 
-            if (baseInitialized && !filterInitialized)
+            if (baseInitialized && !initialized)
             {
-                filterInitialized = await InitializeFilters();
+                initialized = await InitializeFilters();
             }
 
-            return (baseInitialized && filterInitialized);
+            return (initialized);
+        }
+
+        protected override void SetCommands()
+        {
+            base.SetCommands();
+
+            FilterCommand = new DelegateCommand(async () => await Refresh());
         }
 
         protected override async Task<bool> Read()

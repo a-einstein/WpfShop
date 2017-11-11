@@ -10,16 +10,14 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 {
     public class ProductViewModel : ItemViewModel<Product>, IShopper
     {
-        #region Construction
+        #region Refresh
         protected override void SetCommands()
         {
             base.SetCommands();
 
             CartCommand = new DelegateCommand<Product>(CartProduct);
         }
-        #endregion
 
-        #region Refresh
         protected override async Task<bool> Read()
         {
             bool succeeded = false;

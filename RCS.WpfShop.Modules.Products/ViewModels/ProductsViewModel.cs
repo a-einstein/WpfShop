@@ -11,7 +11,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Threading;
 
 namespace RCS.WpfShop.Modules.Products.ViewModels
 {
@@ -19,20 +18,6 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
     public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper, IPartImportsSatisfiedNotification
     {
         #region Construction
-        private Dispatcher uiDispatcher;
-
-        public ProductsViewModel()
-        {
-            uiDispatcher = Dispatcher.CurrentDispatcher;
-        }
-
-        protected override void SetCommands()
-        {
-            base.SetCommands();
-
-            CartCommand = new DelegateCommand<ProductsOverviewObject>(CartProduct);
-        }
-
         // Note this also works without actual imports.
         // TODO This seems to come too early, before navigation.
         public async void OnImportsSatisfied()
@@ -42,16 +27,26 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #endregion
 
         #region Refresh
+        private bool initialized;
+
         protected override async Task<bool> Initialize()
         {
             var baseInitialized = await base.Initialize();
 
-            if (baseInitialized)
+            if (baseInitialized && !initialized)
             {
                 Items = ProductsRepository.Instance.List;
+                initialized = true;
             }
 
-            return (baseInitialized);
+            return (initialized);
+        }
+
+        protected override void SetCommands()
+        {
+            base.SetCommands();
+
+            CartCommand = new DelegateCommand<ProductsOverviewObject>(CartProduct);
         }
         #endregion
 

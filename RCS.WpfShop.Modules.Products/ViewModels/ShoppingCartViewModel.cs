@@ -47,13 +47,6 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         {
             await Refresh();
         }
-
-        protected override void SetCommands()
-        {
-            base.SetCommands();
-
-            DeleteCommand = new DelegateCommand<CartItem>(Delete);
-        }
         #endregion
 
         #region Refresh
@@ -65,16 +58,26 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             ClearAggregates();
         }
 
+        private bool initialized;
+
         protected override async Task<bool> Initialize()
         {
             var baseInitialized = await base.Initialize();
 
-            if (baseInitialized)
+            if (baseInitialized && !initialized)
             {
                 Items = CartItemsRepository.Instance.List;
+                initialized = true;
             }
 
-            return (baseInitialized);
+            return (initialized);
+        }
+
+        protected override void SetCommands()
+        {
+            base.SetCommands();
+
+            DeleteCommand = new DelegateCommand<CartItem>(Delete);
         }
         #endregion
 
