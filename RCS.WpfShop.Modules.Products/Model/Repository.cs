@@ -5,7 +5,7 @@ namespace RCS.WpfShop.Modules.Products.Model
     public abstract class Repository<T> : ProductsServiceConsumer
     {
         #region CRUD
-        public Collection<T> List = new Collection<T>();
+        public ObservableCollection<T> List = new ObservableCollection<T>();
 
         public void Clear()
         {

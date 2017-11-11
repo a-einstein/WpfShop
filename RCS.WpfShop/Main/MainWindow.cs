@@ -18,32 +18,21 @@ namespace RCS.WpfShop.Main
             Initialize();
         }
 
-        public static readonly DependencyProperty MainTitleProperty =
-            DependencyProperty.Register(nameof(MainTitle), typeof(string), typeof(MainWindow), new PropertyMetadata(Labels.MainTitle));
-
-        public string MainTitle
-        {
-            get { return (string)GetValue(MainTitleProperty); }
-            set { SetValue(MainTitleProperty, value); }
-        }
-
         private void Initialize()
         {
             // It is more convenient to have the dimensions here instead of the view as the window does not scale.
             Height = 900;
             Width = 900;
-
-            // TODO This might be made dependent of navigation, so following the mainView.Model.
-            SetBinding(Window.TitleProperty, new Binding(nameof(MainTitle)) { Source = this });
         }
 
-        // TODO > Maybe combine this view into this window.
         [Import]
         public MainView MainView;
 
         public void OnImportsSatisfied()
         {
             Content = MainView;
+
+            SetBinding(Window.TitleProperty, new Binding(nameof(Title)) { Source = MainView.ViewModel });
         }
     }
 }

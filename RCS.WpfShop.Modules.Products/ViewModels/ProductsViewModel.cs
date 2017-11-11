@@ -1,16 +1,15 @@
 ﻿using Prism.Commands;
 using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.WpfShop.Common.ViewModels;
-using RCS.WpfShop.Common.Views;
 using RCS.WpfShop.Common.Windows;
 using RCS.WpfShop.Modules.Products.Model;
 using RCS.WpfShop.Modules.Products.Views;
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
 
@@ -42,24 +41,21 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         }
         #endregion
 
-        #region Filtering
-        private bool filterInitialized;
-
-        public override async Task Refresh()
+        #region Refresh
+        protected override async Task<bool> Initialize()
         {
-            Items.Clear();
+            var baseInitialized = await base.Initialize();
 
-            if (!filterInitialized)
+            if (baseInitialized)
             {
-                await Task.Run(async () => await InitializeFilters()).
-                ContinueWith(async (previous) => await ReadFiltered());
+                Items = ProductsRepository.Instance.List;
             }
-            else
-            {
-                await ReadFiltered();
-            }
+
+            return (baseInitialized);
         }
+        #endregion
 
+        #region Filtering
         // TODO This would better be handled inside the repository.
         protected override async Task<bool> InitializeFilters()
         {
@@ -77,13 +73,15 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                 // Need to update on the UI thread.
                 uiDispatcher.Invoke(delegate
                 {
+                    var masterFilterItems = new ObservableCollection<ProductCategory>();
+
                     foreach (var item in ProductCategoriesRepository.Instance.List)
                     {
-                        MasterFilterItems.Add(item);
+                        masterFilterItems.Add(item);
                     }
 
                     // To trigger the enablement.
-                    RaisePropertyChanged(nameof(MasterFilterItems));
+                    MasterFilterItems = masterFilterItems;
 
                     foreach (var item in ProductSubcategoriesRepository.Instance.List)
                     {
@@ -98,8 +96,6 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                     DetailFilterValue = DetailFilterItems.FirstOrDefault(subcategory => subcategory.Id == detailDefaultId);
 
                     TextFilterValue = default(string);
-
-                    filterInitialized = true;
                 });
             }
             catch (Exception)
@@ -110,7 +106,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             return succeeded;
         }
 
-        protected async Task ReadFiltered()
+        protected override async Task<bool> ReadFiltered()
         {
             ProductCategory masterFilterValue = null;
             ProductSubcategory detailFilterValue = null;
@@ -130,14 +126,15 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             if (succeeded)
             {
                 // Need to update on the UI thread.
+                // TODO Still true?
                 uiDispatcher.Invoke(delegate
                 {
                     foreach (var item in result)
                         Items.Add(item);
-
-                    RaisePropertyChanged(nameof(ItemsCount));
                 });
             }
+
+            return succeeded;
         }
 
         protected override Func<ProductSubcategory, bool> DetailFilterItemsSelector(bool preserveEmptyElement = true)
@@ -150,22 +147,26 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #endregion
 
         #region Details
-        protected override async void ShowDetails(ProductsOverviewObject productsOverviewObject)
+        protected override void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
-            ProductViewModel productViewModel = new ProductViewModel();
-            View productView = new ProductView() { ViewModel = productViewModel };
+            var productViewModel = new ProductViewModel() { ItemId = productsOverviewObject.Id };
+            var productView = new ProductView() { ViewModel = productViewModel };
 
-            OkWindow productWindow = new OkWindow() { View = productView, };
-            productWindow.SetBinding(Window.TitleProperty, new Binding($"{nameof(productViewModel.Item)}.{nameof(productsOverviewObject.Name)}") { Source = productViewModel });
+            var productWindow = new OkWindow() { View = productView };
             productWindow.Show();
-
-            await productViewModel.Refresh(productsOverviewObject.Id);
         }
         #endregion
 
         #region Shopping
+        public static readonly DependencyProperty CartCommandProperty =
+             DependencyProperty.Register(nameof(CartCommand), typeof(ICommand), typeof(FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>));
+
         // Note this does not work as explicit interface implementation.
-        public ICommand CartCommand { get; set; }
+        public ICommand CartCommand
+        {
+            get { return (ICommand)GetValue(CartCommandProperty); }
+            set { SetValue(CartCommandProperty, value); }
+        }
 
         private void CartProduct(ProductsOverviewObject productsOverviewObject)
         {

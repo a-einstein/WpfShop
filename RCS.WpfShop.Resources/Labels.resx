@@ -142,9 +142,6 @@
   <data name="Items" xml:space="preserve">
     <value />
   </data>
-  <data name="MainTitle" xml:space="preserve">
-    <value />
-  </data>
   <data name="MasterFilter" xml:space="preserve">
     <value />
   </data>
@@ -158,6 +155,9 @@
     <value />
   </data>
   <data name="Remove" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ShopName" xml:space="preserve">
     <value />
   </data>
   <data name="TextFilter" xml:space="preserve">

@@ -146,9 +146,6 @@ For further details please check the descriptions (ReadMe) of the involved repos
   <data name="Items" xml:space="preserve">
     <value>Items</value>
   </data>
-  <data name="MainTitle" xml:space="preserve">
-    <value>CyclOne</value>
-  </data>
   <data name="MasterFilter" xml:space="preserve">
     <value>Category</value>
   </data>
@@ -163,6 +160,9 @@ For further details please check the descriptions (ReadMe) of the involved repos
   </data>
   <data name="Remove" xml:space="preserve">
     <value>X</value>
+  </data>
+  <data name="ShopName" xml:space="preserve">
+    <value>CyclOne</value>
   </data>
   <data name="TextFilter" xml:space="preserve">
     <value>Name or Colour</value>

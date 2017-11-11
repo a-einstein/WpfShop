@@ -3,27 +3,20 @@ using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.WpfShop.Common.ViewModels;
 using RCS.WpfShop.Modules.Products.Model;
 using System;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
 namespace RCS.WpfShop.Modules.Products.ViewModels
 {
     [Export]
-    public class ShoppingCartViewModel : ItemsViewModel<CartItem>
+    public class ShoppingCartViewModel : ItemsViewModel<CartItem>, IPartImportsSatisfiedNotification
     {
         #region Construction
-        private ShoppingCartViewModel()
-        {
-            // HACK Typing is unclear here.
-            // Besides, this currently is the only binding to a repository List.
-            Items = CartItemsRepository.Instance.List as ObservableCollection<CartItem>;
-
-            (CartItemsRepository.Instance.List as ObservableCollection<CartItem>).CollectionChanged += List_CollectionChanged;
-        }
+        private ShoppingCartViewModel() { }
 
         private static volatile ShoppingCartViewModel instance;
         private static object syncRoot = new Object();
@@ -40,12 +33,19 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                     lock (syncRoot)
                     {
                         if (instance == null)
+                        {
                             instance = new ShoppingCartViewModel();
+                        }
                     }
                 }
 
                 return instance;
             }
+        }
+
+        public async void OnImportsSatisfied()
+        {
+            await Refresh();
         }
 
         protected override void SetCommands()
@@ -56,21 +56,52 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         }
         #endregion
 
+        #region Refresh
+        // TODO This would be appropriate for an 'empty' button.
+        protected override void Clear()
+        {
+            base.Clear();
+
+            ClearAggregates();
+        }
+
+        protected override async Task<bool> Initialize()
+        {
+            var baseInitialized = await base.Initialize();
+
+            if (baseInitialized)
+            {
+                Items = CartItemsRepository.Instance.List;
+            }
+
+            return (baseInitialized);
+        }
+        #endregion
+
         #region CRUD
         public void CartProduct(IShoppingProduct productsOverviewObject)
         {
             CartItemsRepository.Instance.AddProduct(productsOverviewObject);
         }
 
-        public ICommand DeleteCommand { get; set; }
+        public static readonly DependencyProperty DeleteCommandProperty =
+             DependencyProperty.Register(nameof(DeleteCommand), typeof(ICommand), typeof(ShoppingCartViewModel));
+
+        public ICommand DeleteCommand
+        {
+            get { return (ICommand)GetValue(DeleteCommandProperty); }
+            private set { SetValue(DeleteCommandProperty, value); }
+        }
 
         private void Delete(CartItem cartItem)
         {
             CartItemsRepository.Instance.DeleteProduct(cartItem);
         }
 
-        private void List_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        protected override void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
+            base.Items_CollectionChanged(sender, e);
+
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
@@ -81,11 +112,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                     break;
             }
 
-            // TODO Put this as calculated set in UpdateAggregates too?
-            RaisePropertyChanged(nameof(ItemsCount));
-
             UpdateAggregates();
-
         }
 
         private void CartItem_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -98,6 +125,12 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #endregion
 
         #region Aggregates
+        private void ClearAggregates()
+        {
+            ProductItemsCount = 0;
+            TotalValue = 0;
+        }
+
         private void UpdateAggregates()
         {
             ProductItemsCount = CartItemsRepository.Instance.ProductsCount();

@@ -144,9 +144,6 @@ Zie voor meer details de beschrijvingen (ReadMe) van de betrokken repositories.<
   <data name="Items" xml:space="preserve">
     <value>Objecten</value>
   </data>
-  <data name="MainTitle" xml:space="preserve">
-    <value>CyclOne</value>
-  </data>
   <data name="MasterFilter" xml:space="preserve">
     <value>Categorie</value>
   </data>
@@ -161,6 +158,9 @@ Zie voor meer details de beschrijvingen (ReadMe) van de betrokken repositories.<
   </data>
   <data name="Remove" xml:space="preserve">
     <value>X</value>
+  </data>
+  <data name="ShopName" xml:space="preserve">
+    <value>CyclOne</value>
   </data>
   <data name="TextFilter" xml:space="preserve">
     <value>Naam of Kleur</value>
