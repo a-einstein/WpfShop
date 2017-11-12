@@ -143,6 +143,9 @@ For further details please check the descriptions (ReadMe) of the involved repos
   <data name="IncreaseProduct" xml:space="preserve">
     <value>Shop +</value>
   </data>
+  <data name="Initializing" xml:space="preserve">
+    <value>Initializing...</value>
+  </data>
   <data name="Items" xml:space="preserve">
     <value>Items</value>
   </data>
@@ -155,11 +158,18 @@ For further details please check the descriptions (ReadMe) of the involved repos
   <data name="NavigateShop" xml:space="preserve">
     <value>Go shopping</value>
   </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>Nothing found.
+Please try a different query.</value>
+  </data>
   <data name="Products" xml:space="preserve">
     <value>Products</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>X</value>
+  </data>
+  <data name="Searching" xml:space="preserve">
+    <value>Searching...</value>
   </data>
   <data name="ShopName" xml:space="preserve">
     <value>CyclOne</value>

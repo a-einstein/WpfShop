@@ -1,4 +1,5 @@
 ﻿using Prism.Commands;
+using RCS.WpfShop.Resources;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -19,7 +20,11 @@ namespace RCS.WpfShop.Common.ViewModels
 
             if (baseInitialized && !initialized)
             {
+                Message = Labels.Initializing;
+
                 initialized = await InitializeFilters();
+
+                Message = string.Empty;
             }
 
             return (initialized);
@@ -34,9 +39,22 @@ namespace RCS.WpfShop.Common.ViewModels
 
         protected override async Task<bool> Read()
         {
+            Message = Labels.Searching;
+
             var succeeded = await ReadFiltered();
 
+            Message = (succeeded && ItemsCount == 0) ? Labels.NotFound : string.Empty;
+
             return succeeded;
+        }
+
+        public static readonly DependencyProperty MessageProperty =
+            DependencyProperty.Register(nameof(Message), typeof(string), typeof(FilterItemsViewModel<I, FM, FD>));
+
+        public string Message
+        {
+            get { return (string)GetValue(MessageProperty); }
+            set { SetValue(MessageProperty, value); }
         }
         #endregion
 

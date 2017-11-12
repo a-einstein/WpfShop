@@ -17,19 +17,19 @@
 
     <Border Style="{StaticResource BorderStyle}" Background="{StaticResource CartBackgroundBrush}">
         <StackPanel>
-            <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Cart}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Cart}" Style="{StaticResource HeaderTextBlockStyle}" />
 
             <Expander>
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding ItemsCount}" Style="{StaticResource LineValueTextBlockStyle}"/>
-                        <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Products}" Style="{StaticResource LineTextBlockStyle}"/>
+                        <TextBlock Text="{Binding ItemsCount}" Style="{StaticResource InlineValueEmphasisTextBlockStyle}"/>
+                        <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Products}" Style="{StaticResource InlineTextBlockStyle}"/>
 
-                        <TextBlock Text="{Binding ProductItemsCount}" Style="{StaticResource LineValueTextBlockStyle}"/>
-                        <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Items}" Style="{StaticResource LineTextBlockStyle}"/>
+                        <TextBlock Text="{Binding ProductItemsCount}" Style="{StaticResource InlineValueEmphasisTextBlockStyle}"/>
+                        <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Items}" Style="{StaticResource InlineTextBlockStyle}"/>
 
-                        <TextBlock Text="{Binding TotalValue, StringFormat=\{0:C2\}}" Style="{StaticResource LineValueTextBlockStyle}"/>
-                        <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.TotalValue}" Style="{StaticResource LineTextBlockStyle}"/>
+                        <TextBlock Text="{Binding TotalValue, StringFormat=\{0:C2\}}" Style="{StaticResource InlineValueEmphasisTextBlockStyle}"/>
+                        <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.TotalValue}" Style="{StaticResource InlineTextBlockStyle}"/>
                     </StackPanel>
                 </Expander.Header>
                 <Expander.Content>
@@ -43,7 +43,7 @@
                                 <GridViewColumn Width="Auto">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Style="{StaticResource TextBlockStyle}">
+                                            <TextBlock Style="{StaticResource ValueTextBlockStyle}">
                                                 <TextBlock.Text>
                                                     <MultiBinding Converter="{StaticResource SizeFormatter}">
                                                         <Binding Path="ProductSize"/>
@@ -61,7 +61,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <!--TODO HorizontalAlignment does not work here, but is desirable to work out some way.--> 
-                                            <TextBlock Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Right"/>
+                                            <TextBlock Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource ValueTextBlockStyle}" HorizontalAlignment="Right"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -78,7 +78,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <!--TODO HorizontalAlignment does not work here, but is desirable to work out some way.-->
-                                            <TextBlock Text="{Binding Value, StringFormat=\{0:C2\}}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                            <TextBlock Text="{Binding Value, StringFormat=\{0:C2\}}" Style="{StaticResource ValueEmphasisTextBlockStyle}" HorizontalAlignment="Right"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

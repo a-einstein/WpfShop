@@ -141,6 +141,9 @@ Zie voor meer details de beschrijvingen (ReadMe) van de betrokken repositories.<
   <data name="IncreaseProduct" xml:space="preserve">
     <value>Winkelwagen +</value>
   </data>
+  <data name="Initializing" xml:space="preserve">
+    <value>Voorbereiden...</value>
+  </data>
   <data name="Items" xml:space="preserve">
     <value>Objecten</value>
   </data>
@@ -153,11 +156,18 @@ Zie voor meer details de beschrijvingen (ReadMe) van de betrokken repositories.<
   <data name="NavigateShop" xml:space="preserve">
     <value>Naar de winkel</value>
   </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>Niets gevonden.
+Pas a.u.b. uw zoekopdracht aan.</value>
+  </data>
   <data name="Products" xml:space="preserve">
     <value>Produkten</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>X</value>
+  </data>
+  <data name="Searching" xml:space="preserve">
+    <value>Zoeken...</value>
   </data>
   <data name="ShopName" xml:space="preserve">
     <value>CyclOne</value>

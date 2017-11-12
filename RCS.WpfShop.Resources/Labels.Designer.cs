@@ -126,6 +126,15 @@ namespace RCS.WpfShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string Initializing {
+            get {
+                return ResourceManager.GetString("Initializing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string Items {
             get {
                 return ResourceManager.GetString("Items", resourceCulture);
@@ -162,6 +171,15 @@ namespace RCS.WpfShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string NotFound {
+            get {
+                return ResourceManager.GetString("NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string Products {
             get {
                 return ResourceManager.GetString("Products", resourceCulture);
@@ -174,6 +192,15 @@ namespace RCS.WpfShop.Resources {
         public static string Remove {
             get {
                 return ResourceManager.GetString("Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Searching {
+            get {
+                return ResourceManager.GetString("Searching", resourceCulture);
             }
         }
         

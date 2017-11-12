@@ -39,7 +39,7 @@
             </StackPanel>
 
             <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="2">
-                <TextBlock Style="{StaticResource TextBlockStyle}">
+                <TextBlock Style="{StaticResource ValueTextBlockStyle}">
                     <TextBlock.Text>
                         <MultiBinding Converter="{StaticResource CategoriesFormatter}">
                             <Binding Path="Item.ProductCategory"/>
@@ -48,15 +48,15 @@
                     </TextBlock.Text>
                 </TextBlock>
 
-                <TextBlock Text="{Binding Item.ModelName}" Style="{StaticResource TextBlockStyle}"/>
+                <TextBlock Text="{Binding Item.ModelName}" Style="{StaticResource ValueTextBlockStyle}"/>
 
-                <TextBlock Text="{Binding Item.Name}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold" FontSize="16"/>
+                <TextBlock Text="{Binding Item.Name}" Style="{StaticResource ValueEmphasisLargeTextBlockStyle}"/>
 
-                <TextBlock Text="{Binding Item.ProductNumber}" Style="{StaticResource TextBlockStyle}"/>
+                <TextBlock Text="{Binding Item.ProductNumber}" Style="{StaticResource ValueTextBlockStyle}"/>
 
-                <TextBlock Text="{Binding Item.ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold" FontSize="16"/>
+                <TextBlock Text="{Binding Item.ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource ValueEmphasisLargeTextBlockStyle}"/>
 
-                <TextBlock Style="{StaticResource TextBlockStyle}">
+                <TextBlock Style="{StaticResource ValueTextBlockStyle}">
                     <TextBlock.Text>
                         <MultiBinding Converter="{StaticResource SizeFormatter}">
                             <Binding Path="Item.Size"/>
@@ -65,7 +65,7 @@
                     </TextBlock.Text>
                 </TextBlock>
 
-                <TextBlock Style="{StaticResource TextBlockStyle}">
+                <TextBlock Style="{StaticResource ValueTextBlockStyle}">
                     <TextBlock.Text>
                         <MultiBinding Converter="{StaticResource WeightFormatter}">
                             <Binding Path="Item.Weight"/>
@@ -74,9 +74,9 @@
                     </TextBlock.Text>
                 </TextBlock>
 
-                <TextBlock Text="{Binding Item.Color}" Style="{StaticResource TextBlockStyle}"/>
+                <TextBlock Text="{Binding Item.Color}" Style="{StaticResource ValueTextBlockStyle}"/>
 
-                <TextBlock Text="{Binding Item.Description}" Style="{StaticResource TextBlockStyle}"/>
+                <TextBlock Text="{Binding Item.Description}" Style="{StaticResource ValueTextBlockStyle}"/>
             </StackPanel>
         </Grid>
     </Border>

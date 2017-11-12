@@ -79,6 +79,7 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Converters\HasValueToVisibilityConverter.cs" />
     <Compile Include="Modules\Module.cs" />
     <Compile Include="ViewModels\FilterItemsViewModel.cs" />
     <Compile Include="ViewModels\ItemsViewModel.cs" />

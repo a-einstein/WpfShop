@@ -19,6 +19,7 @@
             <Converters:ByteArrayToBitmapImageConverter x:Key="ByteArrayToBitmapImageConverter"/>
             <Converters:HasValueTester x:Key="HasValueTester"/>
             <Converters:HasValueMultiTester x:Key="HasValueMultiTester"/>
+            <Converters:HasValueToVisibilityConverter x:Key="HasValueToVisibilityConverter"/>
             <Resources:Wrapper x:Key="Resources"/>
         </ResourceDictionary>
     </BaseClasses:View.Resources>
@@ -31,16 +32,16 @@
             </Grid.RowDefinitions>
 
             <StackPanel Margin="0,0,0,2">
-                <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Products}" Style="{StaticResource MainHeaderTextBlockStyle}"/>
+                <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Products}" Style="{StaticResource HeaderLargeTextBlockStyle}"/>
 
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.MasterFilter}" Style="{StaticResource LineTextBlockStyle}"/>
+                    <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.MasterFilter}" Style="{StaticResource InlineTextBlockStyle}"/>
                     <ComboBox ItemsSource="{Binding MasterFilterItems}" SelectedValue="{Binding MasterFilterValue}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" Style="{StaticResource FilterComboBoxStyle}"/>
 
-                    <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.DetailFilter}" Style="{StaticResource LineTextBlockStyle}"/>
+                    <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.DetailFilter}" Style="{StaticResource InlineTextBlockStyle}"/>
                     <ComboBox ItemsSource="{Binding DetailFilterItems}" SelectedValue="{Binding DetailFilterValue}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" Style="{StaticResource FilterComboBoxStyle}"/>
 
-                    <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.TextFilter}" Style="{StaticResource LineTextBlockStyle}"/>
+                    <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.TextFilter}" Style="{StaticResource InlineTextBlockStyle}"/>
                     <!--Note this field has to be tabbed out to reach the default button by the enter key.-->
                     <TextBox Text="{Binding TextFilterValue, Mode=TwoWay}" Width="200" Style="{StaticResource LineTextBoxStyle}"/>
 
@@ -55,69 +56,72 @@
                         </Button.IsEnabled>
                     </Button>
 
-                    <TextBlock Text="{Binding ItemsCount}" Style="{StaticResource LineValueTextBlockStyle}"/>
-                    <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Products}" Style="{StaticResource LineTextBlockStyle}"/>
+                    <TextBlock Text="{Binding ItemsCount}" Style="{StaticResource InlineValueEmphasisTextBlockStyle}"/>
+                    <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Products}" Style="{StaticResource InlineTextBlockStyle}"/>
                 </StackPanel>
             </StackPanel>
 
             <Border Grid.Row="1" Style="{StaticResource BorderStyle}">
                 <!--Note this does not work within a StackPanel-->
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                    <ItemsControl ItemsSource="{Binding Items}" Padding="2" Background="#FFEAF7FF">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Border Style="{StaticResource BorderStyle}" Background="{StaticResource ProductBackgroundBrush}">
-                                    <Grid Width="300">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="5"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
+                    <Grid>
+                        <TextBlock Text="{Binding Message}" Visibility="{Binding ItemsCount, Converter={StaticResource HasValueToVisibilityConverter}, ConverterParameter='invert'}" Style="{StaticResource MessageTextBlockStyle}"/>
+                        <ItemsControl  ItemsSource="{Binding Items}" Visibility="{Binding ItemsCount, Converter={StaticResource HasValueToVisibilityConverter}}" Padding="2" Background="#FFEAF7FF">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource BorderStyle}" Background="{StaticResource ProductBackgroundBrush}">
+                                        <Grid Width="300">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="5"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
 
-                                        <Image Grid.Column="0" Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}" Style="{StaticResource ImageStyle}" MaxWidth="80" MaxHeight="80" />
+                                            <Image Grid.Column="0" Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}" Style="{StaticResource ImageStyle}" MaxWidth="80" MaxHeight="80" />
 
-                                        <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                                            <Button Content="{Binding Source={StaticResource Resources}, Path=Labels.Details}" Command="{Binding DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource ProductBackgroundBrush}"/>
-                                            <Button Content="{Binding Source={StaticResource Resources}, Path=Labels.IncreaseProduct}" Command="{Binding DataContext.CartCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"/>
-                                        </StackPanel>
+                                            <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                                                <Button Content="{Binding Source={StaticResource Resources}, Path=Labels.Details}" Command="{Binding DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource ProductBackgroundBrush}"/>
+                                                <Button Content="{Binding Source={StaticResource Resources}, Path=Labels.IncreaseProduct}" Command="{Binding DataContext.CartCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"/>
+                                            </StackPanel>
 
-                                        <StackPanel Grid.Column="2">
-                                            <TextBlock Style="{StaticResource TextBlockStyle}">
-                                                <TextBlock.Text>
-                                                    <MultiBinding Converter="{StaticResource CategoriesFormatter}">
-                                                        <Binding Path="ProductCategory"/>
-                                                        <Binding Path="ProductSubcategory"/>
-                                                    </MultiBinding>
-                                                </TextBlock.Text>
-                                            </TextBlock>
+                                            <StackPanel Grid.Column="2">
+                                                <TextBlock Style="{StaticResource ValueTextBlockStyle}">
+                                                    <TextBlock.Text>
+                                                        <MultiBinding Converter="{StaticResource CategoriesFormatter}">
+                                                            <Binding Path="ProductCategory"/>
+                                                            <Binding Path="ProductSubcategory"/>
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
 
-                                            <TextBlock Text="{Binding Name}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold" FontSize="16"/>
+                                                <TextBlock Text="{Binding Name}" Style="{StaticResource ValueEmphasisLargeTextBlockStyle}"/>
 
-                                            <TextBlock Text="{Binding ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold" FontSize="12"/>
+                                                <TextBlock Text="{Binding ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource ValueEmphasisMediumTextBlockStyle}"/>
 
-                                            <TextBlock Style="{StaticResource TextBlockStyle}">
-                                                <TextBlock.Text>
-                                                    <MultiBinding Converter="{StaticResource SizeFormatter}">
-                                                        <Binding Path="Size"/>
-                                                        <Binding Path="SizeUnitMeasureCode"/>
-                                                    </MultiBinding>
-                                                </TextBlock.Text>
-                                            </TextBlock>
+                                                <TextBlock Style="{StaticResource ValueTextBlockStyle}">
+                                                    <TextBlock.Text>
+                                                        <MultiBinding Converter="{StaticResource SizeFormatter}">
+                                                            <Binding Path="Size"/>
+                                                            <Binding Path="SizeUnitMeasureCode"/>
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
 
-                                            <TextBlock Text="{Binding Color}" Style="{StaticResource TextBlockStyle}"/>
-                                        </StackPanel>
-                                    </Grid>
+                                                <TextBlock Text="{Binding Color}" Style="{StaticResource ValueTextBlockStyle}"/>
+                                            </StackPanel>
+                                        </Grid>
 
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
 
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                    </ItemsControl>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </Grid>
                 </ScrollViewer>
             </Border>
         </Grid>

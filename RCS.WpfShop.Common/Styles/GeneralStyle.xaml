@@ -9,11 +9,13 @@
     <Thickness x:Key="StandardPadding">3</Thickness>
 
     <Color x:Key="BaseColour">white</Color>
-    <Color x:Key="MessageColour">black</Color>
+    <Color x:Key="MessageColour">#00008B</Color> <!--DarkBlue-->
     <Color x:Key="AssertColour">green</Color>
     <Color x:Key="WarningColour">orange</Color>
     <Color x:Key="ErrorColour">red</Color>
     <Color x:Key="InputBackgroundColour">white</Color>
+    <Color x:Key="LabelTextColour">#2F4F4F</Color> <!--DarkSlateGray-->
+    <Color x:Key="ValueTextColour">#00008B</Color> <!--DarkBlue-->
 
     <SolidColorBrush x:Key="BaseColourBrush" Color="{StaticResource BaseColour}"/>
     <SolidColorBrush x:Key="MessageColourBrush" Color="{StaticResource MessageColour}"/>
@@ -21,6 +23,8 @@
     <SolidColorBrush x:Key="WarningColourBrush" Color="{StaticResource WarningColour}"/>
     <SolidColorBrush x:Key="ErrorColourBrush" Color="{StaticResource ErrorColour}"/>
     <SolidColorBrush x:Key="InputBackgroundColourBrush" Color="{StaticResource InputBackgroundColour}"/>
+    <SolidColorBrush x:Key="LabelColourBrush" Color="{StaticResource LabelTextColour}"/>
+    <SolidColorBrush x:Key="ValueColourBrush" Color="{StaticResource ValueTextColour}"/>
 
     <LinearGradientBrush x:Key="ButtonBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
         <GradientStop Color="#FFE0E0E0" Offset="0"/>
@@ -82,19 +86,50 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="TextAlignment" Value="Left"/>
+        <Setter Property="Foreground" Value="{StaticResource LabelColourBrush}"/>
     </Style>
 
-    <Style x:Key="MainHeaderTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
-        <Setter Property="FontSize" Value="16"/>
+    <Style x:Key="EmphasisTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
 
-    <Style x:Key="LineTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
+    <Style x:Key="HeaderTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource EmphasisTextBlockStyle}">
+    </Style>
+
+    <Style x:Key="HeaderLargeTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderTextBlockStyle}">
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+
+    <Style x:Key="MessageTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
+        <Setter Property="Foreground" Value="{StaticResource MessageColourBrush}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+    <Style x:Key="ValueTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
+        <Setter Property="Foreground" Value="{StaticResource ValueColourBrush}"/>
+    </Style>
+
+    <Style x:Key="ValueEmphasisTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource ValueTextBlockStyle}">
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+    <Style x:Key="ValueEmphasisMediumTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource ValueEmphasisTextBlockStyle}">
+        <Setter Property="FontSize" Value="12"/>
+    </Style>
+
+    <Style x:Key="ValueEmphasisLargeTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource ValueEmphasisTextBlockStyle}">
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+
+    <!--Note this reduces the line distance somehow.-->
+    <Style x:Key="InlineTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Margin" Value="{StaticResource StandardHorizontalSeparation}"/>
     </Style>
-
-    <Style x:Key="LineValueTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource LineTextBlockStyle}">
+    
+    <Style x:Key="InlineValueEmphasisTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource InlineTextBlockStyle}">
+        <Setter Property="Foreground" Value="{StaticResource ValueColourBrush}"/>
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
 
