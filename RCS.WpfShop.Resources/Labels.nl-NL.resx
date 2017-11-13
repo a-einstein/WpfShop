@@ -126,8 +126,17 @@ Zie voor meer details de beschrijvingen (ReadMe) van de betrokken repositories.<
   <data name="Cart" xml:space="preserve">
     <value>Winkelwagen</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>Categorie</value>
+  </data>
   <data name="Close" xml:space="preserve">
     <value>Sluit</value>
+  </data>
+  <data name="Colour" xml:space="preserve">
+    <value>Kleur</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beschrijving</value>
   </data>
   <data name="DetailFilter" xml:space="preserve">
     <value>Subcategorie</value>
@@ -137,6 +146,9 @@ Zie voor meer details de beschrijvingen (ReadMe) van de betrokken repositories.<
   </data>
   <data name="Filter" xml:space="preserve">
     <value>Filter</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
   </data>
   <data name="IncreaseProduct" xml:space="preserve">
     <value>Winkelwagen +</value>
@@ -150,6 +162,12 @@ Zie voor meer details de beschrijvingen (ReadMe) van de betrokken repositories.<
   <data name="MasterFilter" xml:space="preserve">
     <value>Categorie</value>
   </data>
+  <data name="Model" xml:space="preserve">
+    <value>Model</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Naam</value>
+  </data>
   <data name="NavigateAbout" xml:space="preserve">
     <value>Over dit project</value>
   </data>
@@ -159,6 +177,9 @@ Zie voor meer details de beschrijvingen (ReadMe) van de betrokken repositories.<
   <data name="NotFound" xml:space="preserve">
     <value>Niets gevonden.
 Pas a.u.b. uw zoekopdracht aan.</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Prijs</value>
   </data>
   <data name="Products" xml:space="preserve">
     <value>Produkten</value>
@@ -172,10 +193,16 @@ Pas a.u.b. uw zoekopdracht aan.</value>
   <data name="ShopName" xml:space="preserve">
     <value>CyclOne</value>
   </data>
+  <data name="Size" xml:space="preserve">
+    <value>Maat</value>
+  </data>
   <data name="TextFilter" xml:space="preserve">
     <value>Naam of Kleur</value>
   </data>
   <data name="TotalValue" xml:space="preserve">
     <value>Totale waarde</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>Gewicht</value>
   </data>
 </root>

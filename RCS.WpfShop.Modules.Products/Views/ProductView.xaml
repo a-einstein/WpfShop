@@ -23,7 +23,6 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -34,12 +33,28 @@
 
             <Image Grid.Row="0" Grid.Column="0" Source="{Binding Item.LargePhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}" Style="{StaticResource ImageStyle}" MaxWidth="240" MaxHeight="240"/>
 
-            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                <Button Content="{Binding Source={StaticResource Resources}, Path=Labels.IncreaseProduct}" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"/>
-            </StackPanel>
+            <Button Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Right" Content="{Binding Source={StaticResource Resources}, Path=Labels.IncreaseProduct}" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"/>
 
-            <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="2">
-                <TextBlock Style="{StaticResource ValueTextBlockStyle}">
+            <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.Category}" Style="{StaticResource LabelTextBlockStyle}"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource ValueTextBlockStyle}">
                     <TextBlock.Text>
                         <MultiBinding Converter="{StaticResource CategoriesFormatter}">
                             <Binding Path="Item.ProductCategory"/>
@@ -48,15 +63,20 @@
                     </TextBlock.Text>
                 </TextBlock>
 
-                <TextBlock Text="{Binding Item.ModelName}" Style="{StaticResource ValueTextBlockStyle}"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.Model}" Style="{StaticResource LabelTextBlockStyle}"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Item.ModelName}" Style="{StaticResource ValueTextBlockStyle}"/>
 
-                <TextBlock Text="{Binding Item.Name}" Style="{StaticResource ValueEmphasisLargeTextBlockStyle}"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.Name}" Style="{StaticResource LabelTextBlockStyle}"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Item.Name}" Style="{StaticResource ValueEmphasisLargeTextBlockStyle}"/>
 
-                <TextBlock Text="{Binding Item.ProductNumber}" Style="{StaticResource ValueTextBlockStyle}"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.Id}" Style="{StaticResource LabelTextBlockStyle}"/>
+                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Item.ProductNumber}" Style="{StaticResource ValueTextBlockStyle}"/>
 
-                <TextBlock Text="{Binding Item.ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource ValueEmphasisLargeTextBlockStyle}"/>
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.Price}" Style="{StaticResource LabelTextBlockStyle}"/>
+                <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Item.ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource ValueEmphasisLargeTextBlockStyle}"/>
 
-                <TextBlock Style="{StaticResource ValueTextBlockStyle}">
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.Size}" Style="{StaticResource LabelTextBlockStyle}"/>
+                <TextBlock Grid.Row="5" Grid.Column="1" Style="{StaticResource ValueTextBlockStyle}">
                     <TextBlock.Text>
                         <MultiBinding Converter="{StaticResource SizeFormatter}">
                             <Binding Path="Item.Size"/>
@@ -65,7 +85,8 @@
                     </TextBlock.Text>
                 </TextBlock>
 
-                <TextBlock Style="{StaticResource ValueTextBlockStyle}">
+                <TextBlock Grid.Row="6" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.Weight}" Style="{StaticResource LabelTextBlockStyle}"/>
+                <TextBlock Grid.Row="6" Grid.Column="1" Style="{StaticResource ValueTextBlockStyle}">
                     <TextBlock.Text>
                         <MultiBinding Converter="{StaticResource WeightFormatter}">
                             <Binding Path="Item.Weight"/>
@@ -74,10 +95,12 @@
                     </TextBlock.Text>
                 </TextBlock>
 
-                <TextBlock Text="{Binding Item.Color}" Style="{StaticResource ValueTextBlockStyle}"/>
+                <TextBlock Grid.Row="7" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.Colour}" Style="{StaticResource LabelTextBlockStyle}"/>
+                <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding Item.Color}" Style="{StaticResource ValueTextBlockStyle}"/>
 
-                <TextBlock Text="{Binding Item.Description}" Style="{StaticResource ValueTextBlockStyle}"/>
-            </StackPanel>
+                <TextBlock Grid.Row="8" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.Description}" Style="{StaticResource LabelTextBlockStyle}" VerticalAlignment="Top"/>
+                <TextBlock Grid.Row="8" Grid.Column="1" Text="{Binding Item.Description}" Style="{StaticResource ValueTextBlockStyle}"/>
+            </Grid>
         </Grid>
     </Border>
 </BaseClasses:View>
