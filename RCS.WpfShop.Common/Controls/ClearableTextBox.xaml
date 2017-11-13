@@ -6,7 +6,7 @@
     >
     
     <UserControl.Resources>
-        <!--Note that style definitions need to be merged to work here. However, some complications arose.-->
+        <!--Note that some style definitions did not work. Merging here helped, but gave other complications.-->
         <ResourceDictionary>
             <Resources:Wrapper x:Key="Resources"/>
         </ResourceDictionary>
