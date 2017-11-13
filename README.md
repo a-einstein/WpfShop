@@ -27,6 +27,7 @@ This application is now plug & play.
 * WCF + SSL.
 * asynchronicity.
 * Globalized resources.
+* User controls.
 * Basic styling.
 * Unit testing.
 * Click Once installation.
