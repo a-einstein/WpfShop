@@ -1,0 +1,26 @@
+﻿<UserControl 
+    x:Class="RCS.WpfShop.Common.Controls.ClearableTextBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Resources="clr-namespace:RCS.WpfShop.Resources;assembly=RCS.WpfShop.Resources"
+    >
+    
+    <UserControl.Resources>
+        <!--Note that style definitions need to be merged to work here. However, some complications arose.-->
+        <ResourceDictionary>
+            <Resources:Wrapper x:Key="Resources"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <!--Take care to bind DataContext on this content level instead of the whole UserControl!-->
+    <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=UserControl}}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBox Grid.Column="0" Text="{Binding Text, Mode=TwoWay}" VerticalContentAlignment="Center"/>
+
+        <Button Grid.Column="1" Content="{Binding Source={StaticResource Resources}, Path=Labels.Remove}" Command="{Binding ClearCommand}" CommandParameter="{Binding}" Background="{StaticResource WarningColourBrush}"/>
+    </Grid>
+</UserControl>
