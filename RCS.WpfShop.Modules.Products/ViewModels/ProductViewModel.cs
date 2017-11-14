@@ -1,6 +1,8 @@
 ﻿using Prism.Commands;
 using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.WpfShop.Common.ViewModels;
+using RCS.WpfShop.Common.Views;
+using RCS.WpfShop.Common.Windows;
 using RCS.WpfShop.Modules.Products.Model;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,20 +18,23 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             base.SetCommands();
 
             CartCommand = new DelegateCommand<Product>(CartProduct);
+            PhotoCommand = new DelegateCommand(ShowPhoto);
         }
+
+        bool itemRead;
 
         protected override async Task<bool> Read()
         {
-            bool succeeded = false;
-
-            if (ItemId.HasValue)
+            // Assume the Item only needs to be read successfully once, 
+            // to avoid an unnecessary read when opening the photo.
+            if (!itemRead && ItemId.HasValue)
             {
                 var result = await ProductsRepository.Instance.ReadDetails((int)ItemId);
-                succeeded = result != null;
+                itemRead = result != null;
                 Item = result;
             }
 
-            return succeeded;
+            return itemRead;
         }
 
         public override string MakeTitle()
@@ -52,6 +57,29 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         private void CartProduct(Product product)
         {
             ShoppingCartViewModel.Instance.CartProduct(product);
+        }
+        #endregion
+
+        #region Photo
+        public static readonly DependencyProperty PhotoCommandProperty =
+              DependencyProperty.Register(nameof(PhotoCommand), typeof(ICommand), typeof(ProductViewModel));
+
+        public ICommand PhotoCommand
+        {
+            get { return (ICommand)GetValue(PhotoCommandProperty); }
+            private set { SetValue(PhotoCommandProperty, value); }
+        }
+
+        protected void ShowPhoto()
+        {
+            // Note that this view and the same picture is reused, which currently seem to have no dimension larger than 240.
+            // So enlarging currently has no real advantage.
+            // In case of another larger version being stored in the database, that should be retrieved.
+
+            var view = new PhotoView() { ViewModel = this };
+            var window = new OkWindow() { View = view };
+
+            window.Show();
         }
         #endregion
     }

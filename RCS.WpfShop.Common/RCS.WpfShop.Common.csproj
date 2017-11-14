@@ -87,6 +87,9 @@
     <Compile Include="ViewModels\FilterItemsViewModel.cs" />
     <Compile Include="ViewModels\ItemsViewModel.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
+    <Compile Include="Views\PhotoView.xaml.cs">
+      <DependentUpon>PhotoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\View.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="Converters\BooleanInverter.cs" />
@@ -112,6 +115,10 @@
     <Page Include="Styles\GeneralStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PhotoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Windows\OkWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

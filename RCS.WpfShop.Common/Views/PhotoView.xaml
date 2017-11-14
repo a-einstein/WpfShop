@@ -1,0 +1,23 @@
+﻿<BaseClasses:View
+    x:Class="RCS.WpfShop.Common.Views.PhotoView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:BaseClasses="clr-namespace:RCS.WpfShop.Common.Views"
+    xmlns:Converters="clr-namespace:RCS.WpfShop.Common.Converters"
+    >
+    <!--Take care to just use the name space and leave out the local assembly above.-->
+
+    <BaseClasses:View.Resources>
+        <ResourceDictionary>
+            <Converters:ByteArrayToBitmapImageConverter x:Key="ByteArrayToBitmapImageConverter"/>
+        </ResourceDictionary>
+    </BaseClasses:View.Resources>
+
+    <Grid>
+        <!--Note that dimensions are arbitrarily chosen here, the currently used pictures have no dimension larger than 240.
+        Current size settings results in the window adapting to this width and the image's ratio.
+        The window can be resized, but the image does not adapt beyond it original size.-->
+        
+        <Image Source="{Binding Item.LargePhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}" Style="{StaticResource ImageStyle}" Width="720" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    </Grid>
+</BaseClasses:View>
