@@ -1,12 +1,7 @@
 ﻿// TODO Note that currently ServiceLocation cannot be updated.
 // Both version 1.4. as 2.0.1 result in an exception as decribed here: 
 // https://github.com/PrismLibrary/Prism/issues/1211
-using Microsoft.Practices.ServiceLocation;
 using Prism.Mef;
-using Prism.Modularity;
-using RCS.WpfShop.Common;
-using System;
-using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Windows;
 

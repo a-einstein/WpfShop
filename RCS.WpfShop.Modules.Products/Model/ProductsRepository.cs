@@ -46,8 +46,9 @@ namespace RCS.WpfShop.Modules.Products.Model
                     subcategory?.Id,
                     namePart);
             }
-            catch (Exception)
+            catch (Exception exception) 
             {
+                DisplayAlert(exception);
                 return null;
             }
 
@@ -62,8 +63,9 @@ namespace RCS.WpfShop.Modules.Products.Model
             {
                 product = await ProductsServiceClient.GetProductDetailsAsync(productID);
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                DisplayAlert(exception);
             }
 
             return product;

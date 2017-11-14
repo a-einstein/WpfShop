@@ -43,8 +43,9 @@ namespace RCS.WpfShop.Modules.Products.Model
             {
                 categories = await ProductsServiceClient.GetProductCategoriesAsync();
             }
-            catch (Exception)
+            catch (Exception exception) 
             {
+                DisplayAlert(exception);
                 return false;
             }
 

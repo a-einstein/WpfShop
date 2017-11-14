@@ -146,8 +146,25 @@ For further details please check the descriptions (ReadMe) of the involved repos
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorDetails" xml:space="preserve">
+    <value>Error Details</value>
+  </data>
+  <data name="ErrorService" xml:space="preserve">
+    <value>There is a problem using our data service.
+Please use the refresh button, or try again later.
+
+Do you want the see the details?</value>
+  </data>
+  <data name="ErrorUnknown" xml:space="preserve">
+    <value>There is an unknown problem.
+
+Do you want the see the details?</value>
+  </data>
   <data name="Filter" xml:space="preserve">
-    <value>Filter</value>
+    <value>Search</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>

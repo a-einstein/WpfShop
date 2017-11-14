@@ -135,6 +135,42 @@ namespace RCS.WpfShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ErrorDetails {
+            get {
+                return ResourceManager.GetString("ErrorDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ErrorService {
+            get {
+                return ResourceManager.GetString("ErrorService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ErrorUnknown {
+            get {
+                return ResourceManager.GetString("ErrorUnknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string Filter {
             get {
                 return ResourceManager.GetString("Filter", resourceCulture);

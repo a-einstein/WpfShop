@@ -19,9 +19,9 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
     {
         #region Construction
         // Note this also works without actual imports.
-        // TODO This seems to come too early, before navigation.
         public async void OnImportsSatisfied()
         {
+            // TODO This comes too early, before navigation. Find an other way to trigger this.
             await Refresh();
         }
         #endregion
@@ -54,17 +54,15 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         // TODO This would better be handled inside the repository.
         protected override async Task<bool> InitializeFilters()
         {
-            bool succeeded;
+            var results = await Task.WhenAll
+            (
+                ProductCategoriesRepository.Instance.ReadList(),
+                ProductSubcategoriesRepository.Instance.ReadList()
+            );
 
-            try
-            {
-                var results = await Task.WhenAll
-                (
-                   ProductCategoriesRepository.Instance.ReadList(),
-                    ProductSubcategoriesRepository.Instance.ReadList()
-                );
-                succeeded = results.All<bool>(result => result == true);
+            var succeeded = results.All<bool>(result => result == true);
 
+            if (succeeded)
                 // Need to update on the UI thread.
                 uiDispatcher.Invoke(delegate
                 {
@@ -84,19 +82,14 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                     }
 
                     int masterDefaultId = 1;
-                    MasterFilterValue = MasterFilterItems.FirstOrDefault(category => category.Id == masterDefaultId);
+                    MasterFilterValue = MasterFilterItems?.FirstOrDefault(category => category.Id == masterDefaultId);
 
                     // Note that MasterFilterValue also determines DetailFilterItems.
                     int detailDefaultId = 1;
-                    DetailFilterValue = DetailFilterItems.FirstOrDefault(subcategory => subcategory.Id == detailDefaultId);
+                    DetailFilterValue = DetailFilterItems?.FirstOrDefault(subcategory => subcategory.Id == detailDefaultId);
 
                     TextFilterValue = default(string);
                 });
-            }
-            catch (Exception)
-            {
-                succeeded = false;
-            }
 
             return succeeded;
         }

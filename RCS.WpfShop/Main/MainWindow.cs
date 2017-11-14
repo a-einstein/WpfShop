@@ -1,13 +1,7 @@
-﻿using Prism.Modularity;
-using RCS.WpfShop.Common;
-using RCS.WpfShop.Resources;
-using RCS.WpfShop.ViewModels;
-using RCS.WpfShop.Views;
-using System;
+﻿using RCS.WpfShop.Views;
 using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Data;
-using System.Windows.Media.Imaging;
 
 namespace RCS.WpfShop.Main
 {
