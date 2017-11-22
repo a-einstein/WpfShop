@@ -1,0 +1,24 @@
+﻿<UserControl
+    x:Class="RCS.WpfShop.Common.Controls.HyperlinkControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    mc:Ignorable="d" 
+    >
+
+    <!--Take care to bind DataContext on this content level instead of the whole UserControl!-->
+    <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=UserControl}}">
+        <TextBlock>
+            <Hyperlink NavigateUri="{Binding NavigateUri}" RequestNavigate="Hyperlink_RequestNavigate">
+                <InlineUIContainer>
+                    <!--Note that some properties are already there on UserControl: Style, Foreground, FontWeight, .. 
+                    However, defining a Style with HyperlinkControl as TargetType runs into a problem, as it actually adresses a TextBlock.
+                    Changing the TargetType to TextBlock does not help, nor does changing the base type to TextBlock.
+                    Therefor, just some lose properties are applied.-->
+                    <TextBlock x:Name="linkTextBlock" Text="{Binding Text}" Foreground="{Binding Foreground}" FontWeight="{Binding FontWeight}"/>
+                </InlineUIContainer>
+            </Hyperlink>
+        </TextBlock>
+    </Grid>
+</UserControl>

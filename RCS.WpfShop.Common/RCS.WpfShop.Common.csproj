@@ -82,6 +82,9 @@
     <Compile Include="Controls\ClearableTextBox.xaml.cs">
       <DependentUpon>ClearableTextBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\HyperlinkControl.xaml.cs">
+      <DependentUpon>HyperlinkControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\HasValueToVisibilityConverter.cs" />
     <Compile Include="Modules\Module.cs" />
     <Compile Include="ViewModels\FilterItemsViewModel.cs" />
@@ -111,6 +114,10 @@
     <Page Include="Controls\ClearableTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\HyperlinkControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\GeneralStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
