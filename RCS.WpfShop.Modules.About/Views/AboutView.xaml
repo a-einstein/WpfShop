@@ -42,10 +42,10 @@
                 <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ApplicationVersion}" Style="{StaticResource ValueTextBlockStyle}" FontWeight="DemiBold"/>
 
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.DeveloperLabel}" Style="{StaticResource LabelTextBlockStyle}"/>
-                <Controls:HyperlinkControl Grid.Row="2" Grid.Column="1" NavigateUri="{Binding Source={StaticResource Resources}, Path=Labels.DeveloperLinkUri}" Text="{Binding Source={StaticResource Resources}, Path=Labels.DeveloperLinkText}" Foreground="{StaticResource ValueColourBrush}" FontWeight="DemiBold"/>
+                <Controls:HyperlinkControl Grid.Row="2" Grid.Column="1" NavigateUri="{Binding Source={StaticResource Resources}, Path=Labels.DeveloperLinkUri}" Text="{Binding Source={StaticResource Resources}, Path=Labels.DeveloperLinkText}" Foreground="{StaticResource ValueColourBrush}" FontWeight="DemiBold" VerticalAlignment="Center"/>
 
                 <TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.DocumentationLabel}" Style="{StaticResource LabelTextBlockStyle}"/>
-                <Controls:HyperlinkControl Grid.Row="3" Grid.Column="1" NavigateUri="{Binding Source={StaticResource Resources}, Path=Labels.DocumentationLinkUri}" Text="{Binding Source={StaticResource Resources}, Path=Labels.DocumentationLinkText}" Foreground="{StaticResource ValueColourBrush}" FontWeight="DemiBold"/>
+                <Controls:HyperlinkControl Grid.Row="3" Grid.Column="1" NavigateUri="{Binding Source={StaticResource Resources}, Path=Labels.DocumentationLinkUri}" Text="{Binding Source={StaticResource Resources}, Path=Labels.DocumentationLinkText}" Foreground="{StaticResource ValueColourBrush}" FontWeight="DemiBold" VerticalAlignment="Center"/>
             </Grid>
         </ScrollViewer>
     </Border>
