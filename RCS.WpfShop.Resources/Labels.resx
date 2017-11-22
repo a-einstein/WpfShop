@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value />
-    <comment>Use shift-enter to break lines.</comment>
-  </data>
   <data name="Cart" xml:space="preserve">
     <value />
   </data>
@@ -213,5 +209,30 @@
   </data>
   <data name="ErrorUnknown" xml:space="preserve">
     <value />
+  </data>
+  <data name="DeveloperLabel" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DeveloperLinkText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DeveloperLinkUri" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DocumentationLabel" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DocumentationLinkText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DocumentationLinkUri" xml:space="preserve">
+    <value />
+  </data>
+  <data name="VersionLabel" xml:space="preserve">
+    <value />
+  </data>
+  <data name="aaa" xml:space="preserve">
+    <value>Use shift-enter to break lines.</value>
+    <comment>Instruction</comment>
   </data>
 </root>

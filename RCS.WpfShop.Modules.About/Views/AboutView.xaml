@@ -16,9 +16,42 @@
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
+    <!-- TODO Put image as background.-->
     <Border Style="{StaticResource BorderStyle}">
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-            <TextBlock TextWrapping="Wrap" Text="{Binding Source={StaticResource Resources}, Path=Labels.About}" Style="{StaticResource MessageTextBlockStyle}" Margin="0,10,0,0" MinWidth="200" MinHeight="200"/>
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!--TODO Centre better.-->
+                <!--TODO Create styles?-->
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Source={StaticResource Resources}, Path=Labels.ShopName}" Style="{StaticResource HeaderExtralargeTextBlockStyle}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.VersionLabel}" Style="{StaticResource LabelTextBlockStyle}" />
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ApplicationVersion}" Style="{StaticResource ValueTextBlockStyle}" FontWeight="DemiBold"/>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.DeveloperLabel}" Style="{StaticResource LabelTextBlockStyle}"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">
+                    <Hyperlink NavigateUri="{Binding Source={StaticResource Resources}, Path=Labels.DeveloperLinkUri}" RequestNavigate="Hyperlink_RequestNavigate">
+                        <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.DeveloperLinkText}" Foreground="{StaticResource ValueColourBrush}" FontWeight="DemiBold"/>
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.DocumentationLabel}" Style="{StaticResource LabelTextBlockStyle}"/>
+                <TextBlock Grid.Row="3" Grid.Column="1" VerticalAlignment="Center">
+                    <Hyperlink NavigateUri="{Binding Source={StaticResource Resources}, Path=Labels.DocumentationLinkUri}" RequestNavigate="Hyperlink_RequestNavigate">
+                        <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.DocumentationLinkText}" Foreground="{StaticResource ValueColourBrush}" FontWeight="DemiBold"/>
+                    </Hyperlink>
+                </TextBlock>
+            </Grid>
         </ScrollViewer>
     </Border>
 </BaseClasses:View>

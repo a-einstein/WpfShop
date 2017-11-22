@@ -61,11 +61,11 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Use shift-enter to break lines..
         /// </summary>
-        public static string About {
+        public static string aaa {
             get {
-                return ResourceManager.GetString("About", resourceCulture);
+                return ResourceManager.GetString("aaa", resourceCulture);
             }
         }
         
@@ -129,6 +129,60 @@ namespace RCS.WpfShop.Resources {
         public static string Details {
             get {
                 return ResourceManager.GetString("Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string DeveloperLabel {
+            get {
+                return ResourceManager.GetString("DeveloperLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string DeveloperLinkText {
+            get {
+                return ResourceManager.GetString("DeveloperLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string DeveloperLinkUri {
+            get {
+                return ResourceManager.GetString("DeveloperLinkUri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string DocumentationLabel {
+            get {
+                return ResourceManager.GetString("DocumentationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string DocumentationLinkText {
+            get {
+                return ResourceManager.GetString("DocumentationLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string DocumentationLinkUri {
+            get {
+                return ResourceManager.GetString("DocumentationLinkUri", resourceCulture);
             }
         }
         
@@ -336,6 +390,15 @@ namespace RCS.WpfShop.Resources {
         public static string TotalValue {
             get {
                 return ResourceManager.GetString("TotalValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string VersionLabel {
+            get {
+                return ResourceManager.GetString("VersionLabel", resourceCulture);
             }
         }
         

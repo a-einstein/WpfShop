@@ -33,15 +33,15 @@ namespace RCS.WpfShop.Common.Controls
         #endregion
 
         #region Command
+        // Note that Control.IsEnabled depends on Control.Command.CanExecute if defined.
+        public static readonly DependencyProperty ClearCommandProperty =
+            DependencyProperty.Register(nameof(ClearCommand), typeof(DelegateCommand<ClearableTextBox>), typeof(ClearableTextBox), new PropertyMetadata(new DelegateCommand<ClearableTextBox>(Clear, CanClear)));
+
         public DelegateCommand<ClearableTextBox> ClearCommand
         {
             get { return (DelegateCommand<ClearableTextBox>)GetValue(ClearCommandProperty); }
             set { SetValue(ClearCommandProperty, value); }
         }
-
-        // Note that Control.IsEnabled depends on Control.Command.CanExecute if defined.
-        public static readonly DependencyProperty ClearCommandProperty =
-            DependencyProperty.Register(nameof(ClearCommand), typeof(ICommand), typeof(ClearableTextBox), new PropertyMetadata(new DelegateCommand<ClearableTextBox>(Clear, CanClear)));
 
         private static void Clear(ClearableTextBox clearableTextBox)
         {

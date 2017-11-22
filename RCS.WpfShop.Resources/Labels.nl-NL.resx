@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>Dit project is gebouwd door Robert voor test en demonstratie van diverse concepten in WPF.
-
-Zie voor meer details de beschrijvingen (ReadMe) van de betrokken repositories.</value>
-    <comment>Use shift-enter to break lines.</comment>
-  </data>
   <data name="Cart" xml:space="preserve">
     <value>Winkelwagen</value>
   </data>
@@ -143,6 +137,24 @@ Zie voor meer details de beschrijvingen (ReadMe) van de betrokken repositories.<
   </data>
   <data name="Details" xml:space="preserve">
     <value>Details</value>
+  </data>
+  <data name="DeveloperLabel" xml:space="preserve">
+    <value>Ontwikkeld door: </value>
+  </data>
+  <data name="DeveloperLinkText" xml:space="preserve">
+    <value>RCS</value>
+  </data>
+  <data name="DeveloperLinkUri" xml:space="preserve">
+    <value>https://github.com/a-einstein</value>
+  </data>
+  <data name="DocumentationLabel" xml:space="preserve">
+    <value>Documentatie: </value>
+  </data>
+  <data name="DocumentationLinkText" xml:space="preserve">
+    <value>WpfShop</value>
+  </data>
+  <data name="DocumentationLinkUri" xml:space="preserve">
+    <value>https://github.com/a-einstein/WpfShop/blob/master/README.md</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Probleem</value>
@@ -186,10 +198,10 @@ Wilt u de details zien?</value>
     <value>Naam</value>
   </data>
   <data name="NavigateAbout" xml:space="preserve">
-    <value>Over dit project</value>
+    <value>Beschrijving</value>
   </data>
   <data name="NavigateShop" xml:space="preserve">
-    <value>Naar de winkel</value>
+    <value>Winkel</value>
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>Niets gevonden.
@@ -218,6 +230,9 @@ Pas a.u.b. uw zoekopdracht aan.</value>
   </data>
   <data name="TotalValue" xml:space="preserve">
     <value>Totale waarde</value>
+  </data>
+  <data name="VersionLabel" xml:space="preserve">
+    <value>Versie: </value>
   </data>
   <data name="Weight" xml:space="preserve">
     <value>Gewicht</value>
