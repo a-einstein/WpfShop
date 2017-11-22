@@ -59,7 +59,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Main.ico</ApplicationIcon>
+    <ApplicationIcon>Images\Main.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>062CBCEA560C500F13873F0D323A43E044F6EB64</ManifestCertificateThumbprint>
@@ -202,7 +202,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Main.ico" />
+    <Resource Include="Images\Main.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

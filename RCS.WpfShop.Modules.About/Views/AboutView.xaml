@@ -17,8 +17,11 @@
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
-    <!-- TODO Put image as background.-->
     <Border Style="{StaticResource BorderStyle}">
+        <Border.Background>
+            <ImageBrush ImageSource="..\Images\Shop.jpg" Opacity="0.25" Stretch="Uniform"/>
+        </Border.Background>
+
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
             <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
