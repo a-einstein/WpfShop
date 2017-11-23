@@ -22,9 +22,13 @@
             <ImageBrush ImageSource="..\Images\Shop.jpg" Opacity="0.25" Stretch="Uniform"/>
         </Border.Background>
 
-        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-            <!--Note that the (default) HorizontalAlignment="Stretch" enables the 2 columns to be equal and thus the contents to be centered.
-            HorizontalAlignment="Center" causes the Grid to be centered, while 2 unequal columns become unsymmetrical.--> 
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <!--
+            Note that the (default) HorizontalAlignment="Stretch" enables the 2 columns to be equal and thus the contents to be centered.
+            HorizontalAlignment="Center" causes the Grid to be centered, while 2 unequal columns become unsymmetrical.
+            Vertically the content is deliberately left centered instead of on a more common higher sight line, 
+            because it nicely coincides with the center of the current spiral background image.
+            --> 
             <Grid VerticalAlignment="Center" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>

@@ -63,6 +63,7 @@
 
             <Border Grid.Row="1" Style="{StaticResource BorderStyle}">
                 <!--Note this does not work within a StackPanel-->
+                <!--Note HorizontalScrollBarVisibility="Disabled" is needed, otherwise the WrapPanel just uses a single line, as wide as it needs.-->
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                     <Grid>
                         <TextBlock Text="{Binding Message}" Visibility="{Binding ItemsCount, Converter={StaticResource HasValueToVisibilityConverter}, ConverterParameter='invert'}" Style="{StaticResource MessageTextBlockStyle}"/>
