@@ -12,11 +12,14 @@
         <TextBlock>
             <Hyperlink NavigateUri="{Binding NavigateUri}" RequestNavigate="Hyperlink_RequestNavigate">
                 <InlineUIContainer>
-                    <!--Note that some properties are already there on UserControl: Style, Foreground, FontWeight, .. 
-                    However, defining a Style with HyperlinkControl as TargetType runs into a problem, as it actually adresses a TextBlock.
-                    Changing the TargetType to TextBlock does not help, nor does changing the base type to TextBlock.
-                    Therefor, just some lose properties are applied.-->
-                    <TextBlock x:Name="linkTextBlock" Text="{Binding Text}" Foreground="{Binding Foreground}" FontWeight="{Binding FontWeight}"/>
+                    <!--Note that some properties already exist on UserControl and also apply on the TextBlock: FontSize, FontWeight, VerticalAlignment, ..
+                    However, Foreground does not apply.
+                    Also Hyperlink underlines the TextBlock independently of TextDecorations on the TextBlock.
+                    This can even result in double underlining, because of troublesome alignment of the Hyperlink underlining.
+                    Experimentation with TextBlock Style bound to a TextBlockStyle property did not quite work because of the alignment issue.
+                    Therefor, properties are only applied as far as needed.
+                    The colour of the underlining remains uncontrolled.-->
+                    <TextBlock Text="{Binding Text}" Foreground="{Binding Foreground}"/>
                 </InlineUIContainer>
             </Hyperlink>
         </TextBlock>

@@ -35,17 +35,17 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <!--TODO Centre better.-->
-                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Labels.ShopName, Source={StaticResource Resources}}" Style="{StaticResource HeaderExtralargeTextBlockStyle}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <!--HACK Putting header right, centring other text not correct yet.-->
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Labels.ShopName, Source={StaticResource Resources}}" Style="{StaticResource HeaderSuperlargeTextBlockStyle}" HorizontalAlignment="Right"/>
 
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.VersionLabel}" Style="{StaticResource LabelTextBlockStyle}" />
-                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ApplicationVersion}" Style="{StaticResource ValueTextBlockStyle}" FontWeight="DemiBold"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.VersionLabel}" Style="{StaticResource LabelLargeTextBlockStyle}" />
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ApplicationVersion}" Style="{StaticResource ValueDemiEmphasisLargeTextBlockStyle}"/>
 
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.DeveloperLabel}" Style="{StaticResource LabelTextBlockStyle}"/>
-                <Controls:HyperlinkControl Grid.Row="2" Grid.Column="1" NavigateUri="{Binding Source={StaticResource Resources}, Path=Labels.DeveloperLinkUri}" Text="{Binding Source={StaticResource Resources}, Path=Labels.DeveloperLinkText}" Foreground="{StaticResource ValueColourBrush}" FontWeight="DemiBold" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.DeveloperLabel}" Style="{StaticResource LabelLargeTextBlockStyle}"/>
+                <Controls:HyperlinkControl Grid.Row="2" Grid.Column="1" NavigateUri="{Binding Source={StaticResource Resources}, Path=Labels.DeveloperLinkUri}" Text="{Binding Source={StaticResource Resources}, Path=Labels.DeveloperLinkText}" Style="{StaticResource ValueDemiEmphasisLargeHyperlinkControlStyle}"/>
 
-                <TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.DocumentationLabel}" Style="{StaticResource LabelTextBlockStyle}"/>
-                <Controls:HyperlinkControl Grid.Row="3" Grid.Column="1" NavigateUri="{Binding Source={StaticResource Resources}, Path=Labels.DocumentationLinkUri}" Text="{Binding Source={StaticResource Resources}, Path=Labels.DocumentationLinkText}" Foreground="{StaticResource ValueColourBrush}" FontWeight="DemiBold" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.DocumentationLabel}" Style="{StaticResource LabelLargeTextBlockStyle}"/>
+                <Controls:HyperlinkControl Grid.Row="3" Grid.Column="1" NavigateUri="{Binding Source={StaticResource Resources}, Path=Labels.DocumentationLinkUri}" Text="{Binding Source={StaticResource Resources}, Path=Labels.DocumentationLinkText}" Style="{StaticResource ValueDemiEmphasisLargeHyperlinkControlStyle}"/>
             </Grid>
         </ScrollViewer>
     </Border>
