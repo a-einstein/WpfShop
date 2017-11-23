@@ -186,7 +186,7 @@
         <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"/>
     </Style>
 
-    <!--Note this reduces the line distance somehow.-->
+    <!--Note this reduces the line distance by lack of vertical margin.-->
     <Style x:Key="InlineTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
         <Setter Property="Margin" Value="{StaticResource StandardHorizontalSeparation}"/>
     </Style>
