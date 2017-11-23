@@ -23,10 +23,12 @@
         </Border.Background>
 
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-            <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+            <!--Note that the (default) HorizontalAlignment="Stretch" enables the 2 columns to be equal and thus the contents to be centered.
+            HorizontalAlignment="Center" causes the Grid to be centered, while 2 unequal columns become unsymmetrical.--> 
+            <Grid VerticalAlignment="Center" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -35,8 +37,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <!--HACK Putting header right, centring other text not correct yet.-->
-                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Labels.ShopName, Source={StaticResource Resources}}" Style="{StaticResource HeaderSuperlargeTextBlockStyle}" HorizontalAlignment="Right"/>
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Labels.ShopName, Source={StaticResource Resources}}" Style="{StaticResource HeaderSuperlargeTextBlockStyle}" HorizontalAlignment="Center"/>
 
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.VersionLabel}" Style="{StaticResource LabelLargeTextBlockStyle}" />
                 <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ApplicationVersion}" Style="{StaticResource ValueDemiEmphasisLargeTextBlockStyle}"/>
