@@ -47,7 +47,7 @@
                     <Controls:ClearableTextBox Text="{Binding TextFilterValue, Mode=TwoWay}" Width="150">
                         <Controls:ClearableTextBox.TextBoxBehaviors>
                             <x:Array Type="Behaviors:TextBoxRegexValidationBehavior">
-                                <Behaviors:TextBoxRegexValidationBehavior ValidExpression="\w{3}" ValidBackground="{StaticResource InputBackgroundColourBrush}" InvalidBackground="{StaticResource ErrorBackgroundColourBrush}"/>
+                                <Behaviors:TextBoxRegexValidationBehavior ValidExpression="\w{3}" ValidBackground="{StaticResource InputBackgroundBrush}" InvalidBackground="{StaticResource ErrorBackgroundBrush}"/>
                             </x:Array>
                         </Controls:ClearableTextBox.TextBoxBehaviors>
                     </Controls:ClearableTextBox>

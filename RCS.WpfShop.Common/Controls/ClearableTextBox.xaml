@@ -21,6 +21,6 @@
 
         <TextBox x:Name="textBox" Grid.Column="0" Text="{Binding Text, Mode=TwoWay}" VerticalContentAlignment="Center"/>
 
-        <Button Grid.Column="1" Content="{Binding Source={StaticResource Resources}, Path=Labels.Remove}" Command="{Binding ClearCommand}" CommandParameter="{Binding}" Background="{StaticResource WarningBackgroundColourBrush}"/>
+        <Button Grid.Column="1" Content="{Binding Source={StaticResource Resources}, Path=Labels.Remove}" Command="{Binding ClearCommand}" CommandParameter="{Binding}" Background="{StaticResource WarningBackgroundBrush}"/>
     </Grid>
 </UserControl>

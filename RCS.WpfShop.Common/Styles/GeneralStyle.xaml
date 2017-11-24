@@ -24,7 +24,6 @@
 
     <!--Color-->
     
-    <Color x:Key="BaseColour">white</Color>
     <Color x:Key="MessageColour">#00008B</Color> <!--DarkBlue-->
     <Color x:Key="AssertColour">green</Color>
     <Color x:Key="WarningColour">orange</Color>
@@ -36,16 +35,14 @@
 
     <!--Brush-->
     
-    <!--Todo Shorten the names, remove "colour"-->
-    <SolidColorBrush x:Key="BaseColourBrush" Color="{StaticResource BaseColour}"/>
-    <SolidColorBrush x:Key="MessageForegroundColourBrush" Color="{StaticResource MessageColour}"/>
-    <SolidColorBrush x:Key="AssertForegroundColourBrush" Color="{StaticResource AssertColour}"/>
-    <SolidColorBrush x:Key="WarningBackgroundColourBrush" Color="{StaticResource WarningColour}"/>
-    <SolidColorBrush x:Key="ErrorForegroundColourBrush" Color="{StaticResource ErrorColour}"/>
-    <SolidColorBrush x:Key="ErrorBackgroundColourBrush" Color="{StaticResource ErrorBackgroundColour}"/>
-    <SolidColorBrush x:Key="InputBackgroundColourBrush" Color="{StaticResource InputBackgroundColour}"/>
-    <SolidColorBrush x:Key="LabelForegroundColourBrush" Color="{StaticResource LabelForegroundColour}"/>
-    <SolidColorBrush x:Key="ValueForegroundColourBrush" Color="{StaticResource ValueForegroundColour}"/>
+    <SolidColorBrush x:Key="MessageForegroundBrush" Color="{StaticResource MessageColour}"/>
+    <SolidColorBrush x:Key="AssertForegroundBrush" Color="{StaticResource AssertColour}"/>
+    <SolidColorBrush x:Key="WarningBackgroundBrush" Color="{StaticResource WarningColour}"/>
+    <SolidColorBrush x:Key="ErrorForegroundBrush" Color="{StaticResource ErrorColour}"/>
+    <SolidColorBrush x:Key="ErrorBackgroundBrush" Color="{StaticResource ErrorBackgroundColour}"/>
+    <SolidColorBrush x:Key="InputBackgroundBrush" Color="{StaticResource InputBackgroundColour}"/>
+    <SolidColorBrush x:Key="LabelForegroundBrush" Color="{StaticResource LabelForegroundColour}"/>
+    <SolidColorBrush x:Key="ValueForegroundBrush" Color="{StaticResource ValueForegroundColour}"/>
 
     <LinearGradientBrush x:Key="ButtonBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
         <GradientStop Color="#FFE0E0E0" Offset="0"/>
@@ -116,7 +113,7 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="TextAlignment" Value="Left"/>
-        <Setter Property="Foreground" Value="{StaticResource LabelForegroundColourBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource LabelForegroundBrush}"/>
     </Style>
 
     <Style x:Key="EmphasisTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
@@ -139,13 +136,13 @@
     </Style>
 
     <Style x:Key="MessageTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
-        <Setter Property="Foreground" Value="{StaticResource MessageForegroundColourBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource MessageForegroundBrush}"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
 
     <Style x:Key="LabelTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
-        <Setter Property="Foreground" Value="{StaticResource LabelForegroundColourBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource LabelForegroundBrush}"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
     </Style>
 
@@ -158,7 +155,7 @@
     </Style>
 
     <Style x:Key="ValueTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
-        <Setter Property="Foreground" Value="{StaticResource ValueForegroundColourBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource ValueForegroundBrush}"/>
     </Style>
 
     <Style x:Key="ValueTextMediumBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource ValueTextBlockStyle}">
@@ -195,14 +192,14 @@
     </Style>
 
     <Style x:Key="InlineValueEmphasisTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource InlineTextBlockStyle}">
-        <Setter Property="Foreground" Value="{StaticResource ValueForegroundColourBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource ValueForegroundBrush}"/>
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
 
     <!--HyperlinkControl-->
     
     <Style x:Key="ValueDemiEmphasisLargeHyperlinkControlStyle" TargetType="Controls:HyperlinkControl">
-        <Setter Property="Foreground" Value="{StaticResource ValueForegroundColourBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource ValueForegroundBrush}"/>
         <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"/>
         <Setter Property="FontWeight" Value="DemiBold"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
@@ -215,7 +212,7 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="TextAlignment" Value="Left"/>
-        <Setter Property="Background" Value="{StaticResource InputBackgroundColourBrush}"/>
+        <Setter Property="Background" Value="{StaticResource InputBackgroundBrush}"/>
     </Style>
 
     <Style x:Key="LineTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}">
@@ -225,7 +222,7 @@
 
     <!--ComboBox-->
     
-    <!--TODO Set the Background of the presented item to InputBackgroundColourBrush. This might need adapting of the ControlTemplate.-->
+    <!--TODO Set the Background of the presented item to InputBackgroundBrush. This might need adapting of the ControlTemplate.-->
     <Style x:Key="FilterComboBoxStyle" TargetType="ComboBox">
         <Setter Property="Margin" Value="{StaticResource StandardHorizontalSeparation}"/>
         <Setter Property="Width" Value="150"/>
@@ -256,7 +253,7 @@
     </Style>
 
     <Style x:Key="DeleteButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
-        <Setter Property="Background" Value="{StaticResource WarningBackgroundColourBrush}"/>
+        <Setter Property="Background" Value="{StaticResource WarningBackgroundBrush}"/>
     </Style>
 
     <!--IntegerUpDown-->
