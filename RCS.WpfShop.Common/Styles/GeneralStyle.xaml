@@ -29,20 +29,23 @@
     <Color x:Key="AssertColour">green</Color>
     <Color x:Key="WarningColour">orange</Color>
     <Color x:Key="ErrorColour">red</Color>
+    <Color x:Key="ErrorBackgroundColour">#FFFFBFBF</Color> <!--quarter red = pink-->
     <Color x:Key="InputBackgroundColour">white</Color>
-    <Color x:Key="LabelTextColour">#2F4F4F</Color> <!--DarkSlateGray-->
-    <Color x:Key="ValueTextColour">#00008B</Color> <!--DarkBlue-->
+    <Color x:Key="LabelForegroundColour">#2F4F4F</Color> <!--DarkSlateGray-->
+    <Color x:Key="ValueForegroundColour">#00008B</Color> <!--DarkBlue-->
 
     <!--Brush-->
     
+    <!--Todo Shorten the names, remove "colour"-->
     <SolidColorBrush x:Key="BaseColourBrush" Color="{StaticResource BaseColour}"/>
-    <SolidColorBrush x:Key="MessageColourBrush" Color="{StaticResource MessageColour}"/>
-    <SolidColorBrush x:Key="AssertColourBrush" Color="{StaticResource AssertColour}"/>
-    <SolidColorBrush x:Key="WarningColourBrush" Color="{StaticResource WarningColour}"/>
-    <SolidColorBrush x:Key="ErrorColourBrush" Color="{StaticResource ErrorColour}"/>
+    <SolidColorBrush x:Key="MessageForegroundColourBrush" Color="{StaticResource MessageColour}"/>
+    <SolidColorBrush x:Key="AssertForegroundColourBrush" Color="{StaticResource AssertColour}"/>
+    <SolidColorBrush x:Key="WarningBackgroundColourBrush" Color="{StaticResource WarningColour}"/>
+    <SolidColorBrush x:Key="ErrorForegroundColourBrush" Color="{StaticResource ErrorColour}"/>
+    <SolidColorBrush x:Key="ErrorBackgroundColourBrush" Color="{StaticResource ErrorBackgroundColour}"/>
     <SolidColorBrush x:Key="InputBackgroundColourBrush" Color="{StaticResource InputBackgroundColour}"/>
-    <SolidColorBrush x:Key="LabelColourBrush" Color="{StaticResource LabelTextColour}"/>
-    <SolidColorBrush x:Key="ValueColourBrush" Color="{StaticResource ValueTextColour}"/>
+    <SolidColorBrush x:Key="LabelForegroundColourBrush" Color="{StaticResource LabelForegroundColour}"/>
+    <SolidColorBrush x:Key="ValueForegroundColourBrush" Color="{StaticResource ValueForegroundColour}"/>
 
     <LinearGradientBrush x:Key="ButtonBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
         <GradientStop Color="#FFE0E0E0" Offset="0"/>
@@ -113,7 +116,7 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="TextAlignment" Value="Left"/>
-        <Setter Property="Foreground" Value="{StaticResource LabelColourBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource LabelForegroundColourBrush}"/>
     </Style>
 
     <Style x:Key="EmphasisTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
@@ -136,13 +139,13 @@
     </Style>
 
     <Style x:Key="MessageTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
-        <Setter Property="Foreground" Value="{StaticResource MessageColourBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource MessageForegroundColourBrush}"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
 
     <Style x:Key="LabelTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
-        <Setter Property="Foreground" Value="{StaticResource LabelColourBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource LabelForegroundColourBrush}"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
     </Style>
 
@@ -155,7 +158,7 @@
     </Style>
 
     <Style x:Key="ValueTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
-        <Setter Property="Foreground" Value="{StaticResource ValueColourBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource ValueForegroundColourBrush}"/>
     </Style>
 
     <Style x:Key="ValueTextMediumBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource ValueTextBlockStyle}">
@@ -192,14 +195,14 @@
     </Style>
 
     <Style x:Key="InlineValueEmphasisTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource InlineTextBlockStyle}">
-        <Setter Property="Foreground" Value="{StaticResource ValueColourBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource ValueForegroundColourBrush}"/>
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
 
     <!--HyperlinkControl-->
     
     <Style x:Key="ValueDemiEmphasisLargeHyperlinkControlStyle" TargetType="Controls:HyperlinkControl">
-        <Setter Property="Foreground" Value="{StaticResource ValueColourBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource ValueForegroundColourBrush}"/>
         <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"/>
         <Setter Property="FontWeight" Value="DemiBold"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
@@ -253,7 +256,7 @@
     </Style>
 
     <Style x:Key="DeleteButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
-        <Setter Property="Background" Value="{StaticResource WarningColourBrush}"/>
+        <Setter Property="Background" Value="{StaticResource WarningBackgroundColourBrush}"/>
     </Style>
 
     <!--IntegerUpDown-->

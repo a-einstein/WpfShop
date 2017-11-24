@@ -1,6 +1,8 @@
 ﻿using Prism.Commands;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Interactivity;
 
 namespace RCS.WpfShop.Common.Controls
 {
@@ -50,6 +52,25 @@ namespace RCS.WpfShop.Common.Controls
         private static bool CanClear(ClearableTextBox clearableTextBox)
         {
             return !string.IsNullOrEmpty(clearableTextBox?.Text);
+        }
+        #endregion
+
+        #region Behaviors
+        public IList<Behavior> TextBoxBehaviors
+        {
+            get { return Interaction.GetBehaviors(textBox); }
+            set
+            {
+                var behaviors = TextBoxBehaviors;
+
+                // TODO This may have to be removed.
+                behaviors.Clear();
+
+                foreach (var behavior in value)
+                {
+                    behaviors.Add(behavior);
+                }
+            }
         }
         #endregion
     }

@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Resources="clr-namespace:RCS.WpfShop.Resources;assembly=RCS.WpfShop.Resources"
     >
-    
+
     <UserControl.Resources>
         <!--Note that some style definitions did not work. Merging here helped, but gave other complications.-->
         <ResourceDictionary>
@@ -19,8 +19,8 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <TextBox Grid.Column="0" Text="{Binding Text, Mode=TwoWay}" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="textBox" Grid.Column="0" Text="{Binding Text, Mode=TwoWay}" VerticalContentAlignment="Center"/>
 
-        <Button Grid.Column="1" Content="{Binding Source={StaticResource Resources}, Path=Labels.Remove}" Command="{Binding ClearCommand}" CommandParameter="{Binding}" Background="{StaticResource WarningColourBrush}"/>
+        <Button Grid.Column="1" Content="{Binding Source={StaticResource Resources}, Path=Labels.Remove}" Command="{Binding ClearCommand}" CommandParameter="{Binding}" Background="{StaticResource WarningBackgroundColourBrush}"/>
     </Grid>
 </UserControl>

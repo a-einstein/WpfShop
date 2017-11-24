@@ -6,6 +6,7 @@
     xmlns:BaseClasses="clr-namespace:RCS.WpfShop.Common.Views;assembly=RCS.WpfShop.Common"
     xmlns:Converters="clr-namespace:RCS.WpfShop.Common.Converters;assembly=RCS.WpfShop.Common"
     xmlns:Controls="clr-namespace:RCS.WpfShop.Common.Controls;assembly=RCS.WpfShop.Common"
+    xmlns:Behaviors="clr-namespace:RCS.WpfShop.Common.Behaviors;assembly=RCS.WpfShop.Common"
     xmlns:Resources="clr-namespace:RCS.WpfShop.Resources;assembly=RCS.WpfShop.Resources"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     mc:Ignorable="d" 
@@ -43,7 +44,13 @@
 
                     <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.TextFilter}" Style="{StaticResource InlineTextBlockStyle}"/>
                     <!--Note this field has to be tabbed out to reach the default button by the enter key.-->
-                    <Controls:ClearableTextBox Text="{Binding TextFilterValue, Mode=TwoWay}" Width="150"/>
+                    <Controls:ClearableTextBox Text="{Binding TextFilterValue, Mode=TwoWay}" Width="150">
+                        <Controls:ClearableTextBox.TextBoxBehaviors>
+                            <x:Array Type="Behaviors:TextBoxRegexValidationBehavior">
+                                <Behaviors:TextBoxRegexValidationBehavior ValidExpression="\w{3}" ValidBackground="{StaticResource InputBackgroundColourBrush}" InvalidBackground="{StaticResource ErrorBackgroundColourBrush}"/>
+                            </x:Array>
+                        </Controls:ClearableTextBox.TextBoxBehaviors>
+                    </Controls:ClearableTextBox>
 
                     <Button Content="{Binding Source={StaticResource Resources}, Path=Labels.Filter}" Command="{Binding FilterCommand}" IsDefault="True" Margin="{StaticResource StandardHorizontalSeparation}" Padding="7,0" FontWeight="Bold">
                         <!--Note this prevents unfiltered queries.-->
@@ -66,7 +73,7 @@
                 <!--Note HorizontalScrollBarVisibility="Disabled" is needed, otherwise the WrapPanel just uses a single line, as wide as it needs.-->
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                     <Grid>
-                        <TextBlock Text="{Binding Message}" Visibility="{Binding ItemsCount, Converter={StaticResource HasValueToVisibilityConverter}, ConverterParameter='invert'}" Style="{StaticResource MessageTextBlockStyle}"/>
+                        <TextBlock Text="{Binding Message}" Visibility="{Binding ItemsCount, Converter={StaticResource HasValueToVisibilityConverter}, ConverterParameter='invert'}" Style="{StaticResource MessageTextBlockStyle}"  VerticalAlignment="Top"/>
                         <ItemsControl  ItemsSource="{Binding Items}" Visibility="{Binding ItemsCount, Converter={StaticResource HasValueToVisibilityConverter}}" Padding="2" Background="#FFEAF7FF">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>

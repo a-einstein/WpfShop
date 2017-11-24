@@ -28,6 +28,7 @@ This application is now plug & play.
 * asynchronicity.
 * Globalized resources.
 * User controls.
+* Attached behaviours.
 * Basic styling.
 * Unit testing.
 * Click Once installation.

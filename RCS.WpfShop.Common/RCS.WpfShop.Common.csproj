@@ -79,6 +79,7 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Behaviors\TextBoxRegexValidationBehavior.cs" />
     <Compile Include="Controls\ClearableTextBox.xaml.cs">
       <DependentUpon>ClearableTextBox.xaml</DependentUpon>
     </Compile>
