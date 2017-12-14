@@ -235,4 +235,28 @@
     <value>Use shift-enter to break lines.</value>
     <comment>Instruction</comment>
   </data>
+  <data name="Closing" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UpdateAvailable" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UpdateInstructions" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UpdateNoInformation" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Updating" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UpdateCheckFailed" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UpdateContinueCurrent" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorDetailsWanted" xml:space="preserve">
+    <value />
+  </data>
 </root>

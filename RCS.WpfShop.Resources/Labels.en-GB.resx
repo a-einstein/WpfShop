@@ -126,6 +126,9 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="Closing" xml:space="preserve">
+    <value>This application will close.</value>
+  </data>
   <data name="Colour" xml:space="preserve">
     <value>Colour</value>
   </data>
@@ -162,11 +165,13 @@
   <data name="ErrorDetails" xml:space="preserve">
     <value>Error Details</value>
   </data>
+  <data name="ErrorDetailsWanted" xml:space="preserve">
+    <value>Do you want the see the details?</value>
+  </data>
   <data name="ErrorService" xml:space="preserve">
     <value>There is a problem using our data service.
-Please use the refresh button, or try again later.
 
-Do you want the see the details?</value>
+Please use the refresh button, or try again later.</value>
   </data>
   <data name="ErrorUnknown" xml:space="preserve">
     <value>There is an unknown problem.
@@ -230,6 +235,26 @@ Please try a different query.</value>
   </data>
   <data name="TotalValue" xml:space="preserve">
     <value>Total value</value>
+  </data>
+  <data name="UpdateAvailable" xml:space="preserve">
+    <value>An update is available.
+Would you like to update the application now?</value>
+  </data>
+  <data name="UpdateCheckFailed" xml:space="preserve">
+    <value>Failed to check for update.</value>
+  </data>
+  <data name="UpdateContinueCurrent" xml:space="preserve">
+    <value>You can continue using this version.</value>
+  </data>
+  <data name="UpdateInstructions" xml:space="preserve">
+    <value>You will be lead to the support page,
+where you can find installation instructions.</value>
+  </data>
+  <data name="UpdateNoInformation" xml:space="preserve">
+    <value>There is not enough information to finish the update.</value>
+  </data>
+  <data name="Updating" xml:space="preserve">
+    <value>Updating</value>
   </data>
   <data name="VersionLabel" xml:space="preserve">
     <value>Version: </value>

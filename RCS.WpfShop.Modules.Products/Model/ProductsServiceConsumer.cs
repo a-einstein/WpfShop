@@ -8,6 +8,9 @@ namespace RCS.WpfShop.Modules.Products.Model
     public abstract class ProductsServiceConsumer : IDisposable
     {
         #region Service
+        // TODO actually use this in client.
+        static TimeSpan Timeout { get; } = new TimeSpan(0, 0, 15);
+
         private ProductsServiceClient productsServiceClient;
 
         protected ProductsServiceClient ProductsServiceClient
@@ -61,12 +64,29 @@ namespace RCS.WpfShop.Modules.Products.Model
         #endregion
 
         #region Error handling
-        protected void DisplayAlert(Exception exception)
-        {
-            var result = MessageBox.Show(Labels.ErrorService, Labels.Error, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+        private static bool serviceErrorDisplaying;
 
-            if (result == MessageBoxResult.Yes)
-                MessageBox.Show(exception.Message, Labels.ErrorDetails, MessageBoxButton.OK, MessageBoxImage.Information);
+        // Note this initializes to 2001.
+        private static DateTime serviceErrorFirstDisplayed;
+
+        // This value is tested on 3 service calls at startup. There is no multiplication operator.
+        private static TimeSpan serviceErrorGraceTime = ProductsServiceConsumer.Timeout + ProductsServiceConsumer.Timeout;
+
+        protected static void DisplayAlert(Exception exception)
+        {
+            // Try to prevent stacking muliple related messages, like at startup.
+            if (!serviceErrorDisplaying && DateTime.Now > serviceErrorFirstDisplayed + serviceErrorGraceTime)
+            {
+                serviceErrorDisplaying = true;
+                serviceErrorFirstDisplayed = DateTime.Now;
+
+                var result = MessageBox.Show($"{Labels.ErrorService}\n\n{Labels.ErrorDetailsWanted}", $"{Labels.ShopName} - {Labels.Error}", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
+                    MessageBox.Show(exception.Message, $"{Labels.ShopName} - {Labels.ErrorDetails}", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                serviceErrorDisplaying = false;
+            }
         }
         #endregion
     }

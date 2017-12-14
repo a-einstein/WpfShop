@@ -7,6 +7,7 @@ namespace RCS.WpfShop.Main
 {
     public class MainWindow : Window, IPartImportsSatisfiedNotification
     {
+        #region Construction.
         public MainWindow()
         {
             Initialize();
@@ -14,7 +15,7 @@ namespace RCS.WpfShop.Main
 
         private void Initialize()
         {
-            // It is more convenient to have the dimensions here instead of the view as the window does not scale.
+            // It is more convenient to have the dimensions here instead of in the view as the window does not scale.
             Height = 900;
             Width = 900;
         }
@@ -28,5 +29,6 @@ namespace RCS.WpfShop.Main
 
             SetBinding(Window.TitleProperty, new Binding(nameof(Title)) { Source = MainView.ViewModel });
         }
+        #endregion
     }
 }

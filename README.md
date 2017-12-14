@@ -31,7 +31,7 @@ This application is now plug & play.
 * Attached behaviours.
 * Basic styling.
 * Unit testing.
-* Click Once installation.
+* Click Once installation and (manual) update.
 
 #### Installation
 * Download and extract the latest ZIP file in [releases](https://github.com/a-einstein/WpfShop/releases)
