@@ -5,7 +5,7 @@ Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstei
 
 #### News
 This application is now plug & play.
-* It can be installed directly on Windows from my releases, see Installation.
+* It can be installed directly on Windows from Azure, see Installation.
 * It uses my data service permanently running on Azure.
 
 #### Purpose
@@ -31,11 +31,14 @@ This application is now plug & play.
 * Attached behaviours.
 * Basic styling.
 * Unit testing.
-* Click Once installation and (manual) update.
+* Click Once installation and update.
 
 #### Installation
-* Download and extract the latest ZIP file in [releases](https://github.com/a-einstein/WpfShop/releases)
-* Run *setup*. Note one may have to create exceptions in protection programs on the go.
+* Open the [install page](https://rcsadventureworac85.blob.core.windows.net/wpfshop-releases/latest/install.htm).
+* If needed, install the prerequisites by the 'Install' button.
+* Click the 'launch' **hyperlink**, 'Open' to launch the installer, 'Install', allow it to continue when needed. 
 * The application should start up right away, but may be hidden behind other windows.
-* The start menu also gets a folder added: *Programs / RCS / Shopping*.
-* Uninstallation is by: *Control Panel / Program and Features / CyclOne*.
+* The start menu gets a folder added: *Programs / RCS / Shopping*.
+* Uninstallation can be done by: *Control Panel / Program and Features / CyclOne*.
+* Updates are reported at startup, and can be accepted or skipped. (Reporting is not very reliable.)
+* Reverting to the previous version can also be done through the Control Panel.
