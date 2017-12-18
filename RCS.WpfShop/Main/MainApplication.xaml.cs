@@ -1,12 +1,8 @@
 ﻿using RCS.WpfShop.Resources;
 using System;
-using System.Deployment.Application;
-using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
-using System.Xml;
 
 namespace RCS.WpfShop.Main
 {
