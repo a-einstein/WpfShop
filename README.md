@@ -30,7 +30,7 @@ This application is now plug & play.
 * User controls.
 * Attached behaviours.
 * Basic styling.
-* Unit testing.
+* MS Unit Test Framework.
 * Click Once installation and update.
 
 #### Installation
