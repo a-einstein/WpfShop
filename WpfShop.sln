@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2006
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.WpfShop", "RCS.WpfShop\RCS.WpfShop.csproj", "{961240DC-9FE9-4642-B877-FCBDCDE9E07C}"
 EndProject
@@ -24,6 +24,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.WpfShop.Modules.About", "RCS.WpfShop.Modules.About\RCS.WpfShop.Modules.About.csproj", "{2174C129-E033-4499-A912-6BE4E7FE59B2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.WpfShop.Modules.Products.Test", "RCS.WpfShop.Modules.Products.Test\RCS.WpfShop.Modules.Products.Test.csproj", "{F9E6A8CD-84AB-4CE3-AEC6-2DCD63B94EE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.AdventureWorks.Common", "AdventureWorks\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj", "{493D8ED2-1BA9-436C-981F-3A84523FA8A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{F9E6A8CD-84AB-4CE3-AEC6-2DCD63B94EE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9E6A8CD-84AB-4CE3-AEC6-2DCD63B94EE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9E6A8CD-84AB-4CE3-AEC6-2DCD63B94EE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{493D8ED2-1BA9-436C-981F-3A84523FA8A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{493D8ED2-1BA9-436C-981F-3A84523FA8A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{493D8ED2-1BA9-436C-981F-3A84523FA8A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{493D8ED2-1BA9-436C-981F-3A84523FA8A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
