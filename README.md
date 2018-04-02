@@ -1,10 +1,10 @@
 ## WpfShop
 
 #### Description
-Working desktop application for test and demo purpose based on WPF. It simulates limited shopping capabilities based on the AdventureWorks database. It can be installed plug & play (see **Installation**).
+Working desktop application for test and demo purpose based on WPF. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
-This project is now integrated with Visual Studio Team Services (VSTS) too.
+The data service on Azure is no longer functional.
 
 #### Purpose
 * Explore various techniques based on C# and WPF.
@@ -14,7 +14,6 @@ This project is now integrated with Visual Studio Team Services (VSTS) too.
 
 #### Prerequisites
 * The application must be configured for a running instance of my [AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md).
-* Currently this is met by configuration to my service on Azure.
 
 #### Notes
 * This is a near equivalent of my [PortableShop](https://github.com/a-einstein/PortableShop).
@@ -37,7 +36,9 @@ This project is now integrated with Visual Studio Team Services (VSTS) too.
 * Click Once installation and update.
 
 #### Installation
-The application currently is plug & play. The application can be installed directly from Azure. It is configured to use my data service also running there.
+Currently one has to both compile this client as well as the data service, and create the database.
+
+The application no longer is plug & play. Just for its own sake the application can still be directly installed. It is still configured to use my data service on Azure, so it will fail to work.
 * Open the **[install page](https://rcsadventureworac85.blob.core.windows.net/wpfshop-releases/latest/install.htm).**
 * If needed, install the prerequisites by the 'Install' button.
 * Click the **'launch'** hyperlink, 'Open' to launch the installer, 'Install', allow it to continue when needed. 
