@@ -7,6 +7,7 @@ using System.Windows.Threading;
 
 namespace RCS.WpfShop.Common.ViewModels
 {
+    // TODO Use BindableBase? Does not seem to offer advantages currently.
     public abstract class ViewModel : DependencyObject, INotifyPropertyChanged, INavigationAware
     {
         #region INavigationAware
@@ -79,8 +80,7 @@ namespace RCS.WpfShop.Common.ViewModels
         #region Events
         public event PropertyChangedEventHandler PropertyChanged;
 
-        // Currently no longer used.
-        // TODO Use BindableBase?
+        // Currently not used.
         protected void RaisePropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
