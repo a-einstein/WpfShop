@@ -2,7 +2,8 @@
 {
     public static class Regions
     {
-        public const string Widgets = "Widgets";
-        public const string Main = "Main";
+        public const string MainWindowContent = "MainWindowContent";
+        public const string MainViewWidgets = "MainViewWidgets";
+        public const string MainViewMain = "MainViewMain";
     }
 }

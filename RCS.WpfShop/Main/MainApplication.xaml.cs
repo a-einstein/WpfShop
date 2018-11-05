@@ -1,4 +1,12 @@
-﻿using RCS.WpfShop.Resources;
+﻿using CommonServiceLocator;
+using Prism.Ioc;
+using Prism.Modularity;
+using Prism.Mvvm;
+using Prism.Regions;
+using Prism.Unity;
+using RCS.WpfShop.Resources;
+using RCS.WpfShop.ViewModels;
+using RCS.WpfShop.Views;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
@@ -6,18 +14,44 @@ using System.Windows.Threading;
 
 namespace RCS.WpfShop.Main
 {
-    public partial class MainApplication : Application
+    public partial class MainApplication : PrismApplication
     {
         #region Construction
+        // Note the call order is as below.
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             // TODO Maybe use the standard name again. Maybe there is some use in the base. Currently this creates a loop.
             //base.OnStartup(e);
 
             SetupExceptionHandling();
+        }
 
-            var bootstrapper = new MainBootstrapper();
-            bootstrapper.Run();
+        protected override void ConfigureViewModelLocator()
+        {
+            base.ConfigureViewModelLocator();
+
+            ViewModelLocationProvider.Register<MainWindow, MainViewModel>();
+        }
+
+        protected override IModuleCatalog CreateModuleCatalog()
+        {
+            // Note that often a rebuild is necessary to update the modules.
+            // Note that the order of discovery is alphabetically, the order of activation seems abrbitrary or reversed.
+            // Currently I regulate the activation by the ModuleDependency attribute.
+            var catalog = new DirectoryModuleCatalog() { ModulePath = @".\Modules" };
+
+            return catalog;
+        }
+
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        { }
+
+        protected override Window CreateShell()
+        {
+            var mainWindow = Container.Resolve<MainWindow>();
+
+            return mainWindow;
         }
         #endregion
 

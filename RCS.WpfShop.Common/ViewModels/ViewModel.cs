@@ -1,4 +1,5 @@
-﻿using RCS.WpfShop.Resources;
+﻿using Prism.Regions;
+using RCS.WpfShop.Resources;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
@@ -6,8 +7,28 @@ using System.Windows.Threading;
 
 namespace RCS.WpfShop.Common.ViewModels
 {
-    public abstract class ViewModel : DependencyObject, INotifyPropertyChanged
+    // TODO Use BindableBase? Does not seem to offer advantages currently.
+    public abstract class ViewModel : DependencyObject, INotifyPropertyChanged, INavigationAware
     {
+        #region INavigationAware
+        public virtual void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            // Currently synchronous because of apparent threading problem with the call below even using uiDispatcher elsewhere.
+            Refresh();
+
+            // Use this way because this method is synchronous in INavigationAware. 
+            //Task.Run(() => Refresh()).Wait();
+        }
+
+        public virtual bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return false;
+        }
+
+        public virtual void OnNavigatedFrom(NavigationContext navigationContext)
+        { }
+        #endregion
+
         #region Refresh
         public virtual async Task Refresh()
         {
@@ -29,6 +50,7 @@ namespace RCS.WpfShop.Common.ViewModels
             if (!initialized)
             {
                 uiDispatcher = Dispatcher.CurrentDispatcher;
+
                 // Deliberately put here instead of in constructor to avoid problems because of overrides.
                 SetCommands();
 
@@ -58,7 +80,7 @@ namespace RCS.WpfShop.Common.ViewModels
         #region Events
         public event PropertyChangedEventHandler PropertyChanged;
 
-        // Currently no longer used.
+        // Currently not used.
         protected void RaisePropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

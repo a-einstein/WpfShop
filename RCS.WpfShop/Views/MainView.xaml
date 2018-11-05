@@ -20,26 +20,32 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,2,0,2">
-            <RadioButton x:Name="infoButton">
-                <RadioButton.Template>
-                    <ControlTemplate>
-                        <ToggleButton IsChecked="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" Content="{Binding Source={StaticResource Resources}, Path=Labels.NavigateAbout}" Checked="InfoButton_Checked" Style="{StaticResource NavigationButtonStyle}"/>
-                    </ControlTemplate>
-                </RadioButton.Template>
-            </RadioButton>
-            <RadioButton x:Name="overViewButton">
-                <RadioButton.Template>
-                    <ControlTemplate>
-                        <ToggleButton IsChecked="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" Content="{Binding Source={StaticResource Resources}, Path=Labels.NavigateShop}" Checked="OverviewButton_Checked" Style="{StaticResource NavigationButtonStyle}"/>
-                    </ControlTemplate>
-                </RadioButton.Template>
-            </RadioButton>
-        </StackPanel>
+        <ItemsControl Grid.Row="0" ItemsSource="{Binding MainViews}" Margin="0,2,0,2">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <RadioButton GroupName="NavigationButtons">
+                        <RadioButton.Template>
+                            <ControlTemplate>
+                                <ToggleButton
+                                    Content="{Binding DisplayName}" 
+                                    Command="{Binding DataContext.NavigateCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" 
+                                    IsChecked="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" 
+                                    Style="{StaticResource NavigationButtonStyle}"/>
+                            </ControlTemplate>
+                        </RadioButton.Template>
+                    </RadioButton>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
 
-        <ContentControl Grid.Row="1" x:Name="widgetControl" prism:RegionManager.RegionName="Widgets"/>
+        <ContentControl Grid.Row="1" x:Name="widgetControl" prism:RegionManager.RegionName="MainViewWidgets"/>
 
         <!--Do not put this in a StackPanel as possibly contained ScrollViewers get into trouble.-->
-        <ContentControl Grid.Row="2" x:Name="mainControl" prism:RegionManager.RegionName="Main"/>
+        <ContentControl Grid.Row="2" x:Name="mainControl" prism:RegionManager.RegionName="MainViewMain"/>
     </Grid>
 </BaseClasses:View>
