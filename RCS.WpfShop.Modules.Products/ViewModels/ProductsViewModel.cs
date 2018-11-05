@@ -1,4 +1,5 @@
 ﻿using Prism.Commands;
+using Prism.Regions;
 using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.WpfShop.Common.ViewModels;
 using RCS.WpfShop.Common.Windows;
@@ -6,7 +7,6 @@ using RCS.WpfShop.Modules.Products.Model;
 using RCS.WpfShop.Modules.Products.Views;
 using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,15 +14,12 @@ using System.Windows.Input;
 
 namespace RCS.WpfShop.Modules.Products.ViewModels
 {
-    [Export]
-    public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper, IPartImportsSatisfiedNotification
+    public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper
     {
-        #region Construction
-        // Note this also works without actual imports.
-        public async void OnImportsSatisfied()
+        #region INavigationAware
+        public override bool IsNavigationTarget(NavigationContext navigationContext)
         {
-            // TODO This comes too early, before navigation. Find an other way to trigger this.
-            await Refresh();
+            return true;
         }
         #endregion
 

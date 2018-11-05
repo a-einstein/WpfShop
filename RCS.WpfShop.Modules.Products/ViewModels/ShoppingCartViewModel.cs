@@ -5,15 +5,13 @@ using RCS.WpfShop.Modules.Products.Model;
 using System;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.ComponentModel.Composition;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
 namespace RCS.WpfShop.Modules.Products.ViewModels
 {
-    [Export]
-    public class ShoppingCartViewModel : ItemsViewModel<CartItem>, IPartImportsSatisfiedNotification
+    public class ShoppingCartViewModel : ItemsViewModel<CartItem>
     {
         #region Construction
         private ShoppingCartViewModel() { }
@@ -21,9 +19,8 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         private static volatile ShoppingCartViewModel instance;
         private static object syncRoot = new Object();
 
-        [Export("WidgetViewModel", typeof(ViewModel))]
         // Note this class is a singleton, implemented along the way (but not entirely) of https://msdn.microsoft.com/en-us/library/ff650316.aspx
-        // TODO This might no longer be necessary if properly shared on import.
+        // TODO This might no longer be necessary if using RegisterSingleton.
         public static ShoppingCartViewModel Instance
         {
             get
@@ -43,10 +40,6 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             }
         }
 
-        public async void OnImportsSatisfied()
-        {
-            await Refresh();
-        }
         #endregion
 
         #region Refresh
