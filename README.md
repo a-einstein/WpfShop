@@ -23,7 +23,7 @@ The data service on Azure is no longer functional.
 * WPF.
 * C# + XAML.
 * MVVM.
-* Prism/MEF Modules & Regions
+* Prism/Unity Modules & Regions
 * Client-server.
 * Azure service.
 * WCF + SSL.
