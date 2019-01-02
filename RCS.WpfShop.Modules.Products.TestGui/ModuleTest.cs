@@ -30,9 +30,14 @@ namespace RCS.WpfShop.Modules.Products.TestGui
         [TestMethod]
         public void OpenShop()
         {
-            // TODO Currently a typing problem, aparently because of Selenium versions.
+            // Note that elements should be identified by inspect.exe first. 
             WindowsElement shopButton = testSession.FindElementByName("Shop");
+
             shopButton.Click();
+
+            // Note that if not halted, the application closes inmediately by ClassCleanup.
+            // TODO Add asserts, take async loading of data into account.
+            // TODO Streamline use of ClassCleanup/TestCleanup, possibly in the base.
         }
     }
 }

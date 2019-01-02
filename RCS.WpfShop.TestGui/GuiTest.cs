@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
-using OpenQA.Selenium.Remote;
 using System;
 
 namespace RCS.WpfShop.TestGui
@@ -22,16 +22,16 @@ namespace RCS.WpfShop.TestGui
             {
                 TearDown();
 
-                // TODO Change obsoletes.
+                var appiumOptions = new AppiumOptions();
+                appiumOptions.AddAdditionalCapability("app", appPath);
+                appiumOptions.AddAdditionalCapability("appWorkingDir", appWorkingDir);
 
-                // Create a new session to bring up the Alarms & Clock application
-                var appCapabilities = new DesiredCapabilities();
+                // Note WinAppDriver.exe has to be started first.
 
-                appCapabilities.SetCapability("app", appPath);
-                appCapabilities.SetCapability("appWorkingDir", appWorkingDir);
-
-                // TODO Had to revert Selenium from 3.14.1 to 3.12.1 because of an error message.
-                testSession = new WindowsDriver<WindowsElement>(new Uri(winAppDriverUrl), appCapabilities);
+                // Had to install Appium.WebDriver 4.0.0.4-beta with Selenium 3.141.0 to get this working.
+                // This also implied making use of AppiumOptions.
+                // https://github.com/appium/appium-dotnet-driver/issues/226
+                testSession = new WindowsDriver<WindowsElement>(new Uri(winAppDriverUrl), appiumOptions);
 
                 Assert.IsNotNull(testSession);
                 Assert.IsNotNull(testSession.SessionId);
@@ -43,7 +43,6 @@ namespace RCS.WpfShop.TestGui
 
         public static void TearDown()
         {
-            // Close the application and delete the session
             if (testSession != null)
             {
                 testSession.Quit();
