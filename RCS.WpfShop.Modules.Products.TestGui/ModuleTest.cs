@@ -7,23 +7,25 @@ namespace RCS.WpfShop.Modules.Products.TestGui
     public class ModuleTest : GuiTest
     {
         // Note this attribute can't be used in just a baseclass.
+        // TODO Does this have to be static?
         [ClassInitialize]
-        public static void ClassInitialize(TestContext testContext)
+        public static void InitializeClass(TestContext testContext)
         {
-            Setup(testContext);
+            SetUp(testContext);
         }
 
         // Use TestInitialize to run code before running each test 
         // [TestInitialize()]
-        // public void MyTestInitialize() { }
+        // public void InitializeTest() { }
 
         // Use TestCleanup to run code after each test has run
         // [TestCleanup()]
-        // public void MyTestCleanup() { }
+        // public void CleanupTest() { }
 
         // Note this attribute can't be used in just a baseclass.
+        // TODO Does this have to be static?
         [ClassCleanup]
-        public static void ClassCleanup()
+        public static void CleanupClass()
         {
             TearDown();
         }

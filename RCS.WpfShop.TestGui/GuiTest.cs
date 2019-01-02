@@ -16,7 +16,7 @@ namespace RCS.WpfShop.TestGui
 
         protected static WindowsDriver<WindowsElement> testSession;
 
-        public static void Setup(TestContext testContext)
+        public static void SetUp(TestContext testContext)
         {
             if (testSession == null)
             {
@@ -43,11 +43,8 @@ namespace RCS.WpfShop.TestGui
 
         public static void TearDown()
         {
-            if (testSession != null)
-            {
-                testSession.Quit();
-                testSession = null;
-            }
+            testSession?.Quit();
+            testSession = null;
         }
     }
 }
