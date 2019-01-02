@@ -7,16 +7,11 @@ namespace RCS.WpfShop.Modules.Products.TestGui
     [TestClass]
     public class ModuleTest : GuiTest
     {
+        // Note this attribute can't be used in just a baseclass.
         [ClassInitialize]
         public static void ClassInitialize(TestContext testContext)
         {
             Setup(testContext);
-        }
-
-        [ClassCleanup]
-        public static void ClassCleanup()
-        {
-            TearDown();
         }
 
         // Use TestInitialize to run code before running each test 
@@ -26,6 +21,13 @@ namespace RCS.WpfShop.Modules.Products.TestGui
         // Use TestCleanup to run code after each test has run
         // [TestCleanup()]
         // public void MyTestCleanup() { }
+
+        // Note this attribute can't be used in just a baseclass.
+        [ClassCleanup]
+        public static void ClassCleanup()
+        {
+            TearDown();
+        }
 
         [TestMethod]
         public void OpenShop()
@@ -37,7 +39,6 @@ namespace RCS.WpfShop.Modules.Products.TestGui
 
             // Note that if not halted, the application closes inmediately by ClassCleanup.
             // TODO Add asserts, take async loading of data into account.
-            // TODO Streamline use of ClassCleanup/TestCleanup, possibly in the base.
         }
     }
 }
