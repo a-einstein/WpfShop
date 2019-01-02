@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium.Appium.Windows;
 using RCS.WpfShop.TestGui;
 
 namespace RCS.WpfShop.Modules.Products.TestGui
@@ -29,16 +28,37 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             TearDown();
         }
 
+        // TODO Put this (as abstract) in a baseclass.
+        // TODO This could be TestInitialize, or rather ClassInitialize.
         [TestMethod]
-        public void OpenShop()
+        public void TestNavigateTo()
         {
             // Note that elements should be identified by inspect.exe first. 
-            WindowsElement shopButton = testSession.FindElementByName("Shop");
+            var navigateButton = testSession.FindElementByName("Shop");
+            Assert.AreEqual(navigateButton.TagName, "ControlType.Button");
 
-            shopButton.Click();
+            navigateButton.Click();
+
+            // Test presence of module controls.
+
+            // Note there may be more than 1 widget loaded.
+            var shoppingCartView = testSession.FindElementByClassName("ShoppingCartView");
+            Assert.IsNotNull(shoppingCartView);
+
+            var mainViewMainContent = testSession.FindElementByClassName("ProductsView");
+            Assert.IsNotNull(mainViewMainContent);
+
+            // TODO Test data loading into somewhere, take async character into account.
 
             // Note that if not halted, the application closes inmediately by ClassCleanup.
-            // TODO Add asserts, take async loading of data into account.
         }
+
+        // TODO Test filtering...
+
+        // TODO Test basking.
+
+        // TODO Test detail view...
+
+        // TODO Test basket...
     }
 }
