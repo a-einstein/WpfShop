@@ -27,6 +27,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.WpfShop.Modules.Product
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.AdventureWorks.Common", "AdventureWorks\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj", "{493D8ED2-1BA9-436C-981F-3A84523FA8A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.WpfShop.TestGui", "RCS.WpfShop.TestGui\RCS.WpfShop.TestGui.csproj", "{72C188A4-97BB-46FE-8178-A13392006235}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.WpfShop.Modules.Products.TestGui", "RCS.WpfShop.Modules.Products.TestGui\RCS.WpfShop.Modules.Products.TestGui.csproj", "{7557530D-9415-4C4E-A9AB-90E757479F12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{493D8ED2-1BA9-436C-981F-3A84523FA8A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{493D8ED2-1BA9-436C-981F-3A84523FA8A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{493D8ED2-1BA9-436C-981F-3A84523FA8A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72C188A4-97BB-46FE-8178-A13392006235}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72C188A4-97BB-46FE-8178-A13392006235}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72C188A4-97BB-46FE-8178-A13392006235}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72C188A4-97BB-46FE-8178-A13392006235}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7557530D-9415-4C4E-A9AB-90E757479F12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7557530D-9415-4C4E-A9AB-90E757479F12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7557530D-9415-4C4E-A9AB-90E757479F12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7557530D-9415-4C4E-A9AB-90E757479F12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

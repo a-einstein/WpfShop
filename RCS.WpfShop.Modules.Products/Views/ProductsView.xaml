@@ -35,16 +35,17 @@
             <StackPanel Margin="0,0,0,2">
                 <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Products}" Style="{StaticResource HeaderLargeTextBlockStyle}"/>
 
+                <!--Note that currently all names are for GUI testing purpose.-->
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.MasterFilter}" Style="{StaticResource InlineTextBlockStyle}"/>
-                    <ComboBox ItemsSource="{Binding MasterFilterItems}" SelectedValue="{Binding MasterFilterValue}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" Style="{StaticResource FilterComboBoxStyle}"/>
+                    <ComboBox x:Name="MasterFilterComboBox" ItemsSource="{Binding MasterFilterItems}" SelectedValue="{Binding MasterFilterValue}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" Style="{StaticResource FilterComboBoxStyle}"/>
 
                     <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.DetailFilter}" Style="{StaticResource InlineTextBlockStyle}"/>
-                    <ComboBox ItemsSource="{Binding DetailFilterItems}" SelectedValue="{Binding DetailFilterValue}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" Style="{StaticResource FilterComboBoxStyle}"/>
+                    <ComboBox x:Name="DetailFilterComboBox" ItemsSource="{Binding DetailFilterItems}" SelectedValue="{Binding DetailFilterValue}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" Style="{StaticResource FilterComboBoxStyle}"/>
 
                     <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.TextFilter}" Style="{StaticResource InlineTextBlockStyle}"/>
                     <!--Note this field has to be tabbed out to reach the default button by the enter key.-->
-                    <Controls:ClearableTextBox Text="{Binding TextFilterValue, Mode=TwoWay}" Width="150">
+                    <Controls:ClearableTextBox x:Name="TextFilterTextBox" Text="{Binding TextFilterValue, Mode=TwoWay}" Width="150">
                         <Controls:ClearableTextBox.TextBoxBehaviors>
                             <x:Array Type="Behaviors:TextBoxRegexValidationBehavior">
                                 <Behaviors:TextBoxRegexValidationBehavior ValidExpression="\w{3}" ValidBackground="{StaticResource InputBackgroundBrush}" InvalidBackground="{StaticResource ErrorBackgroundBrush}"/>
@@ -52,7 +53,7 @@
                         </Controls:ClearableTextBox.TextBoxBehaviors>
                     </Controls:ClearableTextBox>
 
-                    <Button Content="{Binding Source={StaticResource Resources}, Path=Labels.Filter}" Command="{Binding FilterCommand}" IsDefault="True" Margin="{StaticResource StandardHorizontalSeparation}" Padding="7,0" FontWeight="Bold">
+                    <Button x:Name="FilterButton" Content="{Binding Source={StaticResource Resources}, Path=Labels.Filter}" Command="{Binding FilterCommand}" IsDefault="True" Margin="{StaticResource StandardHorizontalSeparation}" Padding="7,0" FontWeight="Bold">
                         <!--Note this prevents unfiltered queries.-->
                         <Button.IsEnabled>
                             <MultiBinding Converter="{StaticResource HasValueMultiTester}">
@@ -63,7 +64,7 @@
                         </Button.IsEnabled>
                     </Button>
 
-                    <TextBlock Text="{Binding ItemsCount}" Style="{StaticResource InlineValueEmphasisTextBlockStyle}"/>
+                    <TextBlock x:Name="ItemsCountTextBlock" Text="{Binding ItemsCount}" Style="{StaticResource InlineValueEmphasisTextBlockStyle}"/>
                     <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Products}" Style="{StaticResource InlineTextBlockStyle}"/>
                 </StackPanel>
             </StackPanel>
