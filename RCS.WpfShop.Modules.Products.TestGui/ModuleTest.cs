@@ -35,9 +35,18 @@ namespace RCS.WpfShop.Modules.Products.TestGui
         [TestMethod]
         public void TestNavigateTo()
         {
-            // Note that elements should be identified by inspect.exe first. 
+            // Note that elements should be identified by inspect.exe first.
+
+            // TODO This only works while debugging (even without breaks).
+            // It is quite similar as decribe here:
+            // https://github.com/Microsoft/WinAppDriver/issues/370
+            // Tried:
+            // - The approach with DefaultWait.
+            // - Altering testSession.Manage().Timeouts().ImplicitWait.
+            // - Using Thread.Sleep.
+            // FindElementByName seems the only feasible option. 
             var navigateButton = testSession.FindElementByName("Shop");
-            Assert.AreEqual(navigateButton.TagName, "ControlType.Button");
+            Assert.AreEqual(navigateButton?.TagName, "ControlType.Button");
 
             navigateButton.Click();
 
