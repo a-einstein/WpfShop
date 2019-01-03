@@ -4,7 +4,8 @@
 Working desktop application for test and demo purpose based on WPF. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
-The data service on Azure is no longer functional.
+* Added integrated GUI test by means of WinAppDriver/Selenium/Appium.
+* The data service on Azure is no longer functional.
 
 #### Purpose
 * Explore various techniques based on C# and WPF.
@@ -32,7 +33,8 @@ The data service on Azure is no longer functional.
 * User controls.
 * Attached behaviours.
 * Basic styling.
-* MS Unit Test Framework.
+* Basic exploration of unit testing by means of MS Unit Test Framework.
+* Serious start on integrated GUI testing by means of WinAppDriver/Selenium/Appium.
 * Click Once installation and update.
 
 #### Installation
