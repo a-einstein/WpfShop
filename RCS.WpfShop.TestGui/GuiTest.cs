@@ -14,13 +14,16 @@ namespace RCS.WpfShop.TestGui
         private const string appPath = @"P:\projects\RCS\shopping\clients\WpfShop\RCS.WpfShop\bin\Debug\RCS.WpfShop.exe";
         private const string appWorkingDir = @"P:\projects\RCS\shopping\clients\WpfShop\RCS.WpfShop\bin\Debug";
 
+        // Constants (but not markable as such.) 
+        protected static string controlTypeButton = "ControlType.Button";
+
         protected static WindowsDriver<WindowsElement> testSession;
 
-        public static void SetUp(TestContext testContext)
+        public static void StartSession(TestContext testContext)
         {
             if (testSession == null)
             {
-                TearDown();
+                EndSession();
 
                 var appiumOptions = new AppiumOptions();
                 appiumOptions.AddAdditionalCapability("app", appPath);
@@ -41,7 +44,51 @@ namespace RCS.WpfShop.TestGui
             }
         }
 
-        public static void TearDown()
+        public static void NavigateTo(string destination)
+        {
+            // Note that elements should be identified by inspect.exe first.
+
+            // Note when this was a separate test it only worked while debugging (even without breaks).
+            // It is quite similar as decribe here:
+            // https://github.com/Microsoft/WinAppDriver/issues/370
+            // Tried:
+            // - The approach with DefaultWait.
+            // - Altering testSession.Manage().Timeouts().ImplicitWait.
+            // - Using Thread.Sleep.
+            // FindElementByName seemed the only feasible option.
+            // Also tried to set AutomationId by binding. 
+            // In the current dynamic setup this is not allowed for Name and x:Name, Tag did not work.
+            //
+            // After making this static and applying in ClassInitialize the problem was gone.
+            var navigateButton = testSession.FindElementByName(destination);
+            Assert.AreEqual(navigateButton?.TagName, controlTypeButton);
+
+            navigateButton.Click();
+
+            // Test presence of module controls.
+
+        }
+
+        protected static void CheckMainContent(string name)
+        {
+            CheckElement(name);
+        }
+
+        protected static void CheckWidgetsContent(string[] names)
+        {
+            foreach (var name in names)
+            {
+                CheckElement(name);
+            }
+        }
+
+        private static void CheckElement(string name)
+        {
+            var element = testSession.FindElementByClassName(name);
+            Assert.IsNotNull(element);
+        }
+
+        public static void EndSession()
         {
             testSession?.Quit();
             testSession = null;
