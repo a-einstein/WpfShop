@@ -6,15 +6,34 @@ namespace RCS.WpfShop.Modules.Products.TestGui
     [TestClass]
     public class ModuleTest : GuiTest
     {
+        #region Class level
+        private static string destination = "Shop";
+        private static string mainViewName = "ProductsView";
+        private static string[] widgetNames = { "ShoppingCartView" };
+
         // Note this must have a distinctive signature: static, public, no return value, take single parameter type TestContext.
+        // TODO Would like to share this among classes, but currently see no way because of the static nature and the ClassInitialize, 
+        // attribute which only seems to be possible here.
         [ClassInitialize]
         public static void InitializeClass(TestContext testContext)
         {
-            SetUp(testContext);
+            StartSession(testContext);
 
-            NavigateTo();
+            NavigateTo(destination);
+
+            CheckMainContent(mainViewName);
+            CheckWidgetsContent(widgetNames);
         }
 
+        // Note that if not halted the application closes inmediately after the last test.
+        [ClassCleanup]
+        public static void CleanupClass()
+        {
+            EndSession();
+        }
+        #endregion
+
+        #region Test level
         // Use TestInitialize to run code before running each test 
         // [TestInitialize()]
         // public void InitializeTest() { }
@@ -22,45 +41,6 @@ namespace RCS.WpfShop.Modules.Products.TestGui
         // Use TestCleanup to run code after each test has run
         // [TestCleanup()]
         // public void CleanupTest() { }
-
-        // Note that if not halted the application closes inmediately after the last test.
-        [ClassCleanup]
-        public static void CleanupClass()
-        {
-            TearDown();
-        }
-
-        // TODO Put this (as abstract) in a baseclass, if possible at all
-        public static void NavigateTo()
-        {
-            // Note that elements should be identified by inspect.exe first.
-
-            // Note when this was a separate test it only worked while debugging (even without breaks).
-            // It is quite similar as decribe here:
-            // https://github.com/Microsoft/WinAppDriver/issues/370
-            // Tried:
-            // - The approach with DefaultWait.
-            // - Altering testSession.Manage().Timeouts().ImplicitWait.
-            // - Using Thread.Sleep.
-            // FindElementByName seemed the only feasible option.
-            // Also tried to set AutomationId by binding. 
-            // In the current dynamic setup this is not allowed for Name and x:Name, Tag did not work.
-            //
-            // After making this static and applying in ClassInitialize the problem was gone.
-            var navigateButton = testSession.FindElementByName("Shop");
-            Assert.AreEqual(navigateButton?.TagName, "ControlType.Button");
-
-            navigateButton.Click();
-
-            // Test presence of module controls.
-
-            // Note there may be more than 1 widget loaded.
-            var shoppingCartView = testSession.FindElementByClassName("ShoppingCartView");
-            Assert.IsNotNull(shoppingCartView);
-
-            var mainViewMainContent = testSession.FindElementByClassName("ProductsView");
-            Assert.IsNotNull(mainViewMainContent);
-        }
 
         // This assumes the database containing data that results in exactly these values as it is really queried.
         // Alternatively some stubs have to be created.
@@ -108,5 +88,6 @@ namespace RCS.WpfShop.Modules.Products.TestGui
         // TODO Test detail view...
 
         // TODO Test basket...
+        #endregion
     }
 }
