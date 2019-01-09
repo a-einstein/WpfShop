@@ -10,9 +10,8 @@ namespace RCS.WpfShop.TestGui
     {
         private const string winAppDriverUrl = "http://127.0.0.1:4723";
 
-        // TODO Make this more generic.
-        private const string appPath = @"P:\projects\RCS\shopping\clients\WpfShop\RCS.WpfShop\bin\Debug\RCS.WpfShop.exe";
-        private const string appWorkingDir = @"P:\projects\RCS\shopping\clients\WpfShop\RCS.WpfShop\bin\Debug";
+        private const string appDir = @"P:\projects\RCS\shopping\clients\WpfShop\RCS.WpfShop\bin\Debug\";
+        private const string appPath = appDir + "RCS.WpfShop.exe";
 
         // Constants (but not markable as such.) 
         protected static string controlTypeButton = "ControlType.Button";
@@ -27,7 +26,7 @@ namespace RCS.WpfShop.TestGui
 
                 var appiumOptions = new AppiumOptions();
                 appiumOptions.AddAdditionalCapability("app", appPath);
-                appiumOptions.AddAdditionalCapability("appWorkingDir", appWorkingDir);
+                appiumOptions.AddAdditionalCapability("appWorkingDir", appDir);
 
                 // Note WinAppDriver.exe has to be started first.
 
