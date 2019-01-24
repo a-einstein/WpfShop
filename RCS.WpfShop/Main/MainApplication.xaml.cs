@@ -14,6 +14,7 @@ using System.Windows.Threading;
 
 namespace RCS.WpfShop.Main
 {
+    // Note currently Prism.Wpf prohibits to update Unity to 4.0.
     public partial class MainApplication : PrismApplication
     {
         #region Construction
