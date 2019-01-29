@@ -64,7 +64,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>2</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Images\Main.ico</ApplicationIcon>
@@ -224,6 +233,10 @@
       <Project>{46a45e36-c4eb-4ca2-9b98-120038fcb2d7}</Project>
       <Name>RCS.WpfShop.Resources</Name>
       <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\RCS.WpfShop.ServiceClients.Products.Mock\RCS.WpfShop.ServiceClients.Products.Mock.csproj">
+      <Project>{5a76d31b-2898-44cd-b345-55bd5d98486a}</Project>
+      <Name>RCS.WpfShop.ServiceClients.Products.Mock</Name>
     </ProjectReference>
     <ProjectReference Include="..\RCS.WpfShop.ServiceClients.Products\RCS.WpfShop.ServiceClients.Products.csproj">
       <Project>{24156b78-6e6c-438c-bf1e-b34fd3c68800}</Project>
