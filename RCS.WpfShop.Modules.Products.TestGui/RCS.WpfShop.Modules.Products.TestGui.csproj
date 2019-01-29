@@ -30,6 +30,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\Test\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="appium-dotnet-driver, Version=4.0.0.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Appium.WebDriver.4.0.0.4-beta\lib\net45\appium-dotnet-driver.dll</HintPath>
