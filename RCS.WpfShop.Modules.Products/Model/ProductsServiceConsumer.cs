@@ -1,7 +1,9 @@
-﻿using RCS.WpfShop.Resources;
+﻿using Microsoft.Practices.Unity.Configuration;
+using RCS.WpfShop.Resources;
 using RCS.WpfShop.ServiceClients.Products.ProductsService;
 using System;
 using System.Windows;
+using Unity;
 
 namespace RCS.WpfShop.Modules.Products.Model
 {
@@ -11,14 +13,21 @@ namespace RCS.WpfShop.Modules.Products.Model
         // TODO actually use this in client.
         static TimeSpan Timeout { get; } = new TimeSpan(0, 0, 15);
 
-        private ProductsServiceClient productsServiceClient;
+        private IProductsService productsServiceClient;
 
-        protected ProductsServiceClient ProductsServiceClient
+        protected IProductsService ProductsServiceClient
         {
             get
             {
                 if (productsServiceClient == null)
-                    productsServiceClient = new ProductsServiceClient();
+                {
+                    var container = new UnityContainer();
+                    // Note this is only configurable in the app.config of the application, not the module.
+                    // TODO For testing a transformation of the config would be needed.
+                    // TODO Note that when configuring the service in the application, it would be logical to define the modules there as well.
+                    container.LoadConfiguration();
+                    productsServiceClient = container.Resolve<IProductsService>();
+                }
 
                 return productsServiceClient;
             }
@@ -47,7 +56,8 @@ namespace RCS.WpfShop.Modules.Products.Model
             // Free managed objects here.
             if (disposing)
             {
-                productsServiceClient?.Close();
+                //TODO This stems from ClientBase.
+                //productsServiceClient?.Close();
             }
 
             // Free unmanaged objects here.
