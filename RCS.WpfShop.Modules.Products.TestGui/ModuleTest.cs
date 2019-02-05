@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RCS.WpfShop.ServiceClients.Products.Mock;
 using RCS.WpfShop.TestGui;
+using System.Linq;
 
 namespace RCS.WpfShop.Modules.Products.TestGui
 {
@@ -47,20 +49,36 @@ namespace RCS.WpfShop.Modules.Products.TestGui
         [TestMethod]
         public void TestFilter()
         {
+            var serviceClient = ProductsServiceClient.Mock;
+
             // TODO Data could also retrieved and tested with the filter only partially filled.
+
+            var categoriesExpected = serviceClient.Object.GetProductCategories();
+            int categoryExpectedOrder = 2;
+            var categoryExpected = categoriesExpected[categoryExpectedOrder - 1];
 
             var masterFilterComboBox = testSession.FindElementByAccessibilityId("MasterFilterComboBox");
             Assert.IsNotNull(masterFilterComboBox);
-            // Necessary to get the elements.
+
+            // Necessary to actually get the elements created in the GUI.
             masterFilterComboBox.Click();
-            // Note that Click must be applied this way.
-            // Finding the element separately resulted in only a brief display on screen after which the Display property was false, which prevented Click. 
-            masterFilterComboBox.FindElementByName("Clothing").Click();
+
+            // TODO Check length of list?
+
+            // Note that Click must be applied this way. Finding the element separately resulted in only a brief display on screen after which the Display property was false, which prevented Click. 
+            masterFilterComboBox.FindElementByName(categoryExpected.Name).Click();
+
+            var subcategoriesExpected = serviceClient.Object.GetProductSubcategories();
+            int subcategoryExpectedOrder = 1;
+            var subcategoryExpected = subcategoriesExpected.FindAll(subcategory => subcategory.ProductCategoryId == categoryExpected.Id)[subcategoryExpectedOrder - 1];
 
             var detailFilterComboBox = testSession.FindElementByAccessibilityId("DetailFilterComboBox");
             Assert.IsNotNull(detailFilterComboBox);
             detailFilterComboBox.Click();
-            detailFilterComboBox.FindElementByName("Jerseys").Click();
+            detailFilterComboBox.FindElementByName(subcategoryExpected.Name).Click();
+
+            string searchString = $"{categoryExpected.Id}.{subcategoryExpected.Id}";
+            var productsOverviewExpected = serviceClient.Object.GetProductsOverviewBy(categoryExpected.Id, subcategoryExpected.Id, searchString);
 
             // Note this is a UserControl.
             var textFilterControl = testSession.FindElementByAccessibilityId("TextFilterTextBox");
@@ -69,18 +87,18 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             // The true text element within.
             var textFilterTextBox = textFilterControl.FindElementByClassName("TextBox");
             textFilterTextBox.Clear();
-            textFilterTextBox.SendKeys("ye");
+            textFilterTextBox.SendKeys(searchString.Substring(0, 2));
+
             // TODO Add enablement on the button depending on this control and test. Currently the control only colours on less than 3 characters.
-            textFilterTextBox.SendKeys("l");
+            textFilterTextBox.SendKeys(searchString.Substring(2, 1));
 
             var filterButton = testSession.FindElementByAccessibilityId("FilterButton");
             Assert.IsNotNull(filterButton);
             filterButton.Click();
 
-            // TODO This might have to be improved because of the asynchronous nature of the data retrieval. 
             var itemsCountTextBlock = testSession.FindElementByAccessibilityId("ItemsCountTextBlock");
             Assert.IsNotNull(itemsCountTextBlock);
-            Assert.AreEqual(itemsCountTextBlock.Text, "4");
+            Assert.AreEqual(itemsCountTextBlock.Text, productsOverviewExpected.Count.ToString());
         }
 
         // TODO Test basking.

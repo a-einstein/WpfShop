@@ -10,11 +10,10 @@ namespace RCS.WpfShop.TestGui
     {
         private const string winAppDriverUrl = "http://127.0.0.1:4723";
 
-        private const string appDir = @"P:\projects\RCS\shopping\clients\WpfShop\RCS.WpfShop\bin\Debug\";
-        private const string appPath = appDir + "RCS.WpfShop.exe";
-
         // Constants (but not markable as such.) 
-        protected static string controlTypeButton = "ControlType.Button";
+        protected static string appDir = @"P:\projects\RCS\shopping\clients\WpfShop\RCS.WpfShop\bin\Test";
+        protected static string appPath = $"{appDir}\\RCS.WpfShop.exe";
+        protected static string controlTypeButtonLabel = "ControlType.Button";
 
         protected static WindowsDriver<WindowsElement> testSession;
 
@@ -60,7 +59,7 @@ namespace RCS.WpfShop.TestGui
             //
             // After making this static and applying in ClassInitialize the problem was gone.
             var navigateButton = testSession.FindElementByName(destination);
-            Assert.AreEqual(navigateButton?.TagName, controlTypeButton);
+            Assert.AreEqual(navigateButton?.TagName, controlTypeButtonLabel);
 
             navigateButton.Click();
 
