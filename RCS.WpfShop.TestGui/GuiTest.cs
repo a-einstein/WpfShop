@@ -1,10 +1,13 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
+using OpenQA.Selenium.Support.UI;
 using System;
 
 namespace RCS.WpfShop.TestGui
 {
+ 
     [TestClass]
     public class GuiTest
     {
@@ -38,7 +41,7 @@ namespace RCS.WpfShop.TestGui
                 Assert.IsNotNull(testSession.SessionId);
 
                 // Set implicit timeout to 1.5 seconds to make element search to retry every 500 ms for at most three times
-                testSession.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1.5);
+                testSession.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
             }
         }
 
@@ -46,25 +49,37 @@ namespace RCS.WpfShop.TestGui
         {
             // Note that elements should be identified by inspect.exe first.
 
-            // Note when this was a separate test it only worked while debugging (even without breaks).
-            // It is quite similar as decribe here:
-            // https://github.com/Microsoft/WinAppDriver/issues/370
-            // Tried:
-            // - The approach with DefaultWait.
-            // - Altering testSession.Manage().Timeouts().ImplicitWait.
-            // - Using Thread.Sleep.
-            // FindElementByName seemed the only feasible option.
-            // Also tried to set AutomationId by binding. 
-            // In the current dynamic setup this is not allowed for Name and x:Name, Tag did not work.
-            //
-            // After making this static and applying in ClassInitialize the problem was gone.
-            var navigateButton = testSession.FindElementByName(destination);
-            Assert.AreEqual(navigateButton?.TagName, controlTypeButtonLabel);
+            /*
+             TODO This only worked while debugging (even without breaks).
+             After making this static and applying in ClassInitialize the problem was only temporarily gone.
+             It is quite similar as decribe here:
+             https://github.com/Microsoft/WinAppDriver/issues/370
 
-            navigateButton.Click();
+             Tried:
+             - The approach with DefaultWait.
+             - Altering testSession.Manage().Timeouts().ImplicitWait.
+             - Using Thread.Sleep.
+             - Increasing ImplicitWait up to 10. It visibly halted the test, but did not help. 
+             - Manually clicking the application to the foreground also did not help. even though the searched button is visible.
+             - Extending FindElementByName with an explicit wait. 
+            
+             FindElementByName seemed the only feasible option.
+             Also tried to set AutomationId by binding. 
+             In the current dynamic setup this is not allowed for Name and x:Name, Tag did not work.
+            */
+
+            // Try with explicit button and assertion.
+            //var navigateButton = testSession.FindElementByName(destination);
+            //Assert.AreEqual(navigateButton?.TagName, controlTypeButtonLabel);
+            //navigateButton.Click();
+
+            // try with direct click.
+            //testSession.FindElementByName(destination).Click();
+
+            // Try with explicit wait.
+            testSession.FindElement(By.Name(destination), 10).Click();
 
             // Test presence of module controls.
-
         }
 
         protected static void CheckMainContent(string name)
@@ -90,6 +105,16 @@ namespace RCS.WpfShop.TestGui
         {
             testSession?.Quit();
             testSession = null;
+        }
+    }
+
+    public static class Extensions
+    {
+        // Experimental
+        public static IWebElement FindElement(this IWebDriver webDriver, By by, int timeoutInSeconds = 1)
+        {
+            var wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeoutInSeconds));
+            return wait.Until(driver => driver.FindElement(by));
         }
     }
 }
