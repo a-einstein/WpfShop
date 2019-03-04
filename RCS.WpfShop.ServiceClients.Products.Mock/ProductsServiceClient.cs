@@ -26,8 +26,8 @@ namespace RCS.WpfShop.ServiceClients.Products.Mock
 
         static public void Initialize()
         {
+            // Note this enables the use of he application for inspection of GUI element with with the same configuration
             // TODO Actually IProductsService could do without using Moq. Make better use of it.
-
             mock = new Mock<IProductsService>();
 
             const string categoryNameBase = "Category";
