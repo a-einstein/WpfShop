@@ -79,7 +79,7 @@
     <ApplicationIcon>Images\Main.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>76D5A137DACA0CD2BB35A677FCF4EE17CFDCE569</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>D550488CC0938F798E1A7C037B6515E06DCB99D5</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>RCS.WpfShop_TemporaryKey.pfx</ManifestKeyFile>
@@ -94,7 +94,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>RCS.WpfShop_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
