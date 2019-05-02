@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.WpfShop", "RCS.WpfShop\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{08F09C6D-31A0-4E29-B132-A17F90E5321C}"
 	ProjectSection(SolutionItems) = preProject
-		azure-pipelines.yml = azure-pipelines.yml
+		AzurePipeline.yml = AzurePipeline.yml
 		GlobalAssemblyInfo.cs = GlobalAssemblyInfo.cs
 		README.md = README.md
 	EndProjectSection
