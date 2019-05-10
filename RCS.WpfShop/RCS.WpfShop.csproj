@@ -17,7 +17,7 @@
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <UICulture>en-GB</UICulture>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <PublishUrl>R:\RCS\shopping\clients\WpfShop\RCS.WpfShop.Common\bin\Release\publish\latest\</PublishUrl>
+    <PublishUrl>..\..\publish\latest\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
