@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace RCS.WpfShop.Common.ViewModels
 {
-    public abstract class FilterItemsViewModel<I, FM, FD> : ItemsViewModel<I>
+    public abstract class FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem> : ItemsViewModel<TItem>
     {
         #region Refresh
         private bool initialized;
@@ -49,7 +49,7 @@ namespace RCS.WpfShop.Common.ViewModels
         }
 
         public static readonly DependencyProperty MessageProperty =
-            DependencyProperty.Register(nameof(Message), typeof(string), typeof(FilterItemsViewModel<I, FM, FD>));
+            DependencyProperty.Register(nameof(Message), typeof(string), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
 
         public string Message
         {
@@ -62,20 +62,20 @@ namespace RCS.WpfShop.Common.ViewModels
         protected abstract Task<bool> InitializeFilters();
 
         public static readonly DependencyProperty MasterFilterItemsProperty =
-           DependencyProperty.Register(nameof(MasterFilterItems), typeof(ObservableCollection<FM>), typeof(FilterItemsViewModel<I, FM, FD>));
+           DependencyProperty.Register(nameof(MasterFilterItems), typeof(ObservableCollection<TMasterFilterItem>), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
 
-        public ObservableCollection<FM> MasterFilterItems
+        public ObservableCollection<TMasterFilterItem> MasterFilterItems
         {
-            get { return (ObservableCollection<FM>)GetValue(MasterFilterItemsProperty); }
+            get { return (ObservableCollection<TMasterFilterItem>)GetValue(MasterFilterItemsProperty); }
             set { SetValue(MasterFilterItemsProperty, value); }
         }
 
         public static readonly DependencyProperty MasterFilterValueProperty =
-            DependencyProperty.Register(nameof(MasterFilterValue), typeof(FM), typeof(FilterItemsViewModel<I, FM, FD>), new PropertyMetadata(new PropertyChangedCallback(OnMasterFilterValueChanged)));
+            DependencyProperty.Register(nameof(MasterFilterValue), typeof(TMasterFilterItem), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), new PropertyMetadata(new PropertyChangedCallback(OnMasterFilterValueChanged)));
 
-        public FM MasterFilterValue
+        public TMasterFilterItem MasterFilterValue
         {
-            get { return (FM)GetValue(MasterFilterValueProperty); }
+            get { return (TMasterFilterItem)GetValue(MasterFilterValueProperty); }
             set { SetValue(MasterFilterValueProperty, value); }
         }
 
@@ -83,7 +83,7 @@ namespace RCS.WpfShop.Common.ViewModels
         // Currently the FilterCommand is just bound to a Button, implying it always has to be activated explicitly.
         private static void OnMasterFilterValueChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
         {
-            var viewModel = dependencyObject as FilterItemsViewModel<I, FM, FD>;
+            var viewModel = dependencyObject as FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>;
 
             viewModel.SetDetailFilterItems();
             viewModel.DetailFilterValue = viewModel.DetailFilterItems.FirstOrDefault();
@@ -94,7 +94,7 @@ namespace RCS.WpfShop.Common.ViewModels
         {
             var detailFilterItemsSelection = detailFilterItemsSource.Where(DetailFilterItemsSelector());
 
-            var detailFilterItems = new ObservableCollection<FD>(); ;
+            var detailFilterItems = new ObservableCollection<TDetailFilterItem>(); ;
 
             // Store in a temporary structure first to avoid bothering the GUI.
             // Note that the query is executed on the foreach.
@@ -106,30 +106,30 @@ namespace RCS.WpfShop.Common.ViewModels
             DetailFilterItems = detailFilterItems;
         }
 
-        protected abstract Func<FD, bool> DetailFilterItemsSelector(bool addEmptyElement = true);
+        protected abstract Func<TDetailFilterItem, bool> DetailFilterItemsSelector(bool addEmptyElement = true);
 
-        protected Collection<FD> detailFilterItemsSource = new Collection<FD>();
+        protected Collection<TDetailFilterItem> detailFilterItemsSource = new Collection<TDetailFilterItem>();
 
         public static readonly DependencyProperty DetailFilterItemsProperty =
-           DependencyProperty.Register(nameof(DetailFilterItems), typeof(ObservableCollection<FD>), typeof(FilterItemsViewModel<I, FM, FD>));
+           DependencyProperty.Register(nameof(DetailFilterItems), typeof(ObservableCollection<TDetailFilterItem>), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
 
-        public ObservableCollection<FD> DetailFilterItems
+        public ObservableCollection<TDetailFilterItem> DetailFilterItems
         {
-            get { return (ObservableCollection<FD>)GetValue(DetailFilterItemsProperty); }
+            get { return (ObservableCollection<TDetailFilterItem>)GetValue(DetailFilterItemsProperty); }
             set { SetValue(DetailFilterItemsProperty, value); }
         }
 
         public static readonly DependencyProperty DetailFilterValueProperty =
-            DependencyProperty.Register(nameof(DetailFilterValue), typeof(FD), typeof(FilterItemsViewModel<I, FM, FD>));
+            DependencyProperty.Register(nameof(DetailFilterValue), typeof(TDetailFilterItem), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
 
-        public FD DetailFilterValue
+        public TDetailFilterItem DetailFilterValue
         {
-            get { return (FD)GetValue(DetailFilterValueProperty); }
+            get { return (TDetailFilterItem)GetValue(DetailFilterValueProperty); }
             set { SetValue(DetailFilterValueProperty, value); }
         }
 
         public static readonly DependencyProperty TextFilterValueProperty =
-            DependencyProperty.Register(nameof(TextFilterValue), typeof(string), typeof(FilterItemsViewModel<I, FM, FD>));
+            DependencyProperty.Register(nameof(TextFilterValue), typeof(string), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
 
         public string TextFilterValue
         {
@@ -140,7 +140,7 @@ namespace RCS.WpfShop.Common.ViewModels
         protected abstract Task<bool> ReadFiltered();
 
         public static readonly DependencyProperty FilterCommandProperty =
-             DependencyProperty.Register(nameof(FilterCommand), typeof(ICommand), typeof(FilterItemsViewModel<I, FM, FD>));
+             DependencyProperty.Register(nameof(FilterCommand), typeof(ICommand), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
 
         // Note this does not work as explicit interface implementation.
         public ICommand FilterCommand
