@@ -15,15 +15,15 @@ namespace RCS.WpfShop.TestGui
 
         // Constants (but not markable as such.) 
         // TODO Find a more generic solution for this path.
-        protected static string appDir = @"R:\RCS\shopping\clients\WpfShop\project\RCS.WpfShop\bin\Test";
-        protected static string appPath = $"{appDir}\\RCS.WpfShop.exe";
-        protected static string controlTypeButtonLabel = "ControlType.Button";
+        private static string appDir = @"R:\RCS\shopping\clients\WpfShop\project\RCS.WpfShop\bin\Test";
+        private static string appPath = $"{appDir}\\RCS.WpfShop.exe";
+        private static string controlTypeButtonLabel = "ControlType.Button";
 
-        protected static WindowsDriver<WindowsElement> testSession;
+        protected static WindowsDriver<WindowsElement> TestSession { get; private set; }
 
         public static void StartSession(TestContext testContext)
         {
-            if (testSession == null)
+            if (TestSession == null)
             {
                 EndSession();
 
@@ -36,13 +36,13 @@ namespace RCS.WpfShop.TestGui
                 // Had to install Appium.WebDriver 4.0.0.4-beta with Selenium 3.141.0 to get this working.
                 // This also implied making use of AppiumOptions.
                 // https://github.com/appium/appium-dotnet-driver/issues/226
-                testSession = new WindowsDriver<WindowsElement>(new Uri(winAppDriverUrl), appiumOptions);
+                TestSession = new WindowsDriver<WindowsElement>(new Uri(winAppDriverUrl), appiumOptions);
 
-                Assert.IsNotNull(testSession);
-                Assert.IsNotNull(testSession.SessionId);
+                Assert.IsNotNull(TestSession);
+                Assert.IsNotNull(TestSession.SessionId);
 
                 // Set implicit timeout to 1.5 seconds to make element search to retry every 500 ms for at most three times
-                testSession.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
+                TestSession.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
             }
         }
 
@@ -83,7 +83,7 @@ namespace RCS.WpfShop.TestGui
             //testSession.FindElementByName(destination).Click();
 
             // Try with explicit wait.
-            testSession.FindElement(By.Name(destination), 10).Click();
+            TestSession.FindElement(By.Name(destination), 10).Click();
 
             // Test presence of module controls.
         }
@@ -103,14 +103,14 @@ namespace RCS.WpfShop.TestGui
 
         private static void CheckElement(string name)
         {
-            var element = testSession.FindElementByClassName(name);
+            var element = TestSession.FindElementByClassName(name);
             Assert.IsNotNull(element);
         }
 
         public static void EndSession()
         {
-            testSession?.Quit();
-            testSession = null;
+            TestSession?.Quit();
+            TestSession = null;
         }
     }
 

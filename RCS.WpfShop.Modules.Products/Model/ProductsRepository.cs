@@ -2,11 +2,12 @@
 using RCS.WpfShop.ServiceClients.Products.ProductsService;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace RCS.WpfShop.Modules.Products.Model
 {
-    public class ProductsRepository : Repository<ProductsOverviewObject>
+    public class ProductsRepository : Repository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject>
     {
         #region Construction
         private ProductsRepository()

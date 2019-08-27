@@ -6,22 +6,22 @@ using System.Windows.Input;
 
 namespace RCS.WpfShop.Common.ViewModels
 {
-    public abstract class ItemsViewModel<I> : ViewModel
+    public abstract class ItemsViewModel<TItem> : ViewModel
     {
         #region Items
         public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register(nameof(Items), typeof(ObservableCollection<I>), typeof(ItemsViewModel<I>), new PropertyMetadata(new PropertyChangedCallback(Items_Changed)));
+            DependencyProperty.Register(nameof(Items), typeof(ObservableCollection<TItem>), typeof(ItemsViewModel<TItem>), new PropertyMetadata(new PropertyChangedCallback(Items_Changed)));
 
         // TODO Some sort of view would be more convenient to enable sorting in situ (filtering is no longer done so). But remember: that no longer applies when paging.
-        public ObservableCollection<I> Items
+        public ObservableCollection<TItem> Items
         {
-            get { return (ObservableCollection<I>)GetValue(ItemsProperty); }
+            get { return (ObservableCollection<TItem>)GetValue(ItemsProperty); }
             set { SetValue(ItemsProperty, value); }
         }
 
         private static void Items_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var itemsViewModel = d as ItemsViewModel<I>;
+            var itemsViewModel = d as ItemsViewModel<TItem>;
             itemsViewModel.Items.CollectionChanged += itemsViewModel.Items_CollectionChanged;
         }
 
@@ -33,7 +33,7 @@ namespace RCS.WpfShop.Common.ViewModels
 
         // Note that one cannot directly bind on Items.Count.
         public static readonly DependencyProperty ItemsCountProperty =
-            DependencyProperty.Register(nameof(ItemsCount), typeof(int), typeof(ItemsViewModel<I>), new PropertyMetadata(0));
+            DependencyProperty.Register(nameof(ItemsCount), typeof(int), typeof(ItemsViewModel<TItem>), new PropertyMetadata(0));
 
         public int ItemsCount
         {
@@ -54,13 +54,13 @@ namespace RCS.WpfShop.Common.ViewModels
         {
             base.SetCommands();
 
-            DetailsCommand = new DelegateCommand<I>(ShowDetails);
+            DetailsCommand = new DelegateCommand<TItem>(ShowDetails);
         }
         #endregion
 
         #region Details
         public static readonly DependencyProperty DetailsCommandProperty =
-             DependencyProperty.Register(nameof(DetailsCommand), typeof(ICommand), typeof(ItemsViewModel<I>));
+             DependencyProperty.Register(nameof(DetailsCommand), typeof(ICommand), typeof(ItemsViewModel<TItem>));
 
         // Note this does not work as explicit interface implementation.
         public ICommand DetailsCommand
@@ -69,7 +69,7 @@ namespace RCS.WpfShop.Common.ViewModels
             private set { SetValue(DetailsCommandProperty, value); }
         }
 
-        protected virtual void ShowDetails(I overviewObject) { }
+        protected virtual void ShowDetails(TItem overviewObject) { }
         #endregion
     }
 }

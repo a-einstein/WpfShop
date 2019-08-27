@@ -57,7 +57,7 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             int categoryExpectedOrder = 2;
             var categoryExpected = categoriesExpected[categoryExpectedOrder - 1];
 
-            var masterFilterComboBox = testSession.FindElementByAccessibilityId("MasterFilterComboBox");
+            var masterFilterComboBox = TestSession.FindElementByAccessibilityId("MasterFilterComboBox");
             Assert.IsNotNull(masterFilterComboBox);
 
             // Necessary to actually get the elements created in the GUI.
@@ -72,7 +72,7 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             int subcategoryExpectedOrder = 1;
             var subcategoryExpected = subcategoriesExpected.FindAll(subcategory => subcategory.ProductCategoryId == categoryExpected.Id)[subcategoryExpectedOrder - 1];
 
-            var detailFilterComboBox = testSession.FindElementByAccessibilityId("DetailFilterComboBox");
+            var detailFilterComboBox = TestSession.FindElementByAccessibilityId("DetailFilterComboBox");
             Assert.IsNotNull(detailFilterComboBox);
             detailFilterComboBox.Click();
             detailFilterComboBox.FindElementByName(subcategoryExpected.Name).Click();
@@ -81,7 +81,7 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             var productsOverviewExpected = serviceClient.Object.GetProductsOverviewBy(categoryExpected.Id, subcategoryExpected.Id, searchString);
 
             // Note this is a UserControl.
-            var textFilterControl = testSession.FindElementByAccessibilityId("TextFilterTextBox");
+            var textFilterControl = TestSession.FindElementByAccessibilityId("TextFilterTextBox");
             Assert.IsNotNull(textFilterControl);
 
             // The true text element within.
@@ -92,11 +92,11 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             // TODO Add enablement on the button depending on this control and test. Currently the control only colours on less than 3 characters.
             textFilterTextBox.SendKeys(searchString.Substring(2, 1));
 
-            var filterButton = testSession.FindElementByAccessibilityId("FilterButton");
+            var filterButton = TestSession.FindElementByAccessibilityId("FilterButton");
             Assert.IsNotNull(filterButton);
             filterButton.Click();
 
-            var itemsCountTextBlock = testSession.FindElementByAccessibilityId("ItemsCountTextBlock");
+            var itemsCountTextBlock = TestSession.FindElementByAccessibilityId("ItemsCountTextBlock");
             Assert.IsNotNull(itemsCountTextBlock);
             Assert.AreEqual(itemsCountTextBlock.Text, productsOverviewExpected.Count.ToString());
         }
