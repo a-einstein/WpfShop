@@ -2,10 +2,16 @@
 
 namespace RCS.WpfShop.Modules.Products.Model
 {
-    public abstract class Repository<T> : ProductsServiceConsumer
+    // TODO This class could be shared with other shopping clients.
+    // TODO Check for related classes.
+    public abstract class Repository<TCollection, TElement> :
+         ProductsServiceConsumer
+         where TCollection : Collection<TElement>, new()
     {
+        // Note Derived singletons duplicate construction code, but it it does not seem feasible to share that here.
+
         #region CRUD
-        public ObservableCollection<T> List = new ObservableCollection<T>();
+        public TCollection List { get; } = new TCollection();
 
         public void Clear()
         {
