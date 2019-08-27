@@ -14,7 +14,8 @@ namespace RCS.WpfShop.TestGui
         private const string winAppDriverUrl = "http://127.0.0.1:4723";
 
         // Constants (but not markable as such.) 
-        protected static string appDir = @"P:\projects\RCS\shopping\clients\WpfShop\RCS.WpfShop\bin\Test";
+        // TODO Find a more generic solution for this path.
+        protected static string appDir = @"R:\RCS\shopping\clients\WpfShop\project\RCS.WpfShop\bin\Test";
         protected static string appPath = $"{appDir}\\RCS.WpfShop.exe";
         protected static string controlTypeButtonLabel = "ControlType.Button";
 
@@ -50,7 +51,7 @@ namespace RCS.WpfShop.TestGui
             // Note that elements should be identified by inspect.exe first.
 
             /*
-             TODO This only worked while debugging (even without breaks).
+             TODO This only worked while debugging the test (even without breaks). Built in Test configuration.
              After making this static and applying in ClassInitialize the problem was only temporarily gone.
              It is quite similar as decribe here:
              https://github.com/Microsoft/WinAppDriver/issues/370
@@ -66,6 +67,11 @@ namespace RCS.WpfShop.TestGui
              FindElementByName seemed the only feasible option.
              Also tried to set AutomationId by binding. 
              In the current dynamic setup this is not allowed for Name and x:Name, Tag did not work.
+
+            UPDATE.
+            Running both tests COMBINED can succeed, possibly depending on the order of execution.
+            Even the whole current list of tests (including non GUI tests) has worked.
+            TODO Get this straight.
             */
 
             // Try with explicit button and assertion.
