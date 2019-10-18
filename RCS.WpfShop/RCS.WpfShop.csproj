@@ -252,7 +252,7 @@
     <None Include="app.Release.config">
       <DependentUpon>app.config</DependentUpon>
     </None>
-    <None Include="app.Test.config">
+    <None Include="app.TestMock.config">
       <DependentUpon>app.config</DependentUpon>
       <SubType>Designer</SubType>
     </None>
