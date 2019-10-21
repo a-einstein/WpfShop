@@ -68,10 +68,14 @@ namespace RCS.WpfShop.TestGui
              Also tried to set AutomationId by binding. 
              In the current dynamic setup this is not allowed for Name and x:Name, Tag did not work.
 
-            UPDATE.
+            UPDATE 1
             Running both tests COMBINED can succeed, possibly depending on the order of execution.
             Even the whole current list of tests (including non GUI tests) has worked.
             TODO Get this straight.
+
+            UPDATE 2
+            For clarity: all current tests (unit or GUI) can be run in one go.
+            TODO Check whether they can be run on a buildserver (Azure) together or that the tests should be split over kinds.
             */
 
             // Try with explicit button and assertion.
