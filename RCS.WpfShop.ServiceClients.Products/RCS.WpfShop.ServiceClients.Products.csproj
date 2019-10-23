@@ -107,7 +107,7 @@
     <None Include="Service References\ProductsService\ProductsService1.disco" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AdventureWorks\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj">
+    <ProjectReference Include="..\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj">
       <Project>{493d8ed2-1ba9-436c-981f-3a84523fa8a0}</Project>
       <Name>RCS.AdventureWorks.Common</Name>
     </ProjectReference>
