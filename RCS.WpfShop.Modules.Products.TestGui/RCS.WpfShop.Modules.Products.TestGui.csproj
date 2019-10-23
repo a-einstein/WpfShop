@@ -106,10 +106,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AdventureWorks\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj">
-      <Project>{493D8ED2-1BA9-436C-981F-3A84523FA8A0}</Project>
-      <Name>RCS.AdventureWorks.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\RCS.WpfShop.ServiceClients.Products.Mock\RCS.WpfShop.ServiceClients.Products.Mock.csproj">
       <Project>{5A76D31B-2898-44CD-B345-55BD5D98486A}</Project>
       <Name>RCS.WpfShop.ServiceClients.Products.Mock</Name>
