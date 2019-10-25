@@ -4,15 +4,16 @@
 Working desktop application for test and demo purpose based on WPF. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
+* Integrated with Azure Devops build and release pipelines.
 * Mocked the data service for testing, applying Moq.
 * Added integrated GUI test by means of WinAppDriver/Selenium/Appium.
 * The data service on Azure is no longer functional.
 
 #### Purpose
 * Explore various techniques based on C# and WPF.
-* Manage the code by Git and GitHub. Some changes, branches, and merges are deliberately created for this reason.
-* Explore continuous integration by using combinations of Git, GitHub, TeamCity and Visual Studio Team Services (VSTS).
-* Explore Scrum process management by integration with Jira and Visual Studio Team Services.
+* Manage the code by Git and GitHub.
+* Explore continuous integration by using combinations of Git, GitHub, TeamCity and Azure DevOps.
+* Explore Scrum process management by integration with Jira and Azure DevOps.
 
 #### Prerequisites
 * The application must be configured for a running instance of my [AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md).
@@ -20,6 +21,7 @@ Working desktop application for test and demo purpose based on WPF. It simulates
 #### Notes
 * This is a near equivalent of my [PortableShop](https://github.com/a-einstein/PortableShop).
 * Submitted to code analysis by [Better Code Hub](https://bettercodehub.com). Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstein/WpfShop)](https://bettercodehub.com)  
+* Connected to automated Azure Devops build and release pipelines. Current build status for the master branch: [![Build Status](https://dev.azure.com/RcsProjects/WpfShop/_apis/build/status/Build?branchName=master)](https://dev.azure.com/RcsProjects/WpfShop/_build/latest?definitionId=12&branchName=master)
 
 #### Aspects
 * WPF.
@@ -41,9 +43,7 @@ Working desktop application for test and demo purpose based on WPF. It simulates
 * Click Once installation and update.
 
 #### Installation
-Currently one has to both compile this client as well as the data service, and create the database.
-
-The application no longer is plug & play. Just for its own sake the application can still be directly installed. It is still configured to use my data service on Azure, so it will fail to work.
+The application is plug & play, but use of the data service is on request. Contact the developer ahead. 
 * Open the **[install page](https://rcsadventureworac85.blob.core.windows.net/wpfshop-releases/latest/install.htm).**
 * If needed, install the prerequisites by the 'Install' button.
 * Click the **'launch'** hyperlink, 'Open' to launch the installer, 'Install', allow it to continue when needed. 
