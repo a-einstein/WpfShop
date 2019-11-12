@@ -84,10 +84,11 @@
     <ApplicationIcon>Images\Main.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>76D5A137DACA0CD2BB35A677FCF4EE17CFDCE569</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>7BCD918FAE853F91511BF1141865D6B8BF392247</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>RCS.WpfShop_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -99,7 +100,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>RCS.WpfShop_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugService|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -257,7 +259,6 @@
       <SubType>Designer</SubType>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="RCS.WpfShop_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RCS.WpfShop.Common\RCS.WpfShop.Common.csproj">
