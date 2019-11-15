@@ -315,13 +315,13 @@
     <PostBuildEvent>
       if $(ConfigurationName) == Release (
       rem Documentation files. Do not know why they are put there.
-      del $(TargetDir)*.xml
+      del "$(TargetDir)*.xml"
 
       rem Currently for one remaning pdb file.
       rem Basically prevented in advanced build settings.
-      del $(TargetDir)*.pdb
+      del "$(TargetDir)*.pdb"
       )
-    </PostBuildEvent>
+</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
