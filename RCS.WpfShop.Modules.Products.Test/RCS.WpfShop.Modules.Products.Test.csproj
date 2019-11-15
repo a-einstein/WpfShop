@@ -90,6 +90,10 @@
     <Compile Include="ModelTest\CartItemsRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj">
+      <Project>{493D8ED2-1BA9-436C-981F-3A84523FA8A0}</Project>
+      <Name>RCS.AdventureWorks.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RCS.WpfShop.Modules.Products\RCS.WpfShop.Modules.Products.csproj">
       <Project>{46fd7b84-c33f-4a86-ad84-57bdc92313ac}</Project>
       <Name>RCS.WpfShop.Modules.Products</Name>
