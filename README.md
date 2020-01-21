@@ -4,10 +4,10 @@
 Working desktop application for test and demo purpose based on WPF. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
+* Makes use of own certified domain for webservice.
 * Integrated with Azure Devops build and release pipelines.
 * Mocked the data service for testing, applying Moq.
 * Added integrated GUI test by means of WinAppDriver/Selenium/Appium.
-* The data service on Azure is no longer functional.
 
 #### Purpose
 * Explore various techniques based on C# and WPF.
@@ -30,7 +30,7 @@ Working desktop application for test and demo purpose based on WPF. It simulates
 * Prism/Unity Modules & Regions
 * Client-server.
 * Azure service.
-* WCF + SSL.
+* WCF + SSL + domain + certificate.
 * asynchronicity.
 * Globalized resources.
 * User controls.
