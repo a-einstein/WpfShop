@@ -4,7 +4,7 @@
 Working desktop application for test and demo purpose based on WPF. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
-* **Currently in not in an installable state. Use this for code review only.**
+* **Currently the deliverable is not in a working state. Use this for code review only.**
 * Makes use of own certified domain for webservice.
 * Integrated with Azure Devops build and release pipelines.
 * Mocked the data service for testing, applying Moq.
