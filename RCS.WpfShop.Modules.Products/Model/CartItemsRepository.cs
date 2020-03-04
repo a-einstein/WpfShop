@@ -40,7 +40,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         // It is anticipated that only real orders would be preserved and stored on the server.
         public CartItem AddProduct(IShoppingProduct product)
         {
-            var existingCartItems = List.Where(cartItem => cartItem.ProductID == product.Id);
+            var existingCartItems = List.Where(cartItem => cartItem.ProductId == product.Id);
             var existingCartItemsCount = existingCartItems.Count();
 
             CartItem productCartItem;
@@ -49,7 +49,7 @@ namespace RCS.WpfShop.Modules.Products.Model
             {
                 productCartItem = new CartItem()
                 {
-                    ProductID = product.Id.Value,
+                    ProductId = product.Id.Value,
                     Name = product.Name,
                     ProductSize = product.Size,
                     ProductSizeUnitMeasureCode = product.SizeUnitMeasureCode,
