@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RCS.WpfShop.ServiceClients.Products.Mock;
 using RCS.WpfShop.TestGui;
-using System.Linq;
 
 namespace RCS.WpfShop.Modules.Products.TestGui
 {

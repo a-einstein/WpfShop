@@ -1,12 +1,9 @@
-﻿using CommonServiceLocator;
-using Prism.Ioc;
+﻿using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Mvvm;
-using Prism.Regions;
 using Prism.Unity;
 using RCS.WpfShop.Resources;
 using RCS.WpfShop.ViewModels;
-using RCS.WpfShop.Views;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,6 +11,13 @@ using System.Windows.Threading;
 
 namespace RCS.WpfShop.Main
 {
+    // TODO Currently it does not succeed to update Unity.Container, doing so causes an exception.
+    // This does not seem an isolated problem but a matter of evaluating the whole set of inter-dependent packages of Prism and Unity.
+    // Both too many and too few Packages may be installed in the various projects.
+    // Applying Resharper on references may help.
+    // Be aware of misleading exceptions that can be about a package, but also indirectly about a package it depends on. The GitHub pages may help.
+    // Also be aware that the version mentioned in an exception probably is a minimal version.
+
     public partial class MainApplication : PrismApplication
     {
         #region Construction
