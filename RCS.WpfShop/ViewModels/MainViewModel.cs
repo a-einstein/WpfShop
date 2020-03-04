@@ -1,14 +1,11 @@
 ﻿using Prism.Commands;
-using Prism.Modularity;
 using Prism.Regions;
 using RCS.WpfShop.Common;
 using RCS.WpfShop.Common.Navigation;
 using RCS.WpfShop.Common.ViewModels;
 using RCS.WpfShop.Common.Views;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel.Composition;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;

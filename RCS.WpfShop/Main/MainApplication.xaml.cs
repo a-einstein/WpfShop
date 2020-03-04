@@ -1,12 +1,9 @@
-﻿using CommonServiceLocator;
-using Prism.Ioc;
+﻿using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Mvvm;
-using Prism.Regions;
 using Prism.Unity;
 using RCS.WpfShop.Resources;
 using RCS.WpfShop.ViewModels;
-using RCS.WpfShop.Views;
 using System;
 using System.Threading.Tasks;
 using System.Windows;

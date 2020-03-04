@@ -1,10 +1,8 @@
-﻿using Prism.Ioc;
-using Prism.Regions;
+﻿using Prism.Regions;
 using RCS.WpfShop.Common;
 using RCS.WpfShop.Common.Views;
 using RCS.WpfShop.Views;
 using System;
-using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows;
 using System.Windows.Data;
