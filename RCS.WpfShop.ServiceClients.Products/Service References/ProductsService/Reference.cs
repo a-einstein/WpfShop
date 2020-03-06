@@ -39,10 +39,10 @@ namespace RCS.WpfShop.ServiceClients.Products.ProductsService {
     public interface IProductsService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductsOverviewBy", ReplyAction="http://tempuri.org/IProductsService/GetProductsOverviewByResponse")]
-        RCS.WpfShop.ServiceClients.Products.ProductsService.ProductsOverviewList GetProductsOverviewBy(System.Nullable<int> productCategoryID, System.Nullable<int> productSubcategoryID, string productNameString);
+        RCS.WpfShop.ServiceClients.Products.ProductsService.ProductsOverviewList GetProductsOverviewBy(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductsOverviewBy", ReplyAction="http://tempuri.org/IProductsService/GetProductsOverviewByResponse")]
-        System.Threading.Tasks.Task<RCS.WpfShop.ServiceClients.Products.ProductsService.ProductsOverviewList> GetProductsOverviewByAsync(System.Nullable<int> productCategoryID, System.Nullable<int> productSubcategoryID, string productNameString);
+        System.Threading.Tasks.Task<RCS.WpfShop.ServiceClients.Products.ProductsService.ProductsOverviewList> GetProductsOverviewByAsync(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductDetails", ReplyAction="http://tempuri.org/IProductsService/GetProductDetailsResponse")]
         RCS.AdventureWorks.Common.DomainClasses.Product GetProductDetails(int productId);
@@ -90,12 +90,12 @@ namespace RCS.WpfShop.ServiceClients.Products.ProductsService {
                 base(binding, remoteAddress) {
         }
         
-        public RCS.WpfShop.ServiceClients.Products.ProductsService.ProductsOverviewList GetProductsOverviewBy(System.Nullable<int> productCategoryID, System.Nullable<int> productSubcategoryID, string productNameString) {
-            return base.Channel.GetProductsOverviewBy(productCategoryID, productSubcategoryID, productNameString);
+        public RCS.WpfShop.ServiceClients.Products.ProductsService.ProductsOverviewList GetProductsOverviewBy(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString) {
+            return base.Channel.GetProductsOverviewBy(productCategoryId, productSubcategoryId, productNameString);
         }
         
-        public System.Threading.Tasks.Task<RCS.WpfShop.ServiceClients.Products.ProductsService.ProductsOverviewList> GetProductsOverviewByAsync(System.Nullable<int> productCategoryID, System.Nullable<int> productSubcategoryID, string productNameString) {
-            return base.Channel.GetProductsOverviewByAsync(productCategoryID, productSubcategoryID, productNameString);
+        public System.Threading.Tasks.Task<RCS.WpfShop.ServiceClients.Products.ProductsService.ProductsOverviewList> GetProductsOverviewByAsync(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString) {
+            return base.Channel.GetProductsOverviewByAsync(productCategoryId, productSubcategoryId, productNameString);
         }
         
         public RCS.AdventureWorks.Common.DomainClasses.Product GetProductDetails(int productId) {

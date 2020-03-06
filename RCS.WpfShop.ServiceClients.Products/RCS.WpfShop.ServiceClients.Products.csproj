@@ -85,17 +85,17 @@
     <None Include="Service References\ProductsService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ProductsService\ProductsService.xsd">
+    <None Include="Service References\ProductsService\ProductsService.wsdl" />
+    <None Include="Service References\ProductsService\ProductsService4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ProductsService\ProductsService1.wsdl" />
-    <None Include="Service References\ProductsService\ProductsService1.xsd">
+    <None Include="Service References\ProductsService\ProductsService41.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ProductsService\ProductsService2.xsd">
+    <None Include="Service References\ProductsService\ProductsService42.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ProductsService\ProductsService3.xsd">
+    <None Include="Service References\ProductsService\ProductsService43.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ProductsService\Reference.svcmap">
@@ -104,13 +104,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ProductsService\ProductsService1.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj">
       <Project>{493d8ed2-1ba9-436c-981f-3a84523fa8a0}</Project>
       <Name>RCS.AdventureWorks.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProductsService\ProductsService.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="nqTFBPdXnh3h6NfV3IwUpElhnXE=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="S8cvICy7Rx7qN2KxYotjV/MSeAo=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IProductsService">
       <properties>
@@ -236,10 +236,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="WSHttpBinding_IProductsService" contract="ProductsService.IProductsService" bindingType="wsHttpBinding" address="https://rcs-vostro/ProductsServicePub/ProductsService.svc/ProductsServiceW" bindingConfiguration="WSHttpBinding_IProductsService">
+    <endpoint name="WSHttpBinding_IProductsService" contract="ProductsService.IProductsService" bindingType="wsHttpBinding" address="https://localhost:44300/ProductsService.svc/ProductsServiceW" bindingConfiguration="WSHttpBinding_IProductsService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>https://rcs-vostro/ProductsServicePub/ProductsService.svc/ProductsServiceW</serializedValue>
+          <serializedValue>https://localhost:44300/ProductsService.svc/ProductsServiceW</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -321,10 +321,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IProductsService" contract="ProductsService.IProductsService" bindingType="basicHttpBinding" address="https://rcs-vostro/ProductsServicePub/ProductsService.svc/ProductsServiceB" bindingConfiguration="BasicHttpBinding_IProductsService">
+    <endpoint name="BasicHttpBinding_IProductsService" contract="ProductsService.IProductsService" bindingType="basicHttpBinding" address="https://localhost:44300/ProductsService.svc/ProductsServiceB" bindingConfiguration="BasicHttpBinding_IProductsService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>https://rcs-vostro/ProductsServicePub/ProductsService.svc/ProductsServiceB</serializedValue>
+          <serializedValue>https://localhost:44300/ProductsService.svc/ProductsServiceB</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
