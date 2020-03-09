@@ -20,8 +20,8 @@ namespace RCS.WpfShop.Modules.About.ViewModels
 
         public string ApplicationVersion
         {
-            get { return (string)GetValue(ApplicationVersionProperty); }
-            set { SetValue(ApplicationVersionProperty, value); }
+            get => (string)GetValue(ApplicationVersionProperty);
+            set => SetValue(ApplicationVersionProperty, value);
         }
         #endregion
     }

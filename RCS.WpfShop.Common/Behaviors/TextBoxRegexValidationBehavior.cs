@@ -47,8 +47,8 @@ namespace RCS.WpfShop.Common.Behaviors
 
         public string ValidExpression
         {
-            get { return (string)GetValue(ValidExpressionProperty); }
-            set { SetValue(ValidExpressionProperty, value); }
+            get => (string)GetValue(ValidExpressionProperty);
+            set => SetValue(ValidExpressionProperty, value);
         }
 
         public static readonly DependencyProperty ValidBackgroundProperty =
@@ -56,8 +56,8 @@ namespace RCS.WpfShop.Common.Behaviors
 
         public Brush ValidBackground
         {
-            get { return (Brush)GetValue(ValidBackgroundProperty); }
-            set { SetValue(ValidBackgroundProperty, value); }
+            get => (Brush)GetValue(ValidBackgroundProperty);
+            set => SetValue(ValidBackgroundProperty, value);
         }
 
         public static readonly DependencyProperty InvalidBackgroundProperty =
@@ -65,8 +65,8 @@ namespace RCS.WpfShop.Common.Behaviors
 
         public Brush InvalidBackground
         {
-            get { return (Brush)GetValue(InvalidBackgroundProperty); }
-            set { SetValue(InvalidBackgroundProperty, value); }
+            get => (Brush)GetValue(InvalidBackgroundProperty);
+            set => SetValue(InvalidBackgroundProperty, value);
         }
         #endregion
     }

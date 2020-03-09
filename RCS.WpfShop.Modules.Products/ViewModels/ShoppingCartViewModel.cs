@@ -85,8 +85,8 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         public ICommand DeleteCommand
         {
-            get { return (ICommand)GetValue(DeleteCommandProperty); }
-            private set { SetValue(DeleteCommandProperty, value); }
+            get => (ICommand)GetValue(DeleteCommandProperty);
+            private set => SetValue(DeleteCommandProperty, value);
         }
 
         private void Delete(CartItem cartItem)
@@ -138,8 +138,8 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         public int ProductItemsCount
         {
-            get { return (int)GetValue(ProductItemCountProperty); }
-            set { SetValue(ProductItemCountProperty, value); }
+            get => (int)GetValue(ProductItemCountProperty);
+            set => SetValue(ProductItemCountProperty, value);
         }
 
         public static readonly DependencyProperty TotalValueProperty =
@@ -147,8 +147,8 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         public Decimal TotalValue
         {
-            get { return (Decimal)GetValue(TotalValueProperty); }
-            set { SetValue(TotalValueProperty, value); }
+            get => (Decimal)GetValue(TotalValueProperty);
+            set => SetValue(TotalValueProperty, value);
         }
         #endregion
     }

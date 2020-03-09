@@ -15,8 +15,8 @@ namespace RCS.WpfShop.Common.Windows
         // Note this window is made specific to this MVVM concept.
         public View View
         {
-            get { return viewControl.Content as View; }
-            set { viewControl.Content = value; }
+            get => viewControl.Content as View;
+            set => viewControl.Content = value;
         }
 
         private bool activatedYet;

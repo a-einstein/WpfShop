@@ -15,8 +15,8 @@ namespace RCS.WpfShop.Common.ViewModels
 
         public TItem Item
         {
-            get { return (TItem)GetValue(ItemProperty); }
-            set { SetValue(ItemProperty, value); }
+            get => (TItem)GetValue(ItemProperty);
+            set => SetValue(ItemProperty, value);
         }
 
         private static void Item_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)

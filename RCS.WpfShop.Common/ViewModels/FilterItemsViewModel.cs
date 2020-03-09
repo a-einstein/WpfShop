@@ -53,8 +53,8 @@ namespace RCS.WpfShop.Common.ViewModels
 
         public string Message
         {
-            get { return (string)GetValue(MessageProperty); }
-            set { SetValue(MessageProperty, value); }
+            get => (string)GetValue(MessageProperty);
+            set => SetValue(MessageProperty, value);
         }
         #endregion
 
@@ -66,8 +66,8 @@ namespace RCS.WpfShop.Common.ViewModels
 
         public ObservableCollection<TMasterFilterItem> MasterFilterItems
         {
-            get { return (ObservableCollection<TMasterFilterItem>)GetValue(MasterFilterItemsProperty); }
-            set { SetValue(MasterFilterItemsProperty, value); }
+            get => (ObservableCollection<TMasterFilterItem>)GetValue(MasterFilterItemsProperty);
+            set => SetValue(MasterFilterItemsProperty, value);
         }
 
         public static readonly DependencyProperty MasterFilterValueProperty =
@@ -75,8 +75,8 @@ namespace RCS.WpfShop.Common.ViewModels
 
         public TMasterFilterItem MasterFilterValue
         {
-            get { return (TMasterFilterItem)GetValue(MasterFilterValueProperty); }
-            set { SetValue(MasterFilterValueProperty, value); }
+            get => (TMasterFilterItem)GetValue(MasterFilterValueProperty);
+            set => SetValue(MasterFilterValueProperty, value);
         }
 
         // Note this function does NOT filter Items, just updates DetailFilterItems and DetailFilterValue.
@@ -115,8 +115,8 @@ namespace RCS.WpfShop.Common.ViewModels
 
         public ObservableCollection<TDetailFilterItem> DetailFilterItems
         {
-            get { return (ObservableCollection<TDetailFilterItem>)GetValue(DetailFilterItemsProperty); }
-            set { SetValue(DetailFilterItemsProperty, value); }
+            get => (ObservableCollection<TDetailFilterItem>)GetValue(DetailFilterItemsProperty);
+            set => SetValue(DetailFilterItemsProperty, value);
         }
 
         public static readonly DependencyProperty DetailFilterValueProperty =
@@ -124,8 +124,8 @@ namespace RCS.WpfShop.Common.ViewModels
 
         public TDetailFilterItem DetailFilterValue
         {
-            get { return (TDetailFilterItem)GetValue(DetailFilterValueProperty); }
-            set { SetValue(DetailFilterValueProperty, value); }
+            get => (TDetailFilterItem)GetValue(DetailFilterValueProperty);
+            set => SetValue(DetailFilterValueProperty, value);
         }
 
         public static readonly DependencyProperty TextFilterValueProperty =
@@ -133,8 +133,8 @@ namespace RCS.WpfShop.Common.ViewModels
 
         public string TextFilterValue
         {
-            get { return (string)GetValue(TextFilterValueProperty); }
-            set { SetValue(TextFilterValueProperty, value); }
+            get => (string)GetValue(TextFilterValueProperty);
+            set => SetValue(TextFilterValueProperty, value);
         }
 
         protected abstract Task<bool> ReadFiltered();
@@ -145,8 +145,8 @@ namespace RCS.WpfShop.Common.ViewModels
         // Note this does not work as explicit interface implementation.
         public ICommand FilterCommand
         {
-            get { return (ICommand)GetValue(FilterCommandProperty); }
-            private set { SetValue(FilterCommandProperty, value); }
+            get => (ICommand)GetValue(FilterCommandProperty);
+            private set => SetValue(FilterCommandProperty, value);
         }
         #endregion
     }

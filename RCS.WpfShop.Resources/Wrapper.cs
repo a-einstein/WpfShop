@@ -6,6 +6,6 @@
     {
         private static readonly Labels labels = new Labels();
 
-        public Labels Labels { get { return labels; } }
+        public Labels Labels => labels;
     }
 }

@@ -15,8 +15,8 @@ namespace RCS.WpfShop.Common.ViewModels
         // TODO Some sort of view would be more convenient to enable sorting in situ (filtering is no longer done so). But remember: that no longer applies when paging.
         public ObservableCollection<TItem> Items
         {
-            get { return (ObservableCollection<TItem>)GetValue(ItemsProperty); }
-            set { SetValue(ItemsProperty, value); }
+            get => (ObservableCollection<TItem>)GetValue(ItemsProperty);
+            set => SetValue(ItemsProperty, value);
         }
 
         private static void Items_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -37,8 +37,8 @@ namespace RCS.WpfShop.Common.ViewModels
 
         public int ItemsCount
         {
-            get { return (int)GetValue(ItemsCountProperty); }
-            set { SetValue(ItemsCountProperty, value); }
+            get => (int)GetValue(ItemsCountProperty);
+            set => SetValue(ItemsCountProperty, value);
         }
         #endregion
 
@@ -65,8 +65,8 @@ namespace RCS.WpfShop.Common.ViewModels
         // Note this does not work as explicit interface implementation.
         public ICommand DetailsCommand
         {
-            get { return (ICommand)GetValue(DetailsCommandProperty); }
-            private set { SetValue(DetailsCommandProperty, value); }
+            get => (ICommand)GetValue(DetailsCommandProperty);
+            private set => SetValue(DetailsCommandProperty, value);
         }
 
         protected virtual void ShowDetails(TItem overviewObject) { }

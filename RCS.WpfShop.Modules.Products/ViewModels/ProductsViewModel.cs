@@ -149,8 +149,8 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         // Note this does not work as explicit interface implementation.
         public ICommand CartCommand
         {
-            get { return (ICommand)GetValue(CartCommandProperty); }
-            set { SetValue(CartCommandProperty, value); }
+            get => (ICommand)GetValue(CartCommandProperty);
+            set => SetValue(CartCommandProperty, value);
         }
 
         private void CartProduct(ProductsOverviewObject productsOverviewObject)
