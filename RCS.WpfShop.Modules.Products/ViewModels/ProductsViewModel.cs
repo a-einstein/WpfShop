@@ -57,7 +57,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                 ProductSubcategoriesRepository.Instance.ReadList()
             );
 
-            var succeeded = results.All<bool>(result => result == true);
+            var succeeded = results.All(result => result == true);
 
             if (succeeded)
                 // Need to update on the UI thread.
@@ -85,7 +85,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                     int detailDefaultId = 1;
                     DetailFilterValue = DetailFilterItems?.FirstOrDefault(subcategory => subcategory.Id == detailDefaultId);
 
-                    TextFilterValue = default(string);
+                    TextFilterValue = default;
                 });
 
             return succeeded;
