@@ -17,7 +17,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         private ShoppingCartViewModel() { }
 
         private static volatile ShoppingCartViewModel instance;
-        private static object syncRoot = new Object();
+        private static readonly object syncRoot = new Object();
 
         // Note this class is a singleton, implemented along the way (but not entirely) of https://msdn.microsoft.com/en-us/library/ff650316.aspx
         // TODO This might no longer be necessary if using RegisterSingleton.

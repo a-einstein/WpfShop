@@ -8,9 +8,9 @@ namespace RCS.WpfShop.Modules.Products.TestGui
     public class ModuleTest : GuiTest
     {
         #region Class level
-        private static string destination = "Shop";
-        private static string mainViewName = "ProductsView";
-        private static string[] widgetNames = { "ShoppingCartView" };
+        private static readonly string destination = "Shop";
+        private static readonly string mainViewName = "ProductsView";
+        private static readonly string[] widgetNames = { "ShoppingCartView" };
 
         // Note this must have a distinctive signature: static, public, no return value, take single parameter type TestContext.
         // TODO Would like to share this among classes, but currently see no way because of the static nature and the ClassInitialize, 

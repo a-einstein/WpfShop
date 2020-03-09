@@ -15,8 +15,8 @@ namespace RCS.WpfShop.TestGui
 
         // Constants (but not markable as such.) 
         // TODO Find a more generic solution for this path.
-        private static string appDir = @"R:\RCS\shopping\clients\WpfShop\project\RCS.WpfShop\bin\Test";
-        private static string appPath = $"{appDir}\\RCS.WpfShop.exe";
+        private static readonly string appDir = @"R:\RCS\shopping\clients\WpfShop\project\RCS.WpfShop\bin\Test";
+        private static readonly string appPath = $"{appDir}\\RCS.WpfShop.exe";
         private static string controlTypeButtonLabel = "ControlType.Button";
 
         protected static WindowsDriver<WindowsElement> TestSession { get; private set; }
