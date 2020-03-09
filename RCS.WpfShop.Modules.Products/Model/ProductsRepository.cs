@@ -14,7 +14,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         { }
 
         private static volatile ProductsRepository instance;
-        private static readonly object syncRoot = new Object();
+        private static readonly object syncRoot = new object();
 
         public static ProductsRepository Instance
         {

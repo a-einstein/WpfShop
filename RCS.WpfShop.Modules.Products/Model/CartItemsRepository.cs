@@ -12,7 +12,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         { }
 
         private static volatile CartItemsRepository instance;
-        private static readonly object syncRoot = new Object();
+        private static readonly object syncRoot = new object();
 
         public static CartItemsRepository Instance
         {
@@ -89,7 +89,7 @@ namespace RCS.WpfShop.Modules.Products.Model
                 : 0;
         }
 
-        public Decimal CartValue()
+        public decimal CartValue()
         {
             return List.Count > 0
                 ? List.Sum(cartItem => cartItem.Value)

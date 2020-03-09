@@ -13,7 +13,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         { }
 
         private static volatile ProductSubcategoriesRepository instance;
-        private static readonly object syncRoot = new Object();
+        private static readonly object syncRoot = new object();
 
         public static ProductSubcategoriesRepository Instance
         {

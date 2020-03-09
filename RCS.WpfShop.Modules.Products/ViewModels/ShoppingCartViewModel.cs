@@ -17,7 +17,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         private ShoppingCartViewModel() { }
 
         private static volatile ShoppingCartViewModel instance;
-        private static readonly object syncRoot = new Object();
+        private static readonly object syncRoot = new object();
 
         // Note this class is a singleton, implemented along the way (but not entirely) of https://msdn.microsoft.com/en-us/library/ff650316.aspx
         // TODO This might no longer be necessary if using RegisterSingleton.
@@ -143,11 +143,11 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         }
 
         public static readonly DependencyProperty TotalValueProperty =
-            DependencyProperty.Register(nameof(TotalValue), typeof(Decimal), typeof(ShoppingCartViewModel), new PropertyMetadata((Decimal)0));
+            DependencyProperty.Register(nameof(TotalValue), typeof(decimal), typeof(ShoppingCartViewModel), new PropertyMetadata((decimal)0));
 
-        public Decimal TotalValue
+        public decimal TotalValue
         {
-            get => (Decimal)GetValue(TotalValueProperty);
+            get => (decimal)GetValue(TotalValueProperty);
             set => SetValue(TotalValueProperty, value);
         }
         #endregion
