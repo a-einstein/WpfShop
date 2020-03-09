@@ -41,7 +41,8 @@ namespace RCS.WpfShop.Modules.Products.Model
         public CartItem AddProduct(IShoppingProduct product)
         {
             var existingCartItems = List.Where(cartItem => cartItem.ProductId == product.Id);
-            var existingCartItemsCount = existingCartItems.Count();
+            var cartItems = existingCartItems.ToList();
+            var existingCartItemsCount = cartItems.Count;
 
             CartItem productCartItem;
 
@@ -62,7 +63,7 @@ namespace RCS.WpfShop.Modules.Products.Model
             }
             else if (existingCartItemsCount == 1)
             {
-                productCartItem = existingCartItems.First();
+                productCartItem = cartItems.First();
 
                 productCartItem.Quantity += 1;
                 productCartItem.Value = productCartItem.ProductListPrice * productCartItem.Quantity;
