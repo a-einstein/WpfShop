@@ -14,7 +14,7 @@ namespace RCS.WpfShop.Common.Behaviors
         {
             base.OnAttached();
 
-            var textBox = AssociatedObject as TextBox;
+            var textBox = AssociatedObject;
             textBox.TextChanged += HandleTextChanged;
         }
 
@@ -22,7 +22,7 @@ namespace RCS.WpfShop.Common.Behaviors
         {
             base.OnDetaching();
 
-            var textBox = AssociatedObject as TextBox;
+            var textBox = AssociatedObject;
             textBox.TextChanged -= HandleTextChanged;
         }
 
