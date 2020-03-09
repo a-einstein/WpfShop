@@ -55,7 +55,7 @@ namespace RCS.WpfShop.Modules.Products.Model
                     ProductSizeUnitMeasureCode = product.SizeUnitMeasureCode,
                     ProductColor = product.Color,
                     ProductListPrice = product.ListPrice,
-                    Quantity = 1,
+                    Quantity = 1
                 };
 
                 List.Add(productCartItem);
