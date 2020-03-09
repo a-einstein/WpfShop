@@ -5,7 +5,6 @@ using RCS.WpfShop.Modules.About.Views;
 
 namespace RCS.WpfShop.Modules.About
 {
-    // TODO Change filename.
     public class AboutModule : Module
     {
         public override void RegisterTypes(IContainerRegistry containerRegistry)
