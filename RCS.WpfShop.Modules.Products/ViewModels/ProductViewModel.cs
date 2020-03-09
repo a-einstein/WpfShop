@@ -21,7 +21,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             PhotoCommand = new DelegateCommand(ShowPhoto);
         }
 
-        bool itemRead;
+        private bool itemRead;
 
         protected override async Task<bool> Read()
         {

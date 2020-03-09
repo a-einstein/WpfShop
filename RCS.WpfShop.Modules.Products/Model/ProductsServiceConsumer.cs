@@ -11,7 +11,7 @@ namespace RCS.WpfShop.Modules.Products.Model
     {
         #region Service
         // TODO actually use this in client.
-        static TimeSpan Timeout { get; } = new TimeSpan(0, 0, 15);
+        private static TimeSpan Timeout { get; } = new TimeSpan(0, 0, 15);
 
         private IProductsService productsServiceClient;
 

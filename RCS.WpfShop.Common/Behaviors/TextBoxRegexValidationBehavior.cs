@@ -26,7 +26,7 @@ namespace RCS.WpfShop.Common.Behaviors
             textBox.TextChanged -= HandleTextChanged;
         }
 
-        void HandleTextChanged(object sender, TextChangedEventArgs e)
+        private void HandleTextChanged(object sender, TextChangedEventArgs e)
         {
             var textBox = sender as TextBox;
 
