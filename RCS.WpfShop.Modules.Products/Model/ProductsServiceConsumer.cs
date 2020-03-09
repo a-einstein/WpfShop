@@ -40,7 +40,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         // Note that it can have implications on derived classes too.
 
         // Has Dispose already been called?
-        private bool disposed = false;
+        private bool disposed;
 
         public void Dispose()
         {
