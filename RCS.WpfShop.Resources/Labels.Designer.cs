@@ -70,7 +70,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Shopping Cart.
         /// </summary>
         public static string Cart {
             get {
@@ -79,7 +79,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string Category {
             get {
@@ -88,7 +88,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string Close {
             get {
@@ -97,7 +97,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to This application will close..
         /// </summary>
         public static string Closing {
             get {
@@ -106,7 +106,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Colour.
         /// </summary>
         public static string Colour {
             get {
@@ -115,7 +115,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {
             get {
@@ -124,7 +124,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Subcategory.
         /// </summary>
         public static string DetailFilter {
             get {
@@ -133,7 +133,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Details.
         /// </summary>
         public static string Details {
             get {
@@ -142,7 +142,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Powered by: .
         /// </summary>
         public static string DeveloperLabel {
             get {
@@ -151,7 +151,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to RCS.
         /// </summary>
         public static string DeveloperLinkText {
             get {
@@ -160,7 +160,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to https://github.com/a-einstein.
         /// </summary>
         public static string DeveloperLinkUri {
             get {
@@ -169,7 +169,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Documentation: .
         /// </summary>
         public static string DocumentationLabel {
             get {
@@ -178,7 +178,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to WpfShop.
         /// </summary>
         public static string DocumentationLinkText {
             get {
@@ -187,7 +187,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to https://github.com/a-einstein/WpfShop/blob/master/README.md.
         /// </summary>
         public static string DocumentationLinkUri {
             get {
@@ -196,7 +196,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string Error {
             get {
@@ -205,7 +205,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Error Details.
         /// </summary>
         public static string ErrorDetails {
             get {
@@ -214,7 +214,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Do you want the see the details?.
         /// </summary>
         public static string ErrorDetailsWanted {
             get {
@@ -223,7 +223,9 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to There is a problem using our data service.
+        ///
+        ///Please use the refresh button, or try again later..
         /// </summary>
         public static string ErrorService {
             get {
@@ -232,7 +234,9 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to There is an unknown problem.
+        ///
+        ///Do you want the see the details?.
         /// </summary>
         public static string ErrorUnknown {
             get {
@@ -241,7 +245,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string Filter {
             get {
@@ -250,7 +254,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Id.
         /// </summary>
         public static string Id {
             get {
@@ -259,7 +263,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Shop +.
         /// </summary>
         public static string IncreaseProduct {
             get {
@@ -268,7 +272,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Initializing....
         /// </summary>
         public static string Initializing {
             get {
@@ -277,7 +281,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Items.
         /// </summary>
         public static string Items {
             get {
@@ -286,7 +290,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string MasterFilter {
             get {
@@ -295,7 +299,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Model.
         /// </summary>
         public static string Model {
             get {
@@ -304,7 +308,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
             get {
@@ -313,7 +317,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to About.
         /// </summary>
         public static string NavigateAbout {
             get {
@@ -322,7 +326,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Shop.
         /// </summary>
         public static string NavigateShop {
             get {
@@ -331,7 +335,8 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Nothing found.
+        ///Please try a different query..
         /// </summary>
         public static string NotFound {
             get {
@@ -340,7 +345,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Price.
         /// </summary>
         public static string Price {
             get {
@@ -349,7 +354,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Products.
         /// </summary>
         public static string Products {
             get {
@@ -358,7 +363,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to X.
         /// </summary>
         public static string Remove {
             get {
@@ -367,7 +372,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Searching....
         /// </summary>
         public static string Searching {
             get {
@@ -376,7 +381,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to CyclOne.
         /// </summary>
         public static string ShopName {
             get {
@@ -385,7 +390,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Size.
         /// </summary>
         public static string Size {
             get {
@@ -394,7 +399,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Name or Colour.
         /// </summary>
         public static string TextFilter {
             get {
@@ -403,7 +408,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Total value.
         /// </summary>
         public static string TotalValue {
             get {
@@ -412,7 +417,8 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to An update is available.
+        ///Would you like to update the application now?.
         /// </summary>
         public static string UpdateAvailable {
             get {
@@ -421,7 +427,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Failed to check for update..
         /// </summary>
         public static string UpdateCheckFailed {
             get {
@@ -430,7 +436,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to You can continue using this version..
         /// </summary>
         public static string UpdateContinueCurrent {
             get {
@@ -439,7 +445,8 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to You will be lead to the support page,
+        ///where you can find installation instructions..
         /// </summary>
         public static string UpdateInstructions {
             get {
@@ -448,7 +455,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to There is not enough information to finish the update..
         /// </summary>
         public static string UpdateNoInformation {
             get {
@@ -457,7 +464,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Updating.
         /// </summary>
         public static string Updating {
             get {
@@ -466,7 +473,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Version: .
         /// </summary>
         public static string VersionLabel {
             get {
@@ -475,7 +482,7 @@ namespace RCS.WpfShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Weight.
         /// </summary>
         public static string Weight {
             get {
