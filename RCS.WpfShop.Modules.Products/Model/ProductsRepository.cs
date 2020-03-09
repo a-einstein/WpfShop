@@ -14,7 +14,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         { }
 
         private static volatile ProductsRepository instance;
-        private static object syncRoot = new Object();
+        private static readonly object syncRoot = new object();
 
         public static ProductsRepository Instance
         {
@@ -38,7 +38,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         // TODO This should get paged with an optional pagesize.
         public async Task<IList<ProductsOverviewObject>> ReadList(ProductCategory category, ProductSubcategory subcategory, string namePart)
         {
-            var productsOverview = new ProductsOverviewList();
+            ProductsOverviewList productsOverview;
 
             try
             {

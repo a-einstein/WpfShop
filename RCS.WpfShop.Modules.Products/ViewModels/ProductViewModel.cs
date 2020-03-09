@@ -21,7 +21,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             PhotoCommand = new DelegateCommand(ShowPhoto);
         }
 
-        bool itemRead;
+        private bool itemRead;
 
         protected override async Task<bool> Read()
         {
@@ -50,8 +50,8 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         // Note this does not work as explicit interface implementation.
         public ICommand CartCommand
         {
-            get { return (ICommand)GetValue(CartCommandProperty); }
-            set { SetValue(CartCommandProperty, value); }
+            get => (ICommand)GetValue(CartCommandProperty);
+            set => SetValue(CartCommandProperty, value);
         }
 
         private void CartProduct(Product product)
@@ -66,8 +66,8 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         public ICommand PhotoCommand
         {
-            get { return (ICommand)GetValue(PhotoCommandProperty); }
-            private set { SetValue(PhotoCommandProperty, value); }
+            get => (ICommand)GetValue(PhotoCommandProperty);
+            private set => SetValue(PhotoCommandProperty, value);
         }
 
         protected void ShowPhoto()

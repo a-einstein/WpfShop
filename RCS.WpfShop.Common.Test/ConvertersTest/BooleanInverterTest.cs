@@ -11,7 +11,7 @@ namespace RCS.WpfShop.Common.Converters.Test
         {
             var target = new BooleanInverter();
 
-            var result = (Boolean)target.Convert(true, null, null, null);
+            var result = (bool)target.Convert(true, null, null, null);
 
             Assert.IsFalse(result);
         }
@@ -21,7 +21,7 @@ namespace RCS.WpfShop.Common.Converters.Test
         {
             var target = new BooleanInverter();
 
-            var result = (Boolean)target.ConvertBack(true, null, null, null);
+            var result = (bool)target.ConvertBack(true, null, null, null);
 
             Assert.IsFalse(result);
         }

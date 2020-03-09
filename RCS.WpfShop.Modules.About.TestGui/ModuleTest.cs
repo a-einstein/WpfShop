@@ -7,9 +7,9 @@ namespace RCS.WpfShop.Modules.About.TestGui
     public class ModuleTest : GuiTest
     {
         #region Class level
-        private static string destination = "About";
-        private static string mainViewName = "AboutView";
-        private static string[] widgetNames = { };
+        private static readonly string destination = "About";
+        private static readonly string mainViewName = "AboutView";
+        private static readonly string[] widgetNames = { };
 
         [ClassInitialize]
         public static void InitializeClass(TestContext testContext)

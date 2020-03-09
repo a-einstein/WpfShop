@@ -77,8 +77,8 @@ namespace RCS.WpfShop.ViewModels
 
         public ObservableCollection<Destination> MainViews
         {
-            get { return (ObservableCollection<Destination>)GetValue(MainViewsProperty); }
-            set { SetValue(MainViewsProperty, value); }
+            get => (ObservableCollection<Destination>)GetValue(MainViewsProperty);
+            set => SetValue(MainViewsProperty, value);
         }
 
         public static readonly DependencyProperty NavigateCommandProperty =
@@ -86,8 +86,8 @@ namespace RCS.WpfShop.ViewModels
 
         public ICommand NavigateCommand
         {
-            get { return (ICommand)GetValue(NavigateCommandProperty); }
-            set { SetValue(NavigateCommandProperty, value); }
+            get => (ICommand)GetValue(NavigateCommandProperty);
+            set => SetValue(NavigateCommandProperty, value);
         }
 
         private void Navigate(Destination destination)

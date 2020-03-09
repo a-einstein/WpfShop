@@ -28,8 +28,8 @@ namespace RCS.WpfShop.Common.Controls
 
         public string Text
         {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
+            get => (string)GetValue(TextProperty);
+            set => SetValue(TextProperty, value);
         }
         #endregion
 
@@ -40,8 +40,8 @@ namespace RCS.WpfShop.Common.Controls
 
         public DelegateCommand<ClearableTextBox> ClearCommand
         {
-            get { return (DelegateCommand<ClearableTextBox>)GetValue(ClearCommandProperty); }
-            set { SetValue(ClearCommandProperty, value); }
+            get => (DelegateCommand<ClearableTextBox>)GetValue(ClearCommandProperty);
+            set => SetValue(ClearCommandProperty, value);
         }
 
         private static void Clear(ClearableTextBox clearableTextBox)
@@ -58,7 +58,7 @@ namespace RCS.WpfShop.Common.Controls
         #region Behaviors
         public IList<Behavior> TextBoxBehaviors
         {
-            get { return Interaction.GetBehaviors(textBox); }
+            get => Interaction.GetBehaviors(textBox);
             set
             {
                 var behaviors = TextBoxBehaviors;

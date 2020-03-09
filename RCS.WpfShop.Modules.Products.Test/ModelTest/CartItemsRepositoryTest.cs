@@ -12,12 +12,12 @@ namespace RCS.WpfShop.Modules.Products.Model.Test
             var products = ProductsRepository.Instance;
             products.Clear();
 
-            int productId1 = 1;
+            var productId1 = 1;
             decimal price1 = 10;
             var product1 = ProductsOverviewObject(productId1, price1);
             products.List.Add(product1);
 
-            int productId2 = 2;
+            var productId2 = 2;
             decimal price2 = 20;
             var product2 = ProductsOverviewObject(productId2, price2);
             products.List.Add(product2);

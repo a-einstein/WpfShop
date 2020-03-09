@@ -21,8 +21,8 @@ namespace RCS.WpfShop.Common.Controls
 
         public Uri NavigateUri
         {
-            get { return (Uri)GetValue(NavigateUriProperty); }
-            set { SetValue(NavigateUriProperty, value); }
+            get => (Uri)GetValue(NavigateUriProperty);
+            set => SetValue(NavigateUriProperty, value);
         }
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
@@ -35,8 +35,8 @@ namespace RCS.WpfShop.Common.Controls
 
         public string Text
         {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
+            get => (string)GetValue(TextProperty);
+            set => SetValue(TextProperty, value);
         }
     }
 }

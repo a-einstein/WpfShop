@@ -15,8 +15,8 @@ namespace RCS.WpfShop.Common.Windows
         // Note this window is made specific to this MVVM concept.
         public View View
         {
-            get { return viewControl.Content as View; }
-            set { viewControl.Content = value; }
+            get => viewControl.Content as View;
+            set => viewControl.Content = value;
         }
 
         private bool activatedYet;
@@ -30,7 +30,7 @@ namespace RCS.WpfShop.Common.Windows
             {
                 activatedYet = true;
 
-                SetBinding(Window.TitleProperty, new Binding(nameof(Title)) { Source = View?.ViewModel });
+                SetBinding(TitleProperty, new Binding(nameof(Title)) { Source = View?.ViewModel });
 
                 // HACK No await as this method cannot be made async.
                 View?.ViewModel?.Refresh();

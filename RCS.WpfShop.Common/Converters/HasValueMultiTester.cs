@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 
 namespace RCS.WpfShop.Common.Converters
 {
@@ -7,12 +8,7 @@ namespace RCS.WpfShop.Common.Converters
     {
         public override object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            bool hasValue = false;
-
-            foreach (var item in values)
-            {
-                hasValue = hasValue || HasValueTester.HasValue(item);
-            }       
+            var hasValue = values.Aggregate(false, (current, item) => current || HasValueTester.HasValue(item));
 
             // Invert if any parameter is passed.
             var result = parameter != null

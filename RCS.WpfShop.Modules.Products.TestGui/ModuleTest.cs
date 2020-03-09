@@ -8,9 +8,9 @@ namespace RCS.WpfShop.Modules.Products.TestGui
     public class ModuleTest : GuiTest
     {
         #region Class level
-        private static string destination = "Shop";
-        private static string mainViewName = "ProductsView";
-        private static string[] widgetNames = { "ShoppingCartView" };
+        private static readonly string destination = "Shop";
+        private static readonly string mainViewName = "ProductsView";
+        private static readonly string[] widgetNames = { "ShoppingCartView" };
 
         // Note this must have a distinctive signature: static, public, no return value, take single parameter type TestContext.
         // TODO Would like to share this among classes, but currently see no way because of the static nature and the ClassInitialize, 
@@ -53,7 +53,7 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             // TODO Data could also retrieved and tested with the filter only partially filled.
 
             var categoriesExpected = serviceClient.Object.GetProductCategories();
-            int categoryExpectedOrder = 2;
+            var categoryExpectedOrder = 2;
             var categoryExpected = categoriesExpected[categoryExpectedOrder - 1];
 
             var masterFilterComboBox = TestSession.FindElementByAccessibilityId("MasterFilterComboBox");
@@ -68,7 +68,7 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             masterFilterComboBox.FindElementByName(categoryExpected.Name).Click();
 
             var subcategoriesExpected = serviceClient.Object.GetProductSubcategories();
-            int subcategoryExpectedOrder = 1;
+            var subcategoryExpectedOrder = 1;
             var subcategoryExpected = subcategoriesExpected.FindAll(subcategory => subcategory.ProductCategoryId == categoryExpected.Id)[subcategoryExpectedOrder - 1];
 
             var detailFilterComboBox = TestSession.FindElementByAccessibilityId("DetailFilterComboBox");
@@ -76,7 +76,7 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             detailFilterComboBox.Click();
             detailFilterComboBox.FindElementByName(subcategoryExpected.Name).Click();
 
-            string searchString = $"{categoryExpected.Id}.{subcategoryExpected.Id}";
+            var searchString = $"{categoryExpected.Id}.{subcategoryExpected.Id}";
             var productsOverviewExpected = serviceClient.Object.GetProductsOverviewBy(categoryExpected.Id, subcategoryExpected.Id, searchString);
 
             // Note this is a UserControl.

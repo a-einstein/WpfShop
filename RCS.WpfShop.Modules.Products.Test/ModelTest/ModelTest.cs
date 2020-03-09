@@ -10,7 +10,7 @@ namespace RCS.WpfShop.Modules.Products.Model.Test
             var instance = new ProductsOverviewObject()
             {
                 Color = "a Color",
-                ListPrice = (decimal)id,
+                ListPrice = id,
                 Name = Format("Name", id),
                 ProductCategory = Format("ProductCategory", id),
                 Id = id,

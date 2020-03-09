@@ -17,7 +17,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         private ShoppingCartViewModel() { }
 
         private static volatile ShoppingCartViewModel instance;
-        private static object syncRoot = new Object();
+        private static readonly object syncRoot = new object();
 
         // Note this class is a singleton, implemented along the way (but not entirely) of https://msdn.microsoft.com/en-us/library/ff650316.aspx
         // TODO This might no longer be necessary if using RegisterSingleton.
@@ -63,7 +63,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                 initialized = true;
             }
 
-            return (initialized);
+            return initialized;
         }
 
         protected override void SetCommands()
@@ -85,8 +85,8 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         public ICommand DeleteCommand
         {
-            get { return (ICommand)GetValue(DeleteCommandProperty); }
-            private set { SetValue(DeleteCommandProperty, value); }
+            get => (ICommand)GetValue(DeleteCommandProperty);
+            private set => SetValue(DeleteCommandProperty, value);
         }
 
         private void Delete(CartItem cartItem)
@@ -138,17 +138,17 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         public int ProductItemsCount
         {
-            get { return (int)GetValue(ProductItemCountProperty); }
-            set { SetValue(ProductItemCountProperty, value); }
+            get => (int)GetValue(ProductItemCountProperty);
+            set => SetValue(ProductItemCountProperty, value);
         }
 
         public static readonly DependencyProperty TotalValueProperty =
-            DependencyProperty.Register(nameof(TotalValue), typeof(Decimal), typeof(ShoppingCartViewModel), new PropertyMetadata((Decimal)0));
+            DependencyProperty.Register(nameof(TotalValue), typeof(decimal), typeof(ShoppingCartViewModel), new PropertyMetadata((decimal)0));
 
-        public Decimal TotalValue
+        public decimal TotalValue
         {
-            get { return (Decimal)GetValue(TotalValueProperty); }
-            set { SetValue(TotalValueProperty, value); }
+            get => (decimal)GetValue(TotalValueProperty);
+            set => SetValue(TotalValueProperty, value);
         }
         #endregion
     }

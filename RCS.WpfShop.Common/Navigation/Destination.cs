@@ -12,8 +12,8 @@ namespace RCS.WpfShop.Common.Navigation
 
         public string DisplayName
         {
-            get { return (string)GetValue(DisplayNameProperty); }
-            set { SetValue(DisplayNameProperty, value); }
+            get => (string)GetValue(DisplayNameProperty);
+            set => SetValue(DisplayNameProperty, value);
         }
 
         public static readonly DependencyProperty UriProperty =
@@ -21,8 +21,8 @@ namespace RCS.WpfShop.Common.Navigation
 
         public Uri Uri
         {
-            get { return (Uri)GetValue(UriProperty); }
-            set { SetValue(UriProperty, value); }
+            get => (Uri)GetValue(UriProperty);
+            set => SetValue(UriProperty, value);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace RCS.WpfShop.ServiceClients.Products.Mock
         #region Moq
         private static Mock<IProductsService> mock;
 
-        static public Mock<IProductsService> Mock
+        public static Mock<IProductsService> Mock
         {
             get
             {
@@ -24,7 +24,7 @@ namespace RCS.WpfShop.ServiceClients.Products.Mock
             }
         }
 
-        static public void Initialize()
+        public static void Initialize()
         {
             // Note this enables the use of he application for inspection of GUI element with with the same configuration
             // TODO Actually IProductsService could do without using Moq. Make better use of it.
@@ -50,8 +50,8 @@ namespace RCS.WpfShop.ServiceClients.Products.Mock
 
             const int categoryIdExpected = 2;
             const int subcategoryIdExpected = 3;
-            string searchStringExpected = $"{categoryIdExpected}.{subcategoryIdExpected}";
-            string colorExpectedBase = $"Color {searchStringExpected}";
+            var searchStringExpected = $"{categoryIdExpected}.{subcategoryIdExpected}";
+            var colorExpectedBase = $"Color {searchStringExpected}";
 
             mock.Setup(service => service.GetProductsOverviewBy(categoryIdExpected, subcategoryIdExpected, searchStringExpected))
                 .Returns(new ProductsOverviewList() {

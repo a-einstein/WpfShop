@@ -36,7 +36,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                 initialized = true;
             }
 
-            return (initialized);
+            return initialized;
         }
 
         protected override void SetCommands()
@@ -57,7 +57,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                 ProductSubcategoriesRepository.Instance.ReadList()
             );
 
-            var succeeded = results.All<bool>(result => result == true);
+            var succeeded = results.All(result => result);
 
             if (succeeded)
                 // Need to update on the UI thread.
@@ -78,14 +78,14 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                         detailFilterItemsSource.Add(item);
                     }
 
-                    int masterDefaultId = 1;
+                    var masterDefaultId = 1;
                     MasterFilterValue = MasterFilterItems?.FirstOrDefault(category => category.Id == masterDefaultId);
 
                     // Note that MasterFilterValue also determines DetailFilterItems.
-                    int detailDefaultId = 1;
+                    var detailDefaultId = 1;
                     DetailFilterValue = DetailFilterItems?.FirstOrDefault(subcategory => subcategory.Id == detailDefaultId);
 
-                    TextFilterValue = default(string);
+                    TextFilterValue = default;
                 });
 
             return succeeded;
@@ -149,8 +149,8 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         // Note this does not work as explicit interface implementation.
         public ICommand CartCommand
         {
-            get { return (ICommand)GetValue(CartCommandProperty); }
-            set { SetValue(CartCommandProperty, value); }
+            get => (ICommand)GetValue(CartCommandProperty);
+            set => SetValue(CartCommandProperty, value);
         }
 
         private void CartProduct(ProductsOverviewObject productsOverviewObject)

@@ -8,8 +8,8 @@ namespace RCS.WpfShop.Common.Views
         // This cannot be uses instead of DataContext from XAML.
         public ViewModel ViewModel
         {
-            get { return DataContext as ViewModel; }
-            set { DataContext = value; }
+            get => DataContext as ViewModel;
+            set => DataContext = value;
         }
     }
 }

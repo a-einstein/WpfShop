@@ -11,7 +11,7 @@ namespace RCS.WpfShop.Modules.Products.Model
     {
         #region Service
         // TODO actually use this in client.
-        static TimeSpan Timeout { get; } = new TimeSpan(0, 0, 15);
+        private static TimeSpan Timeout { get; } = new TimeSpan(0, 0, 15);
 
         private IProductsService productsServiceClient;
 
@@ -40,7 +40,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         // Note that it can have implications on derived classes too.
 
         // Has Dispose already been called?
-        private bool disposed = false;
+        private bool disposed;
 
         public void Dispose()
         {
@@ -80,7 +80,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         private static DateTime serviceErrorFirstDisplayed;
 
         // This value is tested on 3 service calls at startup. There is no multiplication operator.
-        private static TimeSpan serviceErrorGraceTime = ProductsServiceConsumer.Timeout + ProductsServiceConsumer.Timeout;
+        private static readonly TimeSpan serviceErrorGraceTime = Timeout + Timeout;
 
         protected static void DisplayAlert(Exception exception)
         {
