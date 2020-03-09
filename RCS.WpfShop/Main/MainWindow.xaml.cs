@@ -38,7 +38,7 @@ namespace RCS.WpfShop.Main
             regionManager.RequestNavigate(Regions.MainWindowContent, new Uri(nameof(MainView), UriKind.Relative));
 
             // TODO Follow Category in Title.
-            SetBinding(Window.TitleProperty, new Binding(nameof(Title)) { Source = (regionManager.Regions[Regions.MainWindowContent].ActiveViews.FirstOrDefault() as View).ViewModel });
+            SetBinding(TitleProperty, new Binding(nameof(Title)) { Source = (regionManager.Regions[Regions.MainWindowContent].ActiveViews.FirstOrDefault() as View).ViewModel });
         }
         #endregion
     }

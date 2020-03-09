@@ -80,7 +80,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         private static DateTime serviceErrorFirstDisplayed;
 
         // This value is tested on 3 service calls at startup. There is no multiplication operator.
-        private static readonly TimeSpan serviceErrorGraceTime = ProductsServiceConsumer.Timeout + ProductsServiceConsumer.Timeout;
+        private static readonly TimeSpan serviceErrorGraceTime = Timeout + Timeout;
 
         protected static void DisplayAlert(Exception exception)
         {

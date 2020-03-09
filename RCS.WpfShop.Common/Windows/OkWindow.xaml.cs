@@ -30,7 +30,7 @@ namespace RCS.WpfShop.Common.Windows
             {
                 activatedYet = true;
 
-                SetBinding(Window.TitleProperty, new Binding(nameof(Title)) { Source = View?.ViewModel });
+                SetBinding(TitleProperty, new Binding(nameof(Title)) { Source = View?.ViewModel });
 
                 // HACK No await as this method cannot be made async.
                 View?.ViewModel?.Refresh();
