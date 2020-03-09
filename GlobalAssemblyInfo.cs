@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Resources;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
@@ -29,3 +30,17 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("0.15.0.0")]
 [assembly: AssemblyFileVersion("0.15.0.0")]
+
+//In order to begin building localizable applications, set 
+//<UICulture>CultureYouAreCodingWith</UICulture> in your .csproj file
+//inside a <PropertyGroup>.  For example, if you are using US english
+//in your source files, set the <UICulture> to en-US.  Then uncomment
+//the NeutralResourceLanguage attribute below.  Update the "en-US" in
+//the line below to match the UICulture setting in the project file.
+
+// Note: better leave out the <UICulture> setting. 
+// It led to an exception at startup as it apparently could not find the proper resource file,
+// because of file naming and folder structure in bin.
+
+// Testing is done by setting the 'Windows Display Language,' after which a logout is necessary.
+[assembly: NeutralResourcesLanguage("en-GB")]
