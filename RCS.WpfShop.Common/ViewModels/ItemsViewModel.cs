@@ -10,7 +10,7 @@ namespace RCS.WpfShop.Common.ViewModels
     {
         #region Items
         public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register(nameof(Items), typeof(ObservableCollection<TItem>), typeof(ItemsViewModel<TItem>), new PropertyMetadata(new PropertyChangedCallback(Items_Changed)));
+            DependencyProperty.Register(nameof(Items), typeof(ObservableCollection<TItem>), typeof(ItemsViewModel<TItem>), new PropertyMetadata(Items_Changed));
 
         // TODO Some sort of view would be more convenient to enable sorting in situ (filtering is no longer done so). But remember: that no longer applies when paging.
         public ObservableCollection<TItem> Items
