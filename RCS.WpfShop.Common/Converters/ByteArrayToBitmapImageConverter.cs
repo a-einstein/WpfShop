@@ -16,9 +16,9 @@ namespace RCS.WpfShop.Common.Converters
         {
             if (value is byte[] byteArray)
             {
-                MemoryStream memoryStream = new MemoryStream(byteArray);
+                var memoryStream = new MemoryStream(byteArray);
 
-                BitmapImage bitmapImage = new BitmapImage();
+                var bitmapImage = new BitmapImage();
 
                 bitmapImage.BeginInit();
                 bitmapImage.StreamSource = memoryStream; // Bijeffect: omzetting JPEG -> ARGB.

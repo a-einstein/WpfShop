@@ -11,8 +11,8 @@ namespace RCS.WpfShop.Common.Converters
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             // Note this test should not be necessary as Weight ought to have a default of 0.
-            decimal weight = values[0] != DependencyProperty.UnsetValue && values[0] != null ? (decimal)values[0] : 0;
-            string unit = values[1] as string;
+            var weight = values[0] != DependencyProperty.UnsetValue && values[0] != null ? (decimal)values[0] : 0;
+            var unit = values[1] as string;
 
             return (weight != 0)
                 ? $"{weight} {unit}"

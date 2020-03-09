@@ -53,7 +53,7 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             // TODO Data could also retrieved and tested with the filter only partially filled.
 
             var categoriesExpected = serviceClient.Object.GetProductCategories();
-            int categoryExpectedOrder = 2;
+            var categoryExpectedOrder = 2;
             var categoryExpected = categoriesExpected[categoryExpectedOrder - 1];
 
             var masterFilterComboBox = TestSession.FindElementByAccessibilityId("MasterFilterComboBox");
@@ -68,7 +68,7 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             masterFilterComboBox.FindElementByName(categoryExpected.Name).Click();
 
             var subcategoriesExpected = serviceClient.Object.GetProductSubcategories();
-            int subcategoryExpectedOrder = 1;
+            var subcategoryExpectedOrder = 1;
             var subcategoryExpected = subcategoriesExpected.FindAll(subcategory => subcategory.ProductCategoryId == categoryExpected.Id)[subcategoryExpectedOrder - 1];
 
             var detailFilterComboBox = TestSession.FindElementByAccessibilityId("DetailFilterComboBox");
@@ -76,7 +76,7 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             detailFilterComboBox.Click();
             detailFilterComboBox.FindElementByName(subcategoryExpected.Name).Click();
 
-            string searchString = $"{categoryExpected.Id}.{subcategoryExpected.Id}";
+            var searchString = $"{categoryExpected.Id}.{subcategoryExpected.Id}";
             var productsOverviewExpected = serviceClient.Object.GetProductsOverviewBy(categoryExpected.Id, subcategoryExpected.Id, searchString);
 
             // Note this is a UserControl.

@@ -8,7 +8,7 @@ namespace RCS.WpfShop.Common.Converters
     {
         public override object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            bool hasValue = values.Aggregate(false, (current, item) => current || HasValueTester.HasValue(item));
+            var hasValue = values.Aggregate(false, (current, item) => current || HasValueTester.HasValue(item));
 
             // Invert if any parameter is passed.
             var result = parameter != null

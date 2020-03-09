@@ -50,8 +50,8 @@ namespace RCS.WpfShop.ServiceClients.Products.Mock
 
             const int categoryIdExpected = 2;
             const int subcategoryIdExpected = 3;
-            string searchStringExpected = $"{categoryIdExpected}.{subcategoryIdExpected}";
-            string colorExpectedBase = $"Color {searchStringExpected}";
+            var searchStringExpected = $"{categoryIdExpected}.{subcategoryIdExpected}";
+            var colorExpectedBase = $"Color {searchStringExpected}";
 
             mock.Setup(service => service.GetProductsOverviewBy(categoryIdExpected, subcategoryIdExpected, searchStringExpected))
                 .Returns(new ProductsOverviewList() {

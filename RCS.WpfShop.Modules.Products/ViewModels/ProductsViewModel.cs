@@ -78,11 +78,11 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                         detailFilterItemsSource.Add(item);
                     }
 
-                    int masterDefaultId = 1;
+                    var masterDefaultId = 1;
                     MasterFilterValue = MasterFilterItems?.FirstOrDefault(category => category.Id == masterDefaultId);
 
                     // Note that MasterFilterValue also determines DetailFilterItems.
-                    int detailDefaultId = 1;
+                    var detailDefaultId = 1;
                     DetailFilterValue = DetailFilterItems?.FirstOrDefault(subcategory => subcategory.Id == detailDefaultId);
 
                     TextFilterValue = default;

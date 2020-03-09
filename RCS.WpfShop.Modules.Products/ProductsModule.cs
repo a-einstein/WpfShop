@@ -20,7 +20,7 @@ namespace RCS.WpfShop.Modules.Products
         {
             base.RegisterTypes(containerRegistry);
 
-            IUnityContainer container = containerRegistry.GetContainer();
+            var container = containerRegistry.GetContainer();
 
             // Register the instance on the container instead of on the registry to be able to resolve, otherwise a public constructor is needed.
             // TODO Probably alternatively RegisterSingleton could be used, simplifying instantiation in the class.
