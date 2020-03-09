@@ -46,31 +46,30 @@ namespace RCS.WpfShop.Modules.Products.Model
 
             CartItem productCartItem;
 
-            if (existingCartItemsCount == 0)
+            switch (existingCartItemsCount)
             {
-                productCartItem = new CartItem()
-                {
-                    ProductId = product.Id.Value,
-                    Name = product.Name,
-                    ProductSize = product.Size,
-                    ProductSizeUnitMeasureCode = product.SizeUnitMeasureCode,
-                    ProductColor = product.Color,
-                    ProductListPrice = product.ListPrice,
-                    Quantity = 1
-                };
+                case 0:
+                    productCartItem = new CartItem()
+                    {
+                        ProductId = product.Id.Value,
+                        Name = product.Name,
+                        ProductSize = product.Size,
+                        ProductSizeUnitMeasureCode = product.SizeUnitMeasureCode,
+                        ProductColor = product.Color,
+                        ProductListPrice = product.ListPrice,
+                        Quantity = 1
+                    };
 
-                List.Add(productCartItem);
-            }
-            else if (existingCartItemsCount == 1)
-            {
-                productCartItem = cartItems.First();
+                    List.Add(productCartItem);
+                    break;
+                case 1:
+                    productCartItem = cartItems.First();
 
-                productCartItem.Quantity += 1;
-                productCartItem.Value = productCartItem.ProductListPrice * productCartItem.Quantity;
-            }
-            else
-            {
-                throw new Exception(cartItemsNumberExceptionMessage);
+                    productCartItem.Quantity += 1;
+                    productCartItem.Value = productCartItem.ProductListPrice * productCartItem.Quantity;
+                    break;
+                default:
+                    throw new Exception(cartItemsNumberExceptionMessage);
             }
 
             return productCartItem;
