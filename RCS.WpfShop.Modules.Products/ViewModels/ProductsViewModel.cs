@@ -36,7 +36,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                 initialized = true;
             }
 
-            return (initialized);
+            return initialized;
         }
 
         protected override void SetCommands()

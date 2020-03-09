@@ -30,7 +30,7 @@ namespace RCS.WpfShop.Common.Behaviors
         {
             var textBox = sender as TextBox;
 
-            var isValid = (Regex.IsMatch(textBox.Text, ValidExpression, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+            var isValid = Regex.IsMatch(textBox.Text, ValidExpression, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
 
             // Use Background as it stands out more.
             // This could be replaced by entire styles.

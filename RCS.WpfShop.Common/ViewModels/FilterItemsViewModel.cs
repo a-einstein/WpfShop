@@ -27,7 +27,7 @@ namespace RCS.WpfShop.Common.ViewModels
                 Message = string.Empty;
             }
 
-            return (initialized);
+            return initialized;
         }
 
         protected override void SetCommands()
@@ -43,7 +43,7 @@ namespace RCS.WpfShop.Common.ViewModels
 
             var succeeded = await ReadFiltered();
 
-            Message = (succeeded && ItemsCount == 0) ? Labels.NotFound : string.Empty;
+            Message = succeeded && ItemsCount == 0 ? Labels.NotFound : string.Empty;
 
             return succeeded;
         }

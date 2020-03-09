@@ -14,7 +14,7 @@ namespace RCS.WpfShop.Common.Converters
             var weight = values[0] != DependencyProperty.UnsetValue && values[0] != null ? (decimal)values[0] : 0;
             var unit = values[1] as string;
 
-            return (weight != 0)
+            return weight != 0
                 ? $"{weight} {unit}"
                 : null;
         }
