@@ -92,7 +92,7 @@ namespace RCS.WpfShop.Common.ViewModels
         // TODO Some sort of view would be more convenient.
         private void SetDetailFilterItems(bool addEmptyElement = true)
         {
-            var detailFilterItemsSelection = detailFilterItemsSource.Where(DetailFilterItemsSelector());
+            var detailFilterItemsSelection = detailFilterItemsSource.Where(DetailFilterItemsSelector(addEmptyElement));
 
             var detailFilterItems = new ObservableCollection<TDetailFilterItem>(); ;
 
