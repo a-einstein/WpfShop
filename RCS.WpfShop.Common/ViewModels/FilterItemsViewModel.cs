@@ -94,7 +94,7 @@ namespace RCS.WpfShop.Common.ViewModels
         {
             var detailFilterItemsSelection = detailFilterItemsSource.Where(DetailFilterItemsSelector(addEmptyElement));
 
-            var detailFilterItems = new ObservableCollection<TDetailFilterItem>(); ;
+            var detailFilterItems = new ObservableCollection<TDetailFilterItem>();
 
             // Store in a temporary structure first to avoid bothering the GUI.
             // Note that the query is executed on the foreach.
