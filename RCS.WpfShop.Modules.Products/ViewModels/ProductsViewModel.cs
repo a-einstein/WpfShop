@@ -57,7 +57,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                 ProductSubcategoriesRepository.Instance.ReadList()
             );
 
-            var succeeded = results.All(result => result == true);
+            var succeeded = results.All(result => result);
 
             if (succeeded)
                 // Need to update on the UI thread.
