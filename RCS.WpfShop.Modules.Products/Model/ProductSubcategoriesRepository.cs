@@ -38,7 +38,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         {
             Clear();
 
-            var subcategories = new ProductSubcategoryList();
+            ProductSubcategoryList subcategories;
 
             try
             {

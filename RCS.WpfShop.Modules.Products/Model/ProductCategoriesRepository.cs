@@ -38,7 +38,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         {
             Clear();
 
-            var categories = new ProductCategoryList();
+            ProductCategoryList categories;
 
             try
             {
