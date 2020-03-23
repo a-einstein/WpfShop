@@ -105,7 +105,10 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>60EEC11796D0B27A0FD1F1722ABCAA2510B51CE2</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>6C56C7A3996FA72A066F5F47500A6EDEDCA963FA</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>RCS.WpfShop_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore">
@@ -186,6 +189,7 @@
       <SubType>Designer</SubType>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="RCS.WpfShop_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RCS.WpfShop.Common\RCS.WpfShop.Common.csproj">
