@@ -81,9 +81,6 @@
     <CertificateThumbprint>7BCD918FAE853F91511BF1141865D6B8BF392247</CertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>RCS.WpfShop_TemporaryKey.pfx</ManifestKeyFile>
-  </PropertyGroup>
-  <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
