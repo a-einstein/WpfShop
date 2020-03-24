@@ -79,6 +79,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <CertificateThumbprint>7BCD918FAE853F91511BF1141865D6B8BF392247</CertificateThumbprint>
+    <ManifestCertificateThumbprint>7BCD918FAE853F91511BF1141865D6B8BF392247</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -103,9 +104,6 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ManifestCertificateThumbprint>6C56C7A3996FA72A066F5F47500A6EDEDCA963FA</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>RCS.WpfShop_TemporaryKey.pfx</ManifestKeyFile>
