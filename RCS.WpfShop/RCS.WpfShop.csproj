@@ -27,7 +27,7 @@
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
+    <MapFileExtensions>false</MapFileExtensions>
     <InstallUrl>https://rcsadventureworac85.blob.core.windows.net/wpfshop-releases/latest/</InstallUrl>
     <UpdateUrl>https://rcsadventureworac85.blob.core.windows.net/wpfshop-releases/latest/</UpdateUrl>
     <SupportUrl>https://github.com/a-einstein/WpfShop/blob/master/README.md</SupportUrl>
