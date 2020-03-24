@@ -189,7 +189,6 @@
       <SubType>Designer</SubType>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="RCS.WpfShop_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RCS.WpfShop.Common\RCS.WpfShop.Common.csproj">
