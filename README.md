@@ -4,7 +4,7 @@
 Working desktop application for test and demo purpose based on WPF. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
-* **Currently the deliverable is not in a working state. Use this for code review only.**
+* The ClickOnce deliverable is plug and play again. See the installation notes.
 * Makes use of own certified domain for webservice.
 * Integrated with Azure Devops build and release pipelines.
 * Mocked the data service for testing, applying Moq.
@@ -45,11 +45,11 @@ Working desktop application for test and demo purpose based on WPF. It simulates
 
 #### Installation
 The application is plug & play, but use of the data service is on request. Contact the developer ahead. 
-* Open the **[install page](https://rcsadventureworac85.blob.core.windows.net/wpfshop-releases/latest/install.htm).**
-* If needed, install the prerequisites by the 'Install' button.
-* Click the **'launch'** hyperlink, 'Open' to launch the installer, 'Install', allow it to continue when needed. 
+* Download the latest Cyclone.zip under Assets at the **[releases page](https://github.com/a-einstein/WpfShop/releases).**
+* Extract if needed.
+* Launch setup.exe, allow it to continue if needed. 
 * The application should start up right away, but may be hidden behind other windows.
 * The start menu gets a folder added: *Programs / RCS / Shopping*.
 * Uninstallation can be done by: *Control Panel / Program and Features / CyclOne*.
-* Updates are reported at startup, and can be accepted or skipped. (Reporting is not very reliable.)
-* Reverting to the previous version can also be done through the Control Panel.
+* Updates are currently not reported, but can be done manually after uninstalling.
+
