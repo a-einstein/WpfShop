@@ -7,19 +7,26 @@ using System;
 
 namespace RCS.WpfShop.TestGui
 {
-
     [TestClass]
     public class GuiTest
     {
         private const string winAppDriverUrl = "http://127.0.0.1:4723";
 
-        // Provisional dynamic retrieval of paths.
-        // TODO Improve.
-        private const string mainName = "RCS.WpfShop";
-        private static readonly string appDir = $"{AppDomain.CurrentDomain.BaseDirectory}\\..\\..\\..\\{mainName}\\bin\\Test";
-        private static readonly string appPath = $"{appDir}\\{mainName}.exe";
+        private static string mainName;
+        private static readonly string appDir;
+        private static readonly string appPath;
 
         protected static WindowsDriver<WindowsElement> TestSession { get; private set; }
+
+        static GuiTest()
+        {
+            // Use the namespace as this testclass is functionally linked to it.
+            var classNameParts = typeof(GuiTest).FullName.Split(new char[] { '.' });
+            mainName = String.Join(".", classNameParts, 0, 2);
+                
+            appDir = $"{AppDomain.CurrentDomain.BaseDirectory}\\..\\..\\..\\{mainName}\\bin\\Test";
+            appPath = $"{appDir}\\{mainName}.exe";
+        }
 
         public static void StartSession(TestContext testContext)
         {

@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RCS.WpfShop.Modules.Products.Views;
+using RCS.WpfShop.Resources;
 using RCS.WpfShop.ServiceClients.Products.Mock;
 using RCS.WpfShop.TestGui;
 
@@ -8,9 +10,9 @@ namespace RCS.WpfShop.Modules.Products.TestGui
     public class ModuleTest : GuiTest
     {
         #region Class level
-        private static readonly string destination = "Shop";
-        private static readonly string mainViewName = "ProductsView";
-        private static readonly string[] widgetNames = { "ShoppingCartView" };
+        private static readonly string destination = Labels.NavigateShop;
+        private const string mainViewName = nameof(ProductsView);
+        private static readonly string[] widgetNames = { nameof(ShoppingCartView) };
 
         // Note this must have a distinctive signature: static, public, no return value, take single parameter type TestContext.
         // TODO Would like to share this among classes, but currently see no way because of the static nature and the ClassInitialize, 
@@ -56,6 +58,7 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             var categoryExpectedOrder = 2;
             var categoryExpected = categoriesExpected[categoryExpectedOrder - 1];
 
+            // Note literals are used for the control names here as they are fields in the view classes.
             var masterFilterComboBox = TestSession.FindElementByAccessibilityId("MasterFilterComboBox");
             Assert.IsNotNull(masterFilterComboBox);
 

@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RCS.WpfShop.Modules.About.Views;
+using RCS.WpfShop.Resources;
 using RCS.WpfShop.TestGui;
 
 namespace RCS.WpfShop.Modules.About.TestGui
@@ -7,8 +9,8 @@ namespace RCS.WpfShop.Modules.About.TestGui
     public class ModuleTest : GuiTest
     {
         #region Class level
-        private static readonly string destination = "About";
-        private static readonly string mainViewName = "AboutView";
+        private static readonly string destination = Labels.NavigateAbout;
+        private const string mainViewName = nameof(AboutView);
         private static readonly string[] widgetNames = { };
 
         [ClassInitialize]
