@@ -33,16 +33,14 @@ namespace RCS.WpfShop.TestGui
 
                 // Note WinAppDriver.exe has to be started first.
 
-                // Had to install Appium.WebDriver 4.0.0.4-beta with Selenium 3.141.0 to get this working.
-                // This also implied making use of AppiumOptions.
-                // https://github.com/appium/appium-dotnet-driver/issues/226
                 TestSession = new WindowsDriver<WindowsElement>(new Uri(winAppDriverUrl), appiumOptions);
 
                 Assert.IsNotNull(TestSession);
                 Assert.IsNotNull(TestSession.SessionId);
 
-                // Set implicit timeout to 1.5 seconds to make element search to retry every 500 ms for at most three times
-                TestSession.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
+                // Set implicit timeout to multiple of 0,5 seconds to make element search to retry every 500 ms for at most three times.
+                // Currently increased for Azure environment. Note also an explicit wait on FindElement is used currently.
+                TestSession.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
             }
         }
 
@@ -71,11 +69,14 @@ namespace RCS.WpfShop.TestGui
             UPDATE 1
             Running both tests COMBINED can succeed, possibly depending on the order of execution.
             Even the whole current list of tests (including non GUI tests) has worked.
-            TODO Get this straight.
-
+ 
             UPDATE 2
             For clarity: all current tests (unit or GUI) can be run in one go.
             TODO Check whether they can be run on a buildserver (Azure) together or that the tests should be split over kinds.
+
+            UPDATE 3
+            No longer had problems while running tests from VisualStudio.
+            However, the same exception occurred in Azure, currently increased ImplicitWait.
             */
 
             // Try with explicit button and assertion.
