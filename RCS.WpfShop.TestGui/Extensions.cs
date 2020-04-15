@@ -29,11 +29,15 @@ namespace RCS.WpfShop.TestGui
 
         private static DefaultWait<WindowsDriver<AppiumWebElement>> StandardWait(WindowsDriver<AppiumWebElement> windowsDriver)
         {
-            return new DefaultWait<WindowsDriver<AppiumWebElement>>(windowsDriver)
+            var wait = new DefaultWait<WindowsDriver<AppiumWebElement>>(windowsDriver)
             {
                 Timeout = TimeSpan.FromSeconds(60),
-                PollingInterval = TimeSpan.FromSeconds(1)
+                PollingInterval = TimeSpan.FromSeconds(1),
             };
+            
+            wait.IgnoreExceptionTypes(typeof(WebDriverException));
+
+            return wait;
         }
     }
 }
