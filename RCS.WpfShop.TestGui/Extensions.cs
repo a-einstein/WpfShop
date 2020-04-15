@@ -31,10 +31,11 @@ namespace RCS.WpfShop.TestGui
         {
             var wait = new DefaultWait<WindowsDriver<AppiumWebElement>>(windowsDriver)
             {
-                Timeout = TimeSpan.FromSeconds(60),
+                Timeout = TimeSpan.FromSeconds(30),
                 PollingInterval = TimeSpan.FromSeconds(1),
             };
-            
+
+            // Note this exception will still be returned after the Timeout if the Until fails.
             wait.IgnoreExceptionTypes(typeof(WebDriverException));
 
             return wait;
