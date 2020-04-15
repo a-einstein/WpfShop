@@ -9,21 +9,31 @@ namespace RCS.WpfShop.TestGui
 {
     public static class Extensions
     {
+        // Note that elements should be identified using inspect.exe first.
+
         // Created because of various occurrences of the following:
         // OpenQA.Selenium.WebDriverException: An element could not be located on the page using the given search parameters
         // Compare with this description about the following and various approaches.
         // https://github.com/Microsoft/WinAppDriver/issues/370
         // Currently the problem only remains in an Azure pipeline, which may have a different cause.
-        public static IWebElement FindElement(this IWebDriver webDriver, By by)
+
+        public static AppiumWebElement FindElementWait(this WindowsDriver<AppiumWebElement> windowsDriver, By by)
         {
-            // Note WebDriverWait is a DefaultWait.
-            var wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(60))
+            return StandardWait(windowsDriver).Until(driver => driver.FindElement(by));
+        }
+
+        public static AppiumWebElement FindElementByAccessibilityIdWait(this WindowsDriver<AppiumWebElement> windowsDriver, string id)
+        {
+            return StandardWait(windowsDriver).Until(driver => driver.FindElementByAccessibilityId(id));
+        }
+
+        private static DefaultWait<WindowsDriver<AppiumWebElement>> StandardWait(WindowsDriver<AppiumWebElement> windowsDriver)
+        {
+            return new DefaultWait<WindowsDriver<AppiumWebElement>>(windowsDriver)
             {
+                Timeout = TimeSpan.FromSeconds(60),
                 PollingInterval = TimeSpan.FromSeconds(1)
             };
-
-            // Note that elements should be identified using inspect.exe first.
-            return wait.Until(driver => driver.FindElement(by));
         }
     }
 }

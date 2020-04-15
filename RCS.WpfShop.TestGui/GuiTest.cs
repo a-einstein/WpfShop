@@ -16,7 +16,7 @@ namespace RCS.WpfShop.TestGui
         private static readonly string appDir;
         private static readonly string appPath;
 
-        protected static WindowsDriver<WindowsElement> TestSession { get; private set; }
+        protected static WindowsDriver<AppiumWebElement> TestSession { get; private set; }
 
         static GuiTest()
         {
@@ -40,20 +40,17 @@ namespace RCS.WpfShop.TestGui
 
                 // Note WinAppDriver.exe has to be started first.
 
-                TestSession = new WindowsDriver<WindowsElement>(new Uri(winAppDriverUrl), appiumOptions);
+                // Note WindowsDriver is an AppiumDriver.
+                TestSession = new WindowsDriver<AppiumWebElement>(new Uri(winAppDriverUrl), appiumOptions);
 
                 Assert.IsNotNull(TestSession);
                 Assert.IsNotNull(TestSession.SessionId);
-
-                // Set implicit timeout to multiple of 0,5 seconds to make element search to retry every 500 ms for at most three times.
-                // Currently increased for Azure environment. Note also an explicit wait on FindElement is used currently.
-                //TestSession.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
             }
         }
 
         public static void NavigateTo(string destination)
         {
-            TestSession.FindElement(By.Name(destination)).Click();
+            TestSession.FindElementWait(By.Name(destination)).Click();
 
             // Suggested: Test presence of module controls.
         }
