@@ -125,14 +125,4 @@ namespace RCS.WpfShop.TestGui
             TestSession = null;
         }
     }
-
-    public static class Extensions
-    {
-        // Experimental
-        public static IWebElement FindElement(this IWebDriver webDriver, By by, int timeoutInSeconds = 1)
-        {
-            var wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeoutInSeconds));
-            return wait.Until(driver => driver.FindElement(by));
-        }
-    }
 }
