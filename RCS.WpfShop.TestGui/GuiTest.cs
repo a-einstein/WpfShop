@@ -47,7 +47,7 @@ namespace RCS.WpfShop.TestGui
 
                 // Set implicit timeout to multiple of 0,5 seconds to make element search to retry every 500 ms for at most three times.
                 // Currently increased for Azure environment. Note also an explicit wait on FindElement is used currently.
-                TestSession.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
+                //TestSession.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
             }
         }
 
@@ -95,7 +95,7 @@ namespace RCS.WpfShop.TestGui
             //testSession.FindElementByName(destination).Click();
 
             // Try with explicit wait.
-            TestSession.FindElement(By.Name(destination), 10).Click();
+            TestSession.FindElement(By.Name(destination)).Click();
 
             // Test presence of module controls.
         }
