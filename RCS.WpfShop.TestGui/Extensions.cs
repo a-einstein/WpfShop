@@ -31,7 +31,7 @@ namespace RCS.WpfShop.TestGui
         {
             var wait = new DefaultWait<WindowsDriver<AppiumWebElement>>(windowsDriver)
             {
-                Timeout = TimeSpan.FromSeconds(30),
+                Timeout = TimeSpan.FromSeconds(20),
                 PollingInterval = TimeSpan.FromSeconds(1),
             };
 
