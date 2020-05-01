@@ -71,6 +71,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RCS.WpfShop.Modules.About\RCS.WpfShop.Modules.About.csproj">
+      <Project>{2174C129-E033-4499-A912-6BE4E7FE59B2}</Project>
+      <Name>RCS.WpfShop.Modules.About</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RCS.WpfShop.Resources\RCS.WpfShop.Resources.csproj">
+      <Project>{46A45E36-C4EB-4CA2-9B98-120038FCB2D7}</Project>
+      <Name>RCS.WpfShop.Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RCS.WpfShop.TestGui\RCS.WpfShop.TestGui.csproj">
       <Project>{72C188A4-97BB-46FE-8178-A13392006235}</Project>
       <Name>RCS.WpfShop.TestGui</Name>

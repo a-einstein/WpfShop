@@ -2,6 +2,7 @@
 using RCS.WpfShop.Resources;
 using RCS.WpfShop.ServiceClients.Products.ProductsService;
 using System;
+using System.Diagnostics;
 using System.Windows;
 using Unity;
 
@@ -82,6 +83,8 @@ namespace RCS.WpfShop.Modules.Products.Model
         // This value is tested on 3 service calls at startup. There is no multiplication operator.
         private static readonly TimeSpan serviceErrorGraceTime = Timeout + Timeout;
 
+        private static TraceSource traceSource = new TraceSource("MainTrace");
+   
         protected static void DisplayAlert(Exception exception)
         {
             // Try to prevent stacking muliple related messages, like at startup.
@@ -89,6 +92,8 @@ namespace RCS.WpfShop.Modules.Products.Model
             {
                 serviceErrorDisplaying = true;
                 serviceErrorFirstDisplayed = DateTime.Now;
+
+                traceSource.TraceEvent(TraceEventType.Error, default, exception.Message);
 
                 var result = MessageBox.Show($"{Labels.ErrorService}\n\n{Labels.ErrorDetailsWanted}", $"{Labels.ShopName} - {Labels.Error}", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 

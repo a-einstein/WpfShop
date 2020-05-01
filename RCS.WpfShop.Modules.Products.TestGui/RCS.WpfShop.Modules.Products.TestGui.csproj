@@ -76,6 +76,14 @@
       <Project>{493D8ED2-1BA9-436C-981F-3A84523FA8A0}</Project>
       <Name>RCS.AdventureWorks.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RCS.WpfShop.Modules.Products\RCS.WpfShop.Modules.Products.csproj">
+      <Project>{46FD7B84-C33F-4A86-AD84-57BDC92313AC}</Project>
+      <Name>RCS.WpfShop.Modules.Products</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RCS.WpfShop.Resources\RCS.WpfShop.Resources.csproj">
+      <Project>{46A45E36-C4EB-4CA2-9B98-120038FCB2D7}</Project>
+      <Name>RCS.WpfShop.Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RCS.WpfShop.ServiceClients.Products.Mock\RCS.WpfShop.ServiceClients.Products.Mock.csproj">
       <Project>{5A76D31B-2898-44CD-B345-55BD5D98486A}</Project>
       <Name>RCS.WpfShop.ServiceClients.Products.Mock</Name>

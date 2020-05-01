@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RCS.WpfShop.Modules.Products.Views;
+using RCS.WpfShop.Resources;
 using RCS.WpfShop.ServiceClients.Products.Mock;
 using RCS.WpfShop.TestGui;
 
@@ -8,9 +10,9 @@ namespace RCS.WpfShop.Modules.Products.TestGui
     public class ModuleTest : GuiTest
     {
         #region Class level
-        private static readonly string destination = "Shop";
-        private static readonly string mainViewName = "ProductsView";
-        private static readonly string[] widgetNames = { "ShoppingCartView" };
+        private static readonly string destination = Labels.NavigateShop;
+        private const string mainViewName = nameof(ProductsView);
+        private static readonly string[] widgetNames = { nameof(ShoppingCartView) };
 
         // Note this must have a distinctive signature: static, public, no return value, take single parameter type TestContext.
         // TODO Would like to share this among classes, but currently see no way because of the static nature and the ClassInitialize, 
@@ -56,7 +58,8 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             var categoryExpectedOrder = 2;
             var categoryExpected = categoriesExpected[categoryExpectedOrder - 1];
 
-            var masterFilterComboBox = TestSession.FindElementByAccessibilityId("MasterFilterComboBox");
+            // Note literals are used for the control names here as they are fields in the view classes.
+            var masterFilterComboBox = TestSession.FindElementByAccessibilityIdWait("MasterFilterComboBox");
             Assert.IsNotNull(masterFilterComboBox);
 
             // Necessary to actually get the elements created in the GUI.
@@ -71,7 +74,7 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             var subcategoryExpectedOrder = 1;
             var subcategoryExpected = subcategoriesExpected.FindAll(subcategory => subcategory.ProductCategoryId == categoryExpected.Id)[subcategoryExpectedOrder - 1];
 
-            var detailFilterComboBox = TestSession.FindElementByAccessibilityId("DetailFilterComboBox");
+            var detailFilterComboBox = TestSession.FindElementByAccessibilityIdWait("DetailFilterComboBox");
             Assert.IsNotNull(detailFilterComboBox);
             detailFilterComboBox.Click();
             detailFilterComboBox.FindElementByName(subcategoryExpected.Name).Click();
@@ -80,7 +83,7 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             var productsOverviewExpected = serviceClient.Object.GetProductsOverviewBy(categoryExpected.Id, subcategoryExpected.Id, searchString);
 
             // Note this is a UserControl.
-            var textFilterControl = TestSession.FindElementByAccessibilityId("TextFilterTextBox");
+            var textFilterControl = TestSession.FindElementByAccessibilityIdWait("TextFilterTextBox");
             Assert.IsNotNull(textFilterControl);
 
             // The true text element within.
@@ -91,11 +94,11 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             // TODO Add enablement on the button depending on this control and test. Currently the control only colours on less than 3 characters.
             textFilterTextBox.SendKeys(searchString.Substring(2, 1));
 
-            var filterButton = TestSession.FindElementByAccessibilityId("FilterButton");
+            var filterButton = TestSession.FindElementByAccessibilityIdWait("FilterButton");
             Assert.IsNotNull(filterButton);
             filterButton.Click();
 
-            var itemsCountTextBlock = TestSession.FindElementByAccessibilityId("ItemsCountTextBlock");
+            var itemsCountTextBlock = TestSession.FindElementByAccessibilityIdWait("ItemsCountTextBlock");
             Assert.IsNotNull(itemsCountTextBlock);
             Assert.AreEqual(itemsCountTextBlock.Text, productsOverviewExpected.Count.ToString());
         }
