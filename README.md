@@ -4,6 +4,8 @@
 Working desktop application for test and demo purpose based on WPF. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
+* The Azure build pipeline now includes the full ClickOnce packaging, and both the unit and GUI testing, on a self hosted agent.
+* Release is now to GitHub with an automatic change summary..
 * The ClickOnce deliverable is plug and play again. See the installation notes.
 * Makes use of own certified domain for webservice.
 * Integrated with Azure Devops build and release pipelines.
@@ -41,7 +43,9 @@ Working desktop application for test and demo purpose based on WPF. It simulates
 * Serious start on integrated GUI testing by means of WinAppDriver/Selenium/Appium.
 * Mocking data for testing, applying Moq.
 * Transformation of configurations.
-* Click Once installation and update.
+* Click Once installation (and update).
+* Azure DevOps self hosted build pipeline, including ClickOnce packaging, unit testing, and GUI testing.
+* Azure DevOps release pipeline to either Azure or GitHub.
 
 #### Installation
 The application is plug & play, but use of the data service is on request. Contact the developer ahead. 
