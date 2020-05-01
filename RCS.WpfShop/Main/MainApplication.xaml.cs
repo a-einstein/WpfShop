@@ -5,6 +5,7 @@ using Prism.Unity;
 using RCS.WpfShop.Resources;
 using RCS.WpfShop.ViewModels;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
@@ -20,9 +21,9 @@ namespace RCS.WpfShop.Main
 
     public partial class MainApplication : PrismApplication
     {
-        #region Construction
-        // Note the call order is as below.
-
+        #region Application
+        private static TraceSource traceSource = new TraceSource("MainTrace");
+  
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             // TODO Maybe use the standard name again. Maybe there is some use in the base. Currently this creates a loop.
@@ -30,6 +31,17 @@ namespace RCS.WpfShop.Main
 
             SetupExceptionHandling();
         }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            traceSource.Close();
+
+            base.OnExit(e);
+        }
+        #endregion
+
+        #region PrismApplication
+        // Note the call order is as below.
 
         protected override void ConfigureViewModelLocator()
         {
@@ -60,6 +72,8 @@ namespace RCS.WpfShop.Main
         #endregion
 
         #region Error handling
+        // Note this meant for general unhandled exceptions.
+        // There are other locations for more specific error handling. 
         private void SetupExceptionHandling()
         {
             DispatcherUnhandledException += Dispatcher_UnhandledException;
@@ -99,6 +113,8 @@ namespace RCS.WpfShop.Main
             if (!closing)
             {
                 closing = true;
+
+                traceSource.TraceEvent(TraceEventType.Error, default, exception.Message);
 
                 // Pity the No button cannot be made default.
                 var result = MessageBox.Show($"{Labels.ErrorUnknown}\n\n{Labels.ErrorDetailsWanted}", $"{Labels.ShopName} - {Labels.Error}", MessageBoxButton.YesNo, MessageBoxImage.Error);
