@@ -45,6 +45,15 @@
       <Platform>AnyCPU</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <PropertyGroup Label="Configuration">
+    <PostBuildEvent>
+      rem Note not all macros actually worked! Therefore some hardcoding here.
+      rem Note you may see expanded macro's here and in the project file, best is to directly edit there.
+      rem Note xcopy did not copy the directory! Therefore the directory name is also indicated.
+
+      xcopy /i /y "$(SolutionDir)RCS.WpfShop\bin\Release\Modules" "$(SolutionDir)Windows Application Package\bin\AnyCPU\Release\RCS.WpfShop\Modules"
+    </PostBuildEvent>
+  </PropertyGroup>
   <PropertyGroup>
     <WapProjPath Condition="'$(WapProjPath)'==''">$(MSBuildExtensionsPath)\Microsoft\DesktopBridge\</WapProjPath>
   </PropertyGroup>

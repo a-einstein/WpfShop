@@ -184,7 +184,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>rem Note that modules need to be added to Click Once publishing by ManifestManagerUtility.
-xcopy "$(TargetPath)" "$(SolutionDir)RCS.WpfShop\bin\$(ConfigurationName)\Modules\" /Y</PostBuildEvent>
+xcopy /y "$(TargetPath)" "$(SolutionDir)RCS.WpfShop\bin\$(ConfigurationName)\Modules\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
