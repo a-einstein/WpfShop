@@ -35,7 +35,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.WpfShop.ServiceClients.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCS.AdventureWorks.Common", "RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj", "{493D8ED2-1BA9-436C-981F-3A84523FA8A0}"
 EndProject
-Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "Windows Application Package", "Windows Application Package\Windows Application Package.wapproj", "{262B58E1-F9F9-4F2F-8DBB-4E076E6819C9}"
+Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "RCS.WpfShop.WAP", "Windows Application Package\RCS.WpfShop.WAP.wapproj", "{262B58E1-F9F9-4F2F-8DBB-4E076E6819C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
