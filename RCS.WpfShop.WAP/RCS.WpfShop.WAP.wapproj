@@ -51,7 +51,7 @@
       rem Note you may see expanded macro's here and in the project file, best is to directly edit there.
       rem Note xcopy did not copy the directory! Therefore the directory name is also indicated.
 
-      xcopy /i /y "$(SolutionDir)RCS.WpfShop\bin\Release\Modules" "$(SolutionDir)Windows Application Package\bin\AnyCPU\Release\RCS.WpfShop\Modules"
+      xcopy /i /y "$(SolutionDir)RCS.WpfShop\bin\Release\Modules" "$(SolutionDir)RCS.WpfShop.WAP\bin\AnyCPU\Release\RCS.WpfShop\Modules"
     </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
