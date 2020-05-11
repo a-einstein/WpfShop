@@ -47,11 +47,11 @@
   </ItemGroup>
   <PropertyGroup Label="Configuration">
     <PostBuildEvent>
-      rem Note not all macros actually worked! Therefore some hardcoding here.
+      rem Note Macros $(BuildPlatform) and $(ConfigurationName) did not work! Therefore some hardcoding here.
       rem Note you may see expanded macro's here and in the project file, best is to directly edit there.
       rem Note xcopy did not copy the directory! Therefore the directory name is also indicated.
 
-      xcopy /i /y "$(SolutionDir)RCS.WpfShop\bin\Release\Modules" "$(SolutionDir)RCS.WpfShop.WAP\bin\AnyCPU\Release\RCS.WpfShop\Modules"
+      xcopy /i /y "$(SolutionDir)RCS.WpfShop\bin\Release\Modules" "$(SolutionDir)RCS.WpfShop.WAP\bin\Any CPU\Release\RCS.WpfShop\Modules\"
     </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
@@ -98,6 +98,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefaultLanguage>en-GB</DefaultLanguage>
     <AppxBundle>Never</AppxBundle>
+    <OutputPath>bin\Any CPU\Release\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <DefaultLanguage>en-GB</DefaultLanguage>
