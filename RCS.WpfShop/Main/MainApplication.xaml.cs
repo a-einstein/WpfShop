@@ -55,7 +55,7 @@ namespace RCS.WpfShop.Main
             // Note that often a rebuild is necessary to update the modules.
             // Note that the order of discovery is alphabetically, the order of activation seems abrbitrary or reversed.
             // Currently I regulate the activation by the ModuleDependency attribute.
-            var catalog = new DirectoryModuleCatalog() { ModulePath = @".\Modules" };
+            var catalog = new DirectoryModuleCatalog() { ModulePath = $"{AppDomain.CurrentDomain.BaseDirectory}Modules" };
 
             return catalog;
         }
