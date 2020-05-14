@@ -37,6 +37,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCS.AdventureWorks.Common",
 EndProject
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "RCS.WpfShop.WAP", "RCS.WpfShop.WAP\RCS.WpfShop.WAP.wapproj", "{262B58E1-F9F9-4F2F-8DBB-4E076E6819C9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Azure", "Azure", "{550B792E-D695-45F3-8E02-23495941CE16}"
+	ProjectSection(SolutionItems) = preProject
+		AddModules.ps1 = AddModules.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
