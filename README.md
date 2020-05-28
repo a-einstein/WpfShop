@@ -64,7 +64,7 @@ Currently there are 2 installation methods which start as following.
 * Both starting and uninstallation (right click) are from the 'Apps' menu.
 
 ##### ClickOnce
-* Launch setup.exe, allow it to continue if needed. 
+* Launch setup.exe, allow it to continue if needed. Be aware of potentially hidden blockages by virus-defenders.
 * The application should start up right away, but may be hidden behind other windows.
 * The start menu gets a folder added: *Programs / RCS / Shopping*.
 * Uninstallation can be done by: *Control Panel / Program and Features / CyclOne*.
