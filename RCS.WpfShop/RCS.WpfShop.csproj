@@ -18,7 +18,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <PublishUrl>..\..\publish\latest\</PublishUrl>
+    <PublishUrl>..\..\publish\ClickOnce\VisualStudio\1 original\Cyclone.ClickOnce\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -32,12 +32,11 @@
     <ProductName>CyclOne</ProductName>
     <PublisherName>RCS</PublisherName>
     <SuiteName>Shopping</SuiteName>
-    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>install.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>0.17.0.0</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
+    <UseApplicationTrust>true</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
