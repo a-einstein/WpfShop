@@ -6,7 +6,7 @@ Working desktop application for test and demo purpose based on WPF. It simulates
 #### News
 * An installation package for the newer MSIX standard has been added.
 * The Azure build pipeline now includes the full ClickOnce packaging, and both the unit and GUI testing, on a self hosted agent.
-* Release is now to GitHub with an automatic change summary..
+* Release is now to GitHub with an automatic change summary.
 * The ClickOnce deliverable is plug and play again. See the installation notes.
 * Makes use of own certified domain for webservice.
 * Integrated with Azure Devops build and release pipelines.
@@ -55,7 +55,8 @@ The application is plug & play, but use of the data service is on request. Conta
 Currently there are 2 installation methods which start as following.
 * Download the appropriate .zip file under Assets at the **[releases page](https://github.com/a-einstein/WpfShop/releases).**
 * Extract if needed.
-* Continue with the method of choice.
+* Continue with the method of choice below.
+* If needed, start the application. Either it will start 'empty' displaying a warning, or if the data service is running, one can 'shop' the contents.
 
 ##### MSIX (recommended)
 * If not already done, install the certificate by right clicking on the .cer file. Choose 'Local Machine' and select 'Trusted Root Certification Authorities' as store.
@@ -68,4 +69,4 @@ Currently there are 2 installation methods which start as following.
 * The application should start up right away, but may be hidden behind other windows.
 * The start menu gets a folder added: *Programs / RCS / Shopping*.
 * Uninstallation can be done by: *Control Panel / Program and Features / CyclOne*.
-* Updates are currently not reported, but can be done manually after uninstalling.
+* Updating is currently not supported, but can be done manually after uninstalling.
