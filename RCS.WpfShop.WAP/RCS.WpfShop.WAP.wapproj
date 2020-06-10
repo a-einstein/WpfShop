@@ -47,12 +47,12 @@
   </ItemGroup>
   <PropertyGroup Label="Configuration">
     <PostBuildEvent>
-      rem Note Macros $(BuildPlatform) and $(ConfigurationName) did not work! Therefore some hardcoding here.
-      rem Note you may see expanded macro's here and in the project file, best is to directly edit there.
+      rem Note Macros BuildPlatform and ConfigurationName did not work! Therefore some hardcoding here.
+      rem Note you may see expanded macro's in the VS GUI, best is to directly edit in the project file.
       rem Note xcopy did not copy the directory! Therefore the directory name is also indicated.
 
       xcopy /i /y "$(SolutionDir)RCS.WpfShop\bin\Release\Modules" "$(SolutionDir)RCS.WpfShop.WAP\bin\Any CPU\Release\RCS.WpfShop\Modules\"
-    </PostBuildEvent>
+</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <WapProjPath Condition="'$(WapProjPath)'==''">$(MSBuildExtensionsPath)\Microsoft\DesktopBridge\</WapProjPath>
@@ -69,7 +69,7 @@
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
-    <AppxPackageDir>R:\RCS\shopping\clients\WpfShop\publish\WAP\published</AppxPackageDir>
+    <AppxPackageDir>..\..\publish\WAP\published</AppxPackageDir>
     <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
@@ -78,6 +78,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefaultLanguage>en-GB</DefaultLanguage>
     <AppxBundle>Never</AppxBundle>
+    <OutputPath>bin\Any CPU\Debug\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <DefaultLanguage>en-GB</DefaultLanguage>
@@ -145,6 +146,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RCS.WpfShop\RCS.WpfShop.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NOTES.txt" />
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
 </Project>
