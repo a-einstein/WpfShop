@@ -147,5 +147,8 @@
   <ItemGroup>
     <ProjectReference Include="..\RCS.WpfShop\RCS.WpfShop.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="NOTES.txt" />
+  </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
 </Project>

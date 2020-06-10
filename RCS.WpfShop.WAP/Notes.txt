@@ -1,0 +1,9 @@
+Note that in Azure the package is standardly generated on _GenerateAppxPackage, while in VS that is only explicitly.
+
+For that reason the AppxPackageDir has to be applicable in the Azure environment. 
+Even though that publication may not be used, the directory will be created if possible. 
+So at least make it relative.
+
+There have been inconsistencies in 'Any CPU' versus 'AnyCPU'. 
+The way configurations are displayed in Visual Studio's GUI, versus how they are set in the projectfile, versus the OutputPath. 
+Be aware of that.
