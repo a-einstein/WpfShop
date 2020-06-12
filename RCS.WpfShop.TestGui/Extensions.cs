@@ -15,7 +15,11 @@ namespace RCS.WpfShop.TestGui
         // OpenQA.Selenium.WebDriverException: An element could not be located on the page using the given search parameters
         // Compare with this description about the following and various approaches.
         // https://github.com/Microsoft/WinAppDriver/issues/370
-        // Currently the problem only remains in an Azure pipeline, which may have a different cause.
+        //
+        // Currently occurrence of the the problem is pretty unpredictable, and may or may not be while running in Visusal Studio or in an Azure pipeline, 
+        // which may have a different cause.
+        // Changing Timeout seemed to help, even though it wasn't actually used as long as set. Setting the value back did not recreate the problem, 
+        // which makes no sense.
 
         public static AppiumWebElement FindElementWait(this WindowsDriver<AppiumWebElement> windowsDriver, By by)
         {
