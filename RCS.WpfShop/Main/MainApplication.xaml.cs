@@ -22,18 +22,27 @@ namespace RCS.WpfShop.Main
     public partial class MainApplication : PrismApplication
     {
         #region Application
+        // Check out the trace settings in the app.config file.
         private static TraceSource traceSource = new TraceSource("MainTrace");
-  
+        private const string executionLevel = "application";
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             // TODO Maybe use the standard name again. Maybe there is some use in the base. Currently this creates a loop.
             //base.OnStartup(e);
+
+            // Note that TraceEventType.Start was not supported for unknown reasons.
+            traceSource.TraceEvent(TraceEventType.Verbose, default, $"Starting {executionLevel}.");
 
             SetupExceptionHandling();
         }
 
         protected override void OnExit(ExitEventArgs e)
         {
+            // Note that TraceEventType.Stop was not supported for unknown reasons.
+            traceSource.TraceEvent(TraceEventType.Verbose, default, $"Stopping {executionLevel}.");
+            // TODO Add an empty line to separate sessions, if not removed.
+
             traceSource.Close();
 
             base.OnExit(e);
