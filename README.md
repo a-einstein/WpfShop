@@ -57,6 +57,7 @@ Currently there are 2 installation methods which start as following.
 * Extract if needed.
 * Continue with the method of choice below.
 * If needed, start the application. Either it will start 'empty' displaying a warning, or if the data service is running, one can 'shop' the contents.
+* Note that the application produces a .log file in its directory.
 
 ##### MSIX (recommended)
 * If not already done, install the certificate by right clicking on the .cer file. Choose 'Local Machine' and select 'Trusted Root Certification Authorities' as store.
