@@ -80,7 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Appium.WebDriver">
-      <Version>4.1.1</Version>
+      <Version>4.2.1</Version>
     </PackageReference>
     <PackageReference Include="Castle.Core">
       <Version>4.4.1</Version>
