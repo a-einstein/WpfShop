@@ -149,14 +149,8 @@
     <PackageReference Include="System.Threading.Tasks.Extensions">
       <Version>4.5.4</Version>
     </PackageReference>
-    <PackageReference Include="Unity.Abstractions">
-      <Version>5.11.6</Version>
-    </PackageReference>
     <PackageReference Include="Unity.Configuration">
       <Version>5.11.2</Version>
-    </PackageReference>
-    <PackageReference Include="Unity.Container">
-      <Version>5.11.8</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup />
