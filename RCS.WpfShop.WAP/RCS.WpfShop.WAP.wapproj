@@ -145,7 +145,10 @@
     <Content Include="Images\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RCS.WpfShop\RCS.WpfShop.csproj" />
+    <ProjectReference Include="..\RCS.WpfShop\RCS.WpfShop.csproj">
+	  <!-- Generated while changing framework of WpfShop. Untested. May not be necessary once done for this project too.-->
+      <SkipGetTargetFrameworkProperties>True</SkipGetTargetFrameworkProperties>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="NOTES.txt" />

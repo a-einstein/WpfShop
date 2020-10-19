@@ -172,19 +172,21 @@
       <Version>4.5.4</Version>
     </PackageReference>
     <PackageReference Include="Unity.Abstractions">
-      <Version>5.11.6</Version>
+      <Version>5.11.2</Version>
     </PackageReference>
     <PackageReference Include="Unity.Configuration">
       <Version>5.11.2</Version>
     </PackageReference>
     <PackageReference Include="Unity.Container">
-      <Version>5.11.8</Version>
+      <Version>5.11.5</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>rem Note that modules need to be added to Click Once publishing by ManifestManagerUtility.
-xcopy /y "$(TargetPath)" "$(SolutionDir)RCS.WpfShop\bin\$(ConfigurationName)\Modules\"</PostBuildEvent>
+    <PostBuildEvent>rem Would like a more generic approach.
+xcopy /y "$(TargetPath)" "$(SolutionDir)RCS.WpfShop\bin\$(Configuration)\netcoreapp3.1\Modules\"
+
+rem Note that for Click Once publishing the modules need to be added to the manifest by ManifestManagerUtility.</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
