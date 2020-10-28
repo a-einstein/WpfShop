@@ -29,10 +29,6 @@
     <Reference Update="System">
       <Private>False</Private>
     </Reference>
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.ServiceModel">
-      <Private>False</Private>
-    </Reference>
     <Reference Update="System.Data">
       <Private>False</Private>
     </Reference>

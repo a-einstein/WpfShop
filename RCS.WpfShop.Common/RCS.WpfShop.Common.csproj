@@ -29,7 +29,6 @@
     <Reference Update="System">
       <Private>False</Private>
     </Reference>
-    <Reference Include="System.Configuration" />
     <Reference Update="System.Data">
       <Private>False</Private>
     </Reference>
