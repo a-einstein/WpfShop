@@ -1,6 +1,6 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
@@ -76,9 +76,12 @@
     </PackageReference>
   </ItemGroup>
   <PropertyGroup>
-    <PostBuildEvent>rem Would like a more generic approach.
-xcopy /y "$(TargetPath)" "$(SolutionDir)RCS.WpfShop\bin\$(Configuration)\netcoreapp3.1\Modules\"
+    <PostBuildEvent>
+		rem Note Various macros did not work! Therefor some names are hardcoded.
+		rem Note Macro's are expanded after saving from the VS GUI, both there and in the project file. Best is to edit the final form in the project file.
+		
+		xcopy /y "$(SolutionDir)RCS.WpfShop.Modules.About\bin\$(Configuration)\netcoreapp3.1\RCS.WpfShop.Modules.About.dll" "$(SolutionDir)RCS.WpfShop\bin\$(Configuration)\netcoreapp3.1\Modules\"
 
-rem Note that for Click Once publishing the modules need to be added to the manifest by ManifestManagerUtility.</PostBuildEvent>
+		rem Note that for Click Once publishing the modules need to be added to the manifest by ManifestManagerUtility.</PostBuildEvent>
   </PropertyGroup>
 </Project>
