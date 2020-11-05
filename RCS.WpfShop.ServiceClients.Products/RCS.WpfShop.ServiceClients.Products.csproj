@@ -3,6 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Configurations>Debug;Release;Test;DebugService</Configurations>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <UseVSHostingProcess>true</UseVSHostingProcess>
@@ -11,11 +12,11 @@
     <DebugType>none</DebugType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Test\</OutputPath>
-    <WarningLevel>2</WarningLevel>
-    <UseVSHostingProcess>true</UseVSHostingProcess>
+	<DebugSymbols>true</DebugSymbols>
+	<Optimize>false</Optimize>
+	<OutputPath>bin\Test\</OutputPath>
+	<WarningLevel>2</WarningLevel>
+	<UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugService|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
