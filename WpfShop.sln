@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.WpfShop.ServiceClients.Products", "RCS.WpfShop.ServiceClients.Products\RCS.WpfShop.ServiceClients.Products.csproj", "{24156B78-6E6C-438C-BF1E-B34FD3C68800}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCS.WpfShop.ServiceClients.Products", "RCS.WpfShop.ServiceClients.Products\RCS.WpfShop.ServiceClients.Products.csproj", "{24156B78-6E6C-438C-BF1E-B34FD3C68800}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCS.WpfShop.Resources", "RCS.WpfShop.Resources\RCS.WpfShop.Resources.csproj", "{46A45E36-C4EB-4CA2-9B98-120038FCB2D7}"
 EndProject
