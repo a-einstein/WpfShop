@@ -59,7 +59,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
             if (baseInitialized && !initialized)
             {
-                Items = CartItemsRepository.Instance.List;
+                Items = CartItemsRepository.Instance?.List;
                 initialized = true;
             }
 
