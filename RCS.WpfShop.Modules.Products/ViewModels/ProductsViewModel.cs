@@ -19,15 +19,20 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #region Construction
         ProductCategoriesRepository productCategoriesRepository;
         ProductSubcategoriesRepository productSubcategoriesRepository;
+        ProductsRepository productsRepository;
+
         ShoppingCartViewModel shoppingCartViewModel;
 
         public ProductsViewModel(
             ProductCategoriesRepository productCategoriesRepository,
             ProductSubcategoriesRepository productSubcategoriesRepository,
+            ProductsRepository productsRepository,
             ShoppingCartViewModel shoppingCartViewModel)
         {
             this.productCategoriesRepository = productCategoriesRepository;
             this.productSubcategoriesRepository = productSubcategoriesRepository;
+            this.productsRepository = productsRepository;
+
             this.shoppingCartViewModel = shoppingCartViewModel;
         }
         #endregion
@@ -48,7 +53,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
             if (baseInitialized && !initialized)
             {
-                Items = ProductsRepository.Instance.List;
+                Items = productsRepository.List;
                 initialized = true;
             }
 
@@ -121,7 +126,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                 textFilterValue = TextFilterValue;
             });
 
-            var result = await ProductsRepository.Instance.ReadList(masterFilterValue, detailFilterValue, textFilterValue);
+            var result = await productsRepository.ReadList(masterFilterValue, detailFilterValue, textFilterValue);
             var succeeded = result != null;
 
             if (succeeded)
@@ -150,7 +155,8 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #region Details
         protected override void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
-            var productViewModel = new ProductViewModel(shoppingCartViewModel) { ItemId = productsOverviewObject.Id };
+            // Note this enables opening multiple windows.
+            var productViewModel = new ProductViewModel(productsRepository,shoppingCartViewModel) { ItemId = productsOverviewObject.Id };
             var productView = new ProductView() { ViewModel = productViewModel };
 
             var productWindow = new OkWindow() { View = productView };

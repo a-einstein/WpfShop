@@ -13,10 +13,14 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
     public class ProductViewModel : ItemViewModel<Product>, IShopper
     {
         #region Construction
+        ProductsRepository productsRepository;
         ShoppingCartViewModel shoppingCartViewModel;
 
-        public ProductViewModel(ShoppingCartViewModel shoppingCartViewModel)
+        public ProductViewModel(
+            ProductsRepository productsRepository,
+            ShoppingCartViewModel shoppingCartViewModel)
         {
+            this.productsRepository = productsRepository;
             this.shoppingCartViewModel = shoppingCartViewModel;
         }
         #endregion
@@ -38,7 +42,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             // to avoid an unnecessary read when opening the photo.
             if (!itemRead && ItemId.HasValue)
             {
-                var result = await ProductsRepository.Instance.ReadDetails((int)ItemId);
+                var result = await productsRepository.ReadDetails((int)ItemId);
                 itemRead = result != null;
                 Item = result;
             }

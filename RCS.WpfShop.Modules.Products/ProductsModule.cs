@@ -28,6 +28,7 @@ namespace RCS.WpfShop.Modules.Products
 
             container.RegisterSingleton<ProductCategoriesRepository>();
             container.RegisterSingleton<ProductSubcategoriesRepository>();
+            container.RegisterSingleton<ProductsRepository>();
             container.RegisterSingleton<CartItemsRepository>();
 
             container.RegisterSingleton<ShoppingCartViewModel>();

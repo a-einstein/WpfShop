@@ -9,31 +9,6 @@ namespace RCS.WpfShop.Modules.Products.Model
 {
     public class ProductsRepository : Repository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject>
     {
-        #region Construction
-        private ProductsRepository()
-        { }
-
-        private static volatile ProductsRepository instance;
-        private static readonly object syncRoot = new object();
-
-        public static ProductsRepository Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                            instance = new ProductsRepository();
-                    }
-                }
-
-                return instance;
-            }
-        }
-        #endregion
-
         #region CRUD
         // TODO This should get paged with an optional pagesize.
         public async Task<IList<ProductsOverviewObject>> ReadList(ProductCategory category, ProductSubcategory subcategory, string namePart)
