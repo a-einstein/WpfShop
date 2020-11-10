@@ -1,10 +1,11 @@
-﻿using Microsoft.Practices.Unity.Configuration;
+﻿using RCS.WpfShop.AdventureWorks.ServiceReferences;
 using RCS.WpfShop.Resources;
-using RCS.WpfShop.ServiceClients.Products.ProductsService;
 using System;
 using System.Diagnostics;
+using System.ServiceModel;
 using System.Windows;
 using Unity;
+using static RCS.WpfShop.AdventureWorks.ServiceReferences.ProductsServiceClient;
 
 namespace RCS.WpfShop.Modules.Products.Model
 {
@@ -23,11 +24,25 @@ namespace RCS.WpfShop.Modules.Products.Model
                 if (productsServiceClient == null)
                 {
                     var container = new UnityContainer();
+
                     // Note this is only configurable in the app.config of the application, not the module.
                     // TODO For testing a transformation of the config would be needed.
                     // TODO Note that when configuring the service in the application, it would be logical to define the modules there as well.
-                    container.LoadConfiguration();
-                    productsServiceClient = container.Resolve<IProductsService>();
+
+                    // Note this no longer works, so the .config files have been disabled.
+                    //container.LoadConfiguration();
+                    //productsServiceClient = container.Resolve<IProductsService>();
+
+                    // HACK Temporary solution to get going.
+                    // TODO Use Core configuration? It is not based on the buildconfigurations.
+                    var endpointConfiguration = EndpointConfiguration.WSHttpBinding_IProductsService;
+                    var endpointAddress = new EndpointAddress("https://localhost:44300/ProductsService.svc/ProductsServiceW");
+
+                    // TODO Use injection again. Include the parameters.
+                    // Note there are more constructors that may be applied, or even add some of our own in a partial class.
+
+                    // TODO Check why the TDOs are not reused in the service client.
+                    productsServiceClient = new ProductsServiceClient(endpointConfiguration, endpointAddress);
                 }
 
                 return productsServiceClient;
@@ -84,7 +99,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         private static readonly TimeSpan serviceErrorGraceTime = Timeout + Timeout;
 
         private static TraceSource traceSource = new TraceSource("MainTrace");
-   
+
         protected static void DisplayAlert(Exception exception)
         {
             // Try to prevent stacking muliple related messages, like at startup.

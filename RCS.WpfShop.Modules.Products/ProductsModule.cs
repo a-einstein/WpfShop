@@ -18,6 +18,9 @@ namespace RCS.WpfShop.Modules.Products
     {
         public override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            // TODO Make better use of Unity for injection (or Core in the long run).
+            // Get rid of singleton structures (Instance) elsewhere.
+
             base.RegisterTypes(containerRegistry);
 
             var container = containerRegistry.GetContainer();

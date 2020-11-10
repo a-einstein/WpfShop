@@ -68,6 +68,13 @@
     <ManifestKeyFile>RCS.WpfShop_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="app.config" />
+    <None Remove="app.Debug.config" />
+    <None Remove="app.DebugService.config" />
+    <None Remove="app.Release.config" />
+    <None Remove="app.Test.config" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Update="System">
       <Private>True</Private>
     </Reference>
@@ -78,30 +85,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Update="app.Debug.config">
-      <DependentUpon>app.config</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Update="app.DebugService.config">
-      <DependentUpon>app.config</DependentUpon>
-    </None>
-    <None Update="app.Release.config">
-      <DependentUpon>app.config</DependentUpon>
-    </None>
-    <None Update="app.Test.config">
-      <DependentUpon>app.config</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="Main\MainApplication.xaml"/>
+    <ApplicationDefinition Include="Main\MainApplication.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RCS.WpfShop.AdventureWorks\RCS.WpfShop.AdventureWorks.csproj" />
     <ProjectReference Include="..\RCS.WpfShop.Common\RCS.WpfShop.Common.csproj" />
     <ProjectReference Include="..\RCS.WpfShop.Resources\RCS.WpfShop.Resources.csproj" />
-    <ProjectReference Include="..\RCS.WpfShop.ServiceClients.Products.Mock\RCS.WpfShop.ServiceClients.Products.Mock.csproj" />
-    <ProjectReference Include="..\RCS.WpfShop.ServiceClients.Products\RCS.WpfShop.ServiceClients.Products.csproj" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
@@ -121,9 +113,6 @@
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator">
       <Version>2.0.5</Version>
-    </PackageReference>
-    <PackageReference Include="Extended.Wpf.Toolkit">
-      <Version>4.0.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers">
       <Version>3.3.0</Version>

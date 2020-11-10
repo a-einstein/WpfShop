@@ -1,5 +1,5 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
-using RCS.WpfShop.ServiceClients.Products.ProductsService;
+using RCS.WpfShop.AdventureWorks.ServiceReferences;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
