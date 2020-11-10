@@ -7,31 +7,6 @@ namespace RCS.WpfShop.Modules.Products.Model
 {
     public class CartItemsRepository : Repository<ObservableCollection<CartItem>, CartItem>
     {
-        #region Construction
-        private CartItemsRepository()
-        { }
-
-        private static volatile CartItemsRepository instance;
-        private static readonly object syncRoot = new object();
-
-        public static CartItemsRepository Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                            instance = new CartItemsRepository();
-                    }
-                }
-
-                return instance;
-            }
-        }
-        #endregion
-
         #region CRUD
         // TODO Add messages to views.
         private const string cartItemsNumberExceptionMessage = "Unexpected number of found ShoppingCartItems.";

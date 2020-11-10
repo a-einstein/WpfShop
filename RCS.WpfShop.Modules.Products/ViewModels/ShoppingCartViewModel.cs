@@ -13,6 +13,15 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 {
     public class ShoppingCartViewModel : ItemsViewModel<CartItem>
     {
+        #region Construction
+        CartItemsRepository cartItemsRepository;
+
+        public ShoppingCartViewModel(CartItemsRepository cartItemsRepository)
+        {
+            this.cartItemsRepository = cartItemsRepository;
+        }
+        #endregion
+
         #region Refresh
         // TODO This would be appropriate for an 'empty' button.
         protected override void Clear()
@@ -30,7 +39,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
             if (baseInitialized && !initialized)
             {
-                Items = CartItemsRepository.Instance?.List;
+                Items = cartItemsRepository.List;
                 initialized = true;
             }
 
@@ -48,7 +57,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #region CRUD
         public void CartProduct(IShoppingProduct productsOverviewObject)
         {
-            CartItemsRepository.Instance.AddProduct(productsOverviewObject);
+            cartItemsRepository.AddProduct(productsOverviewObject);
         }
 
         public static readonly DependencyProperty DeleteCommandProperty =
@@ -62,7 +71,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         private void Delete(CartItem cartItem)
         {
-            CartItemsRepository.Instance.DeleteProduct(cartItem);
+            cartItemsRepository.DeleteProduct(cartItem);
         }
 
         protected override void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -100,8 +109,8 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         private void UpdateAggregates()
         {
-            ProductItemsCount = CartItemsRepository.Instance.ProductsCount();
-            TotalValue = CartItemsRepository.Instance.CartValue();
+            ProductItemsCount = cartItemsRepository.ProductsCount();
+            TotalValue = cartItemsRepository.CartValue();
         }
 
         public static readonly DependencyProperty ProductItemCountProperty =

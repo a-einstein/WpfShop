@@ -3,6 +3,7 @@ using Prism.Modularity;
 using Prism.Unity;
 using RCS.WpfShop.Common;
 using RCS.WpfShop.Common.Modules;
+using RCS.WpfShop.Modules.Products.Model;
 using RCS.WpfShop.Modules.Products.ViewModels;
 using RCS.WpfShop.Modules.Products.Views;
 using System;
@@ -16,6 +17,7 @@ namespace RCS.WpfShop.Modules.Products
     [ModuleDependency("AboutModule")]
     public class ProductsModule : Module
     {
+        #region IModule
         public override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // TODO Make use of Core for injection?
@@ -24,10 +26,11 @@ namespace RCS.WpfShop.Modules.Products
 
             var container = containerRegistry.GetContainer();
             container.RegisterSingleton<ShoppingCartViewModel>();
+            container.RegisterSingleton<CartItemsRepository>();
 
             containerRegistry.RegisterForNavigation<ShoppingCartView>();
             containerRegistry.RegisterForNavigation<ProductsView>();
-         }
+        }
 
         public override void OnInitialized(IContainerProvider containerProvider)
         {
@@ -43,5 +46,6 @@ namespace RCS.WpfShop.Modules.Products
 
             regionManager.RegisterViewWithRegion(Regions.MainViewMain, typeof(ProductsView));
         }
+        #endregion
     }
 }

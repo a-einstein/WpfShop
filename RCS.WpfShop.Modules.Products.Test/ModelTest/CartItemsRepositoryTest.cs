@@ -22,7 +22,9 @@ namespace RCS.WpfShop.Modules.Products.Model.Test
             var product2 = ProductsOverviewObject(productId2, price2);
             products.List.Add(product2);
 
-            var target = CartItemsRepository.Instance;
+            // Note that injection is not possible in test classes.
+            // "Test classes need to have an empty default constructor or no constructors at all."
+            var target = new CartItemsRepository();
 
             var cartItem1 = target.AddProduct(product1);
             Assert.AreEqual(1, target.ProductsCount());
