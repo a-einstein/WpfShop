@@ -25,8 +25,11 @@ namespace RCS.WpfShop.Modules.Products
             base.RegisterTypes(containerRegistry);
 
             var container = containerRegistry.GetContainer();
-            container.RegisterSingleton<ShoppingCartViewModel>();
+
+            container.RegisterSingleton<ProductCategoriesRepository>();
             container.RegisterSingleton<CartItemsRepository>();
+
+            container.RegisterSingleton<ShoppingCartViewModel>();
 
             containerRegistry.RegisterForNavigation<ShoppingCartView>();
             containerRegistry.RegisterForNavigation<ProductsView>();

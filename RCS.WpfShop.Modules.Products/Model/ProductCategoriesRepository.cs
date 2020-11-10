@@ -8,31 +8,6 @@ namespace RCS.WpfShop.Modules.Products.Model
 {
     public class ProductCategoriesRepository : Repository<ObservableCollection<ProductCategory>, ProductCategory>
     {
-        #region Construction
-        private ProductCategoriesRepository()
-        { }
-
-        private static volatile ProductCategoriesRepository instance;
-        private static readonly object syncRoot = new object();
-
-        public static ProductCategoriesRepository Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                            instance = new ProductCategoriesRepository();
-                    }
-                }
-
-                return instance;
-            }
-        }
-        #endregion
-
         #region CRUD
         public async Task<bool> ReadList(bool addEmptyElement = true)
         {

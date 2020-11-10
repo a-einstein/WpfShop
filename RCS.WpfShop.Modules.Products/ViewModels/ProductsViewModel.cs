@@ -17,10 +17,14 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
     public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper
     {
         #region Construction
+        ProductCategoriesRepository productCategoriesRepository;
         ShoppingCartViewModel shoppingCartViewModel;
 
-        public ProductsViewModel(ShoppingCartViewModel shoppingCartViewModel)
+        public ProductsViewModel(
+            ProductCategoriesRepository productCategoriesRepository,
+            ShoppingCartViewModel shoppingCartViewModel)
         {
+            this.productCategoriesRepository = productCategoriesRepository;
             this.shoppingCartViewModel = shoppingCartViewModel;
         }
         #endregion
@@ -62,7 +66,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         {
             var results = await Task.WhenAll
             (
-                ProductCategoriesRepository.Instance.ReadList(),
+                productCategoriesRepository.ReadList(),
                 ProductSubcategoriesRepository.Instance.ReadList()
             );
 
@@ -74,7 +78,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                 {
                     var masterFilterItems = new ObservableCollection<ProductCategory>();
 
-                    foreach (var item in ProductCategoriesRepository.Instance.List)
+                    foreach (var item in productCategoriesRepository.List)
                     {
                         masterFilterItems.Add(item);
                     }
