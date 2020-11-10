@@ -16,6 +16,15 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 {
     public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper
     {
+        #region Construction
+        ShoppingCartViewModel shoppingCartViewModel;
+
+        public ProductsViewModel(ShoppingCartViewModel shoppingCartViewModel)
+        {
+            this.shoppingCartViewModel = shoppingCartViewModel;
+        }
+        #endregion
+
         #region INavigationAware
         public override bool IsNavigationTarget(NavigationContext navigationContext)
         {
@@ -134,7 +143,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #region Details
         protected override void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
-            var productViewModel = new ProductViewModel() { ItemId = productsOverviewObject.Id };
+            var productViewModel = new ProductViewModel(shoppingCartViewModel) { ItemId = productsOverviewObject.Id };
             var productView = new ProductView() { ViewModel = productViewModel };
 
             var productWindow = new OkWindow() { View = productView };
@@ -155,7 +164,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         private void CartProduct(ProductsOverviewObject productsOverviewObject)
         {
-            ShoppingCartViewModel.Instance.CartProduct(productsOverviewObject);
+            shoppingCartViewModel.CartProduct(productsOverviewObject);
         }
         #endregion
     }

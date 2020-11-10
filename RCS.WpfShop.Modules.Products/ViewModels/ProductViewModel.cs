@@ -12,6 +12,15 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 {
     public class ProductViewModel : ItemViewModel<Product>, IShopper
     {
+        #region Construction
+        ShoppingCartViewModel shoppingCartViewModel;
+
+        public ProductViewModel(ShoppingCartViewModel shoppingCartViewModel)
+        {
+            this.shoppingCartViewModel = shoppingCartViewModel;
+        }
+        #endregion
+
         #region Refresh
         protected override void SetCommands()
         {
@@ -56,7 +65,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         private void CartProduct(Product product)
         {
-            ShoppingCartViewModel.Instance.CartProduct(product);
+            shoppingCartViewModel.CartProduct(product);
         }
         #endregion
 

@@ -13,35 +13,6 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 {
     public class ShoppingCartViewModel : ItemsViewModel<CartItem>
     {
-        #region Construction
-        private ShoppingCartViewModel() { }
-
-        private static volatile ShoppingCartViewModel instance;
-        private static readonly object syncRoot = new object();
-
-        // Note this class is a singleton, implemented along the way (but not entirely) of https://msdn.microsoft.com/en-us/library/ff650316.aspx
-        // TODO This might no longer be necessary if using RegisterSingleton.
-        public static ShoppingCartViewModel Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                        {
-                            instance = new ShoppingCartViewModel();
-                        }
-                    }
-                }
-
-                return instance;
-            }
-        }
-
-        #endregion
-
         #region Refresh
         // TODO This would be appropriate for an 'empty' button.
         protected override void Clear()
