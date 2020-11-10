@@ -18,13 +18,16 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
     {
         #region Construction
         ProductCategoriesRepository productCategoriesRepository;
+        ProductSubcategoriesRepository productSubcategoriesRepository;
         ShoppingCartViewModel shoppingCartViewModel;
 
         public ProductsViewModel(
             ProductCategoriesRepository productCategoriesRepository,
+            ProductSubcategoriesRepository productSubcategoriesRepository,
             ShoppingCartViewModel shoppingCartViewModel)
         {
             this.productCategoriesRepository = productCategoriesRepository;
+            this.productSubcategoriesRepository = productSubcategoriesRepository;
             this.shoppingCartViewModel = shoppingCartViewModel;
         }
         #endregion
@@ -67,7 +70,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             var results = await Task.WhenAll
             (
                 productCategoriesRepository.ReadList(),
-                ProductSubcategoriesRepository.Instance.ReadList()
+                productSubcategoriesRepository.ReadList()
             );
 
             var succeeded = results.All(result => result);
@@ -86,7 +89,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                     // To trigger the enablement.
                     MasterFilterItems = masterFilterItems;
 
-                    foreach (var item in ProductSubcategoriesRepository.Instance.List)
+                    foreach (var item in productSubcategoriesRepository.List)
                     {
                         detailFilterItemsSource.Add(item);
                     }
