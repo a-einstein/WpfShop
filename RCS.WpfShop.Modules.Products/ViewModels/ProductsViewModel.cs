@@ -17,21 +17,21 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
     public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper
     {
         #region Construction
-        ProductCategoriesRepository productCategoriesRepository;
-        ProductSubcategoriesRepository productSubcategoriesRepository;
-        ProductsRepository productsRepository;
+        ProductCategoriesRepository categories;
+        ProductSubcategoriesRepository subcategories;
+        ProductsRepository products;
 
         ShoppingCartViewModel shoppingCartViewModel;
 
         public ProductsViewModel(
-            ProductCategoriesRepository productCategoriesRepository,
-            ProductSubcategoriesRepository productSubcategoriesRepository,
-            ProductsRepository productsRepository,
+            ProductCategoriesRepository categories,
+            ProductSubcategoriesRepository subcategories,
+            ProductsRepository products,
             ShoppingCartViewModel shoppingCartViewModel)
         {
-            this.productCategoriesRepository = productCategoriesRepository;
-            this.productSubcategoriesRepository = productSubcategoriesRepository;
-            this.productsRepository = productsRepository;
+            this.categories = categories;
+            this.subcategories = subcategories;
+            this.products = products;
 
             this.shoppingCartViewModel = shoppingCartViewModel;
         }
@@ -53,7 +53,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
             if (baseInitialized && !initialized)
             {
-                Items = productsRepository.List;
+                Items = products.List;
                 initialized = true;
             }
 
@@ -74,8 +74,8 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         {
             var results = await Task.WhenAll
             (
-                productCategoriesRepository.ReadList(),
-                productSubcategoriesRepository.ReadList()
+                categories.ReadList(),
+                subcategories.ReadList()
             );
 
             var succeeded = results.All(result => result);
@@ -86,7 +86,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                 {
                     var masterFilterItems = new ObservableCollection<ProductCategory>();
 
-                    foreach (var item in productCategoriesRepository.List)
+                    foreach (var item in categories.List)
                     {
                         masterFilterItems.Add(item);
                     }
@@ -94,7 +94,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                     // To trigger the enablement.
                     MasterFilterItems = masterFilterItems;
 
-                    foreach (var item in productSubcategoriesRepository.List)
+                    foreach (var item in subcategories.List)
                     {
                         detailFilterItemsSource.Add(item);
                     }
@@ -126,7 +126,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                 textFilterValue = TextFilterValue;
             });
 
-            var result = await productsRepository.ReadList(masterFilterValue, detailFilterValue, textFilterValue);
+            var result = await products.ReadList(masterFilterValue, detailFilterValue, textFilterValue);
             var succeeded = result != null;
 
             if (succeeded)
@@ -156,7 +156,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         protected override void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
             // Note this enables opening multiple windows.
-            var productViewModel = new ProductViewModel(productsRepository,shoppingCartViewModel) { ItemId = productsOverviewObject.Id };
+            var productViewModel = new ProductViewModel(products,shoppingCartViewModel) { ItemId = productsOverviewObject.Id };
             var productView = new ProductView() { ViewModel = productViewModel };
 
             var productWindow = new OkWindow() { View = productView };

@@ -14,11 +14,11 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
     public class ShoppingCartViewModel : ItemsViewModel<CartItem>
     {
         #region Construction
-        CartItemsRepository cartItemsRepository;
+        CartItemsRepository cartItems;
 
-        public ShoppingCartViewModel(CartItemsRepository cartItemsRepository)
+        public ShoppingCartViewModel(CartItemsRepository cartItems)
         {
-            this.cartItemsRepository = cartItemsRepository;
+            this.cartItems = cartItems;
         }
         #endregion
 
@@ -39,7 +39,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
             if (baseInitialized && !initialized)
             {
-                Items = cartItemsRepository.List;
+                Items = cartItems.List;
                 initialized = true;
             }
 
@@ -57,7 +57,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #region CRUD
         public void CartProduct(IShoppingProduct productsOverviewObject)
         {
-            cartItemsRepository.AddProduct(productsOverviewObject);
+            cartItems.AddProduct(productsOverviewObject);
         }
 
         public static readonly DependencyProperty DeleteCommandProperty =
@@ -71,7 +71,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         private void Delete(CartItem cartItem)
         {
-            cartItemsRepository.DeleteProduct(cartItem);
+            cartItems.DeleteProduct(cartItem);
         }
 
         protected override void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -109,8 +109,8 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         private void UpdateAggregates()
         {
-            ProductItemsCount = cartItemsRepository.ProductsCount();
-            TotalValue = cartItemsRepository.CartValue();
+            ProductItemsCount = cartItems.ProductsCount();
+            TotalValue = cartItems.CartValue();
         }
 
         public static readonly DependencyProperty ProductItemCountProperty =
