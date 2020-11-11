@@ -2,55 +2,25 @@
 using RCS.WpfShop.Resources;
 using System;
 using System.Diagnostics;
-using System.ServiceModel;
 using System.Windows;
-using Unity;
-using static RCS.WpfShop.AdventureWorks.ServiceReferences.ProductsServiceClient;
 
 namespace RCS.WpfShop.Modules.Products.Model
 {
     public abstract class ProductsServiceConsumer : IDisposable
     {
+        #region Construction
+        // Note the default is for test instantiation.
+        protected ProductsServiceConsumer(IProductsService productsServiceClient = null)
+        {
+            ProductsServiceClient = productsServiceClient;
+        }
+        #endregion
+
         #region Service
-        // TODO actually use this in client.
+        // TODO actually use this in client. May have to be moved to registration.
         private static TimeSpan Timeout { get; } = new TimeSpan(0, 0, 15);
 
-        private IProductsService productsServiceClient;
-
-        protected IProductsService ProductsServiceClient
-        {
-            get
-            {
-                if (productsServiceClient == null)
-                {
-                    var container = new UnityContainer();
-
-                    // Note this is only configurable in the app.config of the application, not the module.
-                    // TODO For testing a transformation of the config would be needed.
-                    // TODO Note that when configuring the service in the application, it would be logical to define the modules there as well.
-
-                    // Note this no longer works, so the .config files have been disabled.
-                    //container.LoadConfiguration();
-                    //productsServiceClient = container.Resolve<IProductsService>();
-
-                    // HACK Temporary solution to get going.
-                    // TODO Use Core configuration? It is not based on the buildconfigurations.
-                    var endpointConfiguration = EndpointConfiguration.WSHttpBinding_IProductsService;
-                    var endpointAddress = new EndpointAddress("https://localhost:44300/ProductsService.svc/ProductsServiceW");
-
-                    // TODO Use injection again. Include the parameters.
-                    // Note there are more constructors that may be applied, or even add some of our own in a partial class.
-
-                    // TODO Check why the TDOs are not reused in the service client.
-                    //productsServiceClient = new AdventureWorks.ServiceReferences.ProductsServiceClient(endpointConfiguration, endpointAddress);
-
-                    // HACK To use the Mock client.
-                    productsServiceClient = new ServiceClients.Products.Mock.ProductsServiceClient();
-                }
-
-                return productsServiceClient;
-            }
-        }
+        protected IProductsService ProductsServiceClient { get; private set; }
         #endregion
 
         #region IDisposable

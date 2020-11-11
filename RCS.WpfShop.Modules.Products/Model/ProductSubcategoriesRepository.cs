@@ -8,6 +8,12 @@ namespace RCS.WpfShop.Modules.Products.Model
 {
     public class ProductSubcategoriesRepository : Repository<ObservableCollection<ProductSubcategory>, ProductSubcategory>
     {
+        #region Construction
+        public ProductSubcategoriesRepository(IProductsService productsServiceClient = null)
+            : base(productsServiceClient)
+        { }
+        #endregion
+
         #region CRUD
         public async Task<bool> ReadList(bool addEmptyElement = true)
         {
@@ -20,7 +26,7 @@ namespace RCS.WpfShop.Modules.Products.Model
                 subcategories = await ProductsServiceClient.GetProductSubcategoriesAsync();
 
             }
-            catch (Exception exception) 
+            catch (Exception exception)
             {
                 DisplayAlert(exception);
                 return false;

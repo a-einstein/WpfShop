@@ -1,6 +1,7 @@
 ﻿using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Unity;
+using RCS.WpfShop.AdventureWorks.ServiceReferences;
 using RCS.WpfShop.Common;
 using RCS.WpfShop.Common.Modules;
 using RCS.WpfShop.Modules.Products.Model;
@@ -8,6 +9,7 @@ using RCS.WpfShop.Modules.Products.ViewModels;
 using RCS.WpfShop.Modules.Products.Views;
 using System;
 using Unity;
+using static RCS.WpfShop.AdventureWorks.ServiceReferences.ProductsServiceClient;
 
 namespace RCS.WpfShop.Modules.Products
 {
@@ -18,13 +20,22 @@ namespace RCS.WpfShop.Modules.Products
     public class ProductsModule : Module
     {
         #region IModule
+        // Note the most useful documentation so far has been: https://www.tutorialsteacher.com/ioc/register-and-resolve-in-unity-container
+        // TODO Make use of Core for injection?
         public override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            // TODO Make use of Core for injection?
-
             base.RegisterTypes(containerRegistry);
 
             var container = containerRegistry.GetContainer();
+
+            // TODO Make registration or injection dependent on configuration, maybe in Core.
+            // Note this used to be done by container.LoadConfiguration(). 
+            // This no longer works, so the transformed .config files have been disabled.
+            var serviceConfiguration = new EndpointAndAddressConfiguration(EndpointConfiguration.WSHttpBinding_IProductsService, "https://localhost:44300/ProductsService.svc/ProductsServiceW");
+            container.RegisterInstance(serviceConfiguration);
+
+            container.RegisterSingleton<IProductsService, ProductsServiceClient>();
+            //container.RegisterSingleton<IProductsService, ServiceClients.Products.Mock.ProductsServiceClient>();
 
             container.RegisterSingleton<ProductCategoriesRepository>();
             container.RegisterSingleton<ProductSubcategoriesRepository>();

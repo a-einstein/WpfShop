@@ -1,4 +1,5 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.WpfShop.AdventureWorks.ServiceReferences;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -7,6 +8,12 @@ namespace RCS.WpfShop.Modules.Products.Model
 {
     public class CartItemsRepository : Repository<ObservableCollection<CartItem>, CartItem>
     {
+        #region Construction
+        public CartItemsRepository(IProductsService productsServiceClient = null)
+            : base(productsServiceClient)
+        { }
+        #endregion
+
         #region CRUD
         // TODO Add messages to views.
         private const string cartItemsNumberExceptionMessage = "Unexpected number of found ShoppingCartItems.";
