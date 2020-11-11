@@ -16,14 +16,15 @@
       "*, RCS.WpfShop.AdventureWorks.ServiceReferences"
     ],
     "references": [
-      "R:\\RCS\\shopping\\clients\\WpfShop\\WpfShop.solution\\RCS.WpfShop.AdventureWorks\\bin\\Test\\netstandard2.0\\RCS.AdventureWorks.Common.dll",
-      "System.ServiceModel, {System.ServiceModel.Primitives, 4.4.4}",
+      "R:\\RCS\\shopping\\clients\\WpfShop\\WpfShop.solution\\RCS.WpfShop.AdventureWorks\\bin\\DebugService\\netstandard2.0\\RCS.AdventureWorks.Common.dll",
+      "System.ServiceModel, {System.ServiceModel.Primitives, 4.5.3}",
       "System.ServiceModel.Duplex, {System.ServiceModel.Duplex, 4.4.4}",
       "System.ServiceModel.Http, {System.ServiceModel.Http, 4.4.4}",
-      "System.ServiceModel.NetTcp, {System.ServiceModel.NetTcp, 4.4.4}",
-      "System.ServiceModel.Primitives, {System.ServiceModel.Primitives, 4.4.4}",
+      "System.ServiceModel.NetTcp, {System.ServiceModel.NetTcp, 4.5.3}",
+      "System.ServiceModel.Primitives, {System.ServiceModel.Primitives, 4.5.3}",
       "System.ServiceModel.Security, {System.ServiceModel.Security, 4.4.4}"
     ],
+    "sync": true,
     "targetFramework": "netstandard2.0",
     "typeReuseMode": "All"
   }

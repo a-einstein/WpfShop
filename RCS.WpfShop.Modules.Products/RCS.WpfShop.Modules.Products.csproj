@@ -43,6 +43,7 @@
     <ProjectReference Include="..\RCS.WpfShop.AdventureWorks\RCS.WpfShop.AdventureWorks.csproj" />
     <ProjectReference Include="..\RCS.WpfShop.Common\RCS.WpfShop.Common.csproj" />
     <ProjectReference Include="..\RCS.WpfShop.Resources\RCS.WpfShop.Resources.csproj" />
+    <ProjectReference Include="..\RCS.WpfShop.ServiceClients.Products.Mock\RCS.WpfShop.ServiceClients.Products.Mock.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator">

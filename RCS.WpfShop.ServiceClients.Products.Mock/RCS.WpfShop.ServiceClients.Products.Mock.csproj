@@ -17,7 +17,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj" />
-    <ProjectReference Include="..\RCS.WpfShop.ServiceClients.Products\RCS.WpfShop.ServiceClients.Products.csproj" />
+    <ProjectReference Include="..\RCS.WpfShop.AdventureWorks\RCS.WpfShop.AdventureWorks.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers">

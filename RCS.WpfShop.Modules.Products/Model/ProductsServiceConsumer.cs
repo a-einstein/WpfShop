@@ -42,7 +42,10 @@ namespace RCS.WpfShop.Modules.Products.Model
                     // Note there are more constructors that may be applied, or even add some of our own in a partial class.
 
                     // TODO Check why the TDOs are not reused in the service client.
-                    productsServiceClient = new ProductsServiceClient(endpointConfiguration, endpointAddress);
+                    //productsServiceClient = new AdventureWorks.ServiceReferences.ProductsServiceClient(endpointConfiguration, endpointAddress);
+
+                    // HACK To use the Mock client.
+                    productsServiceClient = new ServiceClients.Products.Mock.ProductsServiceClient();
                 }
 
                 return productsServiceClient;
