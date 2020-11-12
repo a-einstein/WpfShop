@@ -26,7 +26,7 @@
     <ProjectReference Include="..\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj" />
     <ProjectReference Include="..\RCS.WpfShop.Modules.Products\RCS.WpfShop.Modules.Products.csproj" />
     <ProjectReference Include="..\RCS.WpfShop.Resources\RCS.WpfShop.Resources.csproj" />
-    <ProjectReference Include="..\RCS.WpfShop.ServiceClients.Products.Mock\RCS.WpfShop.ServiceClients.Products.Mock.csproj" />
+    <ProjectReference Include="..\RCS.WpfShop.ServiceClients.Products.Mock\RCS.WpfShop.AdventureWorks.Mock.csproj" />
     <ProjectReference Include="..\RCS.WpfShop.ServiceClients.Products\RCS.WpfShop.ServiceClients.Products.csproj" />
     <ProjectReference Include="..\RCS.WpfShop.TestGui\RCS.WpfShop.TestGui.csproj" />
   </ItemGroup>
