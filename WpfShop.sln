@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCS.WpfShop.Modules.Product
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCS.WpfShop.Modules.About.TestGui", "RCS.WpfShop.Modules.About.TestGui\RCS.WpfShop.Modules.About.TestGui.csproj", "{36D102C9-22C0-41ED-83CE-8B61613AFB22}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCS.WpfShop.AdventureWorks.Mock", "RCS.WpfShop.ServiceClients.Products.Mock\RCS.WpfShop.AdventureWorks.Mock.csproj", "{5A76D31B-2898-44CD-B345-55BD5D98486A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCS.WpfShop.AdventureWorks.Mock", "RCS.WpfShop.AdventureWorks.Mock\RCS.WpfShop.AdventureWorks.Mock.csproj", "{5A76D31B-2898-44CD-B345-55BD5D98486A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCS.AdventureWorks.Common", "RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj", "{493D8ED2-1BA9-436C-981F-3A84523FA8A0}"
 EndProject

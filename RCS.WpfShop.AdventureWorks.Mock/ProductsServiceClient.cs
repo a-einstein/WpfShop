@@ -3,7 +3,7 @@ using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.WpfShop.AdventureWorks.ServiceReferences;
 using System.Threading.Tasks;
 
-namespace RCS.WpfShop.ServiceClients.Products.Mock
+namespace RCS.WpfShop.AdventureWorks.Mock
 {
     // The concept and use of this class is based on:
     // http://www.fascinatedwithsoftware.com/blog/post/2011/06/01/How-to-Mock-a-WCF-Service-with-Unity-and-Moq.aspx
