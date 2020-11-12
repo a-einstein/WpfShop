@@ -35,7 +35,7 @@ namespace RCS.WpfShop.Modules.Products
             container.RegisterInstance(serviceConfiguration);
 
             container.RegisterSingleton<IProductsService, ProductsServiceClient>();
-            //container.RegisterSingleton<IProductsService, ServiceClients.Products.Mock.ProductsServiceClient>();
+            //container.RegisterSingleton<IProductsService, AdventureWorks.Mock.ProductsServiceClient>();
 
             container.RegisterSingleton<ProductCategoriesRepository>();
             container.RegisterSingleton<ProductSubcategoriesRepository>();
