@@ -1,13 +1,14 @@
-﻿using Prism.Ioc;
+﻿using Microsoft.Practices.Unity.Configuration;
+using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Unity;
-using RCS.WpfShop.AdventureWorks.ServiceReferences;
 using RCS.WpfShop.Common;
 using RCS.WpfShop.Common.Modules;
 using RCS.WpfShop.Modules.Products.Model;
 using RCS.WpfShop.Modules.Products.ViewModels;
 using RCS.WpfShop.Modules.Products.Views;
 using System;
+using System.Configuration;
 using Unity;
 using static RCS.WpfShop.AdventureWorks.ServiceReferences.ProductsServiceClient;
 
@@ -24,18 +25,24 @@ namespace RCS.WpfShop.Modules.Products
         // TODO Make use of Core for injection?
         public override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            // Use the old .config files because they can be transformed based on the buildconfiguration.
+            // The new method with .json files can only work with environment variables, which are unpractical to set.
+            // Note this is the actual filename in Core, there is no default for this method.
+            // If the exe.config file is named here, the result is just empty.
+            // Alternatively the dll.config could be renamed or copied to exe.config by an action in the project file. https://stackoverflow.com/questions/45034007/using-app-config-in-net-core
+            var configuration = ConfigurationManager.OpenExeConfiguration("RCS.WpfShop.dll");
+            var sectionUnity = configuration.GetSection("unity") as UnityConfigurationSection;
+
             base.RegisterTypes(containerRegistry);
 
             var container = containerRegistry.GetContainer();
 
-            // TODO Make registration or injection dependent on configuration, maybe in Core.
-            // Note this used to be done by container.LoadConfiguration(). 
-            // This no longer works, so the transformed .config files have been disabled.
+            // TODO Also get this from config files.
             var serviceConfiguration = new EndpointAndAddressConfiguration(EndpointConfiguration.WSHttpBinding_IProductsService, "https://localhost:44300/ProductsService.svc/ProductsServiceW");
             container.RegisterInstance(serviceConfiguration);
 
-            container.RegisterSingleton<IProductsService, ProductsServiceClient>();
-            //container.RegisterSingleton<IProductsService, AdventureWorks.Mock.ProductsServiceClient>();
+            // Register singleton depending on build configuration.
+            container.LoadConfiguration(sectionUnity, "Products");
 
             container.RegisterSingleton<ProductCategoriesRepository>();
             container.RegisterSingleton<ProductSubcategoriesRepository>();
