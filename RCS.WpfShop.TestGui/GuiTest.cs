@@ -24,7 +24,7 @@ namespace RCS.WpfShop.TestGui
             var classNameParts = typeof(GuiTest).FullName.Split(new char[] { '.' });
             mainName = String.Join(".", classNameParts, 0, 2);
 
-            appDir = $"{AppDomain.CurrentDomain.BaseDirectory}\\..\\..\\..\\{mainName}\\bin\\Test\\netcoreapp3.1";
+            appDir = $"{AppDomain.CurrentDomain.BaseDirectory}\\..\\..\\..\\..\\{mainName}\\bin\\Test\\netcoreapp3.1";
             appPath = $"{appDir}\\{mainName}.exe";
         }
 
