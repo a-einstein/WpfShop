@@ -9,7 +9,10 @@ namespace RCS.WpfShop.Modules.Products.Model.Test
         [TestMethod()]
         public void CombinationTest()
         {
-            var products = ProductsRepository.Instance;
+            // Note that injection is not possible in test classes.
+            // "Test classes need to have an empty default constructor or no constructors at all."
+
+            var products = new ProductsRepository();
             products.Clear();
 
             var productId1 = 1;
@@ -22,7 +25,7 @@ namespace RCS.WpfShop.Modules.Products.Model.Test
             var product2 = ProductsOverviewObject(productId2, price2);
             products.List.Add(product2);
 
-            var target = CartItemsRepository.Instance;
+            var target = new CartItemsRepository();
 
             var cartItem1 = target.AddProduct(product1);
             Assert.AreEqual(1, target.ProductsCount());

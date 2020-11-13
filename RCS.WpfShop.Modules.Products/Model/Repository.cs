@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using RCS.WpfShop.AdventureWorks.ServiceReferences;
+using System.Collections.ObjectModel;
 
 namespace RCS.WpfShop.Modules.Products.Model
 {
@@ -8,7 +9,11 @@ namespace RCS.WpfShop.Modules.Products.Model
          ProductsServiceConsumer
          where TCollection : Collection<TElement>, new()
     {
-        // Note Derived singletons duplicate construction code, but it it does not seem feasible to share that here.
+        #region Construction
+        public Repository(IProductsService productsServiceClient = null)
+            : base(productsServiceClient)
+        { }
+        #endregion
 
         #region CRUD
         public TCollection List { get; } = new TCollection();

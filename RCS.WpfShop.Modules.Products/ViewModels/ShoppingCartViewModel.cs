@@ -14,32 +14,12 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
     public class ShoppingCartViewModel : ItemsViewModel<CartItem>
     {
         #region Construction
-        private ShoppingCartViewModel() { }
+        CartItemsRepository cartItems;
 
-        private static volatile ShoppingCartViewModel instance;
-        private static readonly object syncRoot = new object();
-
-        // Note this class is a singleton, implemented along the way (but not entirely) of https://msdn.microsoft.com/en-us/library/ff650316.aspx
-        // TODO This might no longer be necessary if using RegisterSingleton.
-        public static ShoppingCartViewModel Instance
+        public ShoppingCartViewModel(CartItemsRepository cartItems)
         {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                        {
-                            instance = new ShoppingCartViewModel();
-                        }
-                    }
-                }
-
-                return instance;
-            }
+            this.cartItems = cartItems;
         }
-
         #endregion
 
         #region Refresh
@@ -59,7 +39,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
             if (baseInitialized && !initialized)
             {
-                Items = CartItemsRepository.Instance.List;
+                Items = cartItems.List;
                 initialized = true;
             }
 
@@ -77,7 +57,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #region CRUD
         public void CartProduct(IShoppingProduct productsOverviewObject)
         {
-            CartItemsRepository.Instance.AddProduct(productsOverviewObject);
+            cartItems.AddProduct(productsOverviewObject);
         }
 
         public static readonly DependencyProperty DeleteCommandProperty =
@@ -91,7 +71,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         private void Delete(CartItem cartItem)
         {
-            CartItemsRepository.Instance.DeleteProduct(cartItem);
+            cartItems.DeleteProduct(cartItem);
         }
 
         protected override void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -129,8 +109,8 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         private void UpdateAggregates()
         {
-            ProductItemsCount = CartItemsRepository.Instance.ProductsCount();
-            TotalValue = CartItemsRepository.Instance.CartValue();
+            ProductItemsCount = cartItems.ProductsCount();
+            TotalValue = cartItems.CartValue();
         }
 
         public static readonly DependencyProperty ProductItemCountProperty =

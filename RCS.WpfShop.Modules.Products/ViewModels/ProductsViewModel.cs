@@ -16,6 +16,27 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 {
     public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper
     {
+        #region Construction
+        ProductCategoriesRepository categories;
+        ProductSubcategoriesRepository subcategories;
+        ProductsRepository products;
+
+        ShoppingCartViewModel shoppingCartViewModel;
+
+        public ProductsViewModel(
+            ProductCategoriesRepository categories,
+            ProductSubcategoriesRepository subcategories,
+            ProductsRepository products,
+            ShoppingCartViewModel shoppingCartViewModel)
+        {
+            this.categories = categories;
+            this.subcategories = subcategories;
+            this.products = products;
+
+            this.shoppingCartViewModel = shoppingCartViewModel;
+        }
+        #endregion
+
         #region INavigationAware
         public override bool IsNavigationTarget(NavigationContext navigationContext)
         {
@@ -32,7 +53,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
             if (baseInitialized && !initialized)
             {
-                Items = ProductsRepository.Instance.List;
+                Items = products.List;
                 initialized = true;
             }
 
@@ -53,8 +74,8 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         {
             var results = await Task.WhenAll
             (
-                ProductCategoriesRepository.Instance.ReadList(),
-                ProductSubcategoriesRepository.Instance.ReadList()
+                categories.ReadList(),
+                subcategories.ReadList()
             );
 
             var succeeded = results.All(result => result);
@@ -65,7 +86,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                 {
                     var masterFilterItems = new ObservableCollection<ProductCategory>();
 
-                    foreach (var item in ProductCategoriesRepository.Instance.List)
+                    foreach (var item in categories.List)
                     {
                         masterFilterItems.Add(item);
                     }
@@ -73,7 +94,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                     // To trigger the enablement.
                     MasterFilterItems = masterFilterItems;
 
-                    foreach (var item in ProductSubcategoriesRepository.Instance.List)
+                    foreach (var item in subcategories.List)
                     {
                         detailFilterItemsSource.Add(item);
                     }
@@ -105,7 +126,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                 textFilterValue = TextFilterValue;
             });
 
-            var result = await ProductsRepository.Instance.ReadList(masterFilterValue, detailFilterValue, textFilterValue);
+            var result = await products.ReadList(masterFilterValue, detailFilterValue, textFilterValue);
             var succeeded = result != null;
 
             if (succeeded)
@@ -134,7 +155,8 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #region Details
         protected override void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
-            var productViewModel = new ProductViewModel() { ItemId = productsOverviewObject.Id };
+            // Note this enables opening multiple windows.
+            var productViewModel = new ProductViewModel(products,shoppingCartViewModel) { ItemId = productsOverviewObject.Id };
             var productView = new ProductView() { ViewModel = productViewModel };
 
             var productWindow = new OkWindow() { View = productView };
@@ -155,7 +177,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         private void CartProduct(ProductsOverviewObject productsOverviewObject)
         {
-            ShoppingCartViewModel.Instance.CartProduct(productsOverviewObject);
+            shoppingCartViewModel.CartProduct(productsOverviewObject);
         }
         #endregion
     }

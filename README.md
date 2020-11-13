@@ -4,14 +4,8 @@
 Working desktop application for test and demo purpose based on WPF. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
-* An installation package for the newer MSIX standard has been added.
-* The Azure build pipeline now includes the full ClickOnce packaging, and both the unit and GUI testing, on a self hosted agent.
-* Release is now to GitHub with an automatic change summary.
-* The ClickOnce deliverable is plug and play again. See the installation notes.
-* Makes use of own certified domain for webservice.
-* Integrated with Azure Devops build and release pipelines.
-* Mocked the data service for testing, applying Moq.
-* Added integrated GUI test by means of WinAppDriver/Selenium/Appium.
+* The projects have migrated to .net Core or Standard.
+* Unity dependency injection has been made use of far more and better.
 
 #### Purpose
 * Explore various techniques based on C# and WPF.
@@ -19,19 +13,20 @@ Working desktop application for test and demo purpose based on WPF. It simulates
 * Explore continuous integration by using combinations of Git, GitHub, TeamCity and Azure DevOps.
 * Explore Scrum process management by integration with Jira and Azure DevOps.
 
-#### Prerequisites
-* The application must be configured for a running instance of my [AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md).
-
 #### Notes
 * This is a near equivalent of my [PortableShop](https://github.com/a-einstein/PortableShop).
 * Submitted to code analysis by [Better Code Hub](https://bettercodehub.com). Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstein/WpfShop)](https://bettercodehub.com)  
 * Connected to automated Azure Devops build and release pipelines. Current build status for the master branch: [![Build Status](https://dev.azure.com/RcsProjects/WpfShop/_apis/build/status/Build?branchName=master)](https://dev.azure.com/RcsProjects/WpfShop/_build/latest?definitionId=12&branchName=master)
 
+#### Prerequisites
+* The application must be configured for a running instance of my [AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md).
+
 #### Aspects
 * WPF.
 * C# + XAML.
 * MVVM.
-* Prism/Unity Modules & Regions
+* Prism/Unity Modules & Regions.
+* Unity dependency injection.
 * Client-server.
 * Azure service.
 * WCF + SSL + domain + certificate.

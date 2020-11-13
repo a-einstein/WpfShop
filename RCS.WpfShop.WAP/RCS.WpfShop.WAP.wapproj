@@ -47,11 +47,11 @@
   </ItemGroup>
   <PropertyGroup Label="Configuration">
     <PostBuildEvent>
-      rem Note Macros BuildPlatform and ConfigurationName did not work! Therefore some hardcoding here.
-      rem Note you may see expanded macro's in the VS GUI, best is to directly edit in the project file.
-      rem Note xcopy did not copy the directory! Therefore the directory name is also indicated.
+rem Note Various macros did not work! Therefor some names are hardcoded.
+rem Note Macro's are expanded after saving from the VS GUI, both there and in the project file. Best is to edit the final form in the project file.
+rem Note xcopy did not copy the directory itself! Therefore the directory name is also added.
 
-      xcopy /i /y "$(SolutionDir)RCS.WpfShop\bin\Release\Modules" "$(SolutionDir)RCS.WpfShop.WAP\bin\Any CPU\Release\RCS.WpfShop\Modules\"
+xcopy /i /y "$(SolutionDir)RCS.WpfShop\bin\$(Configuration)\netcoreapp3.1\Modules\" "$(SolutionDir)RCS.WpfShop.WAP\bin\Any CPU\Release\RCS.WpfShop\Modules\"
 </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
@@ -145,7 +145,10 @@
     <Content Include="Images\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RCS.WpfShop\RCS.WpfShop.csproj" />
+    <ProjectReference Include="..\RCS.WpfShop\RCS.WpfShop.csproj">
+      <!-- Generated while changing framework of WpfShop. Untested. May not be necessary once done for this project too.-->
+      <SkipGetTargetFrameworkProperties>True</SkipGetTargetFrameworkProperties>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="NOTES.txt" />

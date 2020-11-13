@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RCS.WpfShop.AdventureWorks.Mock;
 using RCS.WpfShop.Modules.Products.Views;
 using RCS.WpfShop.Resources;
-using RCS.WpfShop.ServiceClients.Products.Mock;
 using RCS.WpfShop.TestGui;
 
 namespace RCS.WpfShop.Modules.Products.TestGui

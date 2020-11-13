@@ -1,9 +1,9 @@
 ﻿using Moq;
 using RCS.AdventureWorks.Common.DomainClasses;
-using RCS.WpfShop.ServiceClients.Products.ProductsService;
+using RCS.WpfShop.AdventureWorks.ServiceReferences;
 using System.Threading.Tasks;
 
-namespace RCS.WpfShop.ServiceClients.Products.Mock
+namespace RCS.WpfShop.AdventureWorks.Mock
 {
     // The concept and use of this class is based on:
     // http://www.fascinatedwithsoftware.com/blog/post/2011/06/01/How-to-Mock-a-WCF-Service-with-Unity-and-Moq.aspx
@@ -32,6 +32,7 @@ namespace RCS.WpfShop.ServiceClients.Products.Mock
 
             const string categoryNameBase = "Category";
 
+            // Return 2 categories.
             mock.Setup(service => service.GetProductCategories())
                 .Returns(new ProductCategoryList() {
                     new ProductCategory() { Id=1, Name= $"{categoryNameBase} 1" },
@@ -40,6 +41,7 @@ namespace RCS.WpfShop.ServiceClients.Products.Mock
 
             const string subcategoryNameBase = "Subcategory";
 
+            // Return 2 subcategories per category.
             mock.Setup(service => service.GetProductSubcategories())
                 .Returns(new ProductSubcategoryList() {
                     new ProductSubcategory() { Id=1, ProductCategoryId=1, Name=$"{subcategoryNameBase} 1.1" },
@@ -53,6 +55,9 @@ namespace RCS.WpfShop.ServiceClients.Products.Mock
             var searchStringExpected = $"{categoryIdExpected}.{subcategoryIdExpected}";
             var colorExpectedBase = $"Color {searchStringExpected}";
 
+            // Return 2 colours for expected criteria 2, 3, "2.3".
+            // Note the string is not valid in the control.
+            // TODO Make this more flexible.
             mock.Setup(service => service.GetProductsOverviewBy(categoryIdExpected, subcategoryIdExpected, searchStringExpected))
                 .Returns(new ProductsOverviewList() {
                     new ProductsOverviewObject() { Color = $"{colorExpectedBase}.1" },
@@ -62,41 +67,81 @@ namespace RCS.WpfShop.ServiceClients.Products.Mock
         #endregion
 
         #region IProductsService
+        /// <summary>
+        /// </summary>
+        /// <returns>2 categories.</returns>
         public ProductCategoryList GetProductCategories()
         {
-            return Mock.Object.GetProductCategories();
+            var result = Mock.Object.GetProductCategories();
+            return result;
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns>2 categories.</returns>
         public Task<ProductCategoryList> GetProductCategoriesAsync()
         {
             return Task.FromResult(GetProductCategories());
         }
 
+        /// <summary>
+        /// TODO.
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
         public Product GetProductDetails(int productId)
         {
-            return Mock.Object.GetProductDetails(productId);
+            var result = Mock.Object.GetProductDetails(productId);
+            return result;
         }
 
+        /// <summary>
+        /// TODO.
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
         public Task<Product> GetProductDetailsAsync(int productId)
         {
             return Task.FromResult(GetProductDetails(productId));
         }
 
+        /// <summary>
+        /// Expects 2, 3, "2.3".
+        /// </summary>
+        /// <param name="productCategoryID"></param>
+        /// <param name="productSubcategoryID"></param>
+        /// <param name="productNameString"></param>
+        /// <returns>2 products with different colours.</returns>
         public ProductsOverviewList GetProductsOverviewBy(int? productCategoryID, int? productSubcategoryID, string productNameString)
         {
-            return Mock.Object.GetProductsOverviewBy(productCategoryID, productSubcategoryID, productNameString);
+            var result = Mock.Object.GetProductsOverviewBy(productCategoryID, productSubcategoryID, productNameString);
+            return result;
         }
 
+        /// <summary>
+        /// Expects 2, 3, "2.3".
+        /// </summary>
+        /// <param name="productCategoryID"></param>
+        /// <param name="productSubcategoryID"></param>
+        /// <param name="productNameString"></param>
+        /// <returns>2 products with different colours.</returns>
         public Task<ProductsOverviewList> GetProductsOverviewByAsync(int? productCategoryID, int? productSubcategoryID, string productNameString)
         {
             return Task.FromResult(GetProductsOverviewBy(productCategoryID, productSubcategoryID, productNameString));
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns>4 subcategories.</returns>
         public ProductSubcategoryList GetProductSubcategories()
         {
-            return Mock.Object.GetProductSubcategories();
+            var result = Mock.Object.GetProductSubcategories();
+            return result;
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns>4 subcategories.</returns>
         public Task<ProductSubcategoryList> GetProductSubcategoriesAsync()
         {
             return Task.FromResult(GetProductSubcategories());

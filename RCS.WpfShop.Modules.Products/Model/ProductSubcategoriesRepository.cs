@@ -1,5 +1,5 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
-using RCS.WpfShop.ServiceClients.Products.ProductsService;
+using RCS.WpfShop.AdventureWorks.ServiceReferences;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -9,28 +9,9 @@ namespace RCS.WpfShop.Modules.Products.Model
     public class ProductSubcategoriesRepository : Repository<ObservableCollection<ProductSubcategory>, ProductSubcategory>
     {
         #region Construction
-        private ProductSubcategoriesRepository()
+        public ProductSubcategoriesRepository(IProductsService productsServiceClient = null)
+            : base(productsServiceClient)
         { }
-
-        private static volatile ProductSubcategoriesRepository instance;
-        private static readonly object syncRoot = new object();
-
-        public static ProductSubcategoriesRepository Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                            instance = new ProductSubcategoriesRepository();
-                    }
-                }
-
-                return instance;
-            }
-        }
         #endregion
 
         #region CRUD
@@ -45,7 +26,7 @@ namespace RCS.WpfShop.Modules.Products.Model
                 subcategories = await ProductsServiceClient.GetProductSubcategoriesAsync();
 
             }
-            catch (Exception exception) 
+            catch (Exception exception)
             {
                 DisplayAlert(exception);
                 return false;

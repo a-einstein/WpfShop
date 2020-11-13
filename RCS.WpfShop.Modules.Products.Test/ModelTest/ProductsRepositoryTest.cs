@@ -8,7 +8,9 @@ namespace RCS.WpfShop.Modules.Products.Model.Test
         [TestMethod()]
         public void ListTest()
         {
-            var target = ProductsRepository.Instance;
+            // Note that injection is not possible in test classes.
+            // "Test classes need to have an empty default constructor or no constructors at all."
+            var target = new ProductsRepository();
             var element = ProductsOverviewObject(1);
 
             target.Clear();

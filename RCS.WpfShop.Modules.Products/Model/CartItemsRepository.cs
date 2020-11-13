@@ -1,4 +1,5 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.WpfShop.AdventureWorks.ServiceReferences;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -8,28 +9,9 @@ namespace RCS.WpfShop.Modules.Products.Model
     public class CartItemsRepository : Repository<ObservableCollection<CartItem>, CartItem>
     {
         #region Construction
-        private CartItemsRepository()
+        public CartItemsRepository(IProductsService productsServiceClient = null)
+            : base(productsServiceClient)
         { }
-
-        private static volatile CartItemsRepository instance;
-        private static readonly object syncRoot = new object();
-
-        public static CartItemsRepository Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                            instance = new CartItemsRepository();
-                    }
-                }
-
-                return instance;
-            }
-        }
         #endregion
 
         #region CRUD

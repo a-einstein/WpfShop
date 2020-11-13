@@ -1,38 +1,26 @@
-﻿using Microsoft.Practices.Unity.Configuration;
+﻿using RCS.WpfShop.AdventureWorks.ServiceReferences;
 using RCS.WpfShop.Resources;
-using RCS.WpfShop.ServiceClients.Products.ProductsService;
 using System;
 using System.Diagnostics;
 using System.Windows;
-using Unity;
 
 namespace RCS.WpfShop.Modules.Products.Model
 {
     public abstract class ProductsServiceConsumer : IDisposable
     {
+        #region Construction
+        // Note the default is for test instantiation.
+        protected ProductsServiceConsumer(IProductsService productsServiceClient = null)
+        {
+            ProductsServiceClient = productsServiceClient;
+        }
+        #endregion
+
         #region Service
-        // TODO actually use this in client.
+        // TODO actually use this in client. May have to be moved to registration.
         private static TimeSpan Timeout { get; } = new TimeSpan(0, 0, 15);
 
-        private IProductsService productsServiceClient;
-
-        protected IProductsService ProductsServiceClient
-        {
-            get
-            {
-                if (productsServiceClient == null)
-                {
-                    var container = new UnityContainer();
-                    // Note this is only configurable in the app.config of the application, not the module.
-                    // TODO For testing a transformation of the config would be needed.
-                    // TODO Note that when configuring the service in the application, it would be logical to define the modules there as well.
-                    container.LoadConfiguration();
-                    productsServiceClient = container.Resolve<IProductsService>();
-                }
-
-                return productsServiceClient;
-            }
-        }
+        protected IProductsService ProductsServiceClient { get; private set; }
         #endregion
 
         #region IDisposable
@@ -84,7 +72,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         private static readonly TimeSpan serviceErrorGraceTime = Timeout + Timeout;
 
         private static TraceSource traceSource = new TraceSource("MainTrace");
-   
+
         protected static void DisplayAlert(Exception exception)
         {
             // Try to prevent stacking muliple related messages, like at startup.
