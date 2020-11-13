@@ -9,6 +9,7 @@ using RCS.WpfShop.Modules.Products.ViewModels;
 using RCS.WpfShop.Modules.Products.Views;
 using System;
 using System.Configuration;
+using System.Xml;
 using Unity;
 using static RCS.WpfShop.AdventureWorks.ServiceReferences.ProductsServiceClient;
 
@@ -25,24 +26,25 @@ namespace RCS.WpfShop.Modules.Products
         // TODO Make use of Core for injection?
         public override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            // Use the old .config files because they can be transformed based on the buildconfiguration.
+            // TODO Check if tracing can be activated again.
+
+            // Read from the old .config files because they can be transformed based on the buildconfiguration.
             // The new method with .json files can only work with environment variables, which are unpractical to set.
             // Note this is the actual filename in Core, there is no default for this method.
             // If the exe.config file is named here, the result is just empty.
             // Alternatively the dll.config could be renamed or copied to exe.config by an action in the project file. https://stackoverflow.com/questions/45034007/using-app-config-in-net-core
-            var configuration = ConfigurationManager.OpenExeConfiguration("RCS.WpfShop.dll");
-            var sectionUnity = configuration.GetSection("unity") as UnityConfigurationSection;
+            var configNameBase = "RCS.WpfShop.dll";
+            var serviceConfiguration = ReadServiceConfiguration(configNameBase);
+            var unityConfiguration = ReadUnityConfiguration(configNameBase);
 
             base.RegisterTypes(containerRegistry);
 
             var container = containerRegistry.GetContainer();
 
-            // TODO Also get this from config files.
-            var serviceConfiguration = new EndpointAndAddressConfiguration(EndpointConfiguration.WSHttpBinding_IProductsService, "https://localhost:44300/ProductsService.svc/ProductsServiceW");
             container.RegisterInstance(serviceConfiguration);
 
             // Register singleton depending on build configuration.
-            container.LoadConfiguration(sectionUnity, "Products");
+            container.LoadConfiguration(unityConfiguration, "Products");
 
             container.RegisterSingleton<ProductCategoriesRepository>();
             container.RegisterSingleton<ProductSubcategoriesRepository>();
@@ -68,6 +70,32 @@ namespace RCS.WpfShop.Modules.Products
             regionManager.RequestNavigate(Regions.MainViewWidgets, new Uri(nameof(ShoppingCartView), UriKind.Relative));
 
             regionManager.RegisterViewWithRegion(Regions.MainViewMain, typeof(ProductsView));
+        }
+        #endregion
+
+        #region Utility
+        static EndpointAndAddressConfiguration ReadServiceConfiguration(string configNameBase)
+        {
+            // Use xml reading as System.ServiceModel.Configuration is not available.
+            var document = new XmlDocument();
+            document.Load($"{configNameBase}.config");
+
+            // Read limited part of the current configuration in file. 
+            var endpointNode = document.DocumentElement.SelectSingleNode("/configuration/system.serviceModel/client/endpoint");
+            var endpointAttributes = endpointNode.Attributes;
+
+            var serviceConfiguration = new EndpointAndAddressConfiguration(
+                Enum.Parse<EndpointConfiguration>(endpointAttributes["bindingConfiguration"].Value),
+                endpointAttributes["address"].Value);
+
+            return serviceConfiguration;
+        }
+
+        static UnityConfigurationSection ReadUnityConfiguration(string configNameBase)
+        {
+            var configuration = ConfigurationManager.OpenExeConfiguration(configNameBase);
+            var sectionUnity = configuration.GetSection("unity") as UnityConfigurationSection;
+            return sectionUnity;
         }
         #endregion
     }
