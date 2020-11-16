@@ -40,13 +40,11 @@
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
 		<DebugSymbols>true</DebugSymbols>
 		<Optimize>false</Optimize>
-		<OutputPath>bin\Test\</OutputPath>
 		<WarningLevel>2</WarningLevel>
 		<UseVSHostingProcess>true</UseVSHostingProcess>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugService|AnyCPU'">
 		<DebugSymbols>true</DebugSymbols>
-		<OutputPath>bin\DebugService\</OutputPath>
 		<DefineConstants>CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
 		<WarningLevel>2</WarningLevel>
 		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
