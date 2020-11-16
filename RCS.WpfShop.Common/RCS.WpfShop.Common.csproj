@@ -55,9 +55,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Prism.Wpf">
-      <Version>7.2.0.1422</Version>
-    </PackageReference>
-    <PackageReference Include="System.ComponentModel.Composition" Version="5.0.0" />
+    <PackageReference Include="Prism.Wpf" Version="8.0.0.1909" />
+	  <PackageReference Include="System.ComponentModel.Composition" Version="5.0.0" />
   </ItemGroup>
 </Project>

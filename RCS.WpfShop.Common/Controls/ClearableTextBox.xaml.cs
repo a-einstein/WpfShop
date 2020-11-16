@@ -1,8 +1,8 @@
-﻿using Prism.Commands;
+﻿using Microsoft.Xaml.Behaviors;
+using Prism.Commands;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Interactivity;
 
 namespace RCS.WpfShop.Common.Controls
 {
