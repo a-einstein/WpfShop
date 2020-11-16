@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Microsoft.Xaml.Behaviors;
+using System;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Interactivity;
 using System.Windows.Media;
 
 namespace RCS.WpfShop.Common.Behaviors
