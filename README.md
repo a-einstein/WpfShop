@@ -6,6 +6,7 @@
 Working desktop application for test and demo purpose based on WPF. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
+* Click Once installing is not provided for the latest code, because of a [bug in Visual Studio](https://developercommunity2.visualstudio.com/t/A-NET-Core-31-or-NET-50-application-/1248873). Use an older version for the time being.
 * The projects have migrated to .net Core or Standard.
 * Unity dependency injection has been made use of far more and better.
 

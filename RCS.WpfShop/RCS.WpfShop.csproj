@@ -29,6 +29,7 @@
 		<UseWindowsForms>true</UseWindowsForms>
 		<UseWPF>true</UseWPF>
 		<Configurations>Debug;Release;Test;DebugService</Configurations>
+		<Platforms>AnyCPU;x86</Platforms>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<WarningLevel>2</WarningLevel>
@@ -150,11 +151,12 @@
 	<PropertyGroup>
 		<PostBuildEvent>
 			if $(Configuration) == Release (
+			rem Cleanup some unexpected files.
+			
 			rem Documentation files. Do not know why they are put there.
-			del "$(TargetDir)*.xml"
-
-			rem Currently for one remaning pdb file.
-			rem Basically prevented in advanced build settings.
+			rem Currently not found. Disabled to prevent messages..
+			rem del "$(TargetDir)*.xml"
+			
 			del "$(TargetDir)*.pdb"
 			)
 		</PostBuildEvent>

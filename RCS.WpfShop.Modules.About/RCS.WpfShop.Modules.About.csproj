@@ -5,6 +5,7 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
     <Configurations>Debug;Release;Test;DebugService</Configurations>
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <UseVSHostingProcess>true</UseVSHostingProcess>
@@ -58,11 +59,17 @@
   </ItemGroup>
   <PropertyGroup>
     <PostBuildEvent>
-		rem Note Various macros did not work! Therefor some names are hardcoded.
-		rem Note Macro's are expanded after saving from the VS GUI, both there and in the project file. Best is to edit the final form in the project file.
-		
-		xcopy /y "$(SolutionDir)RCS.WpfShop.Modules.About\bin\$(Configuration)\netcoreapp3.1\RCS.WpfShop.Modules.About.dll" "$(SolutionDir)RCS.WpfShop\bin\$(Configuration)\netcoreapp3.1\Modules\"
+		rem Copy the library.
 
-		rem Note that for Click Once publishing the modules need to be added to the manifest by ManifestManagerUtility.</PostBuildEvent>
+		rem Note Various macros did not work!
+		rem https://developercommunity2.visualstudio.com/t/Build-Event-variablesmacros-dont-work/1236433
+		rem Would like to use:
+		rem xcopy /i /y "$(TargetPath)" "$(SolutionDir)RCS.WpfShop\$(OutDir)Modules\"
+
+		rem Therefor this is a lot more hardcoded.
+		xcopy /i /y "$(SolutionDir)RCS.WpfShop.Modules.About\bin\$(Configuration)\netcoreapp3.1\RCS.WpfShop.Modules.About.dll" "$(SolutionDir)RCS.WpfShop\bin\$(Configuration)\netcoreapp3.1\Modules\"
+
+		rem Note that for Click Once publishing the modules need to be added to the manifest by the ManifestManagerUtility.
+	</PostBuildEvent>
   </PropertyGroup>
 </Project>
