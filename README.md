@@ -1,5 +1,7 @@
 ## WpfShop
 
+![](Demo.JPG)
+
 #### Description
 Working desktop application for test and demo purpose based on WPF. It simulates limited shopping capabilities based on the AdventureWorks database.
 
