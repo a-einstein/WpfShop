@@ -31,10 +31,39 @@ namespace RCS.WpfShop.Main
             // TODO Maybe use the standard name again. Maybe there is some use in the base. Currently this creates a loop.
             //base.OnStartup(e);
 
+            SetUpTracing();
+
             // Note that TraceEventType.Start was not supported for unknown reasons.
             traceSource.TraceEvent(TraceEventType.Verbose, default, $"Starting {executionLevel}.");
 
             SetupExceptionHandling();
+        }
+
+        // Note This needed because the config is not read when installed by MSIX.
+        // Note This does not work when installed by MSIX.
+        // Note Currently implemented in both Main and Module(s).
+        static void SetUpTracing()
+        {
+            Trace.AutoFlush = true;
+
+            traceSource.Switch = new SourceSwitch("mainLevel", "Verbose");
+
+            var executableName = AppDomain.CurrentDomain.FriendlyName;
+
+            var fileListener = new TextWriterTraceListener($"{executableName}.log", "file")
+            {
+                Filter = new EventTypeFilter(SourceLevels.Verbose),
+                TraceOutputOptions = TraceOptions.DateTime
+            };
+
+            traceSource.Listeners.Add(fileListener);
+
+            var consoleListener = new ConsoleTraceListener()
+            {
+                Filter = new EventTypeFilter(SourceLevels.Warning),
+            };
+
+            traceSource.Listeners.Add(consoleListener);
         }
 
         protected override void OnExit(ExitEventArgs e)

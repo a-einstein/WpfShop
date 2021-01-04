@@ -64,7 +64,7 @@
 		<AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 	<PropertyGroup>
-		<ManifestKeyFile>RCS.WpfShop_TemporaryKey.pfx</ManifestKeyFile>
+		<ManifestKeyFile>R:\RCS\certificates\doeleinden\WAP\Windows Application Package_TemporaryKey\Windows Application Package_TemporaryKey.pfx</ManifestKeyFile>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Include="app.config">
