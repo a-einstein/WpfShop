@@ -3,6 +3,7 @@ using Prism.Modularity;
 using Prism.Regions;
 using System;
 using System.Diagnostics;
+using System.IO;
 
 namespace RCS.WpfShop.Common.Modules
 {
@@ -21,39 +22,44 @@ namespace RCS.WpfShop.Common.Modules
         {
             regionManager = containerProvider.Resolve<IRegionManager>();
 
+            // Note that for MSIX the installation directory is put inside C:\Program Files\WindowsApps.
+            // The working directory no longer is the installation directory, but depending of the target platform something like C:\WINDOWS\system32.
+            // It needs to be explicitly set back, otherwise even the complete path is not enough to read or write files.
+            var baseDirectory = $"{AppDomain.CurrentDomain.BaseDirectory}";
+            Directory.SetCurrentDirectory(baseDirectory);
+
             SetUpTracing();
         }
 
-        // Note This needed because the config is not read when installed by MSIX.
-        // Note This does not work when installed by MSIX.
-        // Note Currently implemented in both Main and Module(s).
-
-        // TODO Tracing now works in the normal environment, but not after installation by MSIX.
-        // This might be cause by writing rights in the installation folder.
-        // https://www.advancedinstaller.com/msix-introduction.html#package-support-framework-aka-psf
-
-        // TODO Can this be done again by the config file?
+        // Currently implemented in both Main and Module(s).
+        // See the comment elsewehere.
         static void SetUpTracing()
         {
+            var executableName = AppDomain.CurrentDomain.FriendlyName;
+
+            // Needed for TextWriterTraceListener.
             Trace.AutoFlush = true;
 
+            // For unknown reasons this didn't work for any TraceEventType with lower priority than Verbose.
             TraceSource.Switch = new SourceSwitch("mainLevel", "Verbose");
 
-            // Note that module trace files could not be shared with that of the executable.
-            var fileListener = new TextWriterTraceListener("RCS.Modules.log", "file")
+            // Note that a DefaultTraceListener is added.
+            // Remove to better control the indiviudal levels.
+            TraceSource.Listeners.Remove("Default");
+
+            TraceSource.Listeners.AddRange(new TraceListener[]
             {
-                Filter = new EventTypeFilter(SourceLevels.Verbose),
-                TraceOutputOptions = TraceOptions.DateTime
-            };
-
-            TraceSource.Listeners.Add(fileListener);
-
-            var consoleListener = new ConsoleTraceListener()
-            {
-                Filter = new EventTypeFilter(SourceLevels.Warning),
-            };
-
-            TraceSource.Listeners.Add(consoleListener);
+                // Note that module trace files could not be shared with that of the executable.
+                new TextWriterTraceListener("RCS.Modules.log", "file")
+                {
+                    Filter = new EventTypeFilter(SourceLevels.Verbose),
+                    TraceOutputOptions = TraceOptions.DateTime
+                },
+                new ConsoleTraceListener()
+                {
+                    Filter = new EventTypeFilter(SourceLevels.Warning),
+                }
+            });
         }
     }
 }

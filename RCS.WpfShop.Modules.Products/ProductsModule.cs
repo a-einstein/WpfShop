@@ -18,7 +18,7 @@ using static RCS.WpfShop.AdventureWorks.ServiceReferences.ProductsServiceClient;
 namespace RCS.WpfShop.Modules.Products
 {
     // Use the ModuleDependency to order activation.
-    // It is fair to assume the presence of AboutModule though this is not really dependant.
+    // It is fair to assume the presence of AboutModule though this is not really dependent.
     // Anyway, there does not seem to be a simple other way.
     [ModuleDependency("AboutModule")]
     public class ProductsModule : Module
@@ -28,6 +28,9 @@ namespace RCS.WpfShop.Modules.Products
         // TODO Make use of Core for injection?
         public override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            var currentDirectory = Directory.GetCurrentDirectory();
+            TraceSource.TraceEvent(TraceEventType.Verbose, default, $"{nameof(ProductsModule)} {nameof(currentDirectory)} = {currentDirectory}");
+
             // Read from the old .config files because they can be transformed based on the buildconfiguration.
             // The new method with .json files can only work with environment variables, which are unpractical to set.
             // Note this is the actual filename in Core, there is no default for this method.
@@ -35,16 +38,6 @@ namespace RCS.WpfShop.Modules.Products
             // Alternatively the dll.config could be renamed or copied to exe.config by an action in the project file. https://stackoverflow.com/questions/45034007/using-app-config-in-net-core
             var configurationNameBase = $"{AppDomain.CurrentDomain.FriendlyName}.dll";
 
-            // Note that for MSIX the installation directory is put inside C:\Program Files\WindowsApps.
-            // The working directory no longer is the installation directory, but depending of the target platform something like C:\WINDOWS\system32.
-            // It needs to be explicitly set back, otherwise even the complete path is not enough to load configuration files.
-            var baseDirectory = $"{AppDomain.CurrentDomain.BaseDirectory}";
-            Directory.SetCurrentDirectory(baseDirectory);
-
-            var currentDirectory = Directory.GetCurrentDirectory();
-            TraceSource.TraceEvent(TraceEventType.Verbose, default, $"{nameof(ProductsModule)} {nameof(currentDirectory)} = {currentDirectory}");
-
-            // TODO Put this somewhere else.
             var serviceConfiguration = ReadServiceConfiguration(configurationNameBase);
             var unityConfiguration = ReadUnityConfiguration(configurationNameBase);
 
@@ -89,7 +82,7 @@ namespace RCS.WpfShop.Modules.Products
         {
             var configurationFileName = $"{configurationNameBase}.config";
 
-            // Use xml reading as System.ServiceModel.Configuration is not available.
+            // Use xml reading instead of ConfigurationManager as there are no appropriate classes of ConfigurationSection available.
             var document = new XmlDocument();
             document.Load(configurationFileName);
 
