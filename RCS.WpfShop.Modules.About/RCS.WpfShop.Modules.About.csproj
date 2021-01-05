@@ -5,6 +5,7 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
     <Configurations>Debug;Release;Test;DebugService</Configurations>
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <UseVSHostingProcess>true</UseVSHostingProcess>
@@ -15,13 +16,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Test\</OutputPath>
     <WarningLevel>2</WarningLevel>
     <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugService|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\DebugService\</OutputPath>
     <DefineConstants>CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -60,11 +59,21 @@
   </ItemGroup>
   <PropertyGroup>
     <PostBuildEvent>
-		rem Note Various macros did not work! Therefor some names are hardcoded.
-		rem Note Macro's are expanded after saving from the VS GUI, both there and in the project file. Best is to edit the final form in the project file.
-		
-		xcopy /y "$(SolutionDir)RCS.WpfShop.Modules.About\bin\$(Configuration)\netcoreapp3.1\RCS.WpfShop.Modules.About.dll" "$(SolutionDir)RCS.WpfShop\bin\$(Configuration)\netcoreapp3.1\Modules\"
+		rem Copy the library.
 
-		rem Note that for Click Once publishing the modules need to be added to the manifest by ManifestManagerUtility.</PostBuildEvent>
+		rem Note Various macros did not work!
+		rem https://developercommunity2.visualstudio.com/t/Build-Event-variablesmacros-dont-work/1236433
+		rem Would like to use:
+		rem xcopy /i /y "$(TargetPath)" "$(SolutionDir)RCS.WpfShop\$(OutDir)Modules\"
+		rem Therefor this is a lot more hardcoded.
+		rem Note this is very dependent of framwework, configuration and intended platform, particularly for MSIX!
+		rem TODO This is NOT correct when building for a platform!
+
+		xcopy /i /y "$(SolutionDir)RCS.WpfShop.Modules.About\bin\$(Configuration)\netcoreapp3.1\RCS.WpfShop.Modules.About.dll" "$(SolutionDir)RCS.WpfShop\bin\$(Configuration)\netcoreapp3.1\Modules\"
+
+		rem Note that after publishing the modules need to be added to the manifest manually with the tools below.
+		rem - Click Once: ManifestManagerUtility.
+		rem - MSIX: MsixPackagingTool.
+	</PostBuildEvent>
   </PropertyGroup>
 </Project>

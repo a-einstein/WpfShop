@@ -6,6 +6,7 @@ using RCS.WpfShop.Resources;
 using RCS.WpfShop.ViewModels;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
@@ -31,10 +32,51 @@ namespace RCS.WpfShop.Main
             // TODO Maybe use the standard name again. Maybe there is some use in the base. Currently this creates a loop.
             //base.OnStartup(e);
 
+            // Note that for MSIX the installation directory is put inside C:\Program Files\WindowsApps.
+            // The working directory no longer is the installation directory, but depending of the target platform something like C:\WINDOWS\system32.
+            // It needs to be explicitly set back, otherwise even the complete path is not enough to read or write files.
+            var baseDirectory = $"{AppDomain.CurrentDomain.BaseDirectory}";
+            Directory.SetCurrentDirectory(baseDirectory);
+
+            SetUpTracing();
+
             // Note that TraceEventType.Start was not supported for unknown reasons.
             traceSource.TraceEvent(TraceEventType.Verbose, default, $"Starting {executionLevel}.");
 
             SetupExceptionHandling();
+        }
+
+        /// <summary>
+        /// Set up in code instead of reading a configurationfile, to avoid complication, 
+        /// and as there is no distinction between different environments anyway.
+        /// Currently implemented in both Main and Module(s).
+        /// </summary>
+        static void SetUpTracing()
+        {
+            var executableName = AppDomain.CurrentDomain.FriendlyName;
+
+            // Needed for TextWriterTraceListener.
+            Trace.AutoFlush = true;
+
+			// For unknown reasons this didn't work for any TraceEventType with lower priority than Verbose.
+            traceSource.Switch = new SourceSwitch("mainLevel", "Verbose");
+
+            // Note that a DefaultTraceListener is added.
+            // Remove to better control the indiviudal levels.
+            traceSource.Listeners.Remove("Default");
+
+            traceSource.Listeners.AddRange(new TraceListener[]
+            {
+                new TextWriterTraceListener($"{executableName}.log", "file")
+                {
+                    Filter = new EventTypeFilter(SourceLevels.Verbose),
+                    TraceOutputOptions = TraceOptions.DateTime
+                },
+                new ConsoleTraceListener()
+                {
+                    Filter = new EventTypeFilter(SourceLevels.Warning),
+                }
+            });
         }
 
         protected override void OnExit(ExitEventArgs e)

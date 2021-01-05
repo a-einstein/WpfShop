@@ -29,6 +29,7 @@
 		<UseWindowsForms>true</UseWindowsForms>
 		<UseWPF>true</UseWPF>
 		<Configurations>Debug;Release;Test;DebugService</Configurations>
+		<Platforms>AnyCPU;x86</Platforms>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<WarningLevel>2</WarningLevel>
@@ -40,13 +41,11 @@
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
 		<DebugSymbols>true</DebugSymbols>
 		<Optimize>false</Optimize>
-		<OutputPath>bin\Test\</OutputPath>
 		<WarningLevel>2</WarningLevel>
 		<UseVSHostingProcess>true</UseVSHostingProcess>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugService|AnyCPU'">
 		<DebugSymbols>true</DebugSymbols>
-		<OutputPath>bin\DebugService\</OutputPath>
 		<DefineConstants>CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
 		<WarningLevel>2</WarningLevel>
 		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
@@ -65,7 +64,7 @@
 		<AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 	<PropertyGroup>
-		<ManifestKeyFile>RCS.WpfShop_TemporaryKey.pfx</ManifestKeyFile>
+		<ManifestKeyFile>R:\RCS\certificates\doeleinden\WAP\Windows Application Package_TemporaryKey\Windows Application Package_TemporaryKey.pfx</ManifestKeyFile>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Include="app.config">
@@ -152,11 +151,12 @@
 	<PropertyGroup>
 		<PostBuildEvent>
 			if $(Configuration) == Release (
+			rem Cleanup some unexpected files.
+			
 			rem Documentation files. Do not know why they are put there.
-			del "$(TargetDir)*.xml"
-
-			rem Currently for one remaning pdb file.
-			rem Basically prevented in advanced build settings.
+			rem Currently not found. Disabled to prevent messages..
+			rem del "$(TargetDir)*.xml"
+			
 			del "$(TargetDir)*.pdb"
 			)
 		</PostBuildEvent>

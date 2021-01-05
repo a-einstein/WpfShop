@@ -47,12 +47,14 @@
   </ItemGroup>
   <PropertyGroup Label="Configuration">
     <PostBuildEvent>
-rem Note Various macros did not work! Therefor some names are hardcoded.
-rem Note Macro's are expanded after saving from the VS GUI, both there and in the project file. Best is to edit the final form in the project file.
-rem Note xcopy did not copy the directory itself! Therefore the directory name is also added.
+		rem Note that after publishing the modules need to be added to the manifest manually with the tools below.
+		rem - Click Once: ManifestManagerUtility.
+		rem - MSIX: MsixPackagingTool.
 
-xcopy /i /y "$(SolutionDir)RCS.WpfShop\bin\$(Configuration)\netcoreapp3.1\Modules\" "$(SolutionDir)RCS.WpfShop.WAP\bin\Any CPU\Release\RCS.WpfShop\Modules\"
-</PostBuildEvent>
+		rem An attempt to copy the modules in advance to this projects' bin is given up because of the macro's being totally unreliable.
+		rem This is particularly complicated for MSIX.
+		rem See the comments in the module project files.
+	</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <WapProjPath Condition="'$(WapProjPath)'==''">$(MSBuildExtensionsPath)\Microsoft\DesktopBridge\</WapProjPath>
@@ -69,16 +71,15 @@ xcopy /i /y "$(SolutionDir)RCS.WpfShop\bin\$(Configuration)\netcoreapp3.1\Module
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
-    <AppxPackageDir>..\..\publish\WAP\published</AppxPackageDir>
+    <AppxPackageDir>..\..\publish\WAP\published\</AppxPackageDir>
     <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
-    <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefaultLanguage>en-GB</DefaultLanguage>
     <AppxBundle>Never</AppxBundle>
-    <OutputPath>bin\Any CPU\Debug\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <DefaultLanguage>en-GB</DefaultLanguage>

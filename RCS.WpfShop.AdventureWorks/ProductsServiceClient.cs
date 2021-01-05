@@ -4,8 +4,8 @@
     {
         // Intended to enable injection.
         // TODO Maybe the constructor with Binding could be applied instead with more options.
-        public ProductsServiceClient(EndpointAndAddressConfiguration configDinges)
-            : this(configDinges.EndpointConfiguration, configDinges.RemoteAddress)
+        public ProductsServiceClient(EndpointAndAddressConfiguration configuration)
+            : this(configuration.EndpointConfiguration, configuration.RemoteAddress)
         { }
 
         public class EndpointAndAddressConfiguration

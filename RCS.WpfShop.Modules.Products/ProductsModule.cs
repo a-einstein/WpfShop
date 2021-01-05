@@ -9,6 +9,8 @@ using RCS.WpfShop.Modules.Products.ViewModels;
 using RCS.WpfShop.Modules.Products.Views;
 using System;
 using System.Configuration;
+using System.Diagnostics;
+using System.IO;
 using System.Xml;
 using Unity;
 using static RCS.WpfShop.AdventureWorks.ServiceReferences.ProductsServiceClient;
@@ -16,7 +18,7 @@ using static RCS.WpfShop.AdventureWorks.ServiceReferences.ProductsServiceClient;
 namespace RCS.WpfShop.Modules.Products
 {
     // Use the ModuleDependency to order activation.
-    // It is fair to assume the presence of AboutModule though this is not really dependant.
+    // It is fair to assume the presence of AboutModule though this is not really dependent.
     // Anyway, there does not seem to be a simple other way.
     [ModuleDependency("AboutModule")]
     public class ProductsModule : Module
@@ -26,16 +28,18 @@ namespace RCS.WpfShop.Modules.Products
         // TODO Make use of Core for injection?
         public override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            // TODO Check if tracing can be activated again.
+            var currentDirectory = Directory.GetCurrentDirectory();
+            TraceSource.TraceEvent(TraceEventType.Verbose, default, $"{nameof(ProductsModule)} {nameof(currentDirectory)} = {currentDirectory}");
 
             // Read from the old .config files because they can be transformed based on the buildconfiguration.
             // The new method with .json files can only work with environment variables, which are unpractical to set.
             // Note this is the actual filename in Core, there is no default for this method.
             // If the exe.config file is named here, the result is just empty.
             // Alternatively the dll.config could be renamed or copied to exe.config by an action in the project file. https://stackoverflow.com/questions/45034007/using-app-config-in-net-core
-            var configNameBase = "RCS.WpfShop.dll";
-            var serviceConfiguration = ReadServiceConfiguration(configNameBase);
-            var unityConfiguration = ReadUnityConfiguration(configNameBase);
+            var configurationNameBase = $"{AppDomain.CurrentDomain.FriendlyName}.dll";
+
+            var serviceConfiguration = ReadServiceConfiguration(configurationNameBase);
+            var unityConfiguration = ReadUnityConfiguration(configurationNameBase);
 
             base.RegisterTypes(containerRegistry);
 
@@ -74,11 +78,13 @@ namespace RCS.WpfShop.Modules.Products
         #endregion
 
         #region Utility
-        static EndpointAndAddressConfiguration ReadServiceConfiguration(string configNameBase)
+        static EndpointAndAddressConfiguration ReadServiceConfiguration(string configurationNameBase)
         {
-            // Use xml reading as System.ServiceModel.Configuration is not available.
+            var configurationFileName = $"{configurationNameBase}.config";
+
+            // Use xml reading instead of ConfigurationManager as there are no appropriate classes of ConfigurationSection available.
             var document = new XmlDocument();
-            document.Load($"{configNameBase}.config");
+            document.Load(configurationFileName);
 
             // Read limited part of the current configuration in file. 
             var endpointNode = document.DocumentElement.SelectSingleNode("/configuration/system.serviceModel/client/endpoint");
@@ -91,9 +97,9 @@ namespace RCS.WpfShop.Modules.Products
             return serviceConfiguration;
         }
 
-        static UnityConfigurationSection ReadUnityConfiguration(string configNameBase)
+        static UnityConfigurationSection ReadUnityConfiguration(string configurationNameBase)
         {
-            var configuration = ConfigurationManager.OpenExeConfiguration(configNameBase);
+            var configuration = ConfigurationManager.OpenExeConfiguration(configurationNameBase);
             var sectionUnity = configuration.GetSection("unity") as UnityConfigurationSection;
             return sectionUnity;
         }
