@@ -69,6 +69,11 @@
                                 <GridViewColumn Width="Auto">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
+                                            <!--
+                                            Note Currently the package this belongs to results in a build warning for .Net Core 3 and up.
+                                            https://github.com/xceedsoftware/wpftoolkit/wiki/Xceed-Toolkit-Plus-for-WPF
+                                            So far this has not resulted in execution or real build problems.
+                                            -->
                                             <xctk:IntegerUpDown Name="quantityUpDown" Value="{Binding Quantity, Mode=TwoWay}" Minimum="0" Style="{StaticResource IntegerUpDownStyle}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
