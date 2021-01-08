@@ -2,7 +2,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
-using OpenQA.Selenium.Support.UI;
 using System;
 
 namespace RCS.WpfShop.TestGui
@@ -24,7 +23,8 @@ namespace RCS.WpfShop.TestGui
             var classNameParts = typeof(GuiTest).FullName.Split(new char[] { '.' });
             mainName = String.Join(".", classNameParts, 0, 2);
 
-            appDir = $"{AppDomain.CurrentDomain.BaseDirectory}\\..\\..\\..\\..\\{mainName}\\bin\\Test\\netcoreapp3.1";
+            // TODO This should follow the current framework.
+            appDir = $"{AppDomain.CurrentDomain.BaseDirectory}\\..\\..\\..\\..\\{mainName}\\bin\\Test\\net5.0-windows";
             appPath = $"{appDir}\\{mainName}.exe";
         }
 

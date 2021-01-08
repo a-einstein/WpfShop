@@ -6,8 +6,8 @@
 Working desktop application for test and demo purpose based on WPF. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
-* Click Once installing is not provided for the latest code, because of a [bug in Visual Studio](https://developercommunity2.visualstudio.com/t/A-NET-Core-31-or-NET-50-application-/1248873). Use an older version for the time being.
-* The projects have migrated to .net Core or Standard.
+* The projects have migrated to .Net 5.
+* Currently no installation packages are supplied for the latest code. Refer to the last released versions, which are functionally equal.
 * Unity dependency injection has been made use of far more and better.
 
 #### Purpose
@@ -23,6 +23,10 @@ Working desktop application for test and demo purpose based on WPF. It simulates
 
 #### Prerequisites
 * The application must be configured for a running instance of my [AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md).
+
+#### Known issues
+* MSIX installing is currently not supplied for the lastest code for technical reasons.
+* Click Once installing is not provided for the latest code, because of a [bug in Visual Studio](https://developercommunity2.visualstudio.com/t/A-NET-Core-31-or-NET-50-application-/1248873).
 
 #### Aspects
 * WPF.
