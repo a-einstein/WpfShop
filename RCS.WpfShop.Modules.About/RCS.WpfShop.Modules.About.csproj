@@ -1,6 +1,6 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
@@ -69,7 +69,7 @@
 		rem Note this is very dependent of framwework, configuration and intended platform, particularly for MSIX!
 		rem TODO This is NOT correct when building for a platform!
 
-		xcopy /i /y "$(SolutionDir)RCS.WpfShop.Modules.About\bin\$(Configuration)\netcoreapp3.1\RCS.WpfShop.Modules.About.dll" "$(SolutionDir)RCS.WpfShop\bin\$(Configuration)\netcoreapp3.1\Modules\"
+		xcopy /i /y "$(SolutionDir)RCS.WpfShop.Modules.About\bin\$(Configuration)\net5.0-windows\RCS.WpfShop.Modules.About.dll" "$(SolutionDir)RCS.WpfShop\bin\$(Configuration)\net5.0-windows\Modules\"
 
 		rem Note that after publishing the modules need to be added to the manifest manually with the tools below.
 		rem - Click Once: ManifestManagerUtility.
