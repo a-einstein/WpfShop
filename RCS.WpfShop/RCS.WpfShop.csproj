@@ -53,17 +53,10 @@
 		<ApplicationIcon>Images\Main.ico</ApplicationIcon>
 	</PropertyGroup>
 	<PropertyGroup>
-		<CertificateThumbprint>7BCD918FAE853F91511BF1141865D6B8BF392247</CertificateThumbprint>
-		<ManifestCertificateThumbprint>7BCD918FAE853F91511BF1141865D6B8BF392247</ManifestCertificateThumbprint>
-	</PropertyGroup>
-	<PropertyGroup>
 		<SignManifests>true</SignManifests>
 	</PropertyGroup>
 	<PropertyGroup>
 		<AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
-	</PropertyGroup>
-	<PropertyGroup>
-		<ManifestKeyFile>R:\RCS\certificates\doeleinden\WAP\Windows Application Package_TemporaryKey\Windows Application Package_TemporaryKey.pfx</ManifestKeyFile>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Include="app.config">
