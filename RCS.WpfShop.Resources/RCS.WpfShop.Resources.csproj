@@ -24,9 +24,6 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Update="Labels.Designer.cs">
       <DependentUpon>Labels.resx</DependentUpon>
       <AutoGen>True</AutoGen>

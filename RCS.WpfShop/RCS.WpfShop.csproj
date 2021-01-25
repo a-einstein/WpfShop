@@ -21,11 +21,10 @@
 		<WebPage>install.htm</WebPage>
 		<OpenBrowserOnPublish>false</OpenBrowserOnPublish>
 		<ApplicationRevision>0</ApplicationRevision>
-		<ApplicationVersion>0.18.0.0</ApplicationVersion>
 		<UseApplicationTrust>true</UseApplicationTrust>
 		<PublishWizardCompleted>true</PublishWizardCompleted>
 		<BootstrapperEnabled>true</BootstrapperEnabled>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 		<UseWindowsForms>true</UseWindowsForms>
 		<UseWPF>true</UseWPF>
 		<Configurations>Debug;Release;Test;DebugService</Configurations>
@@ -89,16 +88,15 @@
 			<SubType>Designer</SubType>
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
+		<None Include="Images\Main.ico">
+		  <Pack>True</Pack>
+		  <PackagePath></PackagePath>
+		</None>
 	</ItemGroup>
 	<ItemGroup>
 		<Reference Update="System">
 			<Private>True</Private>
 		</Reference>
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="..\GlobalAssemblyInfo.cs">
-			<Link>Properties\GlobalAssemblyInfo.cs</Link>
-		</Compile>
 	</ItemGroup>
 	<ItemGroup>
 		<AppDesigner Include="Properties\" />
@@ -155,6 +153,13 @@
 			del "$(TargetDir)*.pdb"
 			)
 		</PostBuildEvent>
+		<Nullable>enable</Nullable>
+		<Authors>RCS</Authors>
+		<Product>Cyclone - Wpf</Product>
+		<NeutralLanguage>en-GB</NeutralLanguage>
+		<Copyright>Copyright © RCS</Copyright>
+		<PackageIcon>Main.ico</PackageIcon>
+		<Version>0.19.0</Version>
 	</PropertyGroup>
 
 	<UsingTask TaskName="TransformXml" AssemblyFile="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Web\Microsoft.Web.Publishing.Tasks.dll" />
