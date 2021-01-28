@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
+		<PlatformTarget>AnyCPU</PlatformTarget>
 		<TargetFramework>net5.0-windows</TargetFramework>
 		<OutputType>WinExe</OutputType>
 		<WarningLevel>4</WarningLevel>
@@ -25,7 +26,6 @@
 		<PublishWizardCompleted>true</PublishWizardCompleted>
 		<BootstrapperEnabled>true</BootstrapperEnabled>
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-		<UseWindowsForms>true</UseWindowsForms>
 		<UseWPF>true</UseWPF>
 		<Configurations>Debug;Release;Test;DebugService</Configurations>
 		<Platforms>AnyCPU;x86</Platforms>
