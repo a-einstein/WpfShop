@@ -2,6 +2,7 @@
 	<PropertyGroup>
 		<PlatformTarget>AnyCPU</PlatformTarget>
 		<TargetFramework>net5.0-windows</TargetFramework>
+		<RuntimeIdentifiers>win-x86</RuntimeIdentifiers>
 		<OutputType>WinExe</OutputType>
 		<WarningLevel>4</WarningLevel>
 		<IsWebBootstrapper>false</IsWebBootstrapper>
