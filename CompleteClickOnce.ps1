@@ -1,9 +1,9 @@
 $applicationName = "RCS.WpfShop"
 
-$buildPath = "$env:SYSTEM_DEFAULTWORKINGDIRECTORY\$applicationName\bin\$env:BUILDCONFIGURATION"
+$buildPath = "$env:SYSTEM_DEFAULTWORKINGDIRECTORY\$applicationName\bin\$env:BUILDCONFIGURATION\$env:BUILDTARGETFRAMEWORK"
 Write-Host "buildPath = $buildPath"
 
-$publishPath = "$buildPath\app.publish"
+$publishPath = "$env:SYSTEM_DEFAULTWORKINGDIRECTORY\..\publish\ClickOnce\"
 
 $exeName = "$applicationName.exe"
 Remove-Item "$publishPath\$exeName"
@@ -19,7 +19,7 @@ $applicationPath = Resolve-Path "$publishPath\Application Files\*" |  Select-Obj
 Write-Host "applicationPath = $applicationPath"
 
 # Resulting spaces should not be an issues when expanded as parameters.
-Copy-Item -Path $modulesPath -Destination $applicationPath -Recurse
+Copy-Item -Path $modulesPath -Destination $applicationPath -Recurse -Force
 
 # This is apparently not possible in the command line version of Mage, but is in the GUI.
 # Better leave out the .deploy extension everywhere, because Mage changes the identity to it too on Update (BUG). It is not needed anyway.
@@ -32,13 +32,10 @@ Copy-Item -Path $modulesPath -Destination $applicationPath -Recurse
 $deploymentManifest = "$publishPath\$applicationName.application"
 Write-Host "deploymentManifest = $deploymentManifest"
 
-$deploymentManifestCopy = "$applicationPath\$applicationName.application"
-Write-Host "deploymentManifestCopy = $deploymentManifestCopy"
-
 # Appears not to be there.
 #Remove-Item $deploymentManifestCopy
 
-$applicationManifest = "$applicationPath\$exeName.manifest"
+$applicationManifest = "$applicationPath\$applicationName.dll.manifest"
 Write-Host "applicationManifest = $applicationManifest"
 
 $certFile = $env:PFXFILE_SECUREFILEPATH
@@ -55,12 +52,18 @@ $env:Path += ";C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.
 mage -update $applicationManifest -FromDirectory $applicationPath -CertFile $certFile -Password "$env:PFXPASSWORD"
 mage -update $deploymentManifest -appmanifest $applicationManifest -CertFile $certFile -Password "$env:PFXPASSWORD"
 
-Copy-Item -Path $deploymentManifest -Destination $deploymentManifestCopy
-
 #Write-Host "Modules added and manifests updated to $publishPath  ======================="
 #Get-ChildItem -Path $publishPath -Recurse
 
-Compress-Archive -Path $publishPath\* -DestinationPath "$publishPath\CyclOne.ClickOnce.zip"
+Set-Location -Path $publishPath
+
+$zipFile = "$publishPath\CyclOne.ClickOnce.zip"
+
+# Clean.
+Remove-Item $zipFile
+
+# Got to get rid of the other redundantly generated files.
+Compress-Archive -Path "Application Files",  Launcher.exe, $deploymentManifest, setup.exe -DestinationPath $zipFile
 
 Write-Host "Archived into $publishPath ======================="
 Get-ChildItem -Path $publishPath 
