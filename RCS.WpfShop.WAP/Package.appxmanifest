@@ -8,10 +8,10 @@
 
   <Identity
     Publisher="CN=Robert"
-    Version="0.18.0.0"  Name="RCS.CyclOne.WPF"/>
+    Version="0.18.0.0"  Name="RCS.CyclOne.WPF.WAP"/>
 
   <Properties>
-    <DisplayName>CyclOne.WPF</DisplayName>
+    <DisplayName>CyclOne.WPF.WAP</DisplayName>
     <PublisherDisplayName>RCS</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
@@ -30,8 +30,8 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="CyclOne.WPF"
-        Description="CyclOne.WPF"
+        DisplayName="CyclOne.WPF.WAP"
+        Description="RCS.CyclOne.WPF.WAP"
         BackgroundColor="transparent"
         Square150x150Logo="Images\Square150x150Logo.png"
         Square44x44Logo="Images\Square44x44Logo.png">
