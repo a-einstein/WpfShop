@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net5.0-windows</TargetFramework>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<RuntimeIdentifiers>win-x86</RuntimeIdentifiers>
 		<Configurations>Debug;Release;Test;DebugService</Configurations>
 		<Platforms>AnyCPU;x86</Platforms>
