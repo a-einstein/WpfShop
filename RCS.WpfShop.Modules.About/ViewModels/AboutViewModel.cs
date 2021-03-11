@@ -16,7 +16,7 @@ namespace RCS.WpfShop.Modules.About.ViewModels
 
         #region Information
         public static readonly DependencyProperty ApplicationVersionProperty =
-                DependencyProperty.Register(nameof(ApplicationVersion), typeof(string), typeof(AboutViewModel), new PropertyMetadata(Assembly.GetExecutingAssembly().GetName().Version.ToString()));
+                DependencyProperty.Register(nameof(ApplicationVersion), typeof(string), typeof(AboutViewModel), new PropertyMetadata(Assembly.GetEntryAssembly().GetName().Version.ToString()));
 
         public string ApplicationVersion
         {

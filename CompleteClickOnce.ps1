@@ -1,9 +1,9 @@
 $applicationName = "RCS.WpfShop"
 
-$buildPath = "$env:SYSTEM_DEFAULTWORKINGDIRECTORY\$applicationName\bin\$env:BUILDCONFIGURATION"
+$buildPath = "$env:SYSTEM_DEFAULTWORKINGDIRECTORY\$applicationName\bin\$env:BUILDCONFIGURATION\$env:BUILDTARGETFRAMEWORK"
 Write-Host "buildPath = $buildPath"
 
-$publishPath = "$buildPath\app.publish"
+$publishPath = "$env:SYSTEM_DEFAULTWORKINGDIRECTORY\..\publish\ClickOnce"
 
 $exeName = "$applicationName.exe"
 Remove-Item "$publishPath\$exeName"
@@ -19,48 +19,44 @@ $applicationPath = Resolve-Path "$publishPath\Application Files\*" |  Select-Obj
 Write-Host "applicationPath = $applicationPath"
 
 # Resulting spaces should not be an issues when expanded as parameters.
-Copy-Item -Path $modulesPath -Destination $applicationPath -Recurse
-
-# This is apparently not possible in the command line version of Mage, but is in the GUI.
-# Better leave out the .deploy extension everywhere, because Mage changes the identity to it too on Update (BUG). It is not needed anyway.
-#Get-ChildItem $applicationPath\Modules\* | Rename-Item -NewName { $_.Name + ".deploy" }
-
-# Used a relative path here, also tried just the filename.
-#$iconFile = "Images\Main.ico"
-#Write-Host "iconFile = $iconFile"
+Copy-Item -Path $modulesPath -Destination $applicationPath -Recurse -Force
 
 $deploymentManifest = "$publishPath\$applicationName.application"
 Write-Host "deploymentManifest = $deploymentManifest"
 
-$deploymentManifestCopy = "$applicationPath\$applicationName.application"
-Write-Host "deploymentManifestCopy = $deploymentManifestCopy"
-
-# Appears not to be there.
-#Remove-Item $deploymentManifestCopy
-
-$applicationManifest = "$applicationPath\$exeName.manifest"
+$applicationManifest = "$applicationPath\$applicationName.dll.manifest"
 Write-Host "applicationManifest = $applicationManifest"
 
 $certFile = $env:PFXFILE_SECUREFILEPATH
 Write-Host "certFile = $certFile"
 
+# Used for Mage.
 $env:Path += ";C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools"
 
-# Note the IconFile option apparently is only available on command line and needed for Programs & Features.
-# Note the option is only allowed on the applicationManifest.
-# Note the iconFile option turned out to be already present in the applicationManifest, apparently taken from the application.
-# So far the IconFile option did not work and is deactivated.
-# -IconFile $iconFile
-# Note locked variables are not accessible.
-mage -update $applicationManifest -FromDirectory $applicationPath -CertFile $certFile -Password "$env:PFXPASSWORD"
-mage -update $deploymentManifest -appmanifest $applicationManifest -CertFile $certFile -Password "$env:PFXPASSWORD"
+#mage -update $applicationManifest -FromDirectory $applicationPath -CertFile $certFile -Password "$env:PFXPASSWORD"
 
-Copy-Item -Path $deploymentManifest -Destination $deploymentManifestCopy
+# Create entirely new manifest, because of problems by the update option.
+# Those may have been caused by using the deploy extension. Resulting in double listings or conflicts in identity.
+# Leave out the deploy extension (in the profile) while publishing.
+# UseManifestForTrust false only uses the deploymentManifest for names, description, etcetera. It is not needed in the applicationManifest and would have to be specified again.
+Remove-Item $applicationManifest
+mage -New Application -UseManifestForTrust false -ToFile $applicationManifest -FromDirectory $applicationPath -CertFile $certFile -Password "$env:PFXPASSWORD"
+
+# Update the hash.
+mage -update $deploymentManifest -appmanifest $applicationManifest -CertFile $certFile -Password "$env:PFXPASSWORD"
 
 #Write-Host "Modules added and manifests updated to $publishPath  ======================="
 #Get-ChildItem -Path $publishPath -Recurse
 
-Compress-Archive -Path $publishPath\* -DestinationPath "$publishPath\CyclOne.ClickOnce.zip"
+Set-Location -Path $publishPath
+
+$zipFile = "$publishPath\CyclOne.ClickOnce.zip"
+
+# Clean.
+if (Test-Path $zipFile) {Remove-Item $zipFile}
+
+# Got to get rid of the other redundantly generated files.
+Compress-Archive -Path "Application Files",  Launcher.exe, $deploymentManifest, setup.exe -DestinationPath $zipFile
 
 Write-Host "Archived into $publishPath ======================="
 Get-ChildItem -Path $publishPath 

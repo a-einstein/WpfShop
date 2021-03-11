@@ -1,54 +1,50 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net5.0-windows</TargetFramework>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <UseWPF>true</UseWPF>
-    <Configurations>Debug;Release;Test;DebugService</Configurations>
-    <Platforms>AnyCPU;x86</Platforms>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <UseVSHostingProcess>true</UseVSHostingProcess>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <Optimize>false</Optimize>
-    <WarningLevel>2</WarningLevel>
-    <UseVSHostingProcess>true</UseVSHostingProcess>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugService|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <DefineConstants>CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Update="System">
-      <Private>False</Private>
-    </Reference>
-    <Reference Update="System.Data">
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj" />
-    <ProjectReference Include="..\RCS.WpfShop.Resources\RCS.WpfShop.Resources.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="CommonServiceLocator">
-      <Version>2.0.5</Version>
-    </PackageReference>
-    <PackageReference Include="Extended.Wpf.Toolkit">
-      <Version>4.0.2</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Prism.Wpf" Version="8.0.0.1909" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0-windows</TargetFramework>
+		<RuntimeIdentifiers>win-x86</RuntimeIdentifiers>
+		<OutputType>Library</OutputType>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<UseWPF>true</UseWPF>
+		<Configurations>Debug;Release;Test;DebugService</Configurations>
+		<Platforms>AnyCPU;x86</Platforms>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<UseVSHostingProcess>true</UseVSHostingProcess>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<DebugType>none</DebugType>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+		<DebugSymbols>true</DebugSymbols>
+		<Optimize>false</Optimize>
+		<WarningLevel>2</WarningLevel>
+		<UseVSHostingProcess>true</UseVSHostingProcess>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugService|AnyCPU'">
+		<DebugSymbols>true</DebugSymbols>
+		<DefineConstants>CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Update="System">
+			<Private>False</Private>
+		</Reference>
+		<Reference Update="System.Data">
+			<Private>False</Private>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj" />
+		<ProjectReference Include="..\RCS.WpfShop.Resources\RCS.WpfShop.Resources.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="CommonServiceLocator">
+			<Version>2.0.5</Version>
+		</PackageReference>
+		<PackageReference Include="Extended.Wpf.Toolkit">
+			<Version>4.0.2</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="Prism.Wpf" Version="8.0.0.1909" />
+	</ItemGroup>
 </Project>
