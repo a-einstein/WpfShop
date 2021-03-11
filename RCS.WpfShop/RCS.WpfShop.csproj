@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<PlatformTarget>AnyCPU</PlatformTarget>
 		<TargetFramework>net5.0-windows</TargetFramework>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 		<RuntimeIdentifiers>win-x86</RuntimeIdentifiers>
 		<OutputType>WinExe</OutputType>
 		<WarningLevel>4</WarningLevel>
@@ -153,7 +153,7 @@
 		<NeutralLanguage>en-GB</NeutralLanguage>
 		<Copyright>Copyright © RCS</Copyright>
 		<PackageIcon>Main.ico</PackageIcon>
-		<Version>0.18.0</Version>
+		<Version>0.19.0</Version>
 	</PropertyGroup>
 
 	<UsingTask TaskName="TransformXml" AssemblyFile="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Web\Microsoft.Web.Publishing.Tasks.dll" />

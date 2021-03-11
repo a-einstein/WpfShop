@@ -8,7 +8,7 @@
 
   <Identity
     Publisher="CN=Robert"
-    Version="0.18.0.0"  Name="RCS.CyclOne.WPF.WAP"/>
+    Version="0.19.0.0"  Name="RCS.CyclOne.WPF.WAP"/>
 
   <Properties>
     <DisplayName>CyclOne.WPF.WAP</DisplayName>
