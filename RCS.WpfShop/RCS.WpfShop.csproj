@@ -153,7 +153,7 @@
 		<NeutralLanguage>en-GB</NeutralLanguage>
 		<Copyright>Copyright © RCS</Copyright>
 		<PackageIcon>Main.ico</PackageIcon>
-		<Version>0.19.0</Version>
+		<Version>0.18.0</Version>
 	</PropertyGroup>
 
 	<UsingTask TaskName="TransformXml" AssemblyFile="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Web\Microsoft.Web.Publishing.Tasks.dll" />
