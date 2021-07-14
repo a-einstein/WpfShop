@@ -7,3 +7,5 @@ So at least make it relative.
 There have been inconsistencies in 'Any CPU' versus 'AnyCPU'. 
 The way configurations are displayed in Visual Studio's GUI, versus how they are set in the projectfile, versus the OutputPath. 
 Be aware of that.
+
+On Azure MSbuild explicitly needs  /p:Configuration.
