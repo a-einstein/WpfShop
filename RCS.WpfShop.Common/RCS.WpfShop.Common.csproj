@@ -45,6 +45,6 @@
 			<Version>4.0.2</Version>
 		</PackageReference>
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-		<PackageReference Include="Prism.Wpf" Version="8.0.0.1909" />
+		<PackageReference Include="Prism.Wpf" Version="8.1.97" />
 	</ItemGroup>
 </Project>
