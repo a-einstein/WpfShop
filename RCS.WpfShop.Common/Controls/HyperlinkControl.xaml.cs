@@ -27,7 +27,13 @@ namespace RCS.WpfShop.Common.Controls
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            Process.Start(e.Uri.AbsoluteUri);
+            var processStartInfo = new ProcessStartInfo()
+            {
+                FileName = e.Uri.AbsoluteUri,
+                UseShellExecute=true
+            };
+
+            Process.Start(processStartInfo);
         }
 
         public static readonly DependencyProperty TextProperty =

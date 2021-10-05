@@ -1,5 +1,6 @@
 ﻿using Prism.Regions;
 using RCS.WpfShop.Common.ViewModels;
+using RCS.WpfShop.Resources;
 using System.Reflection;
 using System.Windows;
 
@@ -24,6 +25,14 @@ namespace RCS.WpfShop.Modules.About.ViewModels
             get => (string)GetValue(ApplicationVersionProperty);
             set => SetValue(ApplicationVersionProperty, value);
         }
+
+        public string DeveloperLinkUri => Labels.DeveloperLinkUri;
+
+        public string DeveloperLinkText => Labels.DeveloperLinkText;
+
+        public string DocumentationLinkUri => Labels.DocumentationLinkUri;
+
+        public string DocumentationLinkText => Labels.DocumentationLinkText;
         #endregion
     }
 }

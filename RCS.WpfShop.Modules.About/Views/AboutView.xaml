@@ -41,12 +41,12 @@
                 <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ApplicationVersion}" Style="{StaticResource ValueDemiEmphasisLargeTextBlockStyle}"/>
 
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static Resources:Labels.DeveloperLabel}" Style="{StaticResource LabelLargeTextBlockStyle}"/>
-                <!--TODO Get working again.-->
-                <!--<Controls:HyperlinkControl Grid.Row="2" Grid.Column="1" NavigateUri="{x:Static Resources:Labels.DeveloperLinkUri}" Text="{x:Static Resources:Labels.DeveloperLinkText}" Style="{StaticResource ValueDemiEmphasisLargeHyperlinkControlStyle}"/>-->
+                <!--Note the control needs bindings instead of statics.-->
+                <Controls:HyperlinkControl Grid.Row="2" Grid.Column="1" NavigateUri="{Binding DeveloperLinkUri}" Text="{Binding DeveloperLinkText}" Style="{StaticResource ValueDemiEmphasisLargeHyperlinkControlStyle}"/>
 
                 <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Static Resources:Labels.DocumentationLabel}" Style="{StaticResource LabelLargeTextBlockStyle}"/>
-                <!--TODO Get working again.-->
-                <!--<Controls:HyperlinkControl Grid.Row="3" Grid.Column="1" NavigateUri="{x:Static Resources:Labels.DocumentationLinkUri}" Text="{x:Static Resources:Labels.DocumentationLinkText}" Style="{StaticResource ValueDemiEmphasisLargeHyperlinkControlStyle}"/>-->
+                <!--Note the control needs bindings instead of statics.-->
+                <Controls:HyperlinkControl Grid.Row="3" Grid.Column="1" NavigateUri="{Binding DocumentationLinkUri}" Text="{Binding DocumentationLinkText}" Style="{StaticResource ValueDemiEmphasisLargeHyperlinkControlStyle}"/>
             </Grid>
         </ScrollViewer>
     </Border>
