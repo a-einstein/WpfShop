@@ -4,14 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Resources="clr-namespace:RCS.WpfShop.Resources;assembly=RCS.WpfShop.Resources"
     >
-
-    <UserControl.Resources>
-        <!--Note that some style definitions did not work. Merging here helped, but gave other complications.-->
-        <ResourceDictionary>
-            <Resources:Wrapper x:Key="Resources"/>
-        </ResourceDictionary>
-    </UserControl.Resources>
-
+    
     <!--Take care to bind DataContext on this content level instead of the whole UserControl!-->
     <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=UserControl}}">
         <Grid.ColumnDefinitions>
@@ -21,6 +14,6 @@
 
         <TextBox x:Name="textBox" Grid.Column="0" Text="{Binding Text, Mode=TwoWay}" VerticalContentAlignment="Center"/>
 
-        <Button Grid.Column="1" Content="{Binding Source={StaticResource Resources}, Path=Labels.Remove}" Command="{Binding ClearCommand}" CommandParameter="{Binding}" Background="{StaticResource WarningBackgroundBrush}"/>
+        <Button Grid.Column="1" Content="{x:Static Resources:Labels.Remove}" Command="{Binding ClearCommand}" CommandParameter="{Binding}" Background="{StaticResource WarningBackgroundBrush}"/>
     </Grid>
 </UserControl>

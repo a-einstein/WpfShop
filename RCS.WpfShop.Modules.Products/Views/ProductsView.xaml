@@ -21,7 +21,6 @@
             <Converters:HasValueTester x:Key="HasValueTester"/>
             <Converters:HasValueMultiTester x:Key="HasValueMultiTester"/>
             <Converters:HasValueToVisibilityConverter x:Key="HasValueToVisibilityConverter"/>
-            <Resources:Wrapper x:Key="Resources"/>
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
@@ -33,17 +32,17 @@
             </Grid.RowDefinitions>
 
             <StackPanel Margin="0,0,0,2">
-                <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Products}" Style="{StaticResource HeaderLargeTextBlockStyle}"/>
+                <TextBlock Text="{x:Static Resources:Labels.Products}" Style="{StaticResource HeaderLargeTextBlockStyle}"/>
 
                 <!--Note that currently all names are for GUI testing purpose.-->
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.MasterFilter}" Style="{StaticResource InlineTextBlockStyle}"/>
+                    <TextBlock Text="{x:Static Resources:Labels.MasterFilter}" Style="{StaticResource InlineTextBlockStyle}"/>
                     <ComboBox x:Name="MasterFilterComboBox" ItemsSource="{Binding MasterFilterItems}" SelectedValue="{Binding MasterFilterValue}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" Style="{StaticResource FilterComboBoxStyle}"/>
 
-                    <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.DetailFilter}" Style="{StaticResource InlineTextBlockStyle}"/>
+                    <TextBlock Text="{x:Static Resources:Labels.DetailFilter}" Style="{StaticResource InlineTextBlockStyle}"/>
                     <ComboBox x:Name="DetailFilterComboBox" ItemsSource="{Binding DetailFilterItems}" SelectedValue="{Binding DetailFilterValue}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" Style="{StaticResource FilterComboBoxStyle}"/>
 
-                    <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.TextFilter}" Style="{StaticResource InlineTextBlockStyle}"/>
+                    <TextBlock Text="{x:Static Resources:Labels.TextFilter}" Style="{StaticResource InlineTextBlockStyle}"/>
                     <!--Note this field has to be tabbed out to reach the default button by the enter key.-->
                     <Controls:ClearableTextBox x:Name="TextFilterTextBox" Text="{Binding TextFilterValue, Mode=TwoWay}" Width="150">
                         <Controls:ClearableTextBox.TextBoxBehaviors>
@@ -53,7 +52,7 @@
                         </Controls:ClearableTextBox.TextBoxBehaviors>
                     </Controls:ClearableTextBox>
 
-                    <Button x:Name="FilterButton" Content="{Binding Source={StaticResource Resources}, Path=Labels.Filter}" Command="{Binding FilterCommand}" IsDefault="True" Margin="{StaticResource StandardHorizontalSeparation}" Padding="7,0" FontWeight="Bold">
+                    <Button x:Name="FilterButton" Content="{x:Static Resources:Labels.Filter}" Command="{Binding FilterCommand}" IsDefault="True" Margin="{StaticResource StandardHorizontalSeparation}" Padding="7,0" FontWeight="Bold">
                         <!--Note this prevents unfiltered queries.-->
                         <Button.IsEnabled>
                             <MultiBinding Converter="{StaticResource HasValueMultiTester}">
@@ -65,7 +64,7 @@
                     </Button>
 
                     <TextBlock x:Name="ItemsCountTextBlock" Text="{Binding ItemsCount}" Style="{StaticResource InlineValueEmphasisTextBlockStyle}"/>
-                    <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Products}" Style="{StaticResource InlineTextBlockStyle}"/>
+                    <TextBlock Text="{x:Static Resources:Labels.Products}" Style="{StaticResource InlineTextBlockStyle}"/>
                 </StackPanel>
             </StackPanel>
 
@@ -89,7 +88,7 @@
 
                                                 <Image Grid.Column="0" Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}" Style="{StaticResource ImageStyle}" MaxWidth="80" MaxHeight="80" />
 
-                                                <Button Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{Binding Source={StaticResource Resources}, Path=Labels.IncreaseProduct}" Command="{Binding DataContext.CartCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"/>
+                                                <Button Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{x:Static Resources:Labels.IncreaseProduct}" Command="{Binding DataContext.CartCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"/>
 
                                                 <StackPanel Grid.Column="2">
                                                     <TextBlock Style="{StaticResource ValueTextBlockStyle}">

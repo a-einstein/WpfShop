@@ -7,12 +7,6 @@
     SizeToContent="WidthAndHeight"
     >
 
-    <Window.Resources>
-        <ResourceDictionary>
-            <Resources:Wrapper x:Key="Resources" />
-        </ResourceDictionary>
-    </Window.Resources>
-
     <Grid Background="#FFEAEAEA">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -21,6 +15,6 @@
 
         <ContentControl Grid.Row="0" Grid.Column="0" x:Name="viewControl"/>
 
-        <Button Grid.Row="1" Grid.Column="0" Name="closeButton" Content="{Binding Source={StaticResource Resources}, Path=Labels.Close}" Click="closeButton_Click" Margin="5" HorizontalAlignment="Right"/>
+        <Button Grid.Row="1" Grid.Column="0" Name="closeButton" Content="{x:Static Resources:Labels.Close}" Click="closeButton_Click" Margin="5" HorizontalAlignment="Right"/>
     </Grid>
 </Window>

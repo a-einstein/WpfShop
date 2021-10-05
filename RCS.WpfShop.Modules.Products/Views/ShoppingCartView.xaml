@@ -11,25 +11,24 @@
     <BaseClasses:View.Resources>
         <ResourceDictionary>
             <Converters:SizeFormatter x:Key="SizeFormatter"/>
-            <Resources:Wrapper x:Key="Resources" />
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
     <Border Style="{StaticResource BorderStyle}" Background="{StaticResource CartBackgroundBrush}">
         <StackPanel>
-            <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Cart}" Style="{StaticResource HeaderTextBlockStyle}" />
+            <TextBlock Text="{x:Static Resources:Labels.Cart}" Style="{StaticResource HeaderTextBlockStyle}" />
 
             <Expander>
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding ItemsCount}" Style="{StaticResource InlineValueEmphasisTextBlockStyle}"/>
-                        <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Products}" Style="{StaticResource InlineTextBlockStyle}"/>
+                        <TextBlock Text="{x:Static Resources:Labels.Products}" Style="{StaticResource InlineTextBlockStyle}"/>
 
                         <TextBlock Text="{Binding ProductItemsCount}" Style="{StaticResource InlineValueEmphasisTextBlockStyle}"/>
-                        <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Items}" Style="{StaticResource InlineTextBlockStyle}"/>
+                        <TextBlock Text="{x:Static Resources:Labels.Items}" Style="{StaticResource InlineTextBlockStyle}"/>
 
                         <TextBlock Text="{Binding TotalValue, StringFormat=\{0:C2\}}" Style="{StaticResource InlineValueEmphasisTextBlockStyle}"/>
-                        <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.TotalValue}" Style="{StaticResource InlineTextBlockStyle}"/>
+                        <TextBlock Text="{x:Static Resources:Labels.TotalValue}" Style="{StaticResource InlineTextBlockStyle}"/>
                     </StackPanel>
                 </Expander.Header>
                 <Expander.Content>
@@ -91,7 +90,7 @@
                                 <GridViewColumn Width="Auto">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Content="{Binding Source={StaticResource Resources}, Path=Labels.Remove}" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding}" Style="{StaticResource DeleteButtonStyle}"/>
+                                            <Button Content="{x:Static Resources:Labels.Remove}" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding}" Style="{StaticResource DeleteButtonStyle}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
