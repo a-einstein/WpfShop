@@ -11,12 +11,6 @@
     d:DesignHeight="300" d:DesignWidth="300"
     >
 
-    <BaseClasses:View.Resources>
-        <ResourceDictionary>
-            <Resources:Wrapper x:Key="Resources" />
-        </ResourceDictionary>
-    </BaseClasses:View.Resources>
-
     <Border Style="{StaticResource BorderStyle}">
         <Border.Background>
             <ImageBrush ImageSource="..\Images\Shop.jpg" Opacity="0.25" Stretch="Uniform"/>
@@ -41,16 +35,18 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Labels.ShopName, Source={StaticResource Resources}}" Style="{StaticResource HeaderSuperlargeTextBlockStyle}" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{x:Static Resources:Labels.ShopName}" Style="{StaticResource HeaderSuperlargeTextBlockStyle}" HorizontalAlignment="Center"/>
 
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.VersionLabel}" Style="{StaticResource LabelLargeTextBlockStyle}" />
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static Resources:Labels.VersionLabel}" Style="{StaticResource LabelLargeTextBlockStyle}" />
                 <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ApplicationVersion}" Style="{StaticResource ValueDemiEmphasisLargeTextBlockStyle}"/>
 
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.DeveloperLabel}" Style="{StaticResource LabelLargeTextBlockStyle}"/>
-                <Controls:HyperlinkControl Grid.Row="2" Grid.Column="1" NavigateUri="{Binding Source={StaticResource Resources}, Path=Labels.DeveloperLinkUri}" Text="{Binding Source={StaticResource Resources}, Path=Labels.DeveloperLinkText}" Style="{StaticResource ValueDemiEmphasisLargeHyperlinkControlStyle}"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static Resources:Labels.DeveloperLabel}" Style="{StaticResource LabelLargeTextBlockStyle}"/>
+                <!--TODO Get working again.-->
+                <!--<Controls:HyperlinkControl Grid.Row="2" Grid.Column="1" NavigateUri="{x:Static Resources:Labels.DeveloperLinkUri}" Text="{x:Static Resources:Labels.DeveloperLinkText}" Style="{StaticResource ValueDemiEmphasisLargeHyperlinkControlStyle}"/>-->
 
-                <TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding Source={StaticResource Resources}, Path=Labels.DocumentationLabel}" Style="{StaticResource LabelLargeTextBlockStyle}"/>
-                <Controls:HyperlinkControl Grid.Row="3" Grid.Column="1" NavigateUri="{Binding Source={StaticResource Resources}, Path=Labels.DocumentationLinkUri}" Text="{Binding Source={StaticResource Resources}, Path=Labels.DocumentationLinkText}" Style="{StaticResource ValueDemiEmphasisLargeHyperlinkControlStyle}"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Static Resources:Labels.DocumentationLabel}" Style="{StaticResource LabelLargeTextBlockStyle}"/>
+                <!--TODO Get working again.-->
+                <!--<Controls:HyperlinkControl Grid.Row="3" Grid.Column="1" NavigateUri="{x:Static Resources:Labels.DocumentationLinkUri}" Text="{x:Static Resources:Labels.DocumentationLinkText}" Style="{StaticResource ValueDemiEmphasisLargeHyperlinkControlStyle}"/>-->
             </Grid>
         </ScrollViewer>
     </Border>

@@ -6,13 +6,7 @@
     xmlns:BaseClasses="clr-namespace:RCS.WpfShop.Common.Views;assembly=RCS.WpfShop.Common"
     xmlns:Resources="clr-namespace:RCS.WpfShop.Resources;assembly=RCS.WpfShop.Resources"
     >
-
-    <BaseClasses:View.Resources>
-        <ResourceDictionary>
-            <Resources:Wrapper x:Key="Resources" />
-        </ResourceDictionary>
-    </BaseClasses:View.Resources>
-
+    
     <Grid Margin="8">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
