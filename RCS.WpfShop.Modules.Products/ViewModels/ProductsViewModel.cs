@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Regions;
 using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.WpfShop.Common.Interfaces;
 using RCS.WpfShop.Common.ViewModels;
 using RCS.WpfShop.Common.Windows;
 using RCS.WpfShop.Modules.Products.Model;
@@ -17,14 +18,15 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
     public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper
     {
         #region Construction
-        ProductCategoriesRepository categories;
+        IRepository<ObservableCollection<ProductCategory>, ProductCategory> categories;
+
         ProductSubcategoriesRepository subcategories;
         ProductsRepository products;
 
         ShoppingCartViewModel shoppingCartViewModel;
 
         public ProductsViewModel(
-            ProductCategoriesRepository categories,
+            IRepository<ObservableCollection<ProductCategory>, ProductCategory> categories,
             ProductSubcategoriesRepository subcategories,
             ProductsRepository products,
             ShoppingCartViewModel shoppingCartViewModel)

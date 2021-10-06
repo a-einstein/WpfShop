@@ -2,12 +2,15 @@
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Unity;
+using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.WpfShop.Common;
+using RCS.WpfShop.Common.Interfaces;
 using RCS.WpfShop.Common.Modules;
 using RCS.WpfShop.Modules.Products.Model;
 using RCS.WpfShop.Modules.Products.ViewModels;
 using RCS.WpfShop.Modules.Products.Views;
 using System;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Diagnostics;
 using System.IO;
@@ -50,7 +53,7 @@ namespace RCS.WpfShop.Modules.Products
             // Register singleton depending on build configuration.
             container.LoadConfiguration(unityConfiguration, "Products");
 
-            container.RegisterSingleton<ProductCategoriesRepository>();
+            container.RegisterSingleton<IRepository<ObservableCollection<ProductCategory>, ProductCategory>, ProductCategoriesRepository>();
             container.RegisterSingleton<ProductSubcategoriesRepository>();
             container.RegisterSingleton<ProductsRepository>();
             container.RegisterSingleton<CartItemsRepository>();

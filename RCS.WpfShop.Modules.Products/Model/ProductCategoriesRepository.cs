@@ -15,7 +15,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         #endregion
 
         #region CRUD
-        public async Task<bool> ReadList(bool addEmptyElement = true)
+        public override async Task<bool> ReadList(bool addEmptyElement = true)
         {
             Clear();
 
