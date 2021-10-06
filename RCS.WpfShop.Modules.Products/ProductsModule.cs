@@ -54,7 +54,7 @@ namespace RCS.WpfShop.Modules.Products
             container.LoadConfiguration(unityConfiguration, "Products");
 
             container.RegisterSingleton<IRepository<ObservableCollection<ProductCategory>, ProductCategory>, ProductCategoriesRepository>();
-            container.RegisterSingleton<ProductSubcategoriesRepository>();
+            container.RegisterSingleton<IRepository<ObservableCollection<ProductSubcategory>, ProductSubcategory>, ProductSubcategoriesRepository>();
             container.RegisterSingleton<ProductsRepository>();
             container.RegisterSingleton<CartItemsRepository>();
 

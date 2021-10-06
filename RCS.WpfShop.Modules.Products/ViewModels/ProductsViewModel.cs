@@ -15,19 +15,19 @@ using System.Windows.Input;
 
 namespace RCS.WpfShop.Modules.Products.ViewModels
 {
-    public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper
+    public class ProductsViewModel :
+        FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper
     {
         #region Construction
         IRepository<ObservableCollection<ProductCategory>, ProductCategory> categories;
-
-        ProductSubcategoriesRepository subcategories;
+        IRepository<ObservableCollection<ProductSubcategory>, ProductSubcategory> subcategories;
         ProductsRepository products;
 
         ShoppingCartViewModel shoppingCartViewModel;
 
         public ProductsViewModel(
             IRepository<ObservableCollection<ProductCategory>, ProductCategory> categories,
-            ProductSubcategoriesRepository subcategories,
+            IRepository<ObservableCollection<ProductSubcategory>, ProductSubcategory> subcategories,
             ProductsRepository products,
             ShoppingCartViewModel shoppingCartViewModel)
         {
@@ -158,7 +158,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         protected override void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
             // Note this enables opening multiple windows.
-            var productViewModel = new ProductViewModel(products,shoppingCartViewModel) { ItemId = productsOverviewObject.Id };
+            var productViewModel = new ProductViewModel(products, shoppingCartViewModel) { ItemId = productsOverviewObject.Id };
             var productView = new ProductView() { ViewModel = productViewModel };
 
             var productWindow = new OkWindow() { View = productView };
