@@ -55,7 +55,7 @@ namespace RCS.WpfShop.Modules.Products
 
             container.RegisterSingleton<IRepository<ObservableCollection<ProductCategory>, ProductCategory>, ProductCategoriesRepository>();
             container.RegisterSingleton<IRepository<ObservableCollection<ProductSubcategory>, ProductSubcategory>, ProductSubcategoriesRepository>();
-            container.RegisterSingleton<ProductsRepository>();
+            container.RegisterSingleton<IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int>, ProductsRepository>();
             container.RegisterSingleton<CartItemsRepository>();
 
             container.RegisterSingleton<ShoppingCartViewModel>();

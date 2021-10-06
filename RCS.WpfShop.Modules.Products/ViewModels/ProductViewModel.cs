@@ -1,9 +1,10 @@
 ﻿using Prism.Commands;
 using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.WpfShop.Common.Interfaces;
 using RCS.WpfShop.Common.ViewModels;
 using RCS.WpfShop.Common.Views;
 using RCS.WpfShop.Common.Windows;
-using RCS.WpfShop.Modules.Products.Model;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -13,11 +14,11 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
     public class ProductViewModel : ItemViewModel<Product>, IShopper
     {
         #region Construction
-        ProductsRepository products;
+        IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> products;
         ShoppingCartViewModel shoppingCartViewModel;
 
         public ProductViewModel(
-            ProductsRepository products,
+            IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> products,
             ShoppingCartViewModel shoppingCartViewModel)
         {
             this.products = products;
@@ -42,7 +43,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             // to avoid an unnecessary read when opening the photo.
             if (!itemRead && ItemId.HasValue)
             {
-                var result = await products.ReadDetails((int)ItemId);
+                var result = await products.Details((int)ItemId);
                 itemRead = result != null;
                 Item = result;
             }

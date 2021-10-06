@@ -21,14 +21,14 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #region Construction
         IRepository<ObservableCollection<ProductCategory>, ProductCategory> categories;
         IRepository<ObservableCollection<ProductSubcategory>, ProductSubcategory> subcategories;
-        ProductsRepository products;
+        IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> products;
 
         ShoppingCartViewModel shoppingCartViewModel;
 
         public ProductsViewModel(
             IRepository<ObservableCollection<ProductCategory>, ProductCategory> categories,
             IRepository<ObservableCollection<ProductSubcategory>, ProductSubcategory> subcategories,
-            ProductsRepository products,
+            IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> products,
             ShoppingCartViewModel shoppingCartViewModel)
         {
             this.categories = categories;
