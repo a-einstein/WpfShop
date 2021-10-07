@@ -53,11 +53,13 @@ namespace RCS.WpfShop.Modules.Products
             // Register singleton depending on build configuration.
             container.LoadConfiguration(unityConfiguration, "Products");
 
+            // Use interfaces for constructor injections.
             container.RegisterSingleton<IRepository<ObservableCollection<ProductCategory>, ProductCategory>, ProductCategoriesRepository>();
             container.RegisterSingleton<IRepository<ObservableCollection<ProductSubcategory>, ProductSubcategory>, ProductSubcategoriesRepository>();
             container.RegisterSingleton<IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int>, ProductsRepository>();
             container.RegisterSingleton<IRepository<ObservableCollection<CartItem>, CartItem>, CartItemsRepository>();
 
+            // Use types for explicit requests, implicitly using repositories.
             container.RegisterSingleton<ShoppingCartViewModel>();
 
             containerRegistry.RegisterForNavigation<ShoppingCartView>();
