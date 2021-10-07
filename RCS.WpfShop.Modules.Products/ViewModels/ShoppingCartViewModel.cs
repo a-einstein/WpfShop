@@ -1,8 +1,8 @@
 ﻿using Prism.Commands;
 using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.WpfShop.Common.Interfaces;
 using RCS.WpfShop.Common.ViewModels;
-using RCS.WpfShop.Modules.Products.Model;
-using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Threading.Tasks;
@@ -14,9 +14,9 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
     public class ShoppingCartViewModel : ItemsViewModel<CartItem>
     {
         #region Construction
-        CartItemsRepository cartItems;
+        IRepository<ObservableCollection<CartItem>, CartItem> cartItems;
 
-        public ShoppingCartViewModel(CartItemsRepository cartItems)
+        public ShoppingCartViewModel(IRepository<ObservableCollection<CartItem>, CartItem> cartItems)
         {
             this.cartItems = cartItems;
         }

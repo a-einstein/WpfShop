@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using RCS.AdventureWorks.Common.DomainClasses;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace RCS.WpfShop.Common.Interfaces
@@ -15,8 +16,15 @@ namespace RCS.WpfShop.Common.Interfaces
         Task Delete(TElement element);
 
         #region Tmp
+        // HACK for CartItemsRepository.
+        // TODO Transform to filosophy of PortableShop. 
+
         TCollection List { get; }
         Task<bool> ReadList(bool addEmptyElement = true);
+        CartItem AddProduct(IShoppingProduct product);
+        void DeleteProduct(CartItem cartItem);
+        int ProductsCount();
+        public decimal CartValue();
         #endregion
     }
 }

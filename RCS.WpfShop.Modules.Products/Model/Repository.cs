@@ -1,4 +1,5 @@
-﻿using RCS.WpfShop.AdventureWorks.ServiceReferences;
+﻿using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.WpfShop.AdventureWorks.ServiceReferences;
 using RCS.WpfShop.Common.Interfaces;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -50,7 +51,30 @@ namespace RCS.WpfShop.Modules.Products.Model
         #endregion
 
         #region Tmp
+        // HACK for CartItemsRepository.
+        // TODO Transform to filosophy of PortableShop. 
+
         public virtual Task<bool> ReadList(bool addEmptyElement = true)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public virtual CartItem AddProduct(IShoppingProduct product)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public virtual void DeleteProduct(CartItem cartItem)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public virtual int ProductsCount()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public virtual decimal CartValue()
         {
             throw new System.NotImplementedException();
         }
