@@ -6,7 +6,8 @@ using System.Linq;
 
 namespace RCS.WpfShop.Modules.Products.Model
 {
-    public class CartItemsRepository : Repository<ObservableCollection<CartItem>, CartItem>
+    public class CartItemsRepository :
+        Repository<ObservableCollection<CartItem>, CartItem>
     {
         #region Construction
         public CartItemsRepository(IProductsService productsServiceClient = null)
@@ -20,7 +21,7 @@ namespace RCS.WpfShop.Modules.Products.Model
 
         // Note that the cart is only kept in memory and is not preserved. 
         // It is anticipated that only real orders would be preserved and stored on the server.
-        public CartItem AddProduct(IShoppingProduct product)
+        public override CartItem AddProduct(IShoppingProduct product)
         {
             var existingCartItems = List.Where(cartItem => cartItem.ProductId == product.Id);
             var cartItems = existingCartItems.ToList();
@@ -57,21 +58,21 @@ namespace RCS.WpfShop.Modules.Products.Model
             return productCartItem;
         }
 
-        public void DeleteProduct(CartItem cartItem)
+        public override void DeleteProduct(CartItem cartItem)
         {
             List.Remove(cartItem);
         }
         #endregion
 
         #region Aggregates
-        public int ProductsCount()
+        public override int ProductsCount()
         {
             return List.Count > 0
                 ? List.Sum(cartItem => cartItem.Quantity)
                 : 0;
         }
 
-        public decimal CartValue()
+        public override decimal CartValue()
         {
             return List.Count > 0
                 ? List.Sum(cartItem => cartItem.Value)

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace RCS.WpfShop.Modules.Products.Model
 {
-    public class ProductCategoriesRepository : Repository<ObservableCollection<ProductCategory>, ProductCategory>
+    public class ProductCategoriesRepository :
+        Repository<ObservableCollection<ProductCategory>, ProductCategory>
     {
         #region Construction
         public ProductCategoriesRepository(IProductsService productsServiceClient = null)
@@ -15,7 +16,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         #endregion
 
         #region CRUD
-        public async Task<bool> ReadList(bool addEmptyElement = true)
+        public override async Task<bool> ReadList(bool addEmptyElement = true)
         {
             Clear();
 

@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Regions;
 using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.WpfShop.Common.Interfaces;
 using RCS.WpfShop.Common.ViewModels;
 using RCS.WpfShop.Common.Windows;
 using RCS.WpfShop.Modules.Products.Model;
@@ -14,19 +15,20 @@ using System.Windows.Input;
 
 namespace RCS.WpfShop.Modules.Products.ViewModels
 {
-    public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper
+    public class ProductsViewModel :
+        FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper
     {
         #region Construction
-        ProductCategoriesRepository categories;
-        ProductSubcategoriesRepository subcategories;
-        ProductsRepository products;
+        IRepository<ObservableCollection<ProductCategory>, ProductCategory> categories;
+        IRepository<ObservableCollection<ProductSubcategory>, ProductSubcategory> subcategories;
+        IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> products;
 
         ShoppingCartViewModel shoppingCartViewModel;
 
         public ProductsViewModel(
-            ProductCategoriesRepository categories,
-            ProductSubcategoriesRepository subcategories,
-            ProductsRepository products,
+            IRepository<ObservableCollection<ProductCategory>, ProductCategory> categories,
+            IRepository<ObservableCollection<ProductSubcategory>, ProductSubcategory> subcategories,
+            IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> products,
             ShoppingCartViewModel shoppingCartViewModel)
         {
             this.categories = categories;
@@ -156,7 +158,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         protected override void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
             // Note this enables opening multiple windows.
-            var productViewModel = new ProductViewModel(products,shoppingCartViewModel) { ItemId = productsOverviewObject.Id };
+            var productViewModel = new ProductViewModel(products, shoppingCartViewModel) { ItemId = productsOverviewObject.Id };
             var productView = new ProductView() { ViewModel = productViewModel };
 
             var productWindow = new OkWindow() { View = productView };
