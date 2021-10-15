@@ -4,7 +4,6 @@ using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.WpfShop.Common.Interfaces;
 using RCS.WpfShop.Common.ViewModels;
 using RCS.WpfShop.Common.Windows;
-using RCS.WpfShop.Modules.Products.Model;
 using RCS.WpfShop.Modules.Products.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -19,23 +18,23 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper
     {
         #region Construction
-        IRepository<ObservableCollection<ProductCategory>, ProductCategory> categories;
-        IRepository<ObservableCollection<ProductSubcategory>, ProductSubcategory> subcategories;
-        IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> products;
+        IRepository<ObservableCollection<ProductCategory>, ProductCategory> ProductCategoriesRepository { get; }
+        IRepository<ObservableCollection<ProductSubcategory>, ProductSubcategory> ProductSubcategoriesRepository { get; }
+        IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> ProductsRepository { get; }
 
-        ShoppingCartViewModel shoppingCartViewModel;
+        ShoppingCartViewModel ShoppingCartViewModel { get; }
 
         public ProductsViewModel(
-            IRepository<ObservableCollection<ProductCategory>, ProductCategory> categories,
-            IRepository<ObservableCollection<ProductSubcategory>, ProductSubcategory> subcategories,
-            IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> products,
+            IRepository<ObservableCollection<ProductCategory>, ProductCategory> productCategoriesRepository,
+            IRepository<ObservableCollection<ProductSubcategory>, ProductSubcategory> productSubcategoriesRepository,
+            IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> productsRepository,
             ShoppingCartViewModel shoppingCartViewModel)
         {
-            this.categories = categories;
-            this.subcategories = subcategories;
-            this.products = products;
+            ProductCategoriesRepository = productCategoriesRepository;
+            ProductSubcategoriesRepository = productSubcategoriesRepository;
+            ProductsRepository = productsRepository;
 
-            this.shoppingCartViewModel = shoppingCartViewModel;
+            ShoppingCartViewModel = shoppingCartViewModel;
         }
         #endregion
 
@@ -55,7 +54,6 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
             if (baseInitialized && !initialized)
             {
-                Items = products.List;
                 initialized = true;
             }
 
@@ -76,40 +74,35 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         {
             var results = await Task.WhenAll
             (
-                categories.ReadList(),
-                subcategories.ReadList()
+                ProductCategoriesRepository.ReadList(),
+                ProductSubcategoriesRepository.ReadList()
             );
 
             var succeeded = results.All(result => result);
 
             if (succeeded)
-                // Need to update on the UI thread.
-                uiDispatcher.Invoke(delegate
+
+                foreach (var item in ProductCategoriesRepository.List)
                 {
-                    var masterFilterItems = new ObservableCollection<ProductCategory>();
+                    MasterFilterItems.Add(item);
+                }
 
-                    foreach (var item in categories.List)
-                    {
-                        masterFilterItems.Add(item);
-                    }
+            // Extra event. For some bindings (ItemsSource) those from ObservableCollection are enough, but for others (IsEnabled) this is needed.
+            RaisePropertyChanged(nameof(MasterFilterItems));
 
-                    // To trigger the enablement.
-                    MasterFilterItems = masterFilterItems;
+            foreach (var item in ProductSubcategoriesRepository.List)
+            {
+                detailFilterItemsSource.Add(item);
+            }
 
-                    foreach (var item in subcategories.List)
-                    {
-                        detailFilterItemsSource.Add(item);
-                    }
+            var masterDefaultId = 1;
+            MasterFilterValue = MasterFilterItems?.FirstOrDefault(category => category.Id == masterDefaultId);
 
-                    var masterDefaultId = 1;
-                    MasterFilterValue = MasterFilterItems?.FirstOrDefault(category => category.Id == masterDefaultId);
+            // Note that MasterFilterValue also determines DetailFilterItems.
+            var detailDefaultId = 1;
+            DetailFilterValue = DetailFilterItems?.FirstOrDefault(subcategory => subcategory.Id == detailDefaultId);
 
-                    // Note that MasterFilterValue also determines DetailFilterItems.
-                    var detailDefaultId = 1;
-                    DetailFilterValue = DetailFilterItems?.FirstOrDefault(subcategory => subcategory.Id == detailDefaultId);
-
-                    TextFilterValue = default;
-                });
+            TextFilterValue = default;
 
             return succeeded;
         }
@@ -128,7 +121,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                 textFilterValue = TextFilterValue;
             });
 
-            var result = await products.ReadList(masterFilterValue, detailFilterValue, textFilterValue);
+            var result = await ProductsRepository.ReadList(masterFilterValue, detailFilterValue, textFilterValue);
             var succeeded = result != null;
 
             if (succeeded)
@@ -158,7 +151,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         protected override void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
             // Note this enables opening multiple windows.
-            var productViewModel = new ProductViewModel(products, shoppingCartViewModel) { ItemId = productsOverviewObject.Id };
+            var productViewModel = new ProductViewModel(ProductsRepository, ShoppingCartViewModel) { ItemId = productsOverviewObject.Id };
             var productView = new ProductView() { ViewModel = productViewModel };
 
             var productWindow = new OkWindow() { View = productView };
@@ -179,7 +172,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         private void CartProduct(ProductsOverviewObject productsOverviewObject)
         {
-            shoppingCartViewModel.CartProduct(productsOverviewObject);
+            ShoppingCartViewModel.CartProduct(productsOverviewObject);
         }
         #endregion
     }

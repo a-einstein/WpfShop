@@ -14,15 +14,16 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
     public class ProductViewModel : ItemViewModel<Product>, IShopper
     {
         #region Construction
-        IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> products;
-        ShoppingCartViewModel shoppingCartViewModel;
+        IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> ProductsRepository { get; }
+
+        ShoppingCartViewModel ShoppingCartViewModel { get; }
 
         public ProductViewModel(
-            IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> products,
+            IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> productsRepository,
             ShoppingCartViewModel shoppingCartViewModel)
         {
-            this.products = products;
-            this.shoppingCartViewModel = shoppingCartViewModel;
+            ProductsRepository = productsRepository;
+            ShoppingCartViewModel = shoppingCartViewModel;
         }
         #endregion
 
@@ -43,7 +44,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             // to avoid an unnecessary read when opening the photo.
             if (!itemRead && ItemId.HasValue)
             {
-                var result = await products.Details((int)ItemId);
+                var result = await ProductsRepository.Details((int)ItemId);
                 itemRead = result != null;
                 Item = result;
             }
@@ -70,7 +71,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         private void CartProduct(Product product)
         {
-            shoppingCartViewModel.CartProduct(product);
+            ShoppingCartViewModel.CartProduct(product);
         }
         #endregion
 

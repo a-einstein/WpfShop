@@ -62,7 +62,7 @@ namespace RCS.WpfShop.Common.ViewModels
 
         protected virtual void SetCommands() { }
 
-        protected virtual async Task<bool> Read() { return true; }
+        protected virtual async Task Read() { }
 
         // Note Did not succeed to set default by static member.
         public static readonly DependencyProperty TitleProperty =

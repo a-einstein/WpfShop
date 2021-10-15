@@ -14,11 +14,11 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
     public class ShoppingCartViewModel : ItemsViewModel<CartItem>
     {
         #region Construction
-        IRepository<ObservableCollection<CartItem>, CartItem> cartItems;
+        private IRepository<ObservableCollection<CartItem>, CartItem> CartItemsRepository { get; }
 
-        public ShoppingCartViewModel(IRepository<ObservableCollection<CartItem>, CartItem> cartItems)
+        public ShoppingCartViewModel(IRepository<ObservableCollection<CartItem>, CartItem> cartItemsRepository)
         {
-            this.cartItems = cartItems;
+            CartItemsRepository = cartItemsRepository;
         }
         #endregion
 
@@ -39,7 +39,6 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
             if (baseInitialized && !initialized)
             {
-                Items = cartItems.List;
                 initialized = true;
             }
 
@@ -57,7 +56,20 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #region CRUD
         public void CartProduct(IShoppingProduct productsOverviewObject)
         {
-            cartItems.AddProduct(productsOverviewObject);
+            CartItemsRepository.AddProduct(productsOverviewObject);
+        }
+
+        protected override async Task Read()
+        {
+            uiDispatcher.Invoke(delegate
+            {
+                foreach (var item in CartItemsRepository.List)
+                {
+                    Items.Add(item);
+                }
+            });
+
+            UpdateAggregates();
         }
 
         public static readonly DependencyProperty DeleteCommandProperty =
@@ -71,7 +83,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         private void Delete(CartItem cartItem)
         {
-            cartItems.DeleteProduct(cartItem);
+            CartItemsRepository.DeleteProduct(cartItem);
         }
 
         protected override void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -109,8 +121,8 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         private void UpdateAggregates()
         {
-            ProductItemsCount = cartItems.ProductsCount();
-            TotalValue = cartItems.CartValue();
+            ProductItemsCount = CartItemsRepository.ProductsCount();
+            TotalValue = CartItemsRepository.CartValue();
         }
 
         public static readonly DependencyProperty ProductItemCountProperty =

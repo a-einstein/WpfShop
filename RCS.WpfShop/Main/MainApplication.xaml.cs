@@ -175,6 +175,7 @@ namespace RCS.WpfShop.Main
 
                 MessageBox.Show(Labels.Closing, $"{Labels.ShopName} - {Labels.Close}", MessageBoxButton.OK, MessageBoxImage.Warning);
 
+                // TODO Threading?
                 Current?.Shutdown();
             }
         }
