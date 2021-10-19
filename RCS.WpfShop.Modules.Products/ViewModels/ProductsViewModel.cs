@@ -6,7 +6,7 @@ using RCS.WpfShop.Common.ViewModels;
 using RCS.WpfShop.Common.Windows;
 using RCS.WpfShop.Modules.Products.Views;
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,9 +19,9 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
     {
         #region Construction
         public ProductsViewModel(
-            IRepository<ObservableCollection<ProductCategory>, ProductCategory> productCategoriesRepository,
-            IRepository<ObservableCollection<ProductSubcategory>, ProductSubcategory> productSubcategoriesRepository,
-            IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> productsRepository,
+            IRepository<List<ProductCategory>, ProductCategory> productCategoriesRepository,
+            IRepository<List<ProductSubcategory>, ProductSubcategory> productSubcategoriesRepository,
+            IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> productsRepository,
             ShoppingCartViewModel shoppingCartViewModel)
         {
             ProductCategoriesRepository = productCategoriesRepository;
@@ -40,9 +40,9 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #endregion
 
         #region Services
-        IRepository<ObservableCollection<ProductCategory>, ProductCategory> ProductCategoriesRepository { get; }
-        IRepository<ObservableCollection<ProductSubcategory>, ProductSubcategory> ProductSubcategoriesRepository { get; }
-        IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> ProductsRepository { get; }
+        private IRepository<List<ProductCategory>, ProductCategory> ProductCategoriesRepository { get; }
+        private IRepository<List<ProductSubcategory>, ProductSubcategory> ProductSubcategoriesRepository { get; }
+        private IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> ProductsRepository { get; }
 
         ShoppingCartViewModel ShoppingCartViewModel { get; }
         #endregion

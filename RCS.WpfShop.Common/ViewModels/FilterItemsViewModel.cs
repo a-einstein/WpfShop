@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using RCS.WpfShop.Resources;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -103,7 +104,7 @@ namespace RCS.WpfShop.Common.ViewModels
 
         protected abstract Func<TDetailFilterItem, bool> DetailFilterItemsSelector(bool addEmptyElement = true);
 
-        protected Collection<TDetailFilterItem> detailFilterItemsSource = new Collection<TDetailFilterItem>();
+        protected List<TDetailFilterItem> detailFilterItemsSource = new List<TDetailFilterItem>();
 
         public ObservableCollection<TDetailFilterItem> DetailFilterItems { get; } = new ObservableCollection<TDetailFilterItem>();
 

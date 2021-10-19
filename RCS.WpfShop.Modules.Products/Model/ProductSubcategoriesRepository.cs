@@ -1,13 +1,13 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.WpfShop.AdventureWorks.ServiceReferences;
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace RCS.WpfShop.Modules.Products.Model
 {
     public class ProductSubcategoriesRepository :
-        Repository<ObservableCollection<ProductSubcategory>, ProductSubcategory>
+        Repository<List<ProductSubcategory>, ProductSubcategory>
     {
         #region Construction
         public ProductSubcategoriesRepository(IProductsService productsServiceClient = null)

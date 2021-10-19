@@ -2,7 +2,7 @@
 using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.WpfShop.Common.Interfaces;
 using RCS.WpfShop.Common.ViewModels;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Threading.Tasks;
@@ -11,11 +11,11 @@ using System.Windows.Input;
 
 namespace RCS.WpfShop.Modules.Products.ViewModels
 {
-    public class ShoppingCartViewModel : 
+    public class ShoppingCartViewModel :
         ItemsViewModel<CartItem>
     {
         #region Construction
-        public ShoppingCartViewModel(IRepository<ObservableCollection<CartItem>, CartItem> cartItemsRepository)
+        public ShoppingCartViewModel(IRepository<List<CartItem>, CartItem> cartItemsRepository)
         {
             CartItemsRepository = cartItemsRepository;
         }
@@ -29,7 +29,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #endregion
 
         #region Services
-        private IRepository<ObservableCollection<CartItem>, CartItem> CartItemsRepository { get; }
+        private IRepository<List<CartItem>, CartItem> CartItemsRepository { get; }
         #endregion
 
         #region Refresh

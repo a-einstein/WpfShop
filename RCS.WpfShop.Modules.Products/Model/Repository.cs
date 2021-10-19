@@ -1,6 +1,7 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.WpfShop.AdventureWorks.ServiceReferences;
 using RCS.WpfShop.Common.Interfaces;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -9,7 +10,7 @@ namespace RCS.WpfShop.Modules.Products.Model
     public abstract class Repository<TCollection, TElement> :
         ProductsServiceConsumer,
         IRepository<TCollection, TElement>
-        where TCollection : Collection<TElement>, new()
+        where TCollection : List<TElement>, new()
     {
         #region Construction
         public Repository(IProductsService productsServiceClient = null)
@@ -20,7 +21,10 @@ namespace RCS.WpfShop.Modules.Products.Model
         #region Refresh
         public TCollection List { get; } = new TCollection();
 
-        public ReadOnlyCollection<TElement> Items => throw new System.NotImplementedException();
+        protected readonly TCollection items = new TCollection();
+
+        // Note this is directly accesible but not amendable.
+        public ReadOnlyCollection<TElement> Items => items.AsReadOnly();
 
         public void Clear()
         {

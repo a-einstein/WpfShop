@@ -3,14 +3,13 @@ using RCS.WpfShop.AdventureWorks.ServiceReferences;
 using RCS.WpfShop.Common.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace RCS.WpfShop.Modules.Products.Model
 {
-    public class ProductsRepository : 
-        Repository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject>,
-        IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int>
+    public class ProductsRepository :
+        Repository<List<ProductsOverviewObject>, ProductsOverviewObject>,
+        IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int>
     {
         #region Construction
         public ProductsRepository(IProductsService productsServiceClient = null)

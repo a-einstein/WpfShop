@@ -4,19 +4,19 @@ using RCS.WpfShop.Common.Interfaces;
 using RCS.WpfShop.Common.ViewModels;
 using RCS.WpfShop.Common.Views;
 using RCS.WpfShop.Common.Windows;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
 namespace RCS.WpfShop.Modules.Products.ViewModels
 {
-    public class ProductViewModel : 
+    public class ProductViewModel :
         ItemViewModel<Product>, IShopper
     {
         #region Construction
         public ProductViewModel(
-            IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> productsRepository,
+            IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> productsRepository,
             ShoppingCartViewModel shoppingCartViewModel)
         {
             ProductsRepository = productsRepository;
@@ -33,7 +33,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #endregion
 
         #region Services
-        IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> ProductsRepository { get; }
+        private IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> ProductsRepository { get; }
 
         ShoppingCartViewModel ShoppingCartViewModel { get; }
         #endregion
