@@ -13,6 +13,7 @@ namespace RCS.WpfShop.Modules.Products.Views
         }
 
         // Note this couples to a specific class.
+        // Note the parameter gets injected.
         public ProductsView(ProductsViewModel viewModel)
             : this()
         {
