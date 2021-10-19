@@ -11,15 +11,25 @@ using System.Windows.Input;
 
 namespace RCS.WpfShop.Modules.Products.ViewModels
 {
-    public class ShoppingCartViewModel : ItemsViewModel<CartItem>
+    public class ShoppingCartViewModel : 
+        ItemsViewModel<CartItem>
     {
         #region Construction
-        private IRepository<ObservableCollection<CartItem>, CartItem> CartItemsRepository { get; }
-
         public ShoppingCartViewModel(IRepository<ObservableCollection<CartItem>, CartItem> cartItemsRepository)
         {
             CartItemsRepository = cartItemsRepository;
         }
+
+        protected override void SetCommands()
+        {
+            base.SetCommands();
+
+            DeleteCommand = new DelegateCommand<CartItem>(Delete);
+        }
+        #endregion
+
+        #region Services
+        private IRepository<ObservableCollection<CartItem>, CartItem> CartItemsRepository { get; }
         #endregion
 
         #region Refresh
@@ -43,13 +53,6 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             }
 
             return initialized;
-        }
-
-        protected override void SetCommands()
-        {
-            base.SetCommands();
-
-            DeleteCommand = new DelegateCommand<CartItem>(Delete);
         }
         #endregion
 

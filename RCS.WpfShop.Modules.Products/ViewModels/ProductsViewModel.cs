@@ -18,12 +18,6 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper
     {
         #region Construction
-        IRepository<ObservableCollection<ProductCategory>, ProductCategory> ProductCategoriesRepository { get; }
-        IRepository<ObservableCollection<ProductSubcategory>, ProductSubcategory> ProductSubcategoriesRepository { get; }
-        IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> ProductsRepository { get; }
-
-        ShoppingCartViewModel ShoppingCartViewModel { get; }
-
         public ProductsViewModel(
             IRepository<ObservableCollection<ProductCategory>, ProductCategory> productCategoriesRepository,
             IRepository<ObservableCollection<ProductSubcategory>, ProductSubcategory> productSubcategoriesRepository,
@@ -36,6 +30,21 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
             ShoppingCartViewModel = shoppingCartViewModel;
         }
+
+        protected override void SetCommands()
+        {
+            base.SetCommands();
+
+            CartCommand = new DelegateCommand<ProductsOverviewObject>(CartProduct);
+        }
+        #endregion
+
+        #region Services
+        IRepository<ObservableCollection<ProductCategory>, ProductCategory> ProductCategoriesRepository { get; }
+        IRepository<ObservableCollection<ProductSubcategory>, ProductSubcategory> ProductSubcategoriesRepository { get; }
+        IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> ProductsRepository { get; }
+
+        ShoppingCartViewModel ShoppingCartViewModel { get; }
         #endregion
 
         #region INavigationAware
@@ -58,13 +67,6 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             }
 
             return initialized;
-        }
-
-        protected override void SetCommands()
-        {
-            base.SetCommands();
-
-            CartCommand = new DelegateCommand<ProductsOverviewObject>(CartProduct);
         }
         #endregion
 

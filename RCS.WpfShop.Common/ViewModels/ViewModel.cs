@@ -10,6 +10,10 @@ namespace RCS.WpfShop.Common.ViewModels
     // TODO Use BindableBase? Does not seem to offer advantages currently.
     public abstract class ViewModel : DependencyObject, INotifyPropertyChanged, INavigationAware
     {
+        #region Construction
+        protected virtual void SetCommands() { }
+        #endregion
+
         #region INavigationAware
         public virtual void OnNavigatedTo(NavigationContext navigationContext)
         {
@@ -59,8 +63,6 @@ namespace RCS.WpfShop.Common.ViewModels
 
             return initialized;
         }
-
-        protected virtual void SetCommands() { }
 
         protected virtual async Task Read() { }
 

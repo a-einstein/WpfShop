@@ -11,13 +11,10 @@ using System.Windows.Input;
 
 namespace RCS.WpfShop.Modules.Products.ViewModels
 {
-    public class ProductViewModel : ItemViewModel<Product>, IShopper
+    public class ProductViewModel : 
+        ItemViewModel<Product>, IShopper
     {
         #region Construction
-        IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> ProductsRepository { get; }
-
-        ShoppingCartViewModel ShoppingCartViewModel { get; }
-
         public ProductViewModel(
             IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> productsRepository,
             ShoppingCartViewModel shoppingCartViewModel)
@@ -25,9 +22,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             ProductsRepository = productsRepository;
             ShoppingCartViewModel = shoppingCartViewModel;
         }
-        #endregion
 
-        #region Refresh
         protected override void SetCommands()
         {
             base.SetCommands();
@@ -35,7 +30,15 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             CartCommand = new DelegateCommand<Product>(CartProduct);
             PhotoCommand = new DelegateCommand(ShowPhoto);
         }
+        #endregion
 
+        #region Services
+        IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> ProductsRepository { get; }
+
+        ShoppingCartViewModel ShoppingCartViewModel { get; }
+        #endregion
+
+        #region Refresh
         private bool itemRead;
 
         protected override async Task<bool> Read()

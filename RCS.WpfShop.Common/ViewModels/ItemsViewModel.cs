@@ -13,6 +13,13 @@ namespace RCS.WpfShop.Common.ViewModels
         {
             Items.CollectionChanged += Items_CollectionChanged;
         }
+
+        protected override void SetCommands()
+        {
+            base.SetCommands();
+
+            DetailsCommand = new DelegateCommand<TItem>(ShowDetails);
+        }
         #endregion
 
         #region Items
@@ -41,13 +48,6 @@ namespace RCS.WpfShop.Common.ViewModels
             base.Clear();
 
             Items?.Clear();
-        }
-
-        protected override void SetCommands()
-        {
-            base.SetCommands();
-
-            DetailsCommand = new DelegateCommand<TItem>(ShowDetails);
         }
         #endregion
 

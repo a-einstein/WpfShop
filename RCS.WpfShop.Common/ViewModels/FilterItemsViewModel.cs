@@ -9,8 +9,18 @@ using System.Windows.Input;
 
 namespace RCS.WpfShop.Common.ViewModels
 {
-    public abstract class FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem> : ItemsViewModel<TItem>
+    public abstract class FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem> :
+        ItemsViewModel<TItem>
     {
+        #region Construction
+        protected override void SetCommands()
+        {
+            base.SetCommands();
+
+            FilterCommand = new DelegateCommand(async () => await Refresh());
+        }
+        #endregion
+
         #region Refresh
         private bool initialized;
 
@@ -28,13 +38,6 @@ namespace RCS.WpfShop.Common.ViewModels
             }
 
             return initialized;
-        }
-
-        protected override void SetCommands()
-        {
-            base.SetCommands();
-
-            FilterCommand = new DelegateCommand(async () => await Refresh());
         }
 
         protected override async Task Read()
