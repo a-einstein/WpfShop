@@ -10,9 +10,5 @@ namespace RCS.WpfShop.Common.Interfaces
     {
         Task Refresh(TCategory category, TSubcategory subcategory, string searchString);
         Task<Product> Details(TId elementId);
-
-        #region Tmp
-        Task<IList<ProductsOverviewObject>> ReadList(ProductCategory category, ProductSubcategory subcategory, string namePart);
-        #endregion
     }
 }

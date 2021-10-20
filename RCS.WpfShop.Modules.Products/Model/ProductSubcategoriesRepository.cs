@@ -16,16 +16,13 @@ namespace RCS.WpfShop.Modules.Products.Model
         #endregion
 
         #region CRUD
-        public override async Task<bool> ReadList(bool addEmptyElement = true)
+        protected override async Task<bool> Read(bool addEmptyElement = true)
         {
-            Clear();
-
             ProductSubcategoryList subcategories;
 
             try
             {
                 subcategories = await ProductsServiceClient.GetProductSubcategoriesAsync();
-
             }
             catch (Exception exception)
             {
@@ -36,12 +33,12 @@ namespace RCS.WpfShop.Modules.Products.Model
             if (addEmptyElement)
             {
                 var subcategory = new ProductSubcategory();
-                List.Add(subcategory);
+                items.Add(subcategory);
             }
 
             foreach (var subcategory in subcategories)
             {
-                List.Add(subcategory);
+                items.Add(subcategory);
             }
 
             return true;

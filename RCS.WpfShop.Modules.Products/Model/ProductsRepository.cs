@@ -17,9 +17,17 @@ namespace RCS.WpfShop.Modules.Products.Model
         { }
         #endregion
 
+        #region Refresh
+        public async Task Refresh(ProductCategory category, ProductSubcategory subcategory, string namePart)
+        {
+            await Clear().ConfigureAwait(true);
+            await Read(category, subcategory, namePart).ConfigureAwait(true);
+        }
+        #endregion
+
         #region CRUD
         // TODO This should get paged with an optional pagesize.
-        public async Task<IList<ProductsOverviewObject>> ReadList(ProductCategory category, ProductSubcategory subcategory, string namePart)
+        private async Task Read(ProductCategory category, ProductSubcategory subcategory, string namePart)
         {
             ProductsOverviewList productsOverview;
 
@@ -33,10 +41,13 @@ namespace RCS.WpfShop.Modules.Products.Model
             catch (Exception exception)
             {
                 DisplayAlert(exception);
-                return null;
+                return;
             }
 
-            return productsOverview;
+            foreach (var product in productsOverview)
+            {
+                items.Add(product);
+            }
         }
 
         public async Task<Product> Details(int productID)
@@ -53,13 +64,6 @@ namespace RCS.WpfShop.Modules.Products.Model
             }
 
             return product;
-        }
-        #endregion
-
-        #region Tmp
-        public Task Refresh(ProductCategory category, ProductSubcategory subcategory, string searchString)
-        {
-            throw new NotImplementedException();
         }
         #endregion
     }

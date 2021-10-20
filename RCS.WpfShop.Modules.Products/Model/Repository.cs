@@ -1,6 +1,7 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.WpfShop.AdventureWorks.ServiceReferences;
 using RCS.WpfShop.Common.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -26,31 +27,59 @@ namespace RCS.WpfShop.Modules.Products.Model
         // Note this is directly accesible but not amendable.
         public ReadOnlyCollection<TElement> Items => items.AsReadOnly();
 
-        public void Clear()
+        // Async for future use, though currently not.
+        public async Task Clear()
         {
-            List.Clear();
+            await Task.Run(() =>
+            {
+                List.Clear();
+                items.Clear();
+            }).ConfigureAwait(true);
+        }
+
+        public async Task<bool> Refresh(bool addEmptyElement = true)
+        {
+            try
+            {
+                await Clear().ConfigureAwait(true);
+                await Read(addEmptyElement).ConfigureAwait(true);
+
+                return true;
+            }
+            catch (Exception exception)
+            {
+                DisplayAlert(exception);
+                return false;
+            }
         }
         #endregion
 
         #region CRUD
-        public Task Create(TElement element)
+        public virtual async Task Create(TElement element)
         {
-            throw new System.NotImplementedException();
+            await Task.Run(() =>
+            {
+                items.Add(element);
+            });
         }
 
-        public Task Refresh(bool addEmptyElement = true)
+        protected virtual async Task<bool> Read(bool addEmptyElement = true)
         {
-            throw new System.NotImplementedException();
+            await VoidTask();
+            return true;
         }
 
-        public Task Update(TElement element)
+        public virtual async Task Update(TElement element)
         {
-            throw new System.NotImplementedException();
+            await VoidTask();
         }
 
-        public Task Delete(TElement element)
+        public virtual async Task Delete(TElement element)
         {
-            throw new System.NotImplementedException();
+            await Task.Run(() =>
+            {
+                items.Remove(element);
+            });
         }
         #endregion
 
@@ -81,6 +110,14 @@ namespace RCS.WpfShop.Modules.Products.Model
         public virtual decimal CartValue()
         {
             throw new System.NotImplementedException();
+        }
+        #endregion
+
+        #region Utility
+        private static Task VoidTask()
+        {
+            // HACK.
+            return Task.Run(() => { });
         }
         #endregion
     }

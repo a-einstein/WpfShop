@@ -16,10 +16,8 @@ namespace RCS.WpfShop.Modules.Products.Model
         #endregion
 
         #region CRUD
-        public override async Task<bool> ReadList(bool addEmptyElement = true)
+        protected override async Task<bool> Read(bool addEmptyElement = true)
         {
-            Clear();
-
             ProductCategoryList categories;
 
             try
@@ -35,12 +33,12 @@ namespace RCS.WpfShop.Modules.Products.Model
             if (addEmptyElement)
             {
                 var category = new ProductCategory() { Name = string.Empty };
-                List.Add(category);
+                items.Add(category);
             }
 
             foreach (var category in categories)
             {
-                List.Add(category);
+                items.Add(category);
             }
 
             return true;

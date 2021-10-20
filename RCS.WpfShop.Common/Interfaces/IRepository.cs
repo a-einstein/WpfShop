@@ -11,8 +11,9 @@ namespace RCS.WpfShop.Common.Interfaces
         ReadOnlyCollection<TElement> Items { get; }
 
         // CRUD.
+        // TODO Make generally Task<bool>.
         Task Create(TElement element);
-        Task Refresh(bool addEmptyElement = true);
+        Task<bool> Refresh(bool addEmptyElement = true);
         Task Update(TElement element);
         Task Delete(TElement element);
 

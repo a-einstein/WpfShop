@@ -74,37 +74,34 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         // TODO This would better be handled inside the repository.
         protected override async Task<bool> InitializeFilters()
         {
-            var results = await Task.WhenAll
-            (
-                ProductCategoriesRepository.ReadList(),
-                ProductSubcategoriesRepository.ReadList()
-            );
-
-            var succeeded = results.All(result => result);
+            var succeeded = await ProductCategoriesRepository.Refresh().ConfigureAwait(true);
+            succeeded &= await ProductSubcategoriesRepository.Refresh().ConfigureAwait(true);
 
             if (succeeded)
+            {
 
-                foreach (var item in ProductCategoriesRepository.List)
+                foreach (var item in ProductCategoriesRepository.Items)
                 {
                     MasterFilterItems.Add(item);
                 }
 
-            // Extra event. For some bindings (ItemsSource) those from ObservableCollection are enough, but for others (IsEnabled) this is needed.
-            RaisePropertyChanged(nameof(MasterFilterItems));
+                // Extra event. For some bindings (ItemsSource) those from ObservableCollection are enough, but for others (IsEnabled) this is needed.
+                RaisePropertyChanged(nameof(MasterFilterItems));
 
-            foreach (var item in ProductSubcategoriesRepository.List)
-            {
-                detailFilterItemsSource.Add(item);
+                foreach (var item in ProductSubcategoriesRepository.Items)
+                {
+                    detailFilterItemsSource.Add(item);
+                }
+
+                var masterDefaultId = 1;
+                MasterFilterValue = MasterFilterItems?.FirstOrDefault(category => category.Id == masterDefaultId);
+
+                // Note that MasterFilterValue also determines DetailFilterItems.
+                var detailDefaultId = 1;
+                DetailFilterValue = DetailFilterItems?.FirstOrDefault(subcategory => subcategory.Id == detailDefaultId);
+
+                TextFilterValue = default;
             }
-
-            var masterDefaultId = 1;
-            MasterFilterValue = MasterFilterItems?.FirstOrDefault(category => category.Id == masterDefaultId);
-
-            // Note that MasterFilterValue also determines DetailFilterItems.
-            var detailDefaultId = 1;
-            DetailFilterValue = DetailFilterItems?.FirstOrDefault(subcategory => subcategory.Id == detailDefaultId);
-
-            TextFilterValue = default;
 
             return succeeded;
         }
@@ -123,8 +120,9 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                 textFilterValue = TextFilterValue;
             });
 
-            var result = await ProductsRepository.ReadList(masterFilterValue, detailFilterValue, textFilterValue);
-            var succeeded = result != null;
+            var task = ProductsRepository.Refresh(masterFilterValue, detailFilterValue, textFilterValue);
+            await task.ConfigureAwait(true);
+            var succeeded = task.Status != TaskStatus.Faulted;
 
             if (succeeded)
             {
@@ -132,7 +130,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                 // TODO Still true?
                 uiDispatcher.Invoke(delegate
                 {
-                    foreach (var item in result)
+                    foreach (var item in ProductsRepository.Items)
                         Items.Add(item);
                 });
             }
