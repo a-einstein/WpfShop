@@ -3,6 +3,7 @@ using RCS.WpfShop.AdventureWorks.ServiceReferences;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace RCS.WpfShop.Modules.Products.Model
 {
@@ -17,66 +18,54 @@ namespace RCS.WpfShop.Modules.Products.Model
 
         #region CRUD
         // TODO Add messages to views.
-        private const string cartItemsNumberExceptionMessage = "Unexpected number of found ShoppingCartItems.";
 
-        // Note that the cart is only kept in memory and is not preserved. 
-        // It is anticipated that only real orders would be preserved and stored on the server.
-        public override CartItem AddProduct(IShoppingProduct product)
+        public override async Task Create(CartItem proxy)
         {
-            var existingCartItems = List.Where(cartItem => cartItem.ProductId == product.Id);
-            var cartItems = existingCartItems.ToList();
-            var existingCartItemsCount = cartItems.Count;
-
-            CartItem productCartItem;
-
-            switch (existingCartItemsCount)
+            await Task.Run(() =>
             {
-                case 0:
-                    productCartItem = new CartItem()
-                    {
-                        ProductId = product.Id.Value,
-                        Name = product.Name,
-                        ProductSize = product.Size,
-                        ProductSizeUnitMeasureCode = product.SizeUnitMeasureCode,
-                        ProductColor = product.Color,
-                        ProductListPrice = product.ListPrice,
-                        Quantity = 1
-                    };
-
-                    List.Add(productCartItem);
-                    break;
-                case 1:
-                    productCartItem = cartItems.First();
-
-                    productCartItem.Quantity += 1;
-                    productCartItem.Value = productCartItem.ProductListPrice * productCartItem.Quantity;
-                    break;
-                default:
-                    throw new Exception(cartItemsNumberExceptionMessage);
-            }
-
-            return productCartItem;
+                items.Add(proxy);
+            });
         }
 
-        public override void DeleteProduct(CartItem cartItem)
+        public override async Task Update(CartItem proxy)
         {
-            List.Remove(cartItem);
-        }
-        #endregion
+            // Use a simple function instead of CancellationToken .
+            var task = Task.Run(() =>
+            {
+                var foundItem = items.FirstOrDefault(item => item.ProductId == proxy.ProductId);
 
-        #region Aggregates
-        public override int ProductsCount()
-        {
-            return List.Count > 0
-                ? List.Sum(cartItem => cartItem.Quantity)
-                : 0;
+                if (foundItem != default)
+                {
+                    foundItem.Update(proxy);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            });
+
+            await task;
+
+            if (!task.Result)
+                DisplayAlert(new Exception("Unexpected number of CartItems."));
         }
 
-        public override decimal CartValue()
+        public override async Task Delete(CartItem proxy)
         {
-            return List.Count > 0
-                ? List.Sum(cartItem => cartItem.Value)
-                : 0;
+            await Task.Run(() =>
+            {
+                var current = items.FirstOrDefault(item => item.ProductId == proxy.ProductId);
+
+                if (current != default)
+                {
+                    items.Remove(current);
+                }
+                else
+                {
+                    DisplayAlert(new Exception("CartItem not found."));
+                }
+            });
         }
         #endregion
     }

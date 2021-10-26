@@ -43,9 +43,9 @@ namespace RCS.WpfShop.Common.ViewModels
         #endregion
 
         #region Refresh
-        protected override void Clear()
+        protected override void ClearView()
         {
-            base.Clear();
+            base.ClearView();
 
             Items?.Clear();
         }

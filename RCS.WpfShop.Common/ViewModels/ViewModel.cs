@@ -36,7 +36,7 @@ namespace RCS.WpfShop.Common.ViewModels
         #region Refresh
         public virtual async Task Refresh()
         {
-            Clear();
+            ClearView();
 
             if (await Initialize())
             {
@@ -44,7 +44,7 @@ namespace RCS.WpfShop.Common.ViewModels
             }
         }
 
-        protected virtual void Clear() { }
+        protected virtual void ClearView() { }
 
         private bool initialized;
         protected Dispatcher uiDispatcher;

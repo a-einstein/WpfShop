@@ -1,10 +1,13 @@
 ﻿using Prism.Commands;
 using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.AdventureWorks.Common.Interfaces;
 using RCS.WpfShop.Common.Interfaces;
 using RCS.WpfShop.Common.ViewModels;
+using RCS.WpfShop.Modules.Products.GuiModel;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -12,7 +15,7 @@ using System.Windows.Input;
 namespace RCS.WpfShop.Modules.Products.ViewModels
 {
     public class ShoppingCartViewModel :
-        ItemsViewModel<CartItem>
+        ItemsViewModel<GuiCartItem>
     {
         #region Construction
         public ShoppingCartViewModel(IRepository<List<CartItem>, CartItem> cartItemsRepository)
@@ -24,7 +27,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         {
             base.SetCommands();
 
-            DeleteCommand = new DelegateCommand<CartItem>(Delete);
+            DeleteCommand = new DelegateCommand<GuiCartItem>(Delete);
         }
         #endregion
 
@@ -33,12 +36,36 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #endregion
 
         #region Refresh
-        // TODO This would be appropriate for an 'empty' button.
-        protected override void Clear()
-        {
-            base.Clear();
+        private bool listChanged;
 
-            ClearAggregates();
+        public override async Task Refresh()
+        {
+            await Initialize().ConfigureAwait(true);
+
+            if (listChanged)
+            {
+                await uiDispatcher.Invoke(async delegate
+                {
+                    // Note that the repository is leading. 
+                    // Changes here are performed there, afterwhich it is reloaded.
+
+                    ClearView();
+
+                    await Read().ConfigureAwait(true);
+
+                    UpdateAggregates();
+                });
+
+                listChanged = false;
+            }
+        }
+
+        // TODO This would be appropriate for an 'empty' button.
+        protected override void ClearView()
+        {
+            base.ClearView();
+
+            UpdateAggregates();
         }
 
         private bool initialized;
@@ -57,22 +84,34 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #endregion
 
         #region CRUD
-        public void CartProduct(IShoppingProduct productsOverviewObject)
+        public async Task CartProduct(IShoppingProduct productsOverviewObject)
         {
-            CartItemsRepository.AddProduct(productsOverviewObject);
+            var existing = Items.FirstOrDefault(item => item.ProductId == productsOverviewObject.Id);
+
+            if (existing == default)
+            {
+                await CartItemsRepository.Create(new CartItem(productsOverviewObject)).ConfigureAwait(true);
+                listChanged = true;
+            }
+            else
+            {
+                existing.Quantity++;
+                await CartItemsRepository.Update(existing.CartItem);
+            }
+
+            await Refresh().ConfigureAwait(true);
         }
 
         protected override async Task Read()
         {
             uiDispatcher.Invoke(delegate
             {
-                foreach (var item in CartItemsRepository.List)
+                foreach (var item in CartItemsRepository.Items)
                 {
-                    Items.Add(item);
+                    Items.Add(new GuiCartItem(item));
                 }
             });
 
-            UpdateAggregates();
         }
 
         public static readonly DependencyProperty DeleteCommandProperty =
@@ -84,9 +123,12 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             private set => SetValue(DeleteCommandProperty, value);
         }
 
-        private void Delete(CartItem cartItem)
+        private void Delete(GuiCartItem cartItem)
         {
-            CartItemsRepository.DeleteProduct(cartItem);
+            CartItemsRepository.Delete(cartItem.CartItem);
+            listChanged = true;
+
+            Refresh();
         }
 
         protected override void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -96,10 +138,10 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    (e.NewItems[0] as CartItem).PropertyChanged += CartItem_PropertyChanged;
+                    (e.NewItems[0] as GuiCartItem).PropertyChanged += CartItem_PropertyChanged;
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    (e.OldItems[0] as CartItem).PropertyChanged -= CartItem_PropertyChanged;
+                    (e.OldItems[0] as GuiCartItem).PropertyChanged -= CartItem_PropertyChanged;
                     break;
             }
 
@@ -108,24 +150,34 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         private void CartItem_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(CartItem.Quantity))
+            if (e.PropertyName == nameof(GuiCartItem.Quantity))
             {
-                UpdateAggregates();
+                CartItemsRepository.Update((sender as GuiCartItem).CartItem).ConfigureAwait(true);
             }
+
+            UpdateAggregates();
         }
         #endregion
 
         #region Aggregates
-        private void ClearAggregates()
-        {
-            ProductItemsCount = 0;
-            TotalValue = 0;
-        }
-
         private void UpdateAggregates()
         {
-            ProductItemsCount = CartItemsRepository.ProductsCount();
-            TotalValue = CartItemsRepository.CartValue();
+            ProductItemsCount = Count();
+            TotalValue = Value();
+        }
+
+        private int Count()
+        {
+            return Items.Count > 0
+                ? Items.Sum(item => item.Quantity)
+                : 0;
+        }
+
+        private decimal Value()
+        {
+            return Items.Count > 0
+                ? Items.Sum(item => item.Value)
+                : 0;
         }
 
         public static readonly DependencyProperty ProductItemCountProperty =

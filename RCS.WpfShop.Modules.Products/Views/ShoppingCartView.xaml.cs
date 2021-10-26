@@ -1,6 +1,5 @@
 ﻿using RCS.WpfShop.Common.Views;
 using RCS.WpfShop.Modules.Products.ViewModels;
-using Unity;
 
 namespace RCS.WpfShop.Modules.Products.Views
 {
@@ -11,10 +10,12 @@ namespace RCS.WpfShop.Modules.Products.Views
             InitializeComponent();
         }
 
-        public ShoppingCartView(IUnityContainer container)
+        // Note this couples to a specific class.
+        // Note the parameter gets injected.
+        public ShoppingCartView(ShoppingCartViewModel shoppingCartViewModel)
             : this()
         {
-            ViewModel = container.Resolve<ShoppingCartViewModel>(nameof(ShoppingCartViewModel));
+            ViewModel = shoppingCartViewModel;
         }
     }
 }
