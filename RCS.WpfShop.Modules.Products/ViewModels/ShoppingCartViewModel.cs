@@ -36,50 +36,36 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #endregion
 
         #region Refresh
-        private bool listChanged;
+        private bool collectionChanged;
 
         public override async Task Refresh()
         {
             await Initialize().ConfigureAwait(true);
 
-            if (listChanged)
+            // Currently bluntly refresh.
+            //if (collectionChanged)
             {
                 await uiDispatcher.Invoke(async delegate
                 {
                     // Note that the repository is leading. 
                     // Changes here are performed there, afterwhich it is reloaded.
-
                     ClearView();
 
                     await Read().ConfigureAwait(true);
 
-                    UpdateAggregates();
                 });
 
-                listChanged = false;
+                collectionChanged = false;
             }
+
+            UpdateAggregates();
         }
 
-        // TODO This would be appropriate for an 'empty' button.
         protected override void ClearView()
         {
             base.ClearView();
 
             UpdateAggregates();
-        }
-
-        private bool initialized;
-
-        protected override async Task<bool> Initialize()
-        {
-            var baseInitialized = await base.Initialize();
-
-            if (baseInitialized && !initialized)
-            {
-                initialized = true;
-            }
-
-            return initialized;
         }
         #endregion
 
@@ -91,11 +77,14 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             if (existing == default)
             {
                 await CartItemsRepository.Create(new CartItem(productsOverviewObject)).ConfigureAwait(true);
-                listChanged = true;
+                collectionChanged = true;
             }
             else
             {
                 existing.Quantity++;
+
+                // TODO Use IShoppingProduct?
+                // TODO Let GuiCartItem handle this too?
                 await CartItemsRepository.Update(existing.CartItem);
             }
 
@@ -111,7 +100,6 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                     Items.Add(new GuiCartItem(item));
                 }
             });
-
         }
 
         public static readonly DependencyProperty DeleteCommandProperty =
@@ -126,9 +114,9 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         private void Delete(GuiCartItem cartItem)
         {
             CartItemsRepository.Delete(cartItem.CartItem);
-            listChanged = true;
+            collectionChanged = true;
 
-            Refresh();
+            _ = Refresh();
         }
 
         protected override void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -153,27 +141,26 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             if (e.PropertyName == nameof(GuiCartItem.Quantity))
             {
                 CartItemsRepository.Update((sender as GuiCartItem).CartItem).ConfigureAwait(true);
+                UpdateAggregates();
             }
-
-            UpdateAggregates();
         }
         #endregion
 
         #region Aggregates
         private void UpdateAggregates()
         {
-            ProductItemsCount = Count();
-            TotalValue = Value();
+            ProductItemsCount = SumQuantities();
+            TotalValue = SumValues();
         }
 
-        private int Count()
+        private int SumQuantities()
         {
             return Items.Count > 0
                 ? Items.Sum(item => item.Quantity)
                 : 0;
         }
 
-        private decimal Value()
+        private decimal SumValues()
         {
             return Items.Count > 0
                 ? Items.Sum(item => item.Value)

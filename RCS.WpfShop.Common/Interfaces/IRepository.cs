@@ -12,6 +12,7 @@ namespace RCS.WpfShop.Common.Interfaces
         // CRUD.
         // TODO Make generally Task<bool>.
         Task Create(TElement element);
+        // TODO Why not Read?
         Task<bool> Refresh(bool addEmptyElement = true);
         Task Update(TElement element);
         Task Delete(TElement element);

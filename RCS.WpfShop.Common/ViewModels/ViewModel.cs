@@ -82,7 +82,7 @@ namespace RCS.WpfShop.Common.ViewModels
         #region Events
         public event PropertyChangedEventHandler PropertyChanged;
 
-        // Currently not used.
+        // Note OnPropertyChanged can't be used, as it differs from Xamarin.Forms.BindableObject. 
         protected void RaisePropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

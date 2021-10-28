@@ -16,15 +16,16 @@ namespace RCS.WpfShop.Modules.Products.GuiModel
         {
             CartItem = cartItem;
 
-            SetValue();
+            // Update binding.
+            Quantity = CartItem.Quantity;
         }
 
         /// <summary>
-        /// Local copy, as a reference into the repository is not possible. 
+        /// Local COPY, as a reference into the repository is not possible. 
         /// </summary>
         public CartItem CartItem { get; }
 
-        private void SetValue()
+        private void UpdateValue()
         {
             Value = ProductListPrice * Quantity;
         }
@@ -48,12 +49,37 @@ namespace RCS.WpfShop.Modules.Products.GuiModel
             {
                 CartItem.Quantity = value;
 
-                // Need this because this is no DependencyProperty, as I also want to use CartItem.Quantity instead of duplicating it.
-                RaisePropertyChanged(nameof(Quantity));
+                // Do this before the PropertyChanged, to be available too.
+                UpdateValue();
 
-                SetValue();
+                // Need this because this is no BindableProperty, as I also want to use CartItem.Quantity instead of duplicating it.
+                RaisePropertyChanged(nameof(Quantity));
             }
         }
+
+        // TODO Use either of these 2 methods, removing the other.
+        // Caused by apparent binding problems on IntegerUpDown.
+
+        /*
+        private static readonly DependencyProperty QuantityProperty =
+            DependencyProperty.Register(nameof(Quantity), typeof(int), typeof(GuiCartItem));
+
+        public int Quantity
+        {
+            get
+            {
+                _ = (int)GetValue(QuantityProperty);
+                return CartItem.Quantity;
+            }
+            set
+            {
+                SetValue(QuantityProperty, value);
+                CartItem.Quantity = value;
+
+                UpdateValue();
+            }
+        }
+        */
 
         private static readonly DependencyProperty ValueProperty =
             DependencyProperty.Register(nameof(Value), typeof(decimal), typeof(GuiCartItem));
@@ -61,7 +87,7 @@ namespace RCS.WpfShop.Modules.Products.GuiModel
         public decimal Value
         {
             get => (decimal)GetValue(ValueProperty);
-            set => SetValue(ValueProperty, value);
+            private set => SetValue(ValueProperty, value);
         }
         #endregion
 
@@ -69,7 +95,7 @@ namespace RCS.WpfShop.Modules.Products.GuiModel
         #region Events
         public event PropertyChangedEventHandler PropertyChanged;
 
-        // Currently not used.
+        // Note OnPropertyChanged can't be used, as it differs from Xamarin.Forms.BindableObject. 
         protected void RaisePropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
