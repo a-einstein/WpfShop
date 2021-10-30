@@ -32,6 +32,8 @@ namespace RCS.WpfShop.Modules.Products.Model
             // Use a simple function instead of CancellationToken .
             var task = Task.Run(() =>
             {
+                // TODO Use Id, complying to DomainClass. That could be equal to ProductId for the moment.
+                // Then this method could be generic. If desired, not all repositories really need to update.
                 var foundItem = items.FirstOrDefault(item => item.ProductId == proxy.ProductId);
 
                 if (foundItem != default)

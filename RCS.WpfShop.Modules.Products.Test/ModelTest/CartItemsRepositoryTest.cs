@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RCS.AdventureWorks.Common.DomainClasses;
+using System.Threading.Tasks;
 
 namespace RCS.WpfShop.Modules.Products.Model.Test
 {
@@ -7,41 +8,47 @@ namespace RCS.WpfShop.Modules.Products.Model.Test
     public class CartItemsRepositoryTest : ModelTest
     {
         [TestMethod()]
-        public void CombinationTest()
+        public async Task CombinationTestAsync()
         {
             // Note that injection is not possible in test classes.
             // "Test classes need to have an empty default constructor or no constructors at all."
 
-            var products = new ProductsRepository();
-            products.Clear();
-
             var productId1 = 1;
             decimal price1 = 10;
             var product1 = ProductsOverviewObject(productId1, price1);
-            products.List.Add(product1);
 
             var productId2 = 2;
             decimal price2 = 20;
             var product2 = ProductsOverviewObject(productId2, price2);
-            products.List.Add(product2);
 
             var target = new CartItemsRepository();
 
-            var cartItem1 = target.AddProduct(product1);
-            Assert.AreEqual(1, target.ProductsCount());
-            Assert.AreEqual(price1, target.CartValue());
+            var cartItem1 = new CartItem(product1);
+            await target.Create(cartItem1);
 
-            var cartItem2 = target.AddProduct(product2);
-            Assert.AreEqual(2, target.ProductsCount());
-            Assert.AreEqual(price1 + price2, target.CartValue());
+            // TODO This would be tests for the viewmodel now.
+            //Assert.AreEqual(1, target.ProductsCount());
+            //Assert.AreEqual(price1, target.CartValue());
 
-            target.AddProduct(product2);
-            Assert.AreEqual(3, target.ProductsCount());
-            Assert.AreEqual(price1 + 2 * price2, target.CartValue());
+            var cartItem2 = new CartItem(product2);
+            await target.Create(cartItem2);
 
-            target.DeleteProduct(cartItem1);
-            Assert.AreEqual(2, target.ProductsCount());
-            Assert.AreEqual(2 * price2, target.CartValue());
+            // TODO This would be tests for the viewmodel now.
+            //Assert.AreEqual(2, target.ProductsCount());
+            //Assert.AreEqual(price1 + price2, target.CartValue());
+
+            cartItem2.Quantity++;
+            await target.Update(cartItem2);
+
+            // TODO This would be tests for the viewmodel now.
+            //Assert.AreEqual(3, target.ProductsCount());
+            //Assert.AreEqual(price1 + 2 * price2, target.CartValue());
+
+            await target.Delete(cartItem1);
+
+            // TODO This would be tests for the viewmodel now.
+            //Assert.AreEqual(2, target.ProductsCount());
+            //Assert.AreEqual(2 * price2, target.CartValue());
         }
 
         // Overloaded to clarify price.
