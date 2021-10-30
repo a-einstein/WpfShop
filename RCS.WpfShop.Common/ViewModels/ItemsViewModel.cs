@@ -8,22 +8,22 @@ namespace RCS.WpfShop.Common.ViewModels
 {
     public abstract class ItemsViewModel<TItem> : ViewModel
     {
+        #region Construction
+        protected ItemsViewModel()
+        {
+            Items.CollectionChanged += Items_CollectionChanged;
+        }
+
+        protected override void SetCommands()
+        {
+            base.SetCommands();
+
+            DetailsCommand = new DelegateCommand<TItem>(ShowDetails);
+        }
+        #endregion
+
         #region Items
-        public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register(nameof(Items), typeof(ObservableCollection<TItem>), typeof(ItemsViewModel<TItem>), new PropertyMetadata(Items_Changed));
-
-        // TODO Some sort of view would be more convenient to enable sorting in situ (filtering is no longer done so). But remember: that no longer applies when paging.
-        public ObservableCollection<TItem> Items
-        {
-            get => (ObservableCollection<TItem>)GetValue(ItemsProperty);
-            set => SetValue(ItemsProperty, value);
-        }
-
-        private static void Items_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var itemsViewModel = d as ItemsViewModel<TItem>;
-            itemsViewModel.Items.CollectionChanged += itemsViewModel.Items_CollectionChanged;
-        }
+        public ObservableCollection<TItem> Items { get; } = new ObservableCollection<TItem>();
 
         protected virtual void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -43,18 +43,11 @@ namespace RCS.WpfShop.Common.ViewModels
         #endregion
 
         #region Refresh
-        protected override void Clear()
+        protected override void ClearView()
         {
-            base.Clear();
+            base.ClearView();
 
             Items?.Clear();
-        }
-
-        protected override void SetCommands()
-        {
-            base.SetCommands();
-
-            DetailsCommand = new DelegateCommand<TItem>(ShowDetails);
         }
         #endregion
 

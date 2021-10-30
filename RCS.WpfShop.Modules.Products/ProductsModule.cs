@@ -10,7 +10,7 @@ using RCS.WpfShop.Modules.Products.Model;
 using RCS.WpfShop.Modules.Products.ViewModels;
 using RCS.WpfShop.Modules.Products.Views;
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
 using System.IO;
@@ -53,13 +53,13 @@ namespace RCS.WpfShop.Modules.Products
             // Register singleton depending on build configuration.
             container.LoadConfiguration(unityConfiguration, "Products");
 
-            // Use interfaces for constructor injections.
-            container.RegisterSingleton<IRepository<ObservableCollection<ProductCategory>, ProductCategory>, ProductCategoriesRepository>();
-            container.RegisterSingleton<IRepository<ObservableCollection<ProductSubcategory>, ProductSubcategory>, ProductSubcategoriesRepository>();
-            container.RegisterSingleton<IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int>, ProductsRepository>();
-            container.RegisterSingleton<IRepository<ObservableCollection<CartItem>, CartItem>, CartItemsRepository>();
+            // Interfaces for constructor injections.
+            container.RegisterSingleton<IRepository<List<ProductCategory>, ProductCategory>, ProductCategoriesRepository>();
+            container.RegisterSingleton<IRepository<List<ProductSubcategory>, ProductSubcategory>, ProductSubcategoriesRepository>();
+            container.RegisterSingleton<IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int>, ProductsRepository>();
+            container.RegisterSingleton<IRepository<List<CartItem>, CartItem>, CartItemsRepository>();
 
-            // Use types for explicit requests, implicitly using repositories.
+            // Types for constructor injections, implicitly using repositories.
             container.RegisterSingleton<ShoppingCartViewModel>();
 
             containerRegistry.RegisterForNavigation<ShoppingCartView>();

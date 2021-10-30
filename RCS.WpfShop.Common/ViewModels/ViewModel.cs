@@ -10,6 +10,10 @@ namespace RCS.WpfShop.Common.ViewModels
     // TODO Use BindableBase? Does not seem to offer advantages currently.
     public abstract class ViewModel : DependencyObject, INotifyPropertyChanged, INavigationAware
     {
+        #region Construction
+        protected virtual void SetCommands() { }
+        #endregion
+
         #region INavigationAware
         public virtual void OnNavigatedTo(NavigationContext navigationContext)
         {
@@ -32,7 +36,7 @@ namespace RCS.WpfShop.Common.ViewModels
         #region Refresh
         public virtual async Task Refresh()
         {
-            Clear();
+            ClearView();
 
             if (await Initialize())
             {
@@ -40,7 +44,7 @@ namespace RCS.WpfShop.Common.ViewModels
             }
         }
 
-        protected virtual void Clear() { }
+        protected virtual void ClearView() { }
 
         private bool initialized;
         protected Dispatcher uiDispatcher;
@@ -60,9 +64,7 @@ namespace RCS.WpfShop.Common.ViewModels
             return initialized;
         }
 
-        protected virtual void SetCommands() { }
-
-        protected virtual async Task<bool> Read() { return true; }
+        protected virtual async Task Read() { }
 
         // Note Did not succeed to set default by static member.
         public static readonly DependencyProperty TitleProperty =
@@ -80,7 +82,7 @@ namespace RCS.WpfShop.Common.ViewModels
         #region Events
         public event PropertyChangedEventHandler PropertyChanged;
 
-        // Currently not used.
+        // Note OnPropertyChanged can't be used, as it differs from Xamarin.Forms.BindableObject. 
         protected void RaisePropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

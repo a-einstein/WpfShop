@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using RCS.WpfShop.Resources;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,8 +10,18 @@ using System.Windows.Input;
 
 namespace RCS.WpfShop.Common.ViewModels
 {
-    public abstract class FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem> : ItemsViewModel<TItem>
+    public abstract class FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem> :
+        ItemsViewModel<TItem>
     {
+        #region Construction
+        protected override void SetCommands()
+        {
+            base.SetCommands();
+
+            FilterCommand = new DelegateCommand(async () => await Refresh());
+        }
+        #endregion
+
         #region Refresh
         private bool initialized;
 
@@ -30,22 +41,13 @@ namespace RCS.WpfShop.Common.ViewModels
             return initialized;
         }
 
-        protected override void SetCommands()
-        {
-            base.SetCommands();
-
-            FilterCommand = new DelegateCommand(async () => await Refresh());
-        }
-
-        protected override async Task<bool> Read()
+        protected override async Task Read()
         {
             Message = Labels.Searching;
 
             var succeeded = await ReadFiltered();
 
             Message = succeeded && ItemsCount == 0 ? Labels.NotFound : string.Empty;
-
-            return succeeded;
         }
 
         public static readonly DependencyProperty MessageProperty =
@@ -61,14 +63,7 @@ namespace RCS.WpfShop.Common.ViewModels
         #region Filtering
         protected abstract Task<bool> InitializeFilters();
 
-        public static readonly DependencyProperty MasterFilterItemsProperty =
-           DependencyProperty.Register(nameof(MasterFilterItems), typeof(ObservableCollection<TMasterFilterItem>), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
-
-        public ObservableCollection<TMasterFilterItem> MasterFilterItems
-        {
-            get => (ObservableCollection<TMasterFilterItem>)GetValue(MasterFilterItemsProperty);
-            set => SetValue(MasterFilterItemsProperty, value);
-        }
+        public ObservableCollection<TMasterFilterItem> MasterFilterItems { get; } = new ObservableCollection<TMasterFilterItem>();
 
         public static readonly DependencyProperty MasterFilterValueProperty =
             DependencyProperty.Register(nameof(MasterFilterValue), typeof(TMasterFilterItem), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), new PropertyMetadata(OnMasterFilterValueChanged));
@@ -92,32 +87,26 @@ namespace RCS.WpfShop.Common.ViewModels
         // TODO Some sort of view would be more convenient.
         private void SetDetailFilterItems(bool addEmptyElement = true)
         {
-            var detailFilterItemsSelection = detailFilterItemsSource.Where(DetailFilterItemsSelector(addEmptyElement));
+            DetailFilterItems.Clear();
 
-            var detailFilterItems = new ObservableCollection<TDetailFilterItem>();
+            var detailFilterItemsSelection = detailFilterItemsSource.Where(DetailFilterItemsSelector(addEmptyElement));
 
             // Store in a temporary structure first to avoid bothering the GUI.
             // Note that the query is executed on the foreach.
             foreach (var item in detailFilterItemsSelection)
             {
-                detailFilterItems.Add(item);
+                DetailFilterItems.Add(item);
             }
 
-            DetailFilterItems = detailFilterItems;
+            // Extra event. For some bindings (ItemsSource) those from ObservableCollection are enough, but for others (IsEnabled) this is needed.
+            RaisePropertyChanged(nameof(DetailFilterItems));
         }
 
         protected abstract Func<TDetailFilterItem, bool> DetailFilterItemsSelector(bool addEmptyElement = true);
 
-        protected Collection<TDetailFilterItem> detailFilterItemsSource = new Collection<TDetailFilterItem>();
+        protected List<TDetailFilterItem> detailFilterItemsSource = new List<TDetailFilterItem>();
 
-        public static readonly DependencyProperty DetailFilterItemsProperty =
-           DependencyProperty.Register(nameof(DetailFilterItems), typeof(ObservableCollection<TDetailFilterItem>), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
-
-        public ObservableCollection<TDetailFilterItem> DetailFilterItems
-        {
-            get => (ObservableCollection<TDetailFilterItem>)GetValue(DetailFilterItemsProperty);
-            set => SetValue(DetailFilterItemsProperty, value);
-        }
+        public ObservableCollection<TDetailFilterItem> DetailFilterItems { get; } = new ObservableCollection<TDetailFilterItem>();
 
         public static readonly DependencyProperty DetailFilterValueProperty =
             DependencyProperty.Register(nameof(DetailFilterValue), typeof(TDetailFilterItem), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));

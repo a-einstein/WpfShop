@@ -32,7 +32,7 @@
                     </StackPanel>
                 </Expander.Header>
                 <Expander.Content>
-                    <ListView ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}" Margin="{StaticResource StandardMargin}" Padding="{StaticResource StandardPadding}" MinHeight="20" Background="#FFFFFDF1">
+                    <ListView ItemsSource="{Binding Items}" Margin="{StaticResource StandardMargin}" Padding="{StaticResource StandardPadding}" MinHeight="20" Background="#FFFFFDF1">
                         <ListView.View>
                             <!--Note that Width Auto of GridViewColumns does not work and seems to be a bug according to the web. Therefor a thin empty header row is used to enable resizing.-->
                             <!--TODO Make Height of row smaller.-->
@@ -59,7 +59,7 @@
                                 <GridViewColumn Width="Auto">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <!--TODO HorizontalAlignment does not work here, but is desirable to work out some way.--> 
+                                            <!--TODO HorizontalAlignment does not work here, but is desirable to work out some way.-->
                                             <TextBlock Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource ValueTextBlockStyle}" HorizontalAlignment="Right"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -73,6 +73,7 @@
                                             https://github.com/xceedsoftware/wpftoolkit/wiki/Xceed-Toolkit-Plus-for-WPF
                                             So far this has not resulted in execution or real build problems.
                                             -->
+                                            <!--TODO Control does not get updated when Quantity adapted from overview or detailview.-->
                                             <xctk:IntegerUpDown Name="quantityUpDown" Value="{Binding Quantity, Mode=TwoWay}" Minimum="0" Style="{StaticResource IntegerUpDownStyle}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>

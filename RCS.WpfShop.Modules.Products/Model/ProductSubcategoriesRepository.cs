@@ -1,13 +1,13 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.WpfShop.AdventureWorks.ServiceReferences;
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace RCS.WpfShop.Modules.Products.Model
 {
     public class ProductSubcategoriesRepository :
-        Repository<ObservableCollection<ProductSubcategory>, ProductSubcategory>
+        Repository<List<ProductSubcategory>, ProductSubcategory>
     {
         #region Construction
         public ProductSubcategoriesRepository(IProductsService productsServiceClient = null)
@@ -16,16 +16,13 @@ namespace RCS.WpfShop.Modules.Products.Model
         #endregion
 
         #region CRUD
-        public override async Task<bool> ReadList(bool addEmptyElement = true)
+        protected override async Task<bool> Read(bool addEmptyElement = true)
         {
-            Clear();
-
             ProductSubcategoryList subcategories;
 
             try
             {
                 subcategories = await ProductsServiceClient.GetProductSubcategoriesAsync();
-
             }
             catch (Exception exception)
             {
@@ -36,12 +33,12 @@ namespace RCS.WpfShop.Modules.Products.Model
             if (addEmptyElement)
             {
                 var subcategory = new ProductSubcategory();
-                List.Add(subcategory);
+                items.Add(subcategory);
             }
 
             foreach (var subcategory in subcategories)
             {
-                List.Add(subcategory);
+                items.Add(subcategory);
             }
 
             return true;

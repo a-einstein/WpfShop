@@ -4,29 +4,25 @@ using RCS.WpfShop.Common.Interfaces;
 using RCS.WpfShop.Common.ViewModels;
 using RCS.WpfShop.Common.Views;
 using RCS.WpfShop.Common.Windows;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
 namespace RCS.WpfShop.Modules.Products.ViewModels
 {
-    public class ProductViewModel : ItemViewModel<Product>, IShopper
+    public class ProductViewModel :
+        ItemViewModel<Product>, IShopper
     {
         #region Construction
-        IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> products;
-        ShoppingCartViewModel shoppingCartViewModel;
-
         public ProductViewModel(
-            IFilterRepository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> products,
+            IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> productsRepository,
             ShoppingCartViewModel shoppingCartViewModel)
         {
-            this.products = products;
-            this.shoppingCartViewModel = shoppingCartViewModel;
+            ProductsRepository = productsRepository;
+            ShoppingCartViewModel = shoppingCartViewModel;
         }
-        #endregion
 
-        #region Refresh
         protected override void SetCommands()
         {
             base.SetCommands();
@@ -34,7 +30,15 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             CartCommand = new DelegateCommand<Product>(CartProduct);
             PhotoCommand = new DelegateCommand(ShowPhoto);
         }
+        #endregion
 
+        #region Services
+        private IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> ProductsRepository { get; }
+
+        ShoppingCartViewModel ShoppingCartViewModel { get; }
+        #endregion
+
+        #region Refresh
         private bool itemRead;
 
         protected override async Task<bool> Read()
@@ -43,7 +47,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             // to avoid an unnecessary read when opening the photo.
             if (!itemRead && ItemId.HasValue)
             {
-                var result = await products.Details((int)ItemId);
+                var result = await ProductsRepository.Details((int)ItemId);
                 itemRead = result != null;
                 Item = result;
             }
@@ -70,7 +74,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         private void CartProduct(Product product)
         {
-            shoppingCartViewModel.CartProduct(product);
+            ShoppingCartViewModel.CartProduct(product);
         }
         #endregion
 
