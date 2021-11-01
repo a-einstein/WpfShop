@@ -1,12 +1,21 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.WpfShop.Modules.Products.Test.BaseClasses;
 using System.Threading.Tasks;
 
 namespace RCS.WpfShop.Modules.Products.Model.Test
 {
     [TestClass()]
-    public class CartItemsRepositoryTest : ModelTest
+    public class CartItemsRepositoryTest :
+        RepositoryTest<CartItemsRepository, CartItem>
     {
+        [TestMethod()]
+        public override async Task ListTestAsync()
+        {
+            // Note this does not actually use a service (yet).
+            await ListTestAsync(0);
+        }
+
         [TestMethod()]
         public async Task CombinationTestAsync()
         {
