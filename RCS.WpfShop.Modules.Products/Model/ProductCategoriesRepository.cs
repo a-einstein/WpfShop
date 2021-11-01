@@ -10,6 +10,10 @@ namespace RCS.WpfShop.Modules.Products.Model
         Repository<List<ProductCategory>, ProductCategory>
     {
         #region Construction
+        // Need a parameterless constructor for tests.
+        public ProductCategoriesRepository()
+        { }
+
         public ProductCategoriesRepository(IProductsService productsServiceClient = null)
             : base(productsServiceClient)
         { }
