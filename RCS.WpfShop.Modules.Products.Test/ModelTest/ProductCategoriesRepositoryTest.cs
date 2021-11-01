@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.WpfShop.AdventureWorks.Mock;
 using System.Threading.Tasks;
 
 namespace RCS.WpfShop.Modules.Products.Model.Test
@@ -15,14 +16,21 @@ namespace RCS.WpfShop.Modules.Products.Model.Test
 
             // Note that injection is not possible in test classes.
             // "Test classes need to have an empty default constructor or no constructors at all."
-            var target = new ProductCategoriesRepository();
 
-            /*
-            // TODO This does not work (yet).
-            await target.Refresh();
-            // TODO Better control these numbers.
+            var serviceClient = ProductsServiceClient.Mock.Object;
+            var target = new ProductCategoriesRepository(serviceClient);
+
+            // Refresh.
+
+            // TODO Better control expected numbers.
+
+            await target.Refresh(addEmptyElement: false);
             Assert.AreEqual(target.Items.Count, 2);
-            */
+
+            await target.Refresh(addEmptyElement: true);
+            Assert.AreEqual(target.Items.Count, 3);
+
+            // Clear.
 
             await target.Clear();
             Assert.AreEqual(target.Items.Count, 0);

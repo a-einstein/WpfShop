@@ -32,12 +32,17 @@ namespace RCS.WpfShop.AdventureWorks.Mock
 
             const string categoryNameBase = "Category";
 
-            // Return 2 categories.
+            // 2 categories.
+            var categories = new ProductCategoryList() {
+                new ProductCategory() { Id=1, Name= $"{categoryNameBase} 1" },
+                new ProductCategory() { Id=2, Name= $"{categoryNameBase} 2" }
+            };
+
             mock.Setup(service => service.GetProductCategories())
-                .Returns(new ProductCategoryList() {
-                    new ProductCategory() { Id=1, Name= $"{categoryNameBase} 1" },
-                    new ProductCategory() { Id=2, Name= $"{categoryNameBase} 2" }
-                });
+                .Returns(categories);
+
+            mock.Setup(service => service.GetProductCategoriesAsync().Result).
+                Returns(categories);
 
             const string subcategoryNameBase = "Subcategory";
 
@@ -67,22 +72,19 @@ namespace RCS.WpfShop.AdventureWorks.Mock
         #endregion
 
         #region IProductsService
-        /// <summary>
-        /// </summary>
-        /// <returns>2 categories.</returns>
-        public ProductCategoryList GetProductCategories()
-        {
-            var result = Mock.Object.GetProductCategories();
-            return result;
-        }
+        // Note breaks do not work here.
 
         /// <summary>
         /// </summary>
         /// <returns>2 categories.</returns>
-        public Task<ProductCategoryList> GetProductCategoriesAsync()
-        {
-            return Task.FromResult(GetProductCategories());
-        }
+        public ProductCategoryList GetProductCategories()
+            => Mock.Object.GetProductCategories();
+
+        /// <summary>
+        /// </summary>
+        /// <returns>2 categories.</returns>
+        public async Task<ProductCategoryList> GetProductCategoriesAsync()
+            => await Mock.Object.GetProductCategoriesAsync();
 
         /// <summary>
         /// TODO.
