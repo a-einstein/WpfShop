@@ -11,12 +11,13 @@ namespace RCS.WpfShop.Modules.Products.Test.BaseClasses
         where TRepository : Repository<List<TElement>, TElement>, new()
         where TElement : DomainClass, new()
     {
+        public abstract Task ListTestAsync();
+
         /// <summary>
         /// Basic test with regards to base class.
         /// </summary>
         /// <returns></returns>
-        [TestMethod()]
-        public async Task ListTestAsync()
+        protected async Task ListTestAsync(int expectedServiceCount)
         {
             // Initialize.
             // Note that injection is not possible in test classes.
@@ -29,10 +30,10 @@ namespace RCS.WpfShop.Modules.Products.Test.BaseClasses
             // TODO Better control of expected numbers.
 
             await target.Refresh(addEmptyElement: false);
-            Assert.AreEqual(target.Items.Count, 2);
+            Assert.AreEqual(target.Items.Count, expectedServiceCount);
 
             await target.Refresh(addEmptyElement: true);
-            Assert.AreEqual(target.Items.Count, 3);
+            Assert.AreEqual(target.Items.Count, expectedServiceCount + 1);
 
             // Clear.
 

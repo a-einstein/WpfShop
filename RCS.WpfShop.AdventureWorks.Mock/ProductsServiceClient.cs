@@ -46,14 +46,19 @@ namespace RCS.WpfShop.AdventureWorks.Mock
 
             const string subcategoryNameBase = "Subcategory";
 
-            // Return 2 subcategories per category.
+            // 2 subcategories per category.
+            var subcategories = new ProductSubcategoryList() {
+                new ProductSubcategory() { Id=1, ProductCategoryId=1, Name=$"{subcategoryNameBase} 1.1" },
+                new ProductSubcategory() { Id=2, ProductCategoryId=1, Name=$"{subcategoryNameBase} 1.2" },
+                new ProductSubcategory() { Id=3, ProductCategoryId=2, Name=$"{subcategoryNameBase} 2.1" },
+                new ProductSubcategory() { Id=4, ProductCategoryId=2, Name=$"{subcategoryNameBase} 2.2" }
+            };
+
             mock.Setup(service => service.GetProductSubcategories())
-                .Returns(new ProductSubcategoryList() {
-                    new ProductSubcategory() { Id=1, ProductCategoryId=1, Name=$"{subcategoryNameBase} 1.1" },
-                    new ProductSubcategory() { Id=2, ProductCategoryId=1, Name=$"{subcategoryNameBase} 1.2" },
-                    new ProductSubcategory() { Id=3, ProductCategoryId=2, Name=$"{subcategoryNameBase} 2.1" },
-                    new ProductSubcategory() { Id=4, ProductCategoryId=2, Name=$"{subcategoryNameBase} 2.2" }
-                });
+                .Returns(subcategories);
+
+            mock.Setup(service => service.GetProductSubcategoriesAsync().Result).
+                Returns(subcategories);
 
             const int categoryIdExpected = 2;
             const int subcategoryIdExpected = 3;
@@ -136,18 +141,13 @@ namespace RCS.WpfShop.AdventureWorks.Mock
         /// </summary>
         /// <returns>4 subcategories.</returns>
         public ProductSubcategoryList GetProductSubcategories()
-        {
-            var result = Mock.Object.GetProductSubcategories();
-            return result;
-        }
+            => Mock.Object.GetProductSubcategories();
 
         /// <summary>
         /// </summary>
         /// <returns>4 subcategories.</returns>
-        public Task<ProductSubcategoryList> GetProductSubcategoriesAsync()
-        {
-            return Task.FromResult(GetProductSubcategories());
-        }
+        public async Task<ProductSubcategoryList> GetProductSubcategoriesAsync()
+             => await Mock.Object.GetProductSubcategoriesAsync();
         #endregion
     }
 }
