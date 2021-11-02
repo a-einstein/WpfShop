@@ -1,6 +1,6 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 
-namespace RCS.WpfShop.Modules.Products.Model.Test
+namespace RCS.WpfShop.Modules.Products.Test.BaseClasses
 {
     public abstract class ModelTest
     {

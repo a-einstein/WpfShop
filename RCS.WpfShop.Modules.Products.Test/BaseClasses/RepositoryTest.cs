@@ -2,7 +2,6 @@
 using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.WpfShop.AdventureWorks.Mock;
 using RCS.WpfShop.Modules.Products.Model;
-using RCS.WpfShop.Modules.Products.Model.Test;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
