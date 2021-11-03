@@ -69,10 +69,14 @@ namespace RCS.WpfShop.AdventureWorks.Mock
             var colorExpectedBase = $"Color {searchStringExpected}";
 
             // 2 colours for expected criteria 2, 3, "2.3".
+            // The search string should be a substring of the color names.
+            // Though not needed the category Ids are filled in too.
             var products = new ProductsOverviewList() {
-                new ProductsOverviewObject() { Color = $"{colorExpectedBase}.1" },
-                new ProductsOverviewObject() { Color = $"{colorExpectedBase}.2" }
+                new ProductsOverviewObject() { ProductCategoryId = categoryIdExpected, ProductSubcategoryId = subcategoryIdExpected, Color = $"{colorExpectedBase}.1" },
+                new ProductsOverviewObject() { ProductCategoryId = categoryIdExpected, ProductSubcategoryId = subcategoryIdExpected, Color = $"{colorExpectedBase}.2" }
             };
+
+            // Note the parameter values have to fit.
 
             mock.Setup(service => service.GetProductsOverviewBy(categoryIdExpected, subcategoryIdExpected, searchStringExpected))
                 .Returns(products);

@@ -88,7 +88,6 @@ namespace RCS.WpfShop.Modules.Products.Model
         }
         #endregion
 
-
         #region Utility
         private static Task VoidTask()
         {

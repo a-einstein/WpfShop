@@ -27,14 +27,7 @@ namespace RCS.WpfShop.Modules.Products.Test.BaseClasses
             var serviceClient = ProductsServiceClient.Mock.Object;
             var target = new TRepository() { ProductsServiceClient = serviceClient };
 
-            // Refresh.
-            // TODO Better control of expected numbers.
-
-            await target.Refresh(addEmptyElement: false);
-            Assert.AreEqual(target.Items.Count, expectedServiceCount);
-
-            await target.Refresh(addEmptyElement: true);
-            Assert.AreEqual(target.Items.Count, expectedServiceCount + 1);
+            await TestRefresh(expectedServiceCount, target);
 
             // Clear.
 
@@ -65,6 +58,17 @@ namespace RCS.WpfShop.Modules.Products.Test.BaseClasses
 
             await target.Delete(item1);
             Assert.AreEqual(target.Items.Count, 1);
+        }
+
+        protected virtual async Task TestRefresh(int expectedServiceCount, TRepository target)
+        {
+            // TODO Better control of expected numbers.
+
+            await target.Refresh(addEmptyElement: false);
+            Assert.AreEqual(target.Items.Count, expectedServiceCount);
+
+            await target.Refresh(addEmptyElement: true);
+            Assert.AreEqual(target.Items.Count, expectedServiceCount + 1);
         }
 
         static TElement Element(int suffix)
