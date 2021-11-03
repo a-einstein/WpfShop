@@ -16,6 +16,9 @@ namespace RCS.WpfShop.Modules.Products.Model.Test
             await ListTestAsync(0);
         }
 
+        // TODO Currently this does not really do more than ListTestAsync.
+        // Fuctionality should be expanded or transfered.
+        // Read the other comments.
         [TestMethod()]
         public async Task CombinationTestAsync()
         {
@@ -48,6 +51,11 @@ namespace RCS.WpfShop.Modules.Products.Model.Test
 
             cartItem2.Quantity++;
             await target.Update(cartItem2);
+
+            // TODO The Quantity could be tested by itself through target.Items,
+            // but is complicated by the current type of ReadOnlyCollection.
+            // It seems it would need to make use of IndexOf, Item[] and
+            // add IEqualityComparer to domain classes.
 
             // TODO This would be tests for the viewmodel now.
             //Assert.AreEqual(3, target.ProductsCount());
