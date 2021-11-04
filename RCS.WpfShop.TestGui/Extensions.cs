@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Support.UI;
@@ -20,6 +19,10 @@ namespace RCS.WpfShop.TestGui
         // which may have a different cause.
         // Changing Timeout seemed to help, even though it wasn't actually used as long as set. Setting the value back did not recreate the problem, 
         // which makes no sense.
+        //
+        // Exceptions still seem to originate here, but I have not been able to catch them.
+        // Not applying MainApplication.SetupExceptionHandling prevents them from turning up through the GUI.
+        // The actual GUI test may continue undisturbed despite exceptions and even report success.
 
         public static AppiumWebElement FindElementWait(this WindowsDriver<AppiumWebElement> windowsDriver, By by)
         {
