@@ -10,6 +10,10 @@ namespace RCS.WpfShop.Modules.Products.Model
         Repository<List<ProductCategory>, ProductCategory>
     {
         #region Construction
+        // Need a parameterless constructor for tests.
+        public ProductCategoriesRepository()
+        { }
+
         public ProductCategoriesRepository(IProductsService productsServiceClient = null)
             : base(productsServiceClient)
         { }
@@ -18,27 +22,24 @@ namespace RCS.WpfShop.Modules.Products.Model
         #region CRUD
         protected override async Task<bool> Read(bool addEmptyElement = true)
         {
-            ProductCategoryList categories;
+            if (await base.Read(addEmptyElement))
+            {
+                ProductCategoryList categories;
 
-            try
-            {
-                categories = await ProductsServiceClient.GetProductCategoriesAsync();
-            }
-            catch (Exception exception)
-            {
-                DisplayAlert(exception);
-                return false;
-            }
+                try
+                {
+                    categories = await ProductsServiceClient.GetProductCategoriesAsync();
+                }
+                catch (Exception exception)
+                {
+                    DisplayAlert(exception);
+                    return false;
+                }
 
-            if (addEmptyElement)
-            {
-                var category = new ProductCategory() { Name = string.Empty };
-                items.Add(category);
-            }
-
-            foreach (var category in categories)
-            {
-                items.Add(category);
+                foreach (var category in categories)
+                {
+                    items.Add(category);
+                }
             }
 
             return true;

@@ -20,7 +20,8 @@ namespace RCS.WpfShop.Modules.Products.Model
         // TODO actually use this in client. May have to be moved to registration.
         private static TimeSpan Timeout { get; } = new TimeSpan(0, 0, 15);
 
-        protected IProductsService ProductsServiceClient { get; private set; }
+        // Public set to enable parameterless constructor for tests.
+        public IProductsService ProductsServiceClient { get; set; }
         #endregion
 
         #region IDisposable

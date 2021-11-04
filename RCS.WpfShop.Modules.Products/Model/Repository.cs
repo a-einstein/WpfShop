@@ -11,6 +11,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         ProductsServiceConsumer,
         IRepository<TCollection, TElement>
         where TCollection : List<TElement>, new()
+        where TElement : new()
     {
         #region Construction
         public Repository(IProductsService productsServiceClient = null)
@@ -61,7 +62,15 @@ namespace RCS.WpfShop.Modules.Products.Model
 
         protected virtual async Task<bool> Read(bool addEmptyElement = true)
         {
-            await VoidTask();
+            await Task.Run(() =>
+            {
+                if (addEmptyElement)
+                {
+                    var element = new TElement();
+                    items.Add(element);
+                }
+            });
+
             return true;
         }
 
@@ -78,7 +87,6 @@ namespace RCS.WpfShop.Modules.Products.Model
             });
         }
         #endregion
-
 
         #region Utility
         private static Task VoidTask()
