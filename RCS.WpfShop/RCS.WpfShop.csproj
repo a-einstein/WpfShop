@@ -83,8 +83,8 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 		<None Include="Images\Main.ico">
-		  <Pack>True</Pack>
-		  <PackagePath></PackagePath>
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
 		</None>
 	</ItemGroup>
 	<ItemGroup>
@@ -100,7 +100,6 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\RCS.WpfShop.AdventureWorks\RCS.WpfShop.AdventureWorks.csproj" />
-		<ProjectReference Include="..\RCS.WpfShop.AdventureWorks.Mock\RCS.WpfShop.AdventureWorks.Mock.csproj" />
 		<ProjectReference Include="..\RCS.WpfShop.Common\RCS.WpfShop.Common.csproj" />
 		<ProjectReference Include="..\RCS.WpfShop.Resources\RCS.WpfShop.Resources.csproj" />
 	</ItemGroup>
@@ -120,30 +119,21 @@
 		<Resource Include="Images\Main.ico" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="CommonServiceLocator">
-			<Version>2.0.6</Version>
-		</PackageReference>
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="Prism.Unity" Version="8.1.97" />
-		<PackageReference Include="System.Composition" Version="5.0.1" />
-		<PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
-		<PackageReference Include="System.Threading.Tasks.Extensions">
-			<Version>4.5.4</Version>
-		</PackageReference>
-		<PackageReference Include="Unity.Configuration">
-			<Version>5.11.2</Version>
-		</PackageReference>
+		<PackageReference Include="System.Threading.Tasks.Extensions" Version=" 4.5.4" />
+		<PackageReference Include="Unity.Configuration" Version="5.11.2" />
 	</ItemGroup>
 	<PropertyGroup />
 	<PropertyGroup>
 		<PostBuildEvent>
 			if $(Configuration) == Release (
 			rem Cleanup some unexpected files.
-			
+
 			rem Documentation files. Do not know why they are put there.
 			rem Currently not found. Disabled to prevent messages..
 			rem del "$(TargetDir)*.xml"
-			
+
 			del "$(TargetDir)*.pdb"
 			)
 		</PostBuildEvent>
