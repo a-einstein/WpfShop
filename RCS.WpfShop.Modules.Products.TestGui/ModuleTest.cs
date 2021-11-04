@@ -71,7 +71,7 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             // Note that Click must be applied this way. Finding the element separately resulted in only a brief display on screen after which the Display property was false, which prevented Click. 
             masterFilterComboBox.FindElementByName(categoryExpected.Name).Click();
 
-            var subcategoriesExpected = serviceClient.GetProductSubcategories();
+            var subcategoriesExpected = await serviceClient.GetProductSubcategoriesAsync();
             var subcategoryExpectedOrder = 1;
             var subcategoryExpected = subcategoriesExpected.FindAll(subcategory => subcategory.ProductCategoryId == categoryExpected.Id)[subcategoryExpectedOrder - 1];
 
@@ -81,7 +81,7 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             detailFilterComboBox.FindElementByName(subcategoryExpected.Name).Click();
 
             var searchString = $"{categoryExpected.Id}.{subcategoryExpected.Id}";
-            var productsOverviewExpected = serviceClient.GetProductsOverviewBy(categoryExpected.Id, subcategoryExpected.Id, searchString);
+            var productsOverviewExpected = await serviceClient.GetProductsOverviewByAsync(categoryExpected.Id, subcategoryExpected.Id, searchString);
 
             // Note this is a UserControl.
             var textFilterControl = TestSession.FindElementByAccessibilityIdWait("TextFilterTextBox");
