@@ -17,7 +17,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
     /// Collection level Viewmodel on CartItems.
     /// </summary>
     public class ShoppingCartViewModel :
-        ItemsViewModel<GuiCartItem>
+        ItemsViewModel<CartItemViewModel>
     {
         #region Construction
         public ShoppingCartViewModel(IRepository<List<CartItem>, CartItem> cartItemsRepository)
@@ -29,7 +29,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         {
             base.SetCommands();
 
-            DeleteCommand = new DelegateCommand<GuiCartItem>(async (guiCartItem) => await DeleteAsync(guiCartItem));
+            DeleteCommand = new DelegateCommand<CartItemViewModel>(async (guiCartItem) => await DeleteAsync(guiCartItem));
         }
         #endregion
 
@@ -90,7 +90,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                 // TODO >>> Hide Items. Use an asynchronous Read.
                 foreach (var item in CartItemsRepository.Items)
                 {
-                    Items.Add(new GuiCartItem(item));
+                    Items.Add(new CartItemViewModel(item));
                 }
             });
         }
@@ -104,7 +104,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             private set => SetValue(DeleteCommandProperty, value);
         }
 
-        private async Task DeleteAsync(GuiCartItem cartItem)
+        private async Task DeleteAsync(CartItemViewModel cartItem)
         {
             await CartItemsRepository.Delete(cartItem.CartItem);
 
@@ -118,10 +118,10 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    (e.NewItems[0] as GuiCartItem).PropertyChanged += CartItem_PropertyChanged;
+                    (e.NewItems[0] as CartItemViewModel).PropertyChanged += CartItem_PropertyChanged;
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    (e.OldItems[0] as GuiCartItem).PropertyChanged -= CartItem_PropertyChanged;
+                    (e.OldItems[0] as CartItemViewModel).PropertyChanged -= CartItem_PropertyChanged;
                     break;
             }
 
@@ -130,7 +130,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         private void CartItem_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(GuiCartItem.Quantity))
+            if (e.PropertyName == nameof(CartItemViewModel.Quantity))
             {
                 // Aggregate from the single to the collection level.
                 UpdateAggregates();

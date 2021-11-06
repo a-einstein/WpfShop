@@ -9,11 +9,10 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
     /// Single level Viewmodel on CartItem.
     /// </summary>
     [DebuggerDisplay("{Name} : {ProductListPrice} x {Quantity} = {Value}")]
-    // TODO >>> Rename
-    public class GuiCartItem : ViewModel
+    public class CartItemViewModel : ViewModel
     {
         #region Construction
-        public GuiCartItem(CartItem cartItem)
+        public CartItemViewModel(CartItem cartItem)
         {
             CartItem = cartItem;
 
@@ -60,7 +59,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         }
 
         private static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register(nameof(Value), typeof(decimal), typeof(GuiCartItem));
+            DependencyProperty.Register(nameof(Value), typeof(decimal), typeof(CartItemViewModel));
 
         public decimal Value
         {
