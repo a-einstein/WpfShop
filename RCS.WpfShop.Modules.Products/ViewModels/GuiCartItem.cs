@@ -1,15 +1,16 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
-using System.ComponentModel;
+using RCS.WpfShop.Common.ViewModels;
 using System.Diagnostics;
 using System.Windows;
 
-namespace RCS.WpfShop.Modules.Products.GuiModel
+namespace RCS.WpfShop.Modules.Products.ViewModels
 {
     /// <summary>
-    /// Wrapper around CartItem.
+    /// Single level Viewmodel on CartItem.
     /// </summary>
     [DebuggerDisplay("{Name} : {ProductListPrice} x {Quantity} = {Value}")]
-    public class GuiCartItem : DependencyObject
+    // TODO >>> Rename
+    public class GuiCartItem : ViewModel
     {
         #region Construction
         public GuiCartItem(CartItem cartItem)
@@ -21,7 +22,8 @@ namespace RCS.WpfShop.Modules.Products.GuiModel
         }
 
         /// <summary>
-        /// Local COPY, as a reference into the repository is not possible. 
+        /// Reference into the repository. 
+        /// The model for this object.
         /// </summary>
         public CartItem CartItem { get; }
 
@@ -52,34 +54,10 @@ namespace RCS.WpfShop.Modules.Products.GuiModel
                 // Do this before the PropertyChanged, to be available too.
                 UpdateValue();
 
-                // Need this because this is no BindableProperty, as I also want to use CartItem.Quantity instead of duplicating it.
+                // Need this because this is no BindableProperty, for I also want to use CartItem.Quantity instead of duplicating it.
                 RaisePropertyChanged(nameof(Quantity));
             }
         }
-
-        // TODO Use either of these 2 methods, removing the other.
-        // Caused by apparent binding problems on IntegerUpDown.
-
-        /*
-        private static readonly DependencyProperty QuantityProperty =
-            DependencyProperty.Register(nameof(Quantity), typeof(int), typeof(GuiCartItem));
-
-        public int Quantity
-        {
-            get
-            {
-                _ = (int)GetValue(QuantityProperty);
-                return CartItem.Quantity;
-            }
-            set
-            {
-                SetValue(QuantityProperty, value);
-                CartItem.Quantity = value;
-
-                UpdateValue();
-            }
-        }
-        */
 
         private static readonly DependencyProperty ValueProperty =
             DependencyProperty.Register(nameof(Value), typeof(decimal), typeof(GuiCartItem));
@@ -88,17 +66,6 @@ namespace RCS.WpfShop.Modules.Products.GuiModel
         {
             get => (decimal)GetValue(ValueProperty);
             private set => SetValue(ValueProperty, value);
-        }
-        #endregion
-
-        // TODO Make this a ViewModel?
-        #region Events
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        // Note OnPropertyChanged can't be used, as it differs from Xamarin.Forms.BindableObject. 
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }

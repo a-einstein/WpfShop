@@ -18,7 +18,7 @@ namespace RCS.WpfShop.Common.ViewModels
         {
             base.SetCommands();
 
-            FilterCommand = new DelegateCommand(async () => await Refresh());
+            FilterCommand = new DelegateCommand(async () => await RefreshView());
         }
         #endregion
 

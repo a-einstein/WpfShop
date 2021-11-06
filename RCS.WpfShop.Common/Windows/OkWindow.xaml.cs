@@ -1,6 +1,6 @@
 ﻿using RCS.WpfShop.Common.Views;
-using System.Windows;
 using System;
+using System.Windows;
 using System.Windows.Data;
 
 namespace RCS.WpfShop.Common.Windows
@@ -33,7 +33,7 @@ namespace RCS.WpfShop.Common.Windows
                 SetBinding(TitleProperty, new Binding(nameof(Title)) { Source = View?.ViewModel });
 
                 // HACK No await as this method cannot be made async.
-                View?.ViewModel?.Refresh();
+                View?.ViewModel?.RefreshView();
             }
         }
 

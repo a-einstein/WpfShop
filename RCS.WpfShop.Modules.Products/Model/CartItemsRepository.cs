@@ -23,14 +23,6 @@ namespace RCS.WpfShop.Modules.Products.Model
         #region CRUD
         // TODO Add messages to views.
 
-        public override async Task Create(CartItem proxy)
-        {
-            await Task.Run(() =>
-            {
-                items.Add(proxy);
-            });
-        }
-
         public override async Task Update(CartItem proxy)
         {
             // Use a simple function instead of CancellationToken .
@@ -61,6 +53,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         {
             await Task.Run(() =>
             {
+                // TODO This could be generalized by applying something like IEqualityComparer on ProductId or even Id.
                 var current = items.FirstOrDefault(item => item.ProductId == proxy.ProductId);
 
                 if (current != default)

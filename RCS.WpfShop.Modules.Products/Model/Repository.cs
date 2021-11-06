@@ -52,7 +52,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         #endregion
 
         #region CRUD
-        public virtual async Task Create(TElement element)
+        public async Task Create(TElement element)
         {
             await Task.Run(() =>
             {
