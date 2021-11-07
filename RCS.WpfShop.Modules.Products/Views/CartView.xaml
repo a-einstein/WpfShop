@@ -36,7 +36,7 @@
                         <ListView.View>
                             <!--Note that Width Auto of GridViewColumns does not work and seems to be a bug according to the web. Therefor a thin empty header row is used to enable resizing.-->
                             <!--TODO Make Height of row smaller.-->
-                            <GridView ColumnHeaderContainerStyle="{StaticResource ShoppingCartColumnHeaderStyle}">
+                            <GridView ColumnHeaderContainerStyle="{StaticResource CartColumnHeaderStyle}">
                                 <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Name}"/>
 
                                 <GridViewColumn Width="Auto">

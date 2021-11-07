@@ -12,10 +12,10 @@ namespace RCS.WpfShop.Modules.Products.Views
 
         // Note this couples to a specific class.
         // Note the parameter gets injected.
-        public CartView(CartViewModel shoppingCartViewModel)
+        public CartView(CartViewModel cartViewModel)
             : this()
         {
-            ViewModel = shoppingCartViewModel;
+            ViewModel = cartViewModel;
         }
     }
 }

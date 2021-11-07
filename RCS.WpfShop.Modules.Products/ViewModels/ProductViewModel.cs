@@ -17,10 +17,10 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #region Construction
         public ProductViewModel(
             IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> productsRepository,
-            CartViewModel shoppingCartViewModel)
+            CartViewModel cartViewModel)
         {
             ProductsRepository = productsRepository;
-            ShoppingCartViewModel = shoppingCartViewModel;
+            CartViewModel = cartViewModel;
         }
 
         protected override void SetCommands()
@@ -35,7 +35,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #region Services
         private IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> ProductsRepository { get; }
 
-        CartViewModel ShoppingCartViewModel { get; }
+        CartViewModel CartViewModel { get; }
         #endregion
 
         #region Refresh
@@ -74,7 +74,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         private void CartProduct(Product product)
         {
-            ShoppingCartViewModel.CartProduct(product);
+            CartViewModel.CartProduct(product);
         }
         #endregion
 

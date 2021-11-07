@@ -264,7 +264,7 @@
 
     <!--GridViewColumnHeader-->
     
-    <Style x:Key="ShoppingCartColumnHeaderStyle" TargetType="GridViewColumnHeader">
+    <Style x:Key="CartColumnHeaderStyle" TargetType="GridViewColumnHeader">
         <Setter Property="Height" Value="5"/>
     </Style>
 </ResourceDictionary>

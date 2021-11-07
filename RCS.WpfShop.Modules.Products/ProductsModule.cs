@@ -75,7 +75,7 @@ namespace RCS.WpfShop.Modules.Products
 
             regionManager.RegisterViewWithRegion(Regions.MainViewWidgets, typeof(CartView));
 
-            // Activate the ShoppingCart which is generally visible when this module is present.
+            // Activate the Cart which is generally visible when this module is present.
             regionManager.RequestNavigate(Regions.MainViewWidgets, new Uri(nameof(CartView), UriKind.Relative));
 
             regionManager.RegisterViewWithRegion(Regions.MainViewMain, typeof(ProductsView));
