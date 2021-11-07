@@ -54,11 +54,11 @@ namespace RCS.WpfShop.Modules.Products.Model
             await Task.Run(() =>
             {
                 // TODO This could be generalized by applying something like IEqualityComparer on ProductId or even Id.
-                var current = items.FirstOrDefault(item => item.ProductId == proxy.ProductId);
+                var foundItem = items.FirstOrDefault(item => item.ProductId == proxy.ProductId);
 
-                if (current != default)
+                if (foundItem != default)
                 {
-                    items.Remove(current);
+                    items.Remove(foundItem);
                 }
                 else
                 {

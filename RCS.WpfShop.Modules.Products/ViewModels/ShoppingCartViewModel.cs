@@ -29,7 +29,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         {
             base.SetCommands();
 
-            DeleteCommand = new DelegateCommand<CartItemViewModel>(async (guiCartItem) => await DeleteAsync(guiCartItem));
+            DeleteCommand = new DelegateCommand<CartItemViewModel>(async (guiCartItem) => await Delete(guiCartItem));
         }
         #endregion
 
@@ -104,7 +104,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             private set => SetValue(DeleteCommandProperty, value);
         }
 
-        private async Task DeleteAsync(CartItemViewModel cartItem)
+        private async Task Delete(CartItemViewModel cartItem)
         {
             await CartItemsRepository.Delete(cartItem.CartItem);
 
