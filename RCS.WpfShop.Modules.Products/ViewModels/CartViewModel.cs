@@ -16,11 +16,11 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
     /// <summary>
     /// Collection level Viewmodel on CartItems.
     /// </summary>
-    public class ShoppingCartViewModel :
+    public class CartViewModel :
         ItemsViewModel<CartItemViewModel>
     {
         #region Construction
-        public ShoppingCartViewModel(IRepository<List<CartItem>, CartItem> cartItemsRepository)
+        public CartViewModel(IRepository<List<CartItem>, CartItem> cartItemsRepository)
         {
             CartItemsRepository = cartItemsRepository;
         }
@@ -96,7 +96,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         }
 
         public static readonly DependencyProperty DeleteCommandProperty =
-             DependencyProperty.Register(nameof(DeleteCommand), typeof(ICommand), typeof(ShoppingCartViewModel));
+             DependencyProperty.Register(nameof(DeleteCommand), typeof(ICommand), typeof(CartViewModel));
 
         public ICommand DeleteCommand
         {
@@ -160,7 +160,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         }
 
         public static readonly DependencyProperty ProductItemCountProperty =
-            DependencyProperty.Register(nameof(ProductItemsCount), typeof(int), typeof(ShoppingCartViewModel), new PropertyMetadata(0));
+            DependencyProperty.Register(nameof(ProductItemsCount), typeof(int), typeof(CartViewModel), new PropertyMetadata(0));
 
         public int ProductItemsCount
         {
@@ -169,7 +169,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         }
 
         public static readonly DependencyProperty TotalValueProperty =
-            DependencyProperty.Register(nameof(TotalValue), typeof(decimal), typeof(ShoppingCartViewModel), new PropertyMetadata((decimal)0));
+            DependencyProperty.Register(nameof(TotalValue), typeof(decimal), typeof(CartViewModel), new PropertyMetadata((decimal)0));
 
         public decimal TotalValue
         {

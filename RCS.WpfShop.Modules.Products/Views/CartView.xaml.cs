@@ -3,16 +3,16 @@ using RCS.WpfShop.Modules.Products.ViewModels;
 
 namespace RCS.WpfShop.Modules.Products.Views
 {
-    public partial class ShoppingCartView : View
+    public partial class CartView : View
     {
-        public ShoppingCartView()
+        public CartView()
         {
             InitializeComponent();
         }
 
         // Note this couples to a specific class.
         // Note the parameter gets injected.
-        public ShoppingCartView(ShoppingCartViewModel shoppingCartViewModel)
+        public CartView(CartViewModel shoppingCartViewModel)
             : this()
         {
             ViewModel = shoppingCartViewModel;

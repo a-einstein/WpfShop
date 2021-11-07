@@ -22,7 +22,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             IRepository<List<ProductCategory>, ProductCategory> productCategoriesRepository,
             IRepository<List<ProductSubcategory>, ProductSubcategory> productSubcategoriesRepository,
             IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> productsRepository,
-            ShoppingCartViewModel shoppingCartViewModel)
+            CartViewModel shoppingCartViewModel)
         {
             ProductCategoriesRepository = productCategoriesRepository;
             ProductSubcategoriesRepository = productSubcategoriesRepository;
@@ -44,7 +44,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         private IRepository<List<ProductSubcategory>, ProductSubcategory> ProductSubcategoriesRepository { get; }
         private IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> ProductsRepository { get; }
 
-        ShoppingCartViewModel ShoppingCartViewModel { get; }
+        CartViewModel ShoppingCartViewModel { get; }
         #endregion
 
         #region INavigationAware
