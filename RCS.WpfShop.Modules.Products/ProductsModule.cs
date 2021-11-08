@@ -60,9 +60,9 @@ namespace RCS.WpfShop.Modules.Products
             container.RegisterSingleton<IRepository<List<CartItem>, CartItem>, CartItemsRepository>();
 
             // Types for constructor injections, implicitly using repositories.
-            container.RegisterSingleton<ShoppingCartViewModel>();
+            container.RegisterSingleton<CartViewModel>();
 
-            containerRegistry.RegisterForNavigation<ShoppingCartView>();
+            containerRegistry.RegisterForNavigation<CartView>();
             containerRegistry.RegisterForNavigation<ProductsView>();
         }
 
@@ -73,10 +73,10 @@ namespace RCS.WpfShop.Modules.Products
             // As the type has to be used here, a RequestNavigate elsewhere can only use the class name (as string), 
             // not any other identification like a functional name.
 
-            regionManager.RegisterViewWithRegion(Regions.MainViewWidgets, typeof(ShoppingCartView));
+            regionManager.RegisterViewWithRegion(Regions.MainViewWidgets, typeof(CartView));
 
-            // Activate the ShoppingCart which is generally visible when this module is present.
-            regionManager.RequestNavigate(Regions.MainViewWidgets, new Uri(nameof(ShoppingCartView), UriKind.Relative));
+            // Activate the Cart which is generally visible when this module is present.
+            regionManager.RequestNavigate(Regions.MainViewWidgets, new Uri(nameof(CartView), UriKind.Relative));
 
             regionManager.RegisterViewWithRegion(Regions.MainViewMain, typeof(ProductsView));
         }

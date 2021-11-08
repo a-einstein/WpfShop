@@ -13,7 +13,7 @@ namespace RCS.WpfShop.Modules.Products.TestGui
         #region Class level
         private static readonly string destination = Labels.NavigateShop;
         private const string mainViewName = nameof(ProductsView);
-        private static readonly string[] widgetNames = { nameof(ShoppingCartView) };
+        private static readonly string[] widgetNames = { nameof(CartView) };
 
         // Note this must have a distinctive signature: static, public, no return value, take single parameter type TestContext.
         // TODO Would like to share this among classes, but currently see no way because of the static nature and the ClassInitialize, 

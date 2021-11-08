@@ -17,11 +17,10 @@ namespace RCS.WpfShop.Common.ViewModels
         #region INavigationAware
         public virtual void OnNavigatedTo(NavigationContext navigationContext)
         {
-            // Currently synchronous because of apparent threading problem with the call below even using uiDispatcher elsewhere.
-            Refresh();
-
-            // Use this way because this method is synchronous in INavigationAware. 
-            //Task.Run(() => Refresh()).Wait();
+            // Currently synchronous because of apparent threading problem with asynchronous attempts,
+            // even when using uiDispatcher as elsewhere.
+            // Note INavigationAware.OnNavigatedTo is synchronous. 
+            RefreshView();
         }
 
         public virtual bool IsNavigationTarget(NavigationContext navigationContext)
@@ -34,7 +33,7 @@ namespace RCS.WpfShop.Common.ViewModels
         #endregion
 
         #region Refresh
-        public virtual async Task Refresh()
+        public virtual async Task RefreshView()
         {
             ClearView();
 

@@ -3,7 +3,6 @@ using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.AdventureWorks.Common.Interfaces;
 using RCS.WpfShop.Common.Interfaces;
 using RCS.WpfShop.Common.ViewModels;
-using RCS.WpfShop.Modules.Products.GuiModel;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -14,11 +13,14 @@ using System.Windows.Input;
 
 namespace RCS.WpfShop.Modules.Products.ViewModels
 {
-    public class ShoppingCartViewModel :
-        ItemsViewModel<GuiCartItem>
+    /// <summary>
+    /// Collection level Viewmodel on CartItems.
+    /// </summary>
+    public class CartViewModel :
+        ItemsViewModel<CartItemViewModel>
     {
         #region Construction
-        public ShoppingCartViewModel(IRepository<List<CartItem>, CartItem> cartItemsRepository)
+        public CartViewModel(IRepository<List<CartItem>, CartItem> cartItemsRepository)
         {
             CartItemsRepository = cartItemsRepository;
         }
@@ -27,7 +29,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         {
             base.SetCommands();
 
-            DeleteCommand = new DelegateCommand<GuiCartItem>(Delete);
+            DeleteCommand = new DelegateCommand<CartItemViewModel>(async (guiCartItem) => await Delete(guiCartItem));
         }
         #endregion
 
@@ -36,27 +38,20 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #endregion
 
         #region Refresh
-        private bool collectionChanged;
-
-        public override async Task Refresh()
+        public override async Task RefreshView()
         {
             await Initialize().ConfigureAwait(true);
 
-            // Currently bluntly refresh.
-            //if (collectionChanged)
+            await uiDispatcher.Invoke(async delegate
             {
-                await uiDispatcher.Invoke(async delegate
-                {
-                    // Note that the repository is leading. 
-                    // Changes here are performed there, afterwhich it is reloaded.
-                    ClearView();
+                // Note that the repository is leading. Changes to the collection are performed there.
+                // After which a new view is created by reloading.
 
-                    await Read().ConfigureAwait(true);
+                ClearView();
 
-                });
+                await Read().ConfigureAwait(true);
 
-                collectionChanged = false;
-            }
+            });
 
             UpdateAggregates();
         }
@@ -70,40 +65,40 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #endregion
 
         #region CRUD
-        public async Task CartProduct(IShoppingProduct productsOverviewObject)
+        public async Task CartProduct(IShoppingProduct shoppingProduct)
         {
-            var existing = Items.FirstOrDefault(item => item.ProductId == productsOverviewObject.Id);
+            var existing = Items.FirstOrDefault(item => item.ProductId == shoppingProduct.Id);
 
             if (existing == default)
             {
-                await CartItemsRepository.Create(new CartItem(productsOverviewObject)).ConfigureAwait(true);
-                collectionChanged = true;
+                await CartItemsRepository.Create(new CartItem(shoppingProduct)).ConfigureAwait(true);
+
+                await RefreshView().ConfigureAwait(true);
             }
             else
             {
                 existing.Quantity++;
 
-                // TODO Use IShoppingProduct?
-                // TODO Let GuiCartItem handle this too?
-                await CartItemsRepository.Update(existing.CartItem);
+                UpdateAggregates();
             }
-
-            await Refresh().ConfigureAwait(true);
         }
 
         protected override async Task Read()
         {
             uiDispatcher.Invoke(delegate
             {
+                // TODO Perhaps hide Repository.Items.
+                // Use an asynchronous Read.
+
                 foreach (var item in CartItemsRepository.Items)
                 {
-                    Items.Add(new GuiCartItem(item));
+                    Items.Add(new CartItemViewModel(item));
                 }
             });
         }
 
         public static readonly DependencyProperty DeleteCommandProperty =
-             DependencyProperty.Register(nameof(DeleteCommand), typeof(ICommand), typeof(ShoppingCartViewModel));
+             DependencyProperty.Register(nameof(DeleteCommand), typeof(ICommand), typeof(CartViewModel));
 
         public ICommand DeleteCommand
         {
@@ -111,12 +106,11 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             private set => SetValue(DeleteCommandProperty, value);
         }
 
-        private void Delete(GuiCartItem cartItem)
+        private async Task Delete(CartItemViewModel cartItem)
         {
-            CartItemsRepository.Delete(cartItem.CartItem);
-            collectionChanged = true;
+            await CartItemsRepository.Delete(cartItem.CartItem);
 
-            _ = Refresh();
+            await RefreshView();
         }
 
         protected override void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -126,10 +120,10 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    (e.NewItems[0] as GuiCartItem).PropertyChanged += CartItem_PropertyChanged;
+                    (e.NewItems[0] as CartItemViewModel).PropertyChanged += CartItem_PropertyChanged;
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    (e.OldItems[0] as GuiCartItem).PropertyChanged -= CartItem_PropertyChanged;
+                    (e.OldItems[0] as CartItemViewModel).PropertyChanged -= CartItem_PropertyChanged;
                     break;
             }
 
@@ -138,9 +132,9 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         private void CartItem_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(GuiCartItem.Quantity))
+            if (e.PropertyName == nameof(CartItemViewModel.Quantity))
             {
-                CartItemsRepository.Update((sender as GuiCartItem).CartItem).ConfigureAwait(true);
+                // Aggregate from the single to the collection level.
                 UpdateAggregates();
             }
         }
@@ -168,7 +162,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         }
 
         public static readonly DependencyProperty ProductItemCountProperty =
-            DependencyProperty.Register(nameof(ProductItemsCount), typeof(int), typeof(ShoppingCartViewModel), new PropertyMetadata(0));
+            DependencyProperty.Register(nameof(ProductItemsCount), typeof(int), typeof(CartViewModel), new PropertyMetadata(0));
 
         public int ProductItemsCount
         {
@@ -177,7 +171,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         }
 
         public static readonly DependencyProperty TotalValueProperty =
-            DependencyProperty.Register(nameof(TotalValue), typeof(decimal), typeof(ShoppingCartViewModel), new PropertyMetadata((decimal)0));
+            DependencyProperty.Register(nameof(TotalValue), typeof(decimal), typeof(CartViewModel), new PropertyMetadata((decimal)0));
 
         public decimal TotalValue
         {

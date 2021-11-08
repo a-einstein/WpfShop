@@ -22,13 +22,13 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             IRepository<List<ProductCategory>, ProductCategory> productCategoriesRepository,
             IRepository<List<ProductSubcategory>, ProductSubcategory> productSubcategoriesRepository,
             IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> productsRepository,
-            ShoppingCartViewModel shoppingCartViewModel)
+            CartViewModel cartViewModel)
         {
             ProductCategoriesRepository = productCategoriesRepository;
             ProductSubcategoriesRepository = productSubcategoriesRepository;
             ProductsRepository = productsRepository;
 
-            ShoppingCartViewModel = shoppingCartViewModel;
+            CartViewModel = cartViewModel;
         }
 
         protected override void SetCommands()
@@ -44,7 +44,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         private IRepository<List<ProductSubcategory>, ProductSubcategory> ProductSubcategoriesRepository { get; }
         private IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> ProductsRepository { get; }
 
-        ShoppingCartViewModel ShoppingCartViewModel { get; }
+        CartViewModel CartViewModel { get; }
         #endregion
 
         #region INavigationAware
@@ -126,8 +126,6 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
             if (succeeded)
             {
-                // Need to update on the UI thread.
-                // TODO Still true?
                 uiDispatcher.Invoke(delegate
                 {
                     foreach (var item in ProductsRepository.Items)
@@ -151,7 +149,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         protected override void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
             // Note this enables opening multiple windows.
-            var productViewModel = new ProductViewModel(ProductsRepository, ShoppingCartViewModel) { ItemId = productsOverviewObject.Id };
+            var productViewModel = new ProductViewModel(ProductsRepository, CartViewModel) { ItemId = productsOverviewObject.Id };
             var productView = new ProductView() { ViewModel = productViewModel };
 
             var productWindow = new OkWindow() { View = productView };
@@ -172,7 +170,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         private void CartProduct(ProductsOverviewObject productsOverviewObject)
         {
-            ShoppingCartViewModel.CartProduct(productsOverviewObject);
+            CartViewModel.CartProduct(productsOverviewObject);
         }
         #endregion
     }
