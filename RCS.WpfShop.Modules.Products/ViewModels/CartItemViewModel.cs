@@ -20,6 +20,9 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             Quantity = CartItem.Quantity;
         }
 
+        // TODO As with Repository.Items one could argue to not directly expose the individual items too.
+        // So that would imply holding a copy which is read and updates indirectly.
+
         /// <summary>
         /// Reference into the repository. 
         /// The model for this object.

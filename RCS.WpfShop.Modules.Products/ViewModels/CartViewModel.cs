@@ -87,7 +87,9 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         {
             uiDispatcher.Invoke(delegate
             {
-                // TODO >>> Hide Items. Use an asynchronous Read.
+                // TODO Perhaps hide Repository.Items.
+                // Use an asynchronous Read.
+
                 foreach (var item in CartItemsRepository.Items)
                 {
                     Items.Add(new CartItemViewModel(item));

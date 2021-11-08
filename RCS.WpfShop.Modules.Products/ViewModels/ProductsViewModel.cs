@@ -126,8 +126,6 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
             if (succeeded)
             {
-                // Need to update on the UI thread.
-                // TODO Still true?
                 uiDispatcher.Invoke(delegate
                 {
                     foreach (var item in ProductsRepository.Items)
