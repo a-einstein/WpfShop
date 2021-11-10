@@ -16,7 +16,7 @@ namespace RCS.WpfShop.Common.Modules
 
         public IRegionManager regionManager;
 
-        protected static TraceSource TraceSource { get; } = new TraceSource("ModulesTrace");
+        protected static TraceSource TraceSource { get; } = new("ModulesTrace");
 
         public virtual void OnInitialized(IContainerProvider containerProvider)
         {

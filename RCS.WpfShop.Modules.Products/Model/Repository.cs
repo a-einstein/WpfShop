@@ -20,7 +20,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         #endregion
 
         #region Refresh
-        protected readonly TCollection items = new TCollection();
+        protected readonly TCollection items = new();
 
         // Note this is directly accesible but not amendable.
         public ReadOnlyCollection<TElement> Items => items.AsReadOnly();

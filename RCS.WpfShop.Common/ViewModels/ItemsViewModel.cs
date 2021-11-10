@@ -23,7 +23,7 @@ namespace RCS.WpfShop.Common.ViewModels
         #endregion
 
         #region Items
-        public ObservableCollection<TItem> Items { get; } = new ObservableCollection<TItem>();
+        public ObservableCollection<TItem> Items { get; } = new();
 
         protected virtual void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {

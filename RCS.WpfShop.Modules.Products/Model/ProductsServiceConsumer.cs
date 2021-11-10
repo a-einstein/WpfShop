@@ -18,7 +18,7 @@ namespace RCS.WpfShop.Modules.Products.Model
 
         #region Service
         // TODO actually use this in client. May have to be moved to registration.
-        private static TimeSpan Timeout { get; } = new TimeSpan(0, 0, 15);
+        private static TimeSpan Timeout { get; } = new(0, 0, 15);
 
         // Public set to enable parameterless constructor for tests.
         public IProductsService ProductsServiceClient { get; set; }
@@ -72,7 +72,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         // This value is tested on 3 service calls at startup. There is no multiplication operator.
         private static readonly TimeSpan serviceErrorGraceTime = Timeout + Timeout;
 
-        private static TraceSource traceSource = new TraceSource("MainTrace");
+        private static TraceSource traceSource = new("MainTrace");
 
         protected static void DisplayAlert(Exception exception)
         {

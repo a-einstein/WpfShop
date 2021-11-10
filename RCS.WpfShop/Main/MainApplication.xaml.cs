@@ -24,7 +24,7 @@ namespace RCS.WpfShop.Main
     {
         #region Application
         // Check out the trace settings in the app.config file.
-        private static TraceSource traceSource = new TraceSource("MainTrace");
+        private static TraceSource traceSource = new("MainTrace");
         private const string executionLevel = "application";
 
         private void Application_Startup(object sender, StartupEventArgs e)

@@ -34,8 +34,8 @@ namespace RCS.WpfShop.AdventureWorks.Mock
 
             // 2 categories.
             var categories = new ProductCategoryList() {
-                new ProductCategory() { Id=1, Name= $"{categoryNameBase} 1" },
-                new ProductCategory() { Id=2, Name= $"{categoryNameBase} 2" }
+                new() { Id=1, Name= $"{categoryNameBase} 1" },
+                new() { Id=2, Name= $"{categoryNameBase} 2" }
             };
 
             mock.Setup(service => service.GetProductCategories())
@@ -48,10 +48,10 @@ namespace RCS.WpfShop.AdventureWorks.Mock
 
             // 2 subcategories per category.
             var subcategories = new ProductSubcategoryList() {
-                new ProductSubcategory() { Id=1, ProductCategoryId=1, Name=$"{subcategoryNameBase} 1.1" },
-                new ProductSubcategory() { Id=2, ProductCategoryId=1, Name=$"{subcategoryNameBase} 1.2" },
-                new ProductSubcategory() { Id=3, ProductCategoryId=2, Name=$"{subcategoryNameBase} 2.1" },
-                new ProductSubcategory() { Id=4, ProductCategoryId=2, Name=$"{subcategoryNameBase} 2.2" }
+                new() { Id=1, ProductCategoryId=1, Name=$"{subcategoryNameBase} 1.1" },
+                new() { Id=2, ProductCategoryId=1, Name=$"{subcategoryNameBase} 1.2" },
+                new() { Id=3, ProductCategoryId=2, Name=$"{subcategoryNameBase} 2.1" },
+                new() { Id=4, ProductCategoryId=2, Name=$"{subcategoryNameBase} 2.2" }
             };
 
             mock.Setup(service => service.GetProductSubcategories())
@@ -72,8 +72,8 @@ namespace RCS.WpfShop.AdventureWorks.Mock
             // The search string should be a substring of the color names.
             // Though not needed the category Ids are filled in too.
             var products = new ProductsOverviewList() {
-                new ProductsOverviewObject() { ProductCategoryId = categoryIdExpected, ProductSubcategoryId = subcategoryIdExpected, Color = $"{colorExpectedBase}.1" },
-                new ProductsOverviewObject() { ProductCategoryId = categoryIdExpected, ProductSubcategoryId = subcategoryIdExpected, Color = $"{colorExpectedBase}.2" }
+                new() { ProductCategoryId = categoryIdExpected, ProductSubcategoryId = subcategoryIdExpected, Color = $"{colorExpectedBase}.1" },
+                new() { ProductCategoryId = categoryIdExpected, ProductSubcategoryId = subcategoryIdExpected, Color = $"{colorExpectedBase}.2" }
             };
 
             // Note the parameter values have to fit.
