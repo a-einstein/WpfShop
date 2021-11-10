@@ -10,8 +10,8 @@ namespace RCS.WpfShop.Common.Converters.Test
         public void ConvertTest()
         {
             var target = new WeightFormatter();
-            var weight = (decimal)1;
-            var unit = "Some Unit";
+            const decimal weight = (decimal)1;
+            const string unit = "Some Unit";
 
             var result = target.Convert(new object[] {weight, unit }, null, null, null);
             var expected = $"{weight} {unit}";

@@ -10,8 +10,8 @@ namespace RCS.WpfShop.Common.Converters.Test
         public void ConvertTest()
         {
             var target = new SizeFormatter();
-            var parameter1 = "Parameter1";
-            var parameter2 = "Parameter2";
+            const string parameter1 = "Parameter1";
+            const string parameter2 = "Parameter2";
 
             var result = target.Convert(new object[] { parameter1, parameter2 }, null, null, null);
             var expected = $"{parameter1} {parameter2}";

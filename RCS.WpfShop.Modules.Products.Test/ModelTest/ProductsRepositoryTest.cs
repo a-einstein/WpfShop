@@ -24,7 +24,7 @@ namespace RCS.WpfShop.Modules.Products.Model.Test
             // TODO Better correspondance of expected in and output.
             var category = new ProductCategory() { Id = 2 };
             var subcategory = new ProductSubcategory() { Id = 3 };
-            var searchString = "2.3";
+            const string searchString = "2.3";
 
             await target.Refresh(category, subcategory, searchString);
             Assert.AreEqual(target.Items.Count, expectedServiceCount);

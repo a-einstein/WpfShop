@@ -56,7 +56,7 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             // TODO Data could also retrieved and tested with the filter only partially filled.
 
             var categoriesExpected = await serviceClient.GetProductCategoriesAsync();
-            var categoryExpectedOrder = 2;
+            const int categoryExpectedOrder = 2;
             var categoryExpected = categoriesExpected[categoryExpectedOrder - 1];
 
             // Note literals are used for the control names here as they are fields in the view classes.
@@ -72,7 +72,7 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             masterFilterComboBox.FindElementByName(categoryExpected.Name).Click();
 
             var subcategoriesExpected = await serviceClient.GetProductSubcategoriesAsync();
-            var subcategoryExpectedOrder = 1;
+            const int subcategoryExpectedOrder = 1;
             var subcategoryExpected = subcategoriesExpected.FindAll(subcategory => subcategory.ProductCategoryId == categoryExpected.Id)[subcategoryExpectedOrder - 1];
 
             var detailFilterComboBox = TestSession.FindElementByAccessibilityIdWait("DetailFilterComboBox");
