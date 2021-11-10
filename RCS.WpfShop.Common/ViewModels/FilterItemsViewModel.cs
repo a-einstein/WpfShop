@@ -104,7 +104,7 @@ namespace RCS.WpfShop.Common.ViewModels
 
         protected abstract Func<TDetailFilterItem, bool> DetailFilterItemsSelector(bool addEmptyElement = true);
 
-        protected List<TDetailFilterItem> detailFilterItemsSource = new();
+        protected readonly List<TDetailFilterItem> detailFilterItemsSource = new();
 
         public ObservableCollection<TDetailFilterItem> DetailFilterItems { get; } = new();
 

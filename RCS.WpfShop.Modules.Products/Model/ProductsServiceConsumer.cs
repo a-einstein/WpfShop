@@ -72,7 +72,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         // This value is tested on 3 service calls at startup. There is no multiplication operator.
         private static readonly TimeSpan serviceErrorGraceTime = Timeout + Timeout;
 
-        private static TraceSource traceSource = new("MainTrace");
+        private static readonly TraceSource traceSource = new("MainTrace");
 
         protected static void DisplayAlert(Exception exception)
         {
