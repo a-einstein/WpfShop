@@ -9,7 +9,7 @@ namespace RCS.WpfShop.Common.Views
         public ViewModel ViewModel
         {
             get => DataContext as ViewModel;
-            set => DataContext = value;
+            init => DataContext = value;
         }
     }
 }

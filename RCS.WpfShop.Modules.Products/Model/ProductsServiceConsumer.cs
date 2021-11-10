@@ -21,7 +21,7 @@ namespace RCS.WpfShop.Modules.Products.Model
         private static TimeSpan Timeout { get; } = new(0, 0, 15);
 
         // Public set to enable parameterless constructor for tests.
-        public IProductsService ProductsServiceClient { get; set; }
+        public IProductsService ProductsServiceClient { get; init; }
         #endregion
 
         #region IDisposable

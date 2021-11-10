@@ -16,7 +16,7 @@ namespace RCS.WpfShop.Common.Windows
         public View View
         {
             get => viewControl.Content as View;
-            set => viewControl.Content = value;
+            init => viewControl.Content = value;
         }
 
         private bool activatedYet;
