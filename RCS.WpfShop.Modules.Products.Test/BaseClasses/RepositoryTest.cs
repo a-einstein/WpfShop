@@ -71,7 +71,7 @@ namespace RCS.WpfShop.Modules.Products.Test.BaseClasses
             Assert.AreEqual(target.Items.Count, expectedServiceCount + 1);
         }
 
-        static TElement Element(int suffix)
+        private static TElement Element(int suffix)
         {
             return new TElement() { Name = $"{nameof(TElement)}{suffix}" };
         }

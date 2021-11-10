@@ -51,7 +51,7 @@ namespace RCS.WpfShop.Main
         /// and as there is no distinction between different environments anyway.
         /// Currently implemented in both Main and Module(s).
         /// </summary>
-        static void SetUpTracing()
+        private static void SetUpTracing()
         {
             var executableName = AppDomain.CurrentDomain.FriendlyName;
 

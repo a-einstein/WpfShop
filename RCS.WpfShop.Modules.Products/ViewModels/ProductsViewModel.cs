@@ -44,7 +44,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         private IRepository<List<ProductSubcategory>, ProductSubcategory> ProductSubcategoriesRepository { get; }
         private IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> ProductsRepository { get; }
 
-        CartViewModel CartViewModel { get; }
+        private CartViewModel CartViewModel { get; }
         #endregion
 
         #region INavigationAware

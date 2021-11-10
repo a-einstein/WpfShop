@@ -83,7 +83,8 @@ namespace RCS.WpfShop.Modules.Products
         #endregion
 
         #region Utility
-        static EndpointAndAddressConfiguration ReadServiceConfiguration(string configurationNameBase)
+
+        private static EndpointAndAddressConfiguration ReadServiceConfiguration(string configurationNameBase)
         {
             var configurationFileName = $"{configurationNameBase}.config";
 
@@ -102,7 +103,7 @@ namespace RCS.WpfShop.Modules.Products
             return serviceConfiguration;
         }
 
-        static UnityConfigurationSection ReadUnityConfiguration(string configurationNameBase)
+        private static UnityConfigurationSection ReadUnityConfiguration(string configurationNameBase)
         {
             var configuration = ConfigurationManager.OpenExeConfiguration(configurationNameBase);
             var sectionUnity = configuration.GetSection("unity") as UnityConfigurationSection;

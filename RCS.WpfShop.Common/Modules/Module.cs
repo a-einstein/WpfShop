@@ -33,7 +33,7 @@ namespace RCS.WpfShop.Common.Modules
 
         // Currently implemented in both Main and Module(s).
         // See the comment elsewehere.
-        static void SetUpTracing()
+        private static void SetUpTracing()
         {
             var executableName = AppDomain.CurrentDomain.FriendlyName;
 
