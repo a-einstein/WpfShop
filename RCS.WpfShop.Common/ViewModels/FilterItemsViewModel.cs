@@ -35,7 +35,7 @@ namespace RCS.WpfShop.Common.ViewModels
 
                 initialized = await InitializeFilters();
 
-                Message = string.Empty;
+                Message = String.Empty;
             }
 
             return initialized;
@@ -47,7 +47,7 @@ namespace RCS.WpfShop.Common.ViewModels
 
             var succeeded = await ReadFiltered();
 
-            Message = succeeded && ItemsCount == 0 ? Labels.NotFound : string.Empty;
+            Message = succeeded && ItemsCount == 0 ? Labels.NotFound : String.Empty;
         }
 
         public static readonly DependencyProperty MessageProperty =
