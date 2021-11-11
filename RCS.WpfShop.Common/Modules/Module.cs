@@ -9,15 +9,22 @@ namespace RCS.WpfShop.Common.Modules
 {
     public abstract class Module : IModule
     {
-        // Note call order is as below.
+        protected Module()
+        {
+            SetUpTracing();
 
-        public virtual void RegisterTypes(IContainerRegistry containerRegistry)
-        { }
+            var typeName = GetType().Name;
+            var currentDirectory = Directory.GetCurrentDirectory();
+            TraceSource.TraceEvent(TraceEventType.Verbose, default, $"{typeName} {nameof(currentDirectory)} = {currentDirectory}");
+        }
+
+        public abstract void RegisterTypes(IContainerRegistry containerRegistry);
 
         public IRegionManager regionManager;
 
-        protected static TraceSource TraceSource { get; } = new("ModulesTrace");
+        protected TraceSource TraceSource { get; private set; }
 
+        // Note his occurs AFTER RegisterTypes.
         public virtual void OnInitialized(IContainerProvider containerProvider)
         {
             regionManager = containerProvider.Resolve<IRegionManager>();
@@ -27,15 +34,20 @@ namespace RCS.WpfShop.Common.Modules
             // It needs to be explicitly set back, otherwise even the complete path is not enough to read or write files.
             var baseDirectory = $"{AppDomain.CurrentDomain.BaseDirectory}";
             Directory.SetCurrentDirectory(baseDirectory);
-
-            SetUpTracing();
         }
 
         // Currently implemented in both Main and Module(s).
         // See the comment elsewehere.
-        private static void SetUpTracing()
+        private void SetUpTracing()
         {
-            var executableName = AppDomain.CurrentDomain.FriendlyName;
+            var logDirectoryName = "Logs";
+            // This is needed as TextWriterTraceListener does not create directories.
+            Directory.CreateDirectory(logDirectoryName);
+
+            var typeName = GetType().Name;
+            var fileName = $"{logDirectoryName}\\{typeName}.log";
+
+            TraceSource = new(typeName);
 
             // Needed for TextWriterTraceListener.
             Trace.AutoFlush = true;
@@ -50,7 +62,7 @@ namespace RCS.WpfShop.Common.Modules
             TraceSource.Listeners.AddRange(new TraceListener[]
             {
                 // Note that module trace files could not be shared with that of the executable.
-                new TextWriterTraceListener("RCS.Modules.log", "file")
+                new TextWriterTraceListener(fileName, $"file{typeName}")
                 {
                     Filter = new EventTypeFilter(SourceLevels.Verbose),
                     TraceOutputOptions = TraceOptions.DateTime
