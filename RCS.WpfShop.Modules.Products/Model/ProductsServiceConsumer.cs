@@ -38,7 +38,7 @@ namespace RCS.WpfShop.Modules.Products.Model
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             if (disposed)
                 return;
