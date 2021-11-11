@@ -35,8 +35,6 @@ namespace RCS.WpfShop.Common.Modules
         // See the comment elsewehere.
         private static void SetUpTracing()
         {
-            var executableName = AppDomain.CurrentDomain.FriendlyName;
-
             // Needed for TextWriterTraceListener.
             Trace.AutoFlush = true;
 
