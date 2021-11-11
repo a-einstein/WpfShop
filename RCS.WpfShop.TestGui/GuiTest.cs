@@ -20,7 +20,7 @@ namespace RCS.WpfShop.TestGui
         static GuiTest()
         {
             // Use the namespace as this testclass is functionally linked to it.
-            var classNameParts = typeof(GuiTest).FullName.Split(new char[] { '.' });
+            var classNameParts = typeof(GuiTest).FullName.Split(new[] { '.' });
             mainName = String.Join(".", classNameParts, 0, 2);
 
             // TODO This should follow the current framework.
