@@ -12,8 +12,6 @@ using RCS.WpfShop.Modules.Products.Views;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Diagnostics;
-using System.IO;
 using System.Xml;
 using Unity;
 using static RCS.WpfShop.AdventureWorks.ServiceReferences.ProductsServiceClient;
@@ -31,9 +29,6 @@ namespace RCS.WpfShop.Modules.Products
         // TODO Make use of Core for injection?
         public override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            var currentDirectory = Directory.GetCurrentDirectory();
-            TraceSource.TraceEvent(TraceEventType.Verbose, default, $"{nameof(ProductsModule)} {nameof(currentDirectory)} = {currentDirectory}");
-
             // Read from the old .config files because they can be transformed based on the buildconfiguration.
             // The new method with .json files can only work with environment variables, which are unpractical to set.
             // Note this is the actual filename in Core, there is no default for this method.
@@ -43,8 +38,6 @@ namespace RCS.WpfShop.Modules.Products
 
             var serviceConfiguration = ReadServiceConfiguration(configurationNameBase);
             var unityConfiguration = ReadUnityConfiguration(configurationNameBase);
-
-            base.RegisterTypes(containerRegistry);
 
             var container = containerRegistry.GetContainer();
 
