@@ -22,9 +22,14 @@ namespace RCS.WpfShop.Main
 
     public partial class MainApplication : PrismApplication
     {
+        MainApplication()
+        {
+            SetUpTracing();
+        }
+
         #region Application
         // Check out the trace settings in the app.config file.
-        private static readonly TraceSource traceSource = new("MainTrace");
+        private TraceSource traceSource;
         private const string executionLevel = "application";
 
         private void Application_Startup(object sender, StartupEventArgs e)
@@ -38,8 +43,6 @@ namespace RCS.WpfShop.Main
             var baseDirectory = $"{AppDomain.CurrentDomain.BaseDirectory}";
             Directory.SetCurrentDirectory(baseDirectory);
 
-            SetUpTracing();
-
             // Note that TraceEventType.Start was not supported for unknown reasons.
             traceSource.TraceEvent(TraceEventType.Verbose, default, $"Starting {executionLevel}.");
 
@@ -51,9 +54,16 @@ namespace RCS.WpfShop.Main
         /// and as there is no distinction between different environments anyway.
         /// Currently implemented in both Main and Module(s).
         /// </summary>
-        private static void SetUpTracing()
+        private void SetUpTracing()
         {
-            var executableName = AppDomain.CurrentDomain.FriendlyName;
+            var logDirectoryName = "Logs";
+            // This is needed as TextWriterTraceListener does not create directories.
+            Directory.CreateDirectory(logDirectoryName);
+
+            var typeName = GetType().Name;
+            var fileName = $"{logDirectoryName}\\{typeName}.log";
+
+            traceSource = new(typeName);
 
             // Needed for TextWriterTraceListener.
             Trace.AutoFlush = true;
@@ -67,7 +77,7 @@ namespace RCS.WpfShop.Main
 
             traceSource.Listeners.AddRange(new TraceListener[]
             {
-                new TextWriterTraceListener($"{executableName}.log", "file")
+                new TextWriterTraceListener(fileName, $"file{typeName}")
                 {
                     Filter = new EventTypeFilter(SourceLevels.Verbose),
                     TraceOutputOptions = TraceOptions.DateTime
