@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Regions;
 using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.AdventureWorks.Common.Interfaces;
 using RCS.WpfShop.Common.Interfaces;
 using RCS.WpfShop.Common.ViewModels;
 using RCS.WpfShop.Common.Windows;
@@ -35,7 +36,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         {
             base.SetCommands();
 
-            CartCommand = new DelegateCommand<ProductsOverviewObject>(CartProduct);
+            CartCommand = new DelegateCommand<IShoppingProduct>(async (product) => await CartProduct(product));
         }
         #endregion
 
@@ -168,9 +169,9 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             set => SetValue(CartCommandProperty, value);
         }
 
-        private void CartProduct(ProductsOverviewObject productsOverviewObject)
+        private Task CartProduct(IShoppingProduct product)
         {
-            CartViewModel.CartProduct(productsOverviewObject);
+            return CartViewModel.CartProduct(product);
         }
         #endregion
     }
