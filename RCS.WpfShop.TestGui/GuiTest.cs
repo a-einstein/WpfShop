@@ -28,7 +28,7 @@ namespace RCS.WpfShop.TestGui
             appPath = $"{appDir}\\{mainName}.exe";
         }
 
-        public static void StartSession(TestContext testContext)
+        protected static void StartSession(TestContext testContext)
         {
             if (TestSession == null)
             {
@@ -48,7 +48,7 @@ namespace RCS.WpfShop.TestGui
             }
         }
 
-        public static void NavigateTo(string destination)
+        protected static void NavigateTo(string destination)
         {
             TestSession.FindElementWait(By.Name(destination)).Click();
 
@@ -74,7 +74,7 @@ namespace RCS.WpfShop.TestGui
             Assert.IsNotNull(element);
         }
 
-        public static void EndSession()
+        protected static void EndSession()
         {
             TestSession?.Quit();
             TestSession = null;

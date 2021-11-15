@@ -6,7 +6,7 @@ namespace RCS.WpfShop.Modules.Products.Test.BaseClasses
     public abstract class ModelTest
     {
         // Convenience method.
-        public static ProductsOverviewObject ProductsOverviewObject(int id)
+        protected static ProductsOverviewObject ProductsOverviewObject(int id)
         {
             var instance = new ProductsOverviewObject()
             {

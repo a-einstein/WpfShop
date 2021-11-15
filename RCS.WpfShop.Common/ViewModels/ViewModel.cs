@@ -76,7 +76,7 @@ namespace RCS.WpfShop.Common.ViewModels
         }
 
         // TODO Possibly have an UpdateTitle like in PortableShop. Eiher for the window title or a text in the view.
-        public virtual string MakeTitle() { return Labels.ShopName; }
+        protected virtual string MakeTitle() { return Labels.ShopName; }
         #endregion
 
         #region Events

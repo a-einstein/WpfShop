@@ -56,7 +56,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             return itemRead;
         }
 
-        public override string MakeTitle()
+        protected override string MakeTitle()
         {
             return Item?.Name;
         }
