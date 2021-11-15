@@ -12,7 +12,7 @@ namespace RCS.WpfShop.Common.Converters
             return Convert(value);
         }
 
-        public static BitmapImage Convert(object value)
+        private static BitmapImage Convert(object value)
         {
             if (value is byte[] byteArray)
             {

@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Regions;
 using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.AdventureWorks.Common.Interfaces;
 using RCS.WpfShop.Common.Interfaces;
 using RCS.WpfShop.Common.ViewModels;
 using RCS.WpfShop.Common.Windows;
@@ -35,7 +36,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         {
             base.SetCommands();
 
-            CartCommand = new DelegateCommand<ProductsOverviewObject>(CartProduct);
+            CartCommand = new DelegateCommand<IShoppingProduct>(async (product) => await CartProduct(product));
         }
         #endregion
 
@@ -44,7 +45,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         private IRepository<List<ProductSubcategory>, ProductSubcategory> ProductSubcategoriesRepository { get; }
         private IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> ProductsRepository { get; }
 
-        CartViewModel CartViewModel { get; }
+        private CartViewModel CartViewModel { get; }
         #endregion
 
         #region INavigationAware
@@ -93,11 +94,11 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                     detailFilterItemsSource.Add(item);
                 }
 
-                var masterDefaultId = 1;
+                const int masterDefaultId = 1;
                 MasterFilterValue = MasterFilterItems?.FirstOrDefault(category => category.Id == masterDefaultId);
 
                 // Note that MasterFilterValue also determines DetailFilterItems.
-                var detailDefaultId = 1;
+                const int detailDefaultId = 1;
                 DetailFilterValue = DetailFilterItems?.FirstOrDefault(subcategory => subcategory.Id == detailDefaultId);
 
                 TextFilterValue = default;
@@ -113,7 +114,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             string textFilterValue = null;
 
             // Need to get these from the UI thread.
-            uiDispatcher.Invoke(delegate
+            uiDispatcher.Invoke(() =>
             {
                 masterFilterValue = MasterFilterValue;
                 detailFilterValue = DetailFilterValue;
@@ -126,7 +127,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
             if (succeeded)
             {
-                uiDispatcher.Invoke(delegate
+                await uiDispatcher.InvokeAsync(() =>
                 {
                     foreach (var item in ProductsRepository.Items)
                         Items.Add(item);
@@ -168,9 +169,9 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             set => SetValue(CartCommandProperty, value);
         }
 
-        private void CartProduct(ProductsOverviewObject productsOverviewObject)
+        private Task CartProduct(IShoppingProduct product)
         {
-            CartViewModel.CartProduct(productsOverviewObject);
+            return CartViewModel.CartProduct(product);
         }
         #endregion
     }

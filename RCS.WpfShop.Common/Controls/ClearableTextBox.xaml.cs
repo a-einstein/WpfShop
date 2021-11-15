@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xaml.Behaviors;
 using Prism.Commands;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -46,12 +47,12 @@ namespace RCS.WpfShop.Common.Controls
 
         private static void Clear(ClearableTextBox clearableTextBox)
         {
-            clearableTextBox.Text = string.Empty;
+            clearableTextBox.Text = String.Empty;
         }
 
         private static bool CanClear(ClearableTextBox clearableTextBox)
         {
-            return !string.IsNullOrEmpty(clearableTextBox?.Text);
+            return !String.IsNullOrEmpty(clearableTextBox?.Text);
         }
         #endregion
 

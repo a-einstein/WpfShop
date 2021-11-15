@@ -20,9 +20,9 @@ namespace RCS.WpfShop.Common.Modules
 
         public abstract void RegisterTypes(IContainerRegistry containerRegistry);
 
-        public IRegionManager regionManager;
+        protected IRegionManager regionManager;
 
-        protected TraceSource TraceSource { get; private set; }
+        private TraceSource TraceSource { get; set; }
 
         // Note his occurs AFTER RegisterTypes.
         public virtual void OnInitialized(IContainerProvider containerProvider)

@@ -35,7 +35,7 @@ namespace RCS.WpfShop.Common.Behaviors
             // Use Background as it stands out more.
             // This could be replaced by entire styles.
             // An empty string is not signalled.
-            textBox.Background = string.IsNullOrEmpty(textBox.Text) || isValid
+            textBox.Background = String.IsNullOrEmpty(textBox.Text) || isValid
                 ? ValidBackground
                 : InvalidBackground;
         }

@@ -3,9 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:prism="http://www.codeplex.com/prism"
-    xmlns:BaseClasses="clr-namespace:RCS.WpfShop.Common.Views;assembly=RCS.WpfShop.Common"
-    xmlns:Resources="clr-namespace:RCS.WpfShop.Resources;assembly=RCS.WpfShop.Resources"
-    >
+    xmlns:BaseClasses="clr-namespace:RCS.WpfShop.Common.Views;assembly=RCS.WpfShop.Common">
     
     <Grid Margin="8">
         <Grid.RowDefinitions>

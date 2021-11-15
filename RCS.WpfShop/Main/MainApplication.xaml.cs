@@ -168,7 +168,7 @@ namespace RCS.WpfShop.Main
         // TODO Still searching for a way to handle all exceptions centrally. Currently there are multiple of this function.
         // Rethrow is not really an option as that impairs other functionality in the catches, besides being wrapped in awaits.
         // Otherwise centralize this function somewhere. 
-        protected void HandleException(Exception exception)
+        private void HandleException(Exception exception)
         {
             // Avoid multiple exception messages.
             if (!closing)

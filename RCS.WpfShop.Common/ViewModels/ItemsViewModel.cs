@@ -23,7 +23,7 @@ namespace RCS.WpfShop.Common.ViewModels
         #endregion
 
         #region Items
-        public ObservableCollection<TItem> Items { get; } = new ObservableCollection<TItem>();
+        public ObservableCollection<TItem> Items { get; } = new();
 
         protected virtual void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -45,9 +45,12 @@ namespace RCS.WpfShop.Common.ViewModels
         #region Refresh
         protected override void ClearView()
         {
-            base.ClearView();
+            uiDispatcher.Invoke(() =>
+            {
+                Items?.Clear();
+            });
 
-            Items?.Clear();
+            base.ClearView();
         }
         #endregion
 

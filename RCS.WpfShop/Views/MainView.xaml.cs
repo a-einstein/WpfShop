@@ -12,9 +12,9 @@ namespace RCS.WpfShop.Views
             InitializeComponent();
         }
 
-        protected IRegionManager regionManager;
+        private IRegionManager regionManager;
 
-        public MainView(IRegionManager regionManager)
+        private MainView(IRegionManager regionManager)
             : this()
         {
             this.regionManager = regionManager;

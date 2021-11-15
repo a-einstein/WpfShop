@@ -25,12 +25,12 @@ namespace RCS.WpfShop.Modules.Products.Model.Test
             // Note that injection is not possible in test classes.
             // "Test classes need to have an empty default constructor or no constructors at all."
 
-            var productId1 = 1;
-            decimal price1 = 10;
+            const int productId1 = 1;
+            const decimal price1 = 10;
             var product1 = ProductsOverviewObject(productId1, price1);
 
-            var productId2 = 2;
-            decimal price2 = 20;
+            const int productId2 = 2;
+            const decimal price2 = 20;
             var product2 = ProductsOverviewObject(productId2, price2);
 
             var target = new CartItemsRepository();
@@ -69,7 +69,7 @@ namespace RCS.WpfShop.Modules.Products.Model.Test
         }
 
         // Overloaded to clarify price.
-        public static ProductsOverviewObject ProductsOverviewObject(int dtoId, decimal listPrice)
+        private static ProductsOverviewObject ProductsOverviewObject(int dtoId, decimal listPrice)
         {
             var instance = ProductsOverviewObject(dtoId);
             instance.ListPrice = listPrice;

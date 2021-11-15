@@ -14,13 +14,14 @@ namespace RCS.WpfShop.Modules.Products.Model
         where TElement : new()
     {
         #region Construction
-        public Repository(IProductsService productsServiceClient = null)
+
+        protected Repository(IProductsService productsServiceClient = null)
             : base(productsServiceClient)
         { }
         #endregion
 
         #region Refresh
-        protected readonly TCollection items = new TCollection();
+        protected readonly TCollection items = new();
 
         // Note this is directly accesible but not amendable.
         public ReadOnlyCollection<TElement> Items => items.AsReadOnly();

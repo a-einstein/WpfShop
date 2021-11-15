@@ -8,7 +8,7 @@ namespace RCS.WpfShop.Common.ViewModels
         #region Item
         // Store the ID separately to enable a retry on an interrupted Refresh.
         // Note that a generic property is impossible, so the DomainClass is needed, determining the property's type.
-        public int? ItemId { get; set; }
+        public int? ItemId { get; init; }
 
         public static readonly DependencyProperty ItemProperty =
             DependencyProperty.Register(nameof(Item), typeof(TItem), typeof(ItemViewModel<TItem>), new PropertyMetadata(Item_Changed));

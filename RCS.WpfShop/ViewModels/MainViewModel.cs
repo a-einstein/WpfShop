@@ -15,7 +15,8 @@ namespace RCS.WpfShop.ViewModels
     public class MainViewModel : ViewModel
     {
         #region Construction
-        protected IRegionManager regionManager;
+
+        private readonly IRegionManager regionManager;
 
         public MainViewModel(IRegionManager regionManager)
         {
@@ -40,22 +41,17 @@ namespace RCS.WpfShop.ViewModels
 
             if (baseInitialized && !initialized)
             {
-                // Need to update on the UI thread.
-                //uiDispatcher.Invoke(delegate
+                var viewObjects = regionManager.Regions[Regions.MainViewMain].Views;
+
+                foreach (var viewObject in viewObjects)
                 {
-                    var viewObjects = regionManager.Regions[Regions.MainViewMain].Views;
+                    var view = (View)viewObject;
 
-                    foreach (var viewObject in viewObjects)
-                    {
-                        var view = viewObject as View;
+                    // Cannot use the actual Views in the list because of resulting errors in the visual tree.
+                    var destination = new Destination() { DisplayName = view.Name, Uri = new Uri(view.GetType().Name, UriKind.Relative) };
 
-                        // Cannot use the actual Views in the list because of resulting errors in the visual tree.
-                        var destination = new Destination() { DisplayName = view.Name, Uri = new Uri(view.GetType().Name, UriKind.Relative) };
-
-                        MainViews.Add(destination);
-                    }
+                    MainViews.Add(destination);
                 }
-                //);
 
                 initialized = true;
             }

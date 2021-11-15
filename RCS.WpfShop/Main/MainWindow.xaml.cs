@@ -21,7 +21,7 @@ namespace RCS.WpfShop.Main
             Width = 900;
         }
 
-        protected IRegionManager regionManager;
+        private readonly IRegionManager regionManager;
 
         public MainWindow(IRegionManager regionManager)
             : this()

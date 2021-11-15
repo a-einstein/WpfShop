@@ -16,9 +16,9 @@
                 RemoteAddress = remoteAddress;
             }
 
-            public EndpointConfiguration EndpointConfiguration { get; private set; }
+            public EndpointConfiguration EndpointConfiguration { get; }
 
-            public string RemoteAddress { get; private set; }
+            public string RemoteAddress { get; }
         }
     }
 }

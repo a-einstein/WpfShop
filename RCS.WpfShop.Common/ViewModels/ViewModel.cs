@@ -35,10 +35,10 @@ namespace RCS.WpfShop.Common.ViewModels
         #region Refresh
         public virtual async Task RefreshView()
         {
-            ClearView();
-
             if (await Initialize())
             {
+                ClearView();
+
                 await Read();
             }
         }
@@ -75,7 +75,8 @@ namespace RCS.WpfShop.Common.ViewModels
             set => SetValue(TitleProperty, value);
         }
 
-        public virtual string MakeTitle() { return Labels.ShopName; }
+        // TODO Possibly have an UpdateTitle like in PortableShop. Eiher for the window title or a text in the view.
+        protected virtual string MakeTitle() { return Labels.ShopName; }
         #endregion
 
         #region Events

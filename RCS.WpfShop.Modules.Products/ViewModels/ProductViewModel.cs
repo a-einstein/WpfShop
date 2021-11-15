@@ -1,5 +1,6 @@
 ﻿using Prism.Commands;
 using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.AdventureWorks.Common.Interfaces;
 using RCS.WpfShop.Common.Interfaces;
 using RCS.WpfShop.Common.ViewModels;
 using RCS.WpfShop.Common.Views;
@@ -27,7 +28,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         {
             base.SetCommands();
 
-            CartCommand = new DelegateCommand<Product>(CartProduct);
+            CartCommand = new DelegateCommand<IShoppingProduct>(async (product) => await CartProduct(product));
             PhotoCommand = new DelegateCommand(ShowPhoto);
         }
         #endregion
@@ -35,7 +36,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #region Services
         private IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> ProductsRepository { get; }
 
-        CartViewModel CartViewModel { get; }
+        private CartViewModel CartViewModel { get; }
         #endregion
 
         #region Refresh
@@ -55,7 +56,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             return itemRead;
         }
 
-        public override string MakeTitle()
+        protected override string MakeTitle()
         {
             return Item?.Name;
         }
@@ -72,9 +73,9 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             set => SetValue(CartCommandProperty, value);
         }
 
-        private void CartProduct(Product product)
+        private Task CartProduct(IShoppingProduct product)
         {
-            CartViewModel.CartProduct(product);
+            return CartViewModel.CartProduct(product);
         }
         #endregion
 
@@ -88,7 +89,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             private set => SetValue(PhotoCommandProperty, value);
         }
 
-        protected void ShowPhoto()
+        private void ShowPhoto()
         {
             // Note that this view and the same picture is reused, which currently seem to have no dimension larger than 240.
             // So enlarging currently has no real advantage.
