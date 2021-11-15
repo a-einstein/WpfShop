@@ -38,17 +38,8 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #endregion
 
         #region Refresh
-        public override async Task RefreshView()
-        {
-            await Initialize().ConfigureAwait(true);
-
-            // Note that the repository is leading. Changes to the collection are performed there.
-            // After which a new view is created by reloading.
-
-            ClearView();
-
-            await Read().ConfigureAwait(true);
-        }
+        // Note that the repository is leading. Changes to the collection are performed there.
+        // After which a new view is created by reloading.
 
         protected override void ClearView()
         {
