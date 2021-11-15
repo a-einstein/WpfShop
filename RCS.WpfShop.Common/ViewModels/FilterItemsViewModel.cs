@@ -18,6 +18,7 @@ namespace RCS.WpfShop.Common.ViewModels
         {
             base.SetCommands();
 
+            // TODO Add a FilterCanExecute like in PortableShop.
             FilterCommand = new DelegateCommand(async () => await RefreshView());
         }
         #endregion
@@ -48,6 +49,8 @@ namespace RCS.WpfShop.Common.ViewModels
             var succeeded = await ReadFiltered();
 
             Message = succeeded && ItemsCount == 0 ? Labels.NotFound : String.Empty;
+
+            await base.Read();
         }
 
         public static readonly DependencyProperty MessageProperty =

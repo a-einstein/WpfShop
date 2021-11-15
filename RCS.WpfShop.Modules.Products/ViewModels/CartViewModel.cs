@@ -42,25 +42,19 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         {
             await Initialize().ConfigureAwait(true);
 
-            await uiDispatcher.Invoke(async delegate
-            {
-                // Note that the repository is leading. Changes to the collection are performed there.
-                // After which a new view is created by reloading.
+            // Note that the repository is leading. Changes to the collection are performed there.
+            // After which a new view is created by reloading.
 
-                ClearView();
+            ClearView();
 
-                await Read().ConfigureAwait(true);
-
-            });
-
-            UpdateAggregates();
+            await Read().ConfigureAwait(true);
         }
 
         protected override void ClearView()
         {
-            base.ClearView();
-
             UpdateAggregates();
+
+            base.ClearView();
         }
         #endregion
 
@@ -85,7 +79,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         protected override async Task Read()
         {
-            uiDispatcher.Invoke(delegate
+            await uiDispatcher.InvokeAsync(() =>
             {
                 // TODO Perhaps hide Repository.Items.
                 // Use an asynchronous Read.
@@ -95,6 +89,10 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                     Items.Add(new CartItemViewModel(item));
                 }
             });
+
+            UpdateAggregates();
+
+            await base.Read();
         }
 
         public static readonly DependencyProperty DeleteCommandProperty =
@@ -126,8 +124,6 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                     (e.OldItems[0] as CartItemViewModel).PropertyChanged -= CartItem_PropertyChanged;
                     break;
             }
-
-            UpdateAggregates();
         }
 
         private void CartItem_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -143,8 +139,11 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         #region Aggregates
         private void UpdateAggregates()
         {
-            ProductItemsCount = SumQuantities();
-            TotalValue = SumValues();
+            uiDispatcher.Invoke(() =>
+            {
+                ProductItemsCount = SumQuantities();
+                TotalValue = SumValues();
+            });
         }
 
         private int SumQuantities()

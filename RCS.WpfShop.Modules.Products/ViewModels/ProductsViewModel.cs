@@ -114,7 +114,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             string textFilterValue = null;
 
             // Need to get these from the UI thread.
-            uiDispatcher.Invoke(delegate
+            uiDispatcher.Invoke(() =>
             {
                 masterFilterValue = MasterFilterValue;
                 detailFilterValue = DetailFilterValue;
@@ -127,7 +127,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
             if (succeeded)
             {
-                uiDispatcher.Invoke(delegate
+                await uiDispatcher.InvokeAsync(() =>
                 {
                     foreach (var item in ProductsRepository.Items)
                         Items.Add(item);
