@@ -14,7 +14,8 @@ namespace RCS.WpfShop.Modules.Products.Model
         where TElement : new()
     {
         #region Construction
-        public Repository(IProductsService productsServiceClient = null)
+
+        protected Repository(IProductsService productsServiceClient = null)
             : base(productsServiceClient)
         { }
         #endregion
