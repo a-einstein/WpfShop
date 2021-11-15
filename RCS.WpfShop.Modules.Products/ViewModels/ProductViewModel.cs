@@ -89,7 +89,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             private set => SetValue(PhotoCommandProperty, value);
         }
 
-        protected void ShowPhoto()
+        private void ShowPhoto()
         {
             // Note that this view and the same picture is reused, which currently seem to have no dimension larger than 240.
             // So enlarging currently has no real advantage.

@@ -24,7 +24,7 @@ namespace RCS.WpfShop.AdventureWorks.Mock
             }
         }
 
-        public static void Initialize()
+        private static void Initialize()
         {
             // Note this enables the use of he application for inspection of GUI element with with the same configuration
             // TODO Actually IProductsService could do without using Moq. Make better use of it.

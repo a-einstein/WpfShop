@@ -69,7 +69,7 @@ namespace RCS.WpfShop.Modules.Products.Model.Test
         }
 
         // Overloaded to clarify price.
-        public static ProductsOverviewObject ProductsOverviewObject(int dtoId, decimal listPrice)
+        private static ProductsOverviewObject ProductsOverviewObject(int dtoId, decimal listPrice)
         {
             var instance = ProductsOverviewObject(dtoId);
             instance.ListPrice = listPrice;

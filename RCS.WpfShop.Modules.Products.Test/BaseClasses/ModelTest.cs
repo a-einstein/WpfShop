@@ -25,7 +25,7 @@ namespace RCS.WpfShop.Modules.Products.Test.BaseClasses
             return instance;
         }
 
-        public static string Format(string aString, int anInt)
+        private static string Format(string aString, int anInt)
         {
             return $"{aString} {anInt}";
         }

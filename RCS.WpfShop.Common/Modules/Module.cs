@@ -22,7 +22,7 @@ namespace RCS.WpfShop.Common.Modules
 
         protected IRegionManager regionManager;
 
-        protected TraceSource TraceSource { get; private set; }
+        private TraceSource TraceSource { get; set; }
 
         // Note his occurs AFTER RegisterTypes.
         public virtual void OnInitialized(IContainerProvider containerProvider)

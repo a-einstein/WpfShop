@@ -15,7 +15,8 @@ namespace RCS.WpfShop.ViewModels
     public class MainViewModel : ViewModel
     {
         #region Construction
-        protected readonly IRegionManager regionManager;
+
+        private readonly IRegionManager regionManager;
 
         public MainViewModel(IRegionManager regionManager)
         {
