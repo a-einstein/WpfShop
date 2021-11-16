@@ -9,6 +9,7 @@ using RCS.WpfShop.Modules.Products.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -105,6 +106,16 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             }
 
             return succeeded;
+        }
+
+        protected override bool FilterCanExecute()
+        {
+            return
+                base.FilterCanExecute() &&
+                
+                (MasterFilterValue != null && !MasterFilterValue.IsEmpty || 
+                 // TODO This does not respond well to intermediate changes of text nor the regex.
+                 !string.IsNullOrEmpty(TextFilterValue) && Regex.IsMatch(TextFilterValue, @"\w{3}", RegexOptions.IgnoreCase));
         }
 
         protected override async Task<bool> ReadFiltered()
