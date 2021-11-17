@@ -1,4 +1,6 @@
-﻿namespace RCS.WpfShop.Common.Views
+﻿using RCS.WpfShop.Common.Views;
+
+namespace RCS.WpfShop.Modules.Products.Views
 {
     public partial class PhotoView : View
     {
