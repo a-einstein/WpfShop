@@ -113,9 +113,10 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
             return
                 base.FilterCanExecute() &&
                 
-                (MasterFilterValue != null && !MasterFilterValue.IsEmpty || 
-                 // TODO This does not respond well to intermediate changes of text nor the regex.
-                 !string.IsNullOrEmpty(TextFilterValue) && Regex.IsMatch(TextFilterValue, @"\w{3}", RegexOptions.IgnoreCase));
+                (MasterFilterValue != null && !MasterFilterValue.IsEmpty ||
+
+                 //TODO Centralize the pattern.
+                 !string.IsNullOrEmpty(TextFilterValue) && Regex.IsMatch(TextFilterValue, @".{3}", RegexOptions.IgnoreCase));
         }
 
         protected override async Task<bool> ReadFiltered()

@@ -12,7 +12,8 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <TextBox x:Name="textBox" Grid.Column="0" Text="{Binding Text, Mode=TwoWay}" VerticalContentAlignment="Center"/>
+        <!--Note the UpdateSourceTrigger is needed to get immediate response for validation and enablement.-->
+        <TextBox x:Name="textBox" Grid.Column="0" Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center"/>
 
         <Button Grid.Column="1" Content="{x:Static Resources:Labels.Remove}" Command="{Binding ClearCommand}" CommandParameter="{Binding}" Background="{StaticResource WarningBackgroundBrush}"/>
     </Grid>
