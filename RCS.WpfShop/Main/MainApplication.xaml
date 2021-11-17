@@ -1,11 +1,12 @@
 ﻿<unity:PrismApplication
     x:Class="RCS.WpfShop.Main.MainApplication"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:unity="http://prismlibrary.com/"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Startup="Application_Startup"
     >
 
+    <!--TODO Currently from within the editor definitions of StaticResources are only found within this assembly. Though they are applied during runtime.-->
     <unity:PrismApplication.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
