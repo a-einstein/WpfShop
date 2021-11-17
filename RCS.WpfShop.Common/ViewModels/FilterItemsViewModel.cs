@@ -6,7 +6,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 
 namespace RCS.WpfShop.Common.ViewModels
 {
@@ -18,8 +17,7 @@ namespace RCS.WpfShop.Common.ViewModels
         {
             base.SetCommands();
 
-            // TODO Add a FilterCanExecute like in PortableShop.
-            FilterCommand = new DelegateCommand(async () => await RefreshView());
+            FilterCommand = new DelegateCommand(async () => await RefreshView(), FilterCanExecute);
         }
         #endregion
 
@@ -64,6 +62,22 @@ namespace RCS.WpfShop.Common.ViewModels
         #endregion
 
         #region Filtering
+        private bool filterChanged;
+
+        private bool FilterChanged
+        {
+            get => filterChanged;
+            set
+            {
+                filterChanged = value;
+
+                uiDispatcher.Invoke(() =>
+                {
+                    FilterCommand.RaiseCanExecuteChanged();
+                });
+            }
+        }
+
         protected abstract Task<bool> InitializeFilters();
 
         public ObservableCollection<TMasterFilterItem> MasterFilterItems { get; } = new();
@@ -85,6 +99,8 @@ namespace RCS.WpfShop.Common.ViewModels
 
             viewModel.SetDetailFilterItems();
             viewModel.DetailFilterValue = viewModel.DetailFilterItems.FirstOrDefault();
+
+            viewModel.FilterChanged = true;
         }
 
         // TODO Some sort of view would be more convenient.
@@ -112,7 +128,7 @@ namespace RCS.WpfShop.Common.ViewModels
         public ObservableCollection<TDetailFilterItem> DetailFilterItems { get; } = new();
 
         public static readonly DependencyProperty DetailFilterValueProperty =
-            DependencyProperty.Register(nameof(DetailFilterValue), typeof(TDetailFilterItem), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
+            DependencyProperty.Register(nameof(DetailFilterValue), typeof(TDetailFilterItem), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), new PropertyMetadata(new PropertyChangedCallback(OnDetailFilterValueChanged)));
 
         public TDetailFilterItem DetailFilterValue
         {
@@ -120,8 +136,15 @@ namespace RCS.WpfShop.Common.ViewModels
             set => SetValue(DetailFilterValueProperty, value);
         }
 
+        private static void OnDetailFilterValueChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
+        {
+            var viewModel = dependencyObject as FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>;
+
+            viewModel.FilterChanged = true;
+        }
+
         public static readonly DependencyProperty TextFilterValueProperty =
-            DependencyProperty.Register(nameof(TextFilterValue), typeof(string), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
+            DependencyProperty.Register(nameof(TextFilterValue), typeof(string), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), new PropertyMetadata(OnTextFilterValueChanged));
 
         public string TextFilterValue
         {
@@ -129,16 +152,35 @@ namespace RCS.WpfShop.Common.ViewModels
             set => SetValue(TextFilterValueProperty, value);
         }
 
+        private static void OnTextFilterValueChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
+        {
+            var viewModel = dependencyObject as FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>;
+
+            viewModel.FilterChanged = true;
+        }
+
+        protected virtual bool FilterCanExecute()
+        {
+            return FilterChanged;
+        }
+
         protected abstract Task<bool> ReadFiltered();
 
         public static readonly DependencyProperty FilterCommandProperty =
-             DependencyProperty.Register(nameof(FilterCommand), typeof(ICommand), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
+             DependencyProperty.Register(nameof(FilterCommand), typeof(DelegateCommand), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
 
-        // Note this does not work as explicit interface implementation.
-        public ICommand FilterCommand
+        // Note need explicit DelegateCommand for RaiseCanExecuteChanged.
+        public DelegateCommand FilterCommand
         {
-            get => (ICommand)GetValue(FilterCommandProperty);
+            get => (DelegateCommand)GetValue(FilterCommandProperty);
             private set => SetValue(FilterCommandProperty, value);
+        }
+
+        public override async Task RefreshView()
+        {
+            await base.RefreshView();
+
+            FilterChanged = false;
         }
         #endregion
     }

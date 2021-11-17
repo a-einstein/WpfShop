@@ -47,10 +47,12 @@
 
                     <TextBlock Text="{x:Static Resources:Labels.TextFilter}" Style="{StaticResource InlineTextBlockStyle}"/>
                     <!--Note this field has to be tabbed out to reach the default button by the enter key.-->
-                    <Controls:ClearableTextBox x:Name="TextFilterTextBox" Text="{Binding TextFilterValue, Mode=TwoWay}" Width="150">
+                    <!--Note the UpdateSourceTrigger is needed to get immediate response for validation and enablement.-->
+                    <Controls:ClearableTextBox x:Name="TextFilterTextBox" Text="{Binding TextFilterValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150">
                         <Controls:ClearableTextBox.TextBoxBehaviors>
                             <x:Array Type="Behaviors:TextBoxRegexValidationBehavior">
-                                <Behaviors:TextBoxRegexValidationBehavior ValidExpression="\w{3}" ValidBackground="{StaticResource InputBackgroundBrush}" InvalidBackground="{StaticResource ErrorBackgroundBrush}"/>
+                                <!--TODO Centralize the pattern.-->
+                                <Behaviors:TextBoxRegexValidationBehavior ValidExpression=".{3}" ValidBackground="{StaticResource InputBackgroundBrush}" InvalidBackground="{StaticResource ErrorBackgroundBrush}"/>
                             </x:Array>
                         </Controls:ClearableTextBox.TextBoxBehaviors>
                     </Controls:ClearableTextBox>
