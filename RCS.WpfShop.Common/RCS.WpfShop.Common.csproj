@@ -26,6 +26,10 @@
 		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
 	<ItemGroup>
+	  <Resource Include="Images\CartPlus24.png" />
+	  <Resource Include="Images\CartPlus48.png" />
+	</ItemGroup>
+	<ItemGroup>
 		<Reference Update="System">
 			<Private>False</Private>
 		</Reference>

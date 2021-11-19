@@ -90,7 +90,6 @@
     
     <Style x:Key="ImageStyle" TargetType="Image">
         <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="Margin" Value="3"/>
     </Style>
 
     <!--TextBlock-->
@@ -236,7 +235,6 @@
         <Setter Property="Margin" Value="{StaticResource StandardMargin}"/>
         <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
         <Setter Property="Effect" Value="{StaticResource ButtonStandardEffect}"/>
-        <!--TODO get rid of background on MouseOver.-->
         <Style.Triggers>
             <Trigger Property="Button.IsMouseOver" Value="True">
                 <Setter Property="Button.Effect" Value="{StaticResource ButtonHoverEffect}"/>
@@ -247,8 +245,7 @@
     <Style TargetType="Button" BasedOn="{StaticResource ButtonStyle}"/>
 
     <Style x:Key="DetailsButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
-        <Setter Property="MinWidth" Value="50"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
         <Setter Property="VerticalAlignment" Value="Bottom"/>
     </Style>
 
