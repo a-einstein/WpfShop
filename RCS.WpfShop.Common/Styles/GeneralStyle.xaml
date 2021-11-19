@@ -141,7 +141,7 @@
     </Style>
 
     <Style x:Key="LabelTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
-        <Setter Property="Foreground" Value="{StaticResource LabelForegroundBrush}"/>
+        <Setter Property="Margin" Value="10,2,2,2"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
     </Style>
 
@@ -154,6 +154,7 @@
     </Style>
 
     <Style x:Key="ValueTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
+        <Setter Property="Margin" Value="10,2,2,2"/>
         <Setter Property="Foreground" Value="{StaticResource ValueForegroundBrush}"/>
     </Style>
 
