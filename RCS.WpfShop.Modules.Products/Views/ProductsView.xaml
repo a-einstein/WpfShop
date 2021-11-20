@@ -81,23 +81,29 @@
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                     <Grid>
                         <TextBlock Text="{Binding Message}" Visibility="{Binding ItemsCount, Converter={StaticResource HasValueToVisibilityConverter}, ConverterParameter='invert'}" Style="{StaticResource MessageTextBlockStyle}"  VerticalAlignment="Top"/>
-                        <ItemsControl ItemsSource="{Binding Items}" Visibility="{Binding ItemsCount, Converter={StaticResource HasValueToVisibilityConverter}}" Padding="2" Background="#FFEAF7FF">
+                       
+                        <ItemsControl ItemsSource="{Binding Items}" Visibility="{Binding ItemsCount, Converter={StaticResource HasValueToVisibilityConverter}}"  Padding="2" Background="#FFEAF7FF">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Button Command="{Binding DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Padding="0" BorderThickness="0">
+                                    <Button Command="{Binding DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Background="Transparent" Padding="0" BorderThickness="0">
                                         <Border Style="{StaticResource BorderStyle}" Background="{StaticResource ProductBackgroundBrush}" Margin="0">
                                             <Grid Width="300">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto"/>
-                                                    <ColumnDefinition Width="5"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
 
                                                 <Image Grid.Column="0" Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}" Style="{StaticResource ImageStyle}" MaxWidth="80" MaxHeight="80" />
 
-                                                <Button Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{x:Static Resources:Labels.IncreaseProduct}" Command="{Binding DataContext.CartCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"/>
+                                                <Button Grid.Column="0" Command="{Binding DataContext.CartCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}">
+                                                    <Grid>
+                                                        <!--Note putting Background on Button did not work.-->
+                                                        <Rectangle Fill="{StaticResource CartBackgroundBrush}"/>
+                                                        <Image Source="/RCS.WpfShop.Common;component/Images/CartPlus24.png" Style="{StaticResource ImageStyle}"/>
+                                                    </Grid>
+                                                </Button>
 
-                                                <StackPanel Grid.Column="2">
+                                                <StackPanel Grid.Column="1">
                                                     <TextBlock Style="{StaticResource ValueTextBlockStyle}">
                                                         <TextBlock.Text>
                                                             <MultiBinding Converter="{StaticResource CategoriesFormatter}">

@@ -37,12 +37,12 @@
                     </StackPanel>
                 </Expander.Header>
                 <Expander.Content>
-                    <ListView ItemsSource="{Binding Items}" Margin="{StaticResource StandardMargin}" Padding="{StaticResource StandardPadding}" MinHeight="20" Background="#FFFFFDF1"
-                              d:DataContext="{d:DesignInstance Type=ViewModels:CartItemViewModel}">
+                    <ListView ItemsSource="{Binding Items}" Margin="{StaticResource StandardMargin}" Padding="{StaticResource StandardPadding}" MinHeight="20" Background="#FFFFFDF1">
                         <ListView.View>
                             <!--Note that Width Auto of GridViewColumns does not work and seems to be a bug according to the web. Therefor a thin empty header row is used to enable resizing.-->
                             <!--TODO Make Height of row smaller.-->
-                            <GridView ColumnHeaderContainerStyle="{StaticResource CartColumnHeaderStyle}">
+                            <GridView ColumnHeaderContainerStyle="{StaticResource CartColumnHeaderStyle}"
+                                      d:DataContext="{d:DesignInstance Type=ViewModels:CartItemViewModel}">
                                 <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Name}"/>
 
                                 <GridViewColumn Width="Auto">
@@ -97,7 +97,13 @@
                                 <GridViewColumn Width="Auto">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Content="{x:Static Resources:Labels.Remove}" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding}" Style="{StaticResource DeleteButtonStyle}"/>
+                                            <Button Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding}" Style="{StaticResource DeleteButtonStyle}">
+                                                <Grid>
+                                                    <!--Note putting Background on Button did not work.-->
+                                                    <Rectangle Fill="{StaticResource WarningBackgroundBrush}"/>
+                                                    <Image Source="/RCS.WpfShop.Common;component/Images/Trash24.png" Style="{StaticResource ImageStyle}"/>
+                                                </Grid>
+                                            </Button>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
