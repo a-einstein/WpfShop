@@ -24,7 +24,7 @@ namespace RCS.WpfShop.TestGui
             mainName = String.Join(".", classNameParts, 0, 2);
 
             // TODO This should follow the current framework.
-            appDir = $"{AppDomain.CurrentDomain.BaseDirectory}\\..\\..\\..\\..\\{mainName}\\bin\\Test\\net5.0-windows";
+            appDir = $"{AppDomain.CurrentDomain.BaseDirectory}\\..\\..\\..\\..\\{mainName}\\bin\\Test\\net6.0-windows";
             appPath = $"{appDir}\\{mainName}.exe";
         }
 
