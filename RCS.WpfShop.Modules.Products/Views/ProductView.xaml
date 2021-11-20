@@ -15,6 +15,10 @@
 
     <BaseClasses:View.Resources>
         <ResourceDictionary>
+            <!--Currently merge styles in every view of modules to make them know at design time outside of application.-->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/RCS.WpfShop.Common;component/Styles/GeneralStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
             <Converters:CategoriesFormatter x:Key="CategoriesFormatter"/>
             <Converters:SizeFormatter x:Key="SizeFormatter"/>
             <Converters:WeightFormatter x:Key="WeightFormatter"/>

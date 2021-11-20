@@ -13,6 +13,15 @@
     mc:Ignorable="d" 
     >
 
+    <BaseClasses:View.Resources>
+        <ResourceDictionary>
+            <!--Currently merge styles in every view of modules to make them know at design time outside of application.-->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/RCS.WpfShop.Common;component/Styles/GeneralStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </BaseClasses:View.Resources>
+
     <Border Style="{StaticResource BorderStyle}">
         <Border.Background>
             <ImageBrush ImageSource="..\Images\Shop.jpg" Opacity="0.25" Stretch="Uniform"/>
