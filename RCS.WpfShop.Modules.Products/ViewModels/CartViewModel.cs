@@ -75,7 +75,9 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
                 // TODO Perhaps hide Repository.Items.
                 // Use an asynchronous Read.
 
-                foreach (var item in CartItemsRepository.Items)
+                var sortedItems = new List<CartItem>(CartItemsRepository.Items).OrderBy(item => item.Name);
+
+                foreach (var item in sortedItems)
                 {
                     Items.Add(new CartItemViewModel(item));
                 }
