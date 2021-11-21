@@ -6,7 +6,8 @@
 Working desktop application for test and demo purpose based on WPF. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
-* Cart buttons got icons.
+* Application now runs on .Net 6.
+* Cart related buttons got icons.
 * Enablement of the products overview has been improved.
 * Dependency injection has got a principle improvement.
 * The projects have migrated to .Net 5.
