@@ -8,10 +8,8 @@ Working desktop application for test and demo purpose based on WPF. It simulates
 #### News
 * Application now runs on .Net 6.
 * Cart related buttons got icons.
+* Cart became alphabetically sorted.
 * Enablement of the products overview has been improved.
-* Dependency injection has got a principle improvement.
-* The projects have migrated to .Net 5.
-* Unity dependency injection has been made use of far more and better.
 
 #### Purpose
 * Explore various techniques based on C# and WPF.
