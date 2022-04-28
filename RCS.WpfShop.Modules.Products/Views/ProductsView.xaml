@@ -34,7 +34,7 @@
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
-    <Border Style="{StaticResource BorderStyle}" Background="{StaticResource ProductBackgroundBrush}">
+    <Border Style="{StaticResource BorderStyle}" Background="{StaticResource ProductBackgroundGradient}">
         <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -93,8 +93,8 @@
                                     <!--
                                     Note there is nothing like RelativeSource Mode=FindAncestorBindingContext, as in Xamarin.Forms.
                                     -->
-                                    <Button Command="{Binding DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType=views:ProductsView}}" CommandParameter="{Binding}" Background="Transparent" Padding="0" BorderThickness="0">
-                                        <Border Style="{StaticResource BorderStyle}" Background="{StaticResource ProductBackgroundBrush}" Margin="0">
+                                    <Button Command="{Binding DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType=views:ProductsView}}" CommandParameter="{Binding}" Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Top">
+                                        <Border Style="{StaticResource BorderStyle}" Background="{StaticResource ProductBackgroundGradient}" Margin="0">
                                             <Grid Width="300">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto"/>

@@ -36,6 +36,7 @@
     <Color x:Key="InputBackgroundColour">white</Color>
     <Color x:Key="LabelForegroundColour">#2F4F4F</Color> <!--DarkSlateGray-->
     <Color x:Key="ValueForegroundColour">#00008B</Color> <!--DarkBlue-->
+    <Color x:Key="CartBackgroundColour">#FFF5F3DB</Color>
 
     <!--#endregion-->
 
@@ -49,18 +50,19 @@
     <SolidColorBrush x:Key="InputBackgroundBrush" Color="{StaticResource InputBackgroundColour}"/>
     <SolidColorBrush x:Key="LabelForegroundBrush" Color="{StaticResource LabelForegroundColour}"/>
     <SolidColorBrush x:Key="ValueForegroundBrush" Color="{StaticResource ValueForegroundColour}"/>
+    <SolidColorBrush x:Key="CartBackgroundBrush" Color="{StaticResource CartBackgroundColour}"/>
 
-    <LinearGradientBrush x:Key="ButtonBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+    <LinearGradientBrush x:Key="ButtonBackgroundGradient" EndPoint="0.5,1" StartPoint="0.5,0">
         <GradientStop Color="#FFE0E0E0" Offset="0"/>
         <GradientStop Color="White" Offset="1"/>
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="CartBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
-        <GradientStop Color="#FFF5F3DB" Offset="0"/>
+    <LinearGradientBrush x:Key="CartBackgroundGradient" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="{StaticResource CartBackgroundColour}" Offset="0"/>
         <GradientStop Color="White" Offset="1"/>
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="ProductBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+    <LinearGradientBrush x:Key="ProductBackgroundGradient" EndPoint="0.5,1" StartPoint="0.5,0">
         <GradientStop Color="#FFE2F1FB" Offset="0"/>
         <GradientStop Color="White" Offset="1"/>
     </LinearGradientBrush>
@@ -75,7 +77,7 @@
     <Style x:Key="NavigationButtonStyle" TargetType="ToggleButton">
         <Setter Property="Margin" Value="{StaticResource StandardHorizontalSeparation}"/>
         <Setter Property="Padding" Value="3,1"/>
-        <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
+        <Setter Property="Background" Value="{StaticResource ButtonBackgroundGradient}"/>
         <Setter Property="Effect" Value="{StaticResource ButtonStandardEffect}"/>
         <!--TODO get rid of background on MouseOver.-->
         <Style.Triggers>
@@ -256,7 +258,7 @@
     
     <Style x:Key="ButtonStyle" TargetType="Button">
         <Setter Property="Margin" Value="{StaticResource StandardMargin}"/>
-        <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
+        <Setter Property="Background" Value="{StaticResource ButtonBackgroundGradient}"/>
         <Setter Property="Effect" Value="{StaticResource ButtonStandardEffect}"/>
         <Style.Triggers>
             <Trigger Property="Button.IsMouseOver" Value="True">
@@ -288,11 +290,20 @@
     <!--#endregion-->
 
     <!--#region GridViewColumnHeader-->
-    
     <Style x:Key="CartColumnHeaderStyle" TargetType="GridViewColumnHeader">
-        <Setter Property="Height" Value="5"/>
+        <!--TODO Now related to styles like ValueTextBlockStyle regarding padding. Change values, and build up.-->
+        <Setter Property="Background" Value="{StaticResource CartBackgroundBrush}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+    
+    <Style x:Key="CartColumnHeaderStyleLeft" TargetType="GridViewColumnHeader" BasedOn="{StaticResource CartColumnHeaderStyle}">
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="Padding" Value="10,2,2,2"/>
     </Style>
 
+    <Style x:Key="CartColumnHeaderStyleRight" TargetType="GridViewColumnHeader" BasedOn="{StaticResource CartColumnHeaderStyle}">
+        <Setter Property="HorizontalContentAlignment" Value="Right"/>
+        <Setter Property="Padding" Value="2,2,10,2"/>
+    </Style>
     <!--#endregion-->
-
 </ResourceDictionary>
