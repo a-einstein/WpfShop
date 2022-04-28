@@ -69,6 +69,7 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             // TODO Check length of list?
 
             // Note that Click must be applied this way. Finding the element separately resulted in only a brief display on screen after which the Display property was false, which prevented Click. 
+            // TODO This tends to fail currently.
             masterFilterComboBox.FindElementByName(categoryExpected.Name).Click();
 
             var subcategoriesExpected = await serviceClient.GetProductSubcategoriesAsync();
