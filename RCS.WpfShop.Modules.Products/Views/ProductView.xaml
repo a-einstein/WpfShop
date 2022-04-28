@@ -10,7 +10,7 @@
     xmlns:Resources="clr-namespace:RCS.WpfShop.Resources;assembly=RCS.WpfShop.Resources"
     d:DataContext="{d:DesignInstance Type=ViewModels:ProductViewModel}"
     mc:Ignorable="d" 
-    Background="{StaticResource ProductBackgroundBrush}"
+    Background="{StaticResource ProductBackgroundGradient}"
     >
 
     <BaseClasses:View.Resources>

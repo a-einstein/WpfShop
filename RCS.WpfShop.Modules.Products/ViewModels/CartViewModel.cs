@@ -70,13 +70,13 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
 
         protected override async Task Read()
         {
+            // TODO Perhaps hide Repository.Items.
+            // Use an asynchronous Read.
+
+            var sortedItems = new List<CartItem>(CartItemsRepository.Items).OrderBy(item => item.Name);
+
             await uiDispatcher.InvokeAsync(() =>
             {
-                // TODO Perhaps hide Repository.Items.
-                // Use an asynchronous Read.
-
-                var sortedItems = new List<CartItem>(CartItemsRepository.Items).OrderBy(item => item.Name);
-
                 foreach (var item in sortedItems)
                 {
                     Items.Add(new CartItemViewModel(item));

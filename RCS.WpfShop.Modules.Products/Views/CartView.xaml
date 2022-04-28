@@ -23,7 +23,7 @@
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
-    <Border Style="{StaticResource BorderStyle}" Background="{StaticResource CartBackgroundBrush}">
+    <Border Style="{StaticResource BorderStyle}" Background="{StaticResource CartBackgroundGradient}">
         <StackPanel>
             <TextBlock Text="{x:Static Resources:Labels.Cart}" Style="{StaticResource HeaderTextBlockStyle}" />
 
@@ -43,13 +43,11 @@
                 <Expander.Content>
                     <ListView ItemsSource="{Binding Items}" Margin="{StaticResource StandardMargin}" Padding="{StaticResource StandardPadding}" MinHeight="20" Background="#FFFFFDF1">
                         <ListView.View>
-                            <!--Note that Width Auto of GridViewColumns does not work and seems to be a bug according to the web. Therefor a thin empty header row is used to enable resizing.-->
-                            <!--TODO Make Height of row smaller.-->
-                            <GridView ColumnHeaderContainerStyle="{StaticResource CartColumnHeaderStyle}"
-                                      d:DataContext="{d:DesignInstance Type=ViewModels:CartItemViewModel}">
-                                <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Name}"/>
+                            <GridView ColumnHeaderContainerStyle="{StaticResource CartColumnHeaderStyleLeft}"                                      >
+                                <!--TODO Add translated headers?-->
+                                <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Name}" Header="Name"                                              />
 
-                                <GridViewColumn Width="Auto">
+                                <GridViewColumn Width="Auto" Header="Size" HeaderContainerStyle="{StaticResource CartColumnHeaderStyleRight}">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Style="{StaticResource ValueTextBlockStyle}">
@@ -64,9 +62,9 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=ProductColor}"/>
+                                <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=ProductColor}" Header="Colour"/>
 
-                                <GridViewColumn Width="Auto">
+                                <GridViewColumn Width="Auto" Header="Price" HeaderContainerStyle="{StaticResource CartColumnHeaderStyleRight}">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <!--TODO HorizontalAlignment does not work here, but is desirable to work out some way.-->
@@ -75,7 +73,7 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Width="Auto">
+                                <GridViewColumn Width="Auto" Header="Quantity">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <!--
@@ -89,7 +87,7 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Width="Auto">
+                                <GridViewColumn Width="Auto" Header="Value" HeaderContainerStyle="{StaticResource CartColumnHeaderStyleRight}">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <!--TODO HorizontalAlignment does not work here, but is desirable to work out some way.-->
@@ -98,7 +96,7 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Width="Auto">
+                                <GridViewColumn Width="Auto" Header="Delete">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <Button Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding}" Style="{StaticResource DeleteButtonStyle}">
