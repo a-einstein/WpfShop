@@ -9,6 +9,7 @@ Working desktop application for test and demo purpose based on WPF. It simulates
 * Application now runs on .Net 6.
 * Cart related buttons got icons.
 * Cart became alphabetically sorted.
+* Cart got headers.
 * Enablement of the products overview has been improved.
 
 #### Purpose
