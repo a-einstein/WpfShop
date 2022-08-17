@@ -67,7 +67,7 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <EntryPointProjectUniqueName>..\RCS.WpfShop\RCS.WpfShop.csproj</EntryPointProjectUniqueName>
-    <PackageCertificateThumbprint>4087E383F249BA04ED4A5148A86E070B5779369C</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>F45330DA9727236F1A460AFB8A9DBF07D5D1AE76</PackageCertificateThumbprint>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
@@ -124,7 +124,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-	<Content Include="Images\Square150x150Logo.scale-200.png" />
+    <Content Include="Images\Square150x150Logo.scale-200.png" />
     <Content Include="Images\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
     <Content Include="Images\Square44x44Logo.altform-lightunplated_targetsize-256.png" />
     <Content Include="Images\Square44x44Logo.altform-lightunplated_targetsize-48.png" />
