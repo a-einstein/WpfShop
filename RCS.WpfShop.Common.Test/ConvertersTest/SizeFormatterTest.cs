@@ -20,12 +20,13 @@ namespace RCS.WpfShop.Common.Converters.Test
         }
 
         [TestMethod()]
-        [ExpectedException(typeof(NotImplementedException))]
         public void ConvertBackTest()
         {
             var target = new SizeFormatter();
 
-            var result = target.ConvertBack("Some string", null, null, null);
+
+            //Note Despite this assertion, exception handling had to be disabled for testing.
+            Assert.ThrowsException<NotImplementedException>(() => target.ConvertBack("Some string", null, null, null));
         }
     }
 }
