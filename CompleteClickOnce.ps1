@@ -1,6 +1,6 @@
 $applicationName = "RCS.WpfShop"
 
-$buildPath = "$env:SYSTEM_DEFAULTWORKINGDIRECTORY\$applicationName\bin\$env:BUILDCONFIGURATION\$env:BUILDTARGETFRAMEWORK"
+$buildPath = "$env:SYSTEM_DEFAULTWORKINGDIRECTORY\$applicationName\bin\$env:BUILDCONFIGURATION\*"
 Write-Host "buildPath = $buildPath"
 
 # Note Azure build explicitly needs this, the publishing profile is not enough.
