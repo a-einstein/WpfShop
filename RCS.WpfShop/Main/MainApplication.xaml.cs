@@ -68,7 +68,7 @@ namespace RCS.WpfShop.Main
             // Needed for TextWriterTraceListener.
             Trace.AutoFlush = true;
 
-			// For unknown reasons this didn't work for any TraceEventType with lower priority than Verbose.
+            // For unknown reasons this didn't work for any TraceEventType with lower priority than Verbose.
             traceSource.Switch = new SourceSwitch("mainLevel", "Verbose");
 
             // Note that a DefaultTraceListener is added.
@@ -135,7 +135,8 @@ namespace RCS.WpfShop.Main
         #region Error handling
         // Note this meant for general unhandled exceptions.
         // There are other locations for more specific error handling. 
-        // Use the Conditional to avoid undesired exceptions during Test. 
+        // Use the Conditional to avoid undesired exception handling during testing. 
+        [Conditional("DEBUG"), Conditional("RELEASE")]
         private void SetupExceptionHandling()
         {
             DispatcherUnhandledException += Dispatcher_UnhandledException;
