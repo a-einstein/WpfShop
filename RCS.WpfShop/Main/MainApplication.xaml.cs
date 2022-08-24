@@ -135,6 +135,7 @@ namespace RCS.WpfShop.Main
         #region Error handling
         // Note this meant for general unhandled exceptions.
         // There are other locations for more specific error handling. 
+        // Use the Conditional to avoid undesired exceptions during Test. 
         private void SetupExceptionHandling()
         {
             DispatcherUnhandledException += Dispatcher_UnhandledException;
