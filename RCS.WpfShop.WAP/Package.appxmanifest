@@ -7,7 +7,7 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Publisher="CN=Robert"
+    Publisher="CN=RCS"
     Version="0.21.0.0"  Name="RCS.CyclOne.WPF.WAP"/>
 
   <Properties>
