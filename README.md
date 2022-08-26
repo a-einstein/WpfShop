@@ -65,12 +65,12 @@ Currently there are 2 installation methods which start as following.
 ##### MSIX (recommended)
 * If not already done, install the certificate by right clicking on the .cer file. Choose 'Local Machine' and select 'Trusted Root Certification Authorities' as store.
 * Now install the application by double clicking the .msix file. If selected, the application starts right away.
-* Note that the application gets installed in the Windows 'Apps' menu, and will not show up in the 'Programs and Features' list.
+* Note that the application gets installed in the Windows 'Apps' menu as *CyclOne.WPF.WAP*, and will not show up in the 'Programs and Features' list.
 * Both starting and uninstallation (right click) are from the 'Apps' menu.
 
 ##### ClickOnce
 * Launch setup.exe, allow it to continue if needed. Be aware of potentially hidden blockages by virus-defenders.
 * The application should start up right away, but may be hidden behind other windows.
-* The start menu gets a folder added: *Programs / RCS / Shopping*.
-* Uninstallation can be done by: *Control Panel / Program and Features / CyclOne*.
+* The start menu gets a folder added: *Programs / Cyclone.WPF.ClickOnce*.
+* Uninstallation can be done by: *Control Panel / Program and Features / Cyclone.WPF.ClickOnce*.
 * Updating is currently not supported, but can be done manually after uninstalling.
