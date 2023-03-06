@@ -17,6 +17,9 @@ namespace RCS.WpfShop.TestGui
 
         protected static WindowsDriver<AppiumWebElement> TestSession { get; private set; }
 
+        // Note that to succeed it's generally better to move Visual Studio
+        // to a DIFFERENT SCREEN than where the test applications appear.
+
         static GuiTest()
         {
             // Use the namespace as this testclass is functionally linked to it.
