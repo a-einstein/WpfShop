@@ -31,7 +31,7 @@ Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "RCS.WpfShop.WAP", "RCS.WpfS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Azure", "Azure", "{F30129D6-AB71-478D-BFC0-16A33906433C}"
 	ProjectSection(SolutionItems) = preProject
-		CompleteClickOnce.ps1 = CompleteClickOnce.ps1
+		Azure\CompleteClickOnce.ps1 = Azure\CompleteClickOnce.ps1
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCS.WpfShop.AdventureWorks", "RCS.WpfShop.AdventureWorks\RCS.WpfShop.AdventureWorks.csproj", "{049F9480-D1FD-41F2-A53D-0CA5ADBCE51A}"
