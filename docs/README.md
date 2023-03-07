@@ -2,41 +2,28 @@
 
 ![](Demo.JPG)
 
-#### Description
+#### Summary
 Working desktop application for test and demo purpose based on WPF. It simulates limited shopping capabilities based on the AdventureWorks database.
 
-#### News
-* Application now runs on .Net 6.
-* Cart related buttons got icons.
-* Cart became alphabetically sorted.
-* Cart got headers.
-* Enablement of the products overview has been improved.
-
 #### Purpose
-* Explore various techniques based on C# and WPF.
-* Manage the code by Git and GitHub.
-* Explore continuous integration by using combinations of Git, GitHub, TeamCity and Azure DevOps.
-* Explore Scrum process management by integration with Jira and Azure DevOps.
+* Explore coding techniques based on WPF and C#.
+* Explore unit and graphical tests by use of MS Unit Test, Moq and WinAppDriver.
+* Explore continuous integration by using combination of Git, GitHub, and Azure DevOps.
 
-#### Notes
-* This is a near equivalent of my [PortableShop](https://github.com/a-einstein/PortableShop).
-* Submitted to code analysis by [Better Code Hub](https://bettercodehub.com). Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstein/WpfShop)](https://bettercodehub.com)  
-* Connected to automated Azure Devops build and release pipelines. Current build status for the master branch: [![Build Status](https://dev.azure.com/RcsProjects/WpfShop/_apis/build/status/Build?branchName=master)](https://dev.azure.com/RcsProjects/WpfShop/_build/latest?definitionId=12&branchName=master)
+#### Context
+* This is a near equivalent of my **[PortableShop](https://github.com/a-einstein/PortableShop)**.
+* Currently the application is only tested on Windows 10 version 22H2.
+* Connected to Azure Devops self hosted build pipeline, including packaging, unit testing, and GUI testing. Current build status for master branch: ![](https://dev.azure.com/RcsProjects/WpfShop/_apis/build/status/Build?branchName=master)
+* Azure DevOps release pipeline to GitHub.
+* See **[Release Notes](ReleaseNotes.md)** for the latest developments.
 
-#### Prerequisites
-* The application must be configured for a running instance of my [AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md).
-
-#### Known issues
-* None.
-
-#### Aspects
-* WPF.
-* C# + XAML.
+#### Project aspects
+* WPF + C#.
 * MVVM.
+* .Net 7 + .Net Standard 2.0.
 * Prism/Unity Modules & Regions.
 * Unity dependency injection.
 * Client-server.
-* Azure service.
 * WCF + SSL + domain + certificate.
 * asynchronicity.
 * Globalized resources.
@@ -44,18 +31,19 @@ Working desktop application for test and demo purpose based on WPF. It simulates
 * Attached behaviours.
 * Basic styling.
 * Basic exploration of unit testing by means of MS Unit Test Framework.
-* Serious start on integrated GUI testing by means of WinAppDriver/Selenium/Appium.
+* GUI testing by means of WinAppDriver.
 * Mocking data for testing, applying Moq.
 * Transformation of configurations.
 * MSIX installation.
 * Click Once installation.
-* Azure DevOps self hosted build pipeline, including ClickOnce packaging, unit testing, and GUI testing.
-* Azure DevOps release pipeline to either Azure or GitHub.
+
+#### Prerequisites
+* The application must be configured for a running instance of my **[AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md)**.
 
 #### Installation
 The application is plug & play, but use of the data service is on request. Contact the developer ahead. 
 
-Currently there are 2 installation methods which start as following.
+Currently there are 2 installation methods, which both start with these steps.
 * Download the appropriate .zip file under Assets at the **[releases page](https://github.com/a-einstein/WpfShop/releases).**
 * Extract if needed.
 * Continue with the method of choice below.
