@@ -1,4 +1,4 @@
-﻿using RCS.WpfShop.AdventureWorks.ServiceReferences;
+﻿using RCS.WpfShop.AdventureWorks.Wcf;
 using RCS.WpfShop.Common.Interfaces;
 using System;
 using System.Collections.Generic;

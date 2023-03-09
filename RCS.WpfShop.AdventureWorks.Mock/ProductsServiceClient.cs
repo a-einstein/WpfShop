@@ -1,6 +1,6 @@
 ﻿using Moq;
 using RCS.AdventureWorks.Common.DomainClasses;
-using RCS.WpfShop.AdventureWorks.ServiceReferences;
+using RCS.WpfShop.AdventureWorks.Wcf;
 using System.Threading.Tasks;
 
 namespace RCS.WpfShop.AdventureWorks.Mock

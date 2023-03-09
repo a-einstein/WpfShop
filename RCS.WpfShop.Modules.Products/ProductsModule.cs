@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Xml;
 using Unity;
-using static RCS.WpfShop.AdventureWorks.ServiceReferences.ProductsServiceClient;
+using static RCS.WpfShop.AdventureWorks.Wcf.ProductsServiceClient;
 
 namespace RCS.WpfShop.Modules.Products
 {

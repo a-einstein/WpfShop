@@ -1,5 +1,5 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
-using RCS.WpfShop.AdventureWorks.ServiceReferences;
+using RCS.WpfShop.AdventureWorks.Wcf;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

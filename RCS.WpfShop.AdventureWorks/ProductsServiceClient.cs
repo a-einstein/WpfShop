@@ -1,4 +1,4 @@
-﻿namespace RCS.WpfShop.AdventureWorks.ServiceReferences
+﻿namespace RCS.WpfShop.AdventureWorks.Wcf
 {
     public partial class ProductsServiceClient
     {
