@@ -3,6 +3,7 @@ using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Unity;
 using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.WpfShop.AdventureWorks.Wrappers;
 using RCS.WpfShop.Common;
 using RCS.WpfShop.Common.Interfaces;
 using RCS.WpfShop.Common.Modules;
@@ -14,7 +15,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Xml;
 using Unity;
-using static RCS.WpfShop.AdventureWorks.ServiceReferences.ProductsServiceClient;
+// Just for EndpointConfiguration.
+using static RCS.WpfShop.AdventureWorks.Wcf.ProductsServiceClient;
 
 namespace RCS.WpfShop.Modules.Products
 {
@@ -77,6 +79,7 @@ namespace RCS.WpfShop.Modules.Products
 
         #region Utility
 
+        // TODO Currently this just for Wcf. Maybe put somewhere else, or use simpler alternative.
         private static EndpointAndAddressConfiguration ReadServiceConfiguration(string configurationNameBase)
         {
             var configurationFileName = $"{configurationNameBase}.config";

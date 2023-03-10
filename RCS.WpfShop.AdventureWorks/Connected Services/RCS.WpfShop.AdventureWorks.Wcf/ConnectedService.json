@@ -13,7 +13,7 @@
       "System.Collections.Generic.Dictionary`2"
     ],
     "namespaceMappings": [
-      "*, RCS.WpfShop.AdventureWorks.ServiceReferences"
+      "*, RCS.WpfShop.AdventureWorks.Wcf"
     ],
     "references": [
       "R:\\RCS\\shopping\\clients\\WpfShop\\WpfShop.solution\\RCS.WpfShop.AdventureWorks\\bin\\DebugService\\netstandard2.0\\RCS.AdventureWorks.Common.dll",

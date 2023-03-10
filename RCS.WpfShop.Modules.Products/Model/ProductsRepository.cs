@@ -1,5 +1,6 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
-using RCS.WpfShop.AdventureWorks.ServiceReferences;
+using RCS.AdventureWorks.Common.Dtos;
+using RCS.WpfShop.AdventureWorks.Wrappers;
 using RCS.WpfShop.Common.Interfaces;
 using System;
 using System.Collections.Generic;

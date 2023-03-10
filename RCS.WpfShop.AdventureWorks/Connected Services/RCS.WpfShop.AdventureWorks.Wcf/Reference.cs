@@ -7,155 +7,134 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RCS.WpfShop.AdventureWorks.ServiceReferences
+namespace RCS.WpfShop.AdventureWorks.Wcf
 {
-    using System.Runtime.Serialization;
-    
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    // HACK Reusing the DTOs in generation did not succeed.
+    using RCS.AdventureWorks.Common.Dtos;
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductsOverviewList", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos", ItemName="ProductsOverviewObject")]
-    public class ProductsOverviewList : System.Collections.Generic.List<RCS.AdventureWorks.Common.DomainClasses.ProductsOverviewObject>
-    {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductCategoryList", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos", ItemName="ProductCategory")]
-    public class ProductCategoryList : System.Collections.Generic.List<RCS.AdventureWorks.Common.DomainClasses.ProductCategory>
-    {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductSubcategoryList", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos", ItemName="ProductSubcategory")]
-    public class ProductSubcategoryList : System.Collections.Generic.List<RCS.AdventureWorks.Common.DomainClasses.ProductSubcategory>
-    {
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RCS.WpfShop.AdventureWorks.ServiceReferences.IProductsService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="IProductsService")]
     public interface IProductsService
     {
-        
+
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductsOverviewBy", ReplyAction="http://tempuri.org/IProductsService/GetProductsOverviewByResponse")]
-        RCS.WpfShop.AdventureWorks.ServiceReferences.ProductsOverviewList GetProductsOverviewBy(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString);
-        
+        ProductsOverviewList GetProductsOverviewBy(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString);
+
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductsOverviewBy", ReplyAction="http://tempuri.org/IProductsService/GetProductsOverviewByResponse")]
-        System.Threading.Tasks.Task<RCS.WpfShop.AdventureWorks.ServiceReferences.ProductsOverviewList> GetProductsOverviewByAsync(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString);
-        
+        System.Threading.Tasks.Task<ProductsOverviewList> GetProductsOverviewByAsync(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString);
+
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductDetails", ReplyAction="http://tempuri.org/IProductsService/GetProductDetailsResponse")]
         RCS.AdventureWorks.Common.DomainClasses.Product GetProductDetails(int productId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductDetails", ReplyAction="http://tempuri.org/IProductsService/GetProductDetailsResponse")]
+
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductDetails", ReplyAction ="http://tempuri.org/IProductsService/GetProductDetailsResponse")]
         System.Threading.Tasks.Task<RCS.AdventureWorks.Common.DomainClasses.Product> GetProductDetailsAsync(int productId);
-        
+
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductCategories", ReplyAction="http://tempuri.org/IProductsService/GetProductCategoriesResponse")]
-        RCS.WpfShop.AdventureWorks.ServiceReferences.ProductCategoryList GetProductCategories();
-        
+        ProductCategoryList GetProductCategories();
+
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductCategories", ReplyAction="http://tempuri.org/IProductsService/GetProductCategoriesResponse")]
-        System.Threading.Tasks.Task<RCS.WpfShop.AdventureWorks.ServiceReferences.ProductCategoryList> GetProductCategoriesAsync();
-        
+        System.Threading.Tasks.Task<ProductCategoryList> GetProductCategoriesAsync();
+
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductSubcategories", ReplyAction="http://tempuri.org/IProductsService/GetProductSubcategoriesResponse")]
-        RCS.WpfShop.AdventureWorks.ServiceReferences.ProductSubcategoryList GetProductSubcategories();
-        
+        ProductSubcategoryList GetProductSubcategories();
+
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductSubcategories", ReplyAction="http://tempuri.org/IProductsService/GetProductSubcategoriesResponse")]
-        System.Threading.Tasks.Task<RCS.WpfShop.AdventureWorks.ServiceReferences.ProductSubcategoryList> GetProductSubcategoriesAsync();
+        System.Threading.Tasks.Task<ProductSubcategoryList> GetProductSubcategoriesAsync();
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    public interface IProductsServiceChannel : RCS.WpfShop.AdventureWorks.ServiceReferences.IProductsService, System.ServiceModel.IClientChannel
+    public interface IProductsServiceChannel : IProductsService, System.ServiceModel.IClientChannel
     {
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    public partial class ProductsServiceClient : System.ServiceModel.ClientBase<RCS.WpfShop.AdventureWorks.ServiceReferences.IProductsService>, RCS.WpfShop.AdventureWorks.ServiceReferences.IProductsService
+    public partial class ProductsServiceClient : System.ServiceModel.ClientBase<IProductsService>, IProductsService
     {
-        
+
         /// <summary>
         /// Implement this partial method to configure the service endpoint.
         /// </summary>
         /// <param name="serviceEndpoint">The endpoint to configure</param>
         /// <param name="clientCredentials">The client credentials</param>
         static partial void ConfigureEndpoint(System.ServiceModel.Description.ServiceEndpoint serviceEndpoint, System.ServiceModel.Description.ClientCredentials clientCredentials);
-        
-        public ProductsServiceClient(EndpointConfiguration endpointConfiguration) : 
+
+        public ProductsServiceClient(EndpointConfiguration endpointConfiguration) :
                 base(ProductsServiceClient.GetBindingForEndpoint(endpointConfiguration), ProductsServiceClient.GetEndpointAddress(endpointConfiguration))
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
-        
-        public ProductsServiceClient(EndpointConfiguration endpointConfiguration, string remoteAddress) : 
+
+        public ProductsServiceClient(EndpointConfiguration endpointConfiguration, string remoteAddress) :
                 base(ProductsServiceClient.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress))
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
-        
-        public ProductsServiceClient(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
+
+        public ProductsServiceClient(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) :
                 base(ProductsServiceClient.GetBindingForEndpoint(endpointConfiguration), remoteAddress)
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
-        
-        public ProductsServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+
+        public ProductsServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
                 base(binding, remoteAddress)
         {
         }
-        
-        public RCS.WpfShop.AdventureWorks.ServiceReferences.ProductsOverviewList GetProductsOverviewBy(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString)
+
+        public ProductsOverviewList GetProductsOverviewBy(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString)
         {
             return base.Channel.GetProductsOverviewBy(productCategoryId, productSubcategoryId, productNameString);
         }
-        
-        public System.Threading.Tasks.Task<RCS.WpfShop.AdventureWorks.ServiceReferences.ProductsOverviewList> GetProductsOverviewByAsync(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString)
+
+        public System.Threading.Tasks.Task<ProductsOverviewList> GetProductsOverviewByAsync(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString)
         {
             return base.Channel.GetProductsOverviewByAsync(productCategoryId, productSubcategoryId, productNameString);
         }
-        
+
         public RCS.AdventureWorks.Common.DomainClasses.Product GetProductDetails(int productId)
         {
             return base.Channel.GetProductDetails(productId);
         }
-        
+
         public System.Threading.Tasks.Task<RCS.AdventureWorks.Common.DomainClasses.Product> GetProductDetailsAsync(int productId)
         {
             return base.Channel.GetProductDetailsAsync(productId);
         }
-        
-        public RCS.WpfShop.AdventureWorks.ServiceReferences.ProductCategoryList GetProductCategories()
+
+        public ProductCategoryList GetProductCategories()
         {
             return base.Channel.GetProductCategories();
         }
-        
-        public System.Threading.Tasks.Task<RCS.WpfShop.AdventureWorks.ServiceReferences.ProductCategoryList> GetProductCategoriesAsync()
+
+        public System.Threading.Tasks.Task<ProductCategoryList> GetProductCategoriesAsync()
         {
             return base.Channel.GetProductCategoriesAsync();
         }
-        
-        public RCS.WpfShop.AdventureWorks.ServiceReferences.ProductSubcategoryList GetProductSubcategories()
+
+        public ProductSubcategoryList GetProductSubcategories()
         {
             return base.Channel.GetProductSubcategories();
         }
-        
-        public System.Threading.Tasks.Task<RCS.WpfShop.AdventureWorks.ServiceReferences.ProductSubcategoryList> GetProductSubcategoriesAsync()
+
+        public System.Threading.Tasks.Task<ProductSubcategoryList> GetProductSubcategoriesAsync()
         {
             return base.Channel.GetProductSubcategoriesAsync();
         }
-        
+
         public virtual System.Threading.Tasks.Task OpenAsync()
         {
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndOpen));
         }
-        
+
         public virtual System.Threading.Tasks.Task CloseAsync()
         {
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginClose(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndClose));
         }
-        
+
         private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration)
         {
             if ((endpointConfiguration == EndpointConfiguration.WSHttpBinding_IProductsService))
@@ -182,7 +161,7 @@ namespace RCS.WpfShop.AdventureWorks.ServiceReferences
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
-        
+
         private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration)
         {
             if ((endpointConfiguration == EndpointConfiguration.WSHttpBinding_IProductsService))
@@ -195,12 +174,12 @@ namespace RCS.WpfShop.AdventureWorks.ServiceReferences
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
-        
+
         public enum EndpointConfiguration
         {
-            
+
             WSHttpBinding_IProductsService,
-            
+
             BasicHttpBinding_IProductsService,
         }
     }
