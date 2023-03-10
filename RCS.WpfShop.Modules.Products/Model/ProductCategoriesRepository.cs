@@ -1,6 +1,6 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.AdventureWorks.Common.Dtos;
-using RCS.WpfShop.AdventureWorks.Wcf;
+using RCS.WpfShop.AdventureWorks.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

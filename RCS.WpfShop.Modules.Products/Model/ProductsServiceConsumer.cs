@@ -1,4 +1,4 @@
-﻿using RCS.WpfShop.AdventureWorks.Wcf;
+﻿using RCS.WpfShop.AdventureWorks.Wrappers;
 using RCS.WpfShop.Resources;
 using System;
 using System.Diagnostics;
