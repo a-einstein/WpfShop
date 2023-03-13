@@ -9,473 +9,9 @@
 
 namespace RCS.WpfShop.AdventureWorks.CoreWcf
 {
-    using System.Runtime.Serialization;
-    
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductsOverviewList", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos", ItemName="ProductsOverviewObject")]
-    public class ProductsOverviewList : System.Collections.Generic.List<RCS.WpfShop.AdventureWorks.CoreWcf.ProductsOverviewObject>
-    {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductsOverviewObject", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.DomainClasses")]
-    public partial class ProductsOverviewObject : RCS.WpfShop.AdventureWorks.CoreWcf.DomainClass
-    {
-        
-        private string ColorField;
-        
-        private decimal ListPriceField;
-        
-        private string ProductCategoryField;
-        
-        private System.Nullable<int> ProductCategoryIdField;
-        
-        private string ProductSubcategoryField;
-        
-        private System.Nullable<int> ProductSubcategoryIdField;
-        
-        private string SizeField;
-        
-        private string SizeUnitMeasureCodeField;
-        
-        private byte[] ThumbNailPhotoField;
-        
-        private string WeightUnitMeasureCodeField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Color
-        {
-            get
-            {
-                return this.ColorField;
-            }
-            set
-            {
-                this.ColorField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal ListPrice
-        {
-            get
-            {
-                return this.ListPriceField;
-            }
-            set
-            {
-                this.ListPriceField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ProductCategory
-        {
-            get
-            {
-                return this.ProductCategoryField;
-            }
-            set
-            {
-                this.ProductCategoryField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> ProductCategoryId
-        {
-            get
-            {
-                return this.ProductCategoryIdField;
-            }
-            set
-            {
-                this.ProductCategoryIdField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ProductSubcategory
-        {
-            get
-            {
-                return this.ProductSubcategoryField;
-            }
-            set
-            {
-                this.ProductSubcategoryField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> ProductSubcategoryId
-        {
-            get
-            {
-                return this.ProductSubcategoryIdField;
-            }
-            set
-            {
-                this.ProductSubcategoryIdField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Size
-        {
-            get
-            {
-                return this.SizeField;
-            }
-            set
-            {
-                this.SizeField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string SizeUnitMeasureCode
-        {
-            get
-            {
-                return this.SizeUnitMeasureCodeField;
-            }
-            set
-            {
-                this.SizeUnitMeasureCodeField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] ThumbNailPhoto
-        {
-            get
-            {
-                return this.ThumbNailPhotoField;
-            }
-            set
-            {
-                this.ThumbNailPhotoField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string WeightUnitMeasureCode
-        {
-            get
-            {
-                return this.WeightUnitMeasureCodeField;
-            }
-            set
-            {
-                this.WeightUnitMeasureCodeField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DomainClass", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.DomainClasses")]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RCS.WpfShop.AdventureWorks.CoreWcf.Product))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RCS.WpfShop.AdventureWorks.CoreWcf.ProductCategory))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RCS.WpfShop.AdventureWorks.CoreWcf.ProductSubcategory))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RCS.WpfShop.AdventureWorks.CoreWcf.ProductsOverviewObject))]
-    public partial class DomainClass : object
-    {
-        
-        private System.Nullable<int> IdField;
-        
-        private string NameField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> Id
-        {
-            get
-            {
-                return this.IdField;
-            }
-            set
-            {
-                this.IdField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name
-        {
-            get
-            {
-                return this.NameField;
-            }
-            set
-            {
-                this.NameField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Product", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.DomainClasses")]
-    public partial class Product : RCS.WpfShop.AdventureWorks.CoreWcf.DomainClass
-    {
-        
-        private string ColorField;
-        
-        private string DescriptionField;
-        
-        private byte[] LargePhotoField;
-        
-        private decimal ListPriceField;
-        
-        private string ModelNameField;
-        
-        private string ProductCategoryField;
-        
-        private System.Nullable<int> ProductCategoryIdField;
-        
-        private string ProductNumberField;
-        
-        private string ProductSubcategoryField;
-        
-        private System.Nullable<int> ProductSubcategoryIdField;
-        
-        private string SizeField;
-        
-        private string SizeUnitMeasureCodeField;
-        
-        private System.Nullable<decimal> WeightField;
-        
-        private string WeightUnitMeasureCodeField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Color
-        {
-            get
-            {
-                return this.ColorField;
-            }
-            set
-            {
-                this.ColorField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description
-        {
-            get
-            {
-                return this.DescriptionField;
-            }
-            set
-            {
-                this.DescriptionField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] LargePhoto
-        {
-            get
-            {
-                return this.LargePhotoField;
-            }
-            set
-            {
-                this.LargePhotoField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal ListPrice
-        {
-            get
-            {
-                return this.ListPriceField;
-            }
-            set
-            {
-                this.ListPriceField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ModelName
-        {
-            get
-            {
-                return this.ModelNameField;
-            }
-            set
-            {
-                this.ModelNameField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ProductCategory
-        {
-            get
-            {
-                return this.ProductCategoryField;
-            }
-            set
-            {
-                this.ProductCategoryField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> ProductCategoryId
-        {
-            get
-            {
-                return this.ProductCategoryIdField;
-            }
-            set
-            {
-                this.ProductCategoryIdField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ProductNumber
-        {
-            get
-            {
-                return this.ProductNumberField;
-            }
-            set
-            {
-                this.ProductNumberField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ProductSubcategory
-        {
-            get
-            {
-                return this.ProductSubcategoryField;
-            }
-            set
-            {
-                this.ProductSubcategoryField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> ProductSubcategoryId
-        {
-            get
-            {
-                return this.ProductSubcategoryIdField;
-            }
-            set
-            {
-                this.ProductSubcategoryIdField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Size
-        {
-            get
-            {
-                return this.SizeField;
-            }
-            set
-            {
-                this.SizeField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string SizeUnitMeasureCode
-        {
-            get
-            {
-                return this.SizeUnitMeasureCodeField;
-            }
-            set
-            {
-                this.SizeUnitMeasureCodeField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<decimal> Weight
-        {
-            get
-            {
-                return this.WeightField;
-            }
-            set
-            {
-                this.WeightField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string WeightUnitMeasureCode
-        {
-            get
-            {
-                return this.WeightUnitMeasureCodeField;
-            }
-            set
-            {
-                this.WeightUnitMeasureCodeField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductCategory", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.DomainClasses")]
-    public partial class ProductCategory : RCS.WpfShop.AdventureWorks.CoreWcf.DomainClass
-    {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductSubcategory", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.DomainClasses")]
-    public partial class ProductSubcategory : RCS.WpfShop.AdventureWorks.CoreWcf.DomainClass
-    {
-        
-        private System.Nullable<int> ProductCategoryIdField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> ProductCategoryId
-        {
-            get
-            {
-                return this.ProductCategoryIdField;
-            }
-            set
-            {
-                this.ProductCategoryIdField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductCategoryList", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos", ItemName="ProductCategory")]
-    public class ProductCategoryList : System.Collections.Generic.List<RCS.WpfShop.AdventureWorks.CoreWcf.ProductCategory>
-    {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductSubcategoryList", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos", ItemName="ProductSubcategory")]
-    public class ProductSubcategoryList : System.Collections.Generic.List<RCS.WpfShop.AdventureWorks.CoreWcf.ProductSubcategory>
-    {
-    }
+    // HACK Reusing these classes in generation did not succeed.
+    using RCS.AdventureWorks.Common.DomainClasses;
+    using RCS.AdventureWorks.Common.Dtos;
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RCS.WpfShop.AdventureWorks.CoreWcf.IProductsService")]
@@ -483,16 +19,16 @@ namespace RCS.WpfShop.AdventureWorks.CoreWcf
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductsOverviewBy", ReplyAction="http://tempuri.org/IProductsService/GetProductsOverviewByResponse")]
-        System.Threading.Tasks.Task<RCS.WpfShop.AdventureWorks.CoreWcf.ProductsOverviewList> GetProductsOverviewByAsync(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString);
+        System.Threading.Tasks.Task<ProductsOverviewList> GetProductsOverviewByAsync(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductDetails", ReplyAction="http://tempuri.org/IProductsService/GetProductDetailsResponse")]
-        System.Threading.Tasks.Task<RCS.WpfShop.AdventureWorks.CoreWcf.Product> GetProductDetailsAsync(int productId);
+        System.Threading.Tasks.Task<Product> GetProductDetailsAsync(int productId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductCategories", ReplyAction="http://tempuri.org/IProductsService/GetProductCategoriesResponse")]
-        System.Threading.Tasks.Task<RCS.WpfShop.AdventureWorks.CoreWcf.ProductCategoryList> GetProductCategoriesAsync();
+        System.Threading.Tasks.Task<ProductCategoryList> GetProductCategoriesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductSubcategories", ReplyAction="http://tempuri.org/IProductsService/GetProductSubcategoriesResponse")]
-        System.Threading.Tasks.Task<RCS.WpfShop.AdventureWorks.CoreWcf.ProductSubcategoryList> GetProductSubcategoriesAsync();
+        System.Threading.Tasks.Task<ProductSubcategoryList> GetProductSubcategoriesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
@@ -502,7 +38,7 @@ namespace RCS.WpfShop.AdventureWorks.CoreWcf
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    public partial class ProductsServiceClient : System.ServiceModel.ClientBase<RCS.WpfShop.AdventureWorks.CoreWcf.IProductsService>, RCS.WpfShop.AdventureWorks.CoreWcf.IProductsService
+    public partial class ProductsServiceClient : System.ServiceModel.ClientBase<IProductsService>, RCS.WpfShop.AdventureWorks.CoreWcf.IProductsService
     {
         
         /// <summary>
@@ -545,22 +81,22 @@ namespace RCS.WpfShop.AdventureWorks.CoreWcf
         {
         }
         
-        public System.Threading.Tasks.Task<RCS.WpfShop.AdventureWorks.CoreWcf.ProductsOverviewList> GetProductsOverviewByAsync(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString)
+        public System.Threading.Tasks.Task<ProductsOverviewList> GetProductsOverviewByAsync(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString)
         {
             return base.Channel.GetProductsOverviewByAsync(productCategoryId, productSubcategoryId, productNameString);
         }
         
-        public System.Threading.Tasks.Task<RCS.WpfShop.AdventureWorks.CoreWcf.Product> GetProductDetailsAsync(int productId)
+        public System.Threading.Tasks.Task<Product> GetProductDetailsAsync(int productId)
         {
             return base.Channel.GetProductDetailsAsync(productId);
         }
         
-        public System.Threading.Tasks.Task<RCS.WpfShop.AdventureWorks.CoreWcf.ProductCategoryList> GetProductCategoriesAsync()
+        public System.Threading.Tasks.Task<ProductCategoryList> GetProductCategoriesAsync()
         {
             return base.Channel.GetProductCategoriesAsync();
         }
         
-        public System.Threading.Tasks.Task<RCS.WpfShop.AdventureWorks.CoreWcf.ProductSubcategoryList> GetProductSubcategoriesAsync()
+        public System.Threading.Tasks.Task<ProductSubcategoryList> GetProductSubcategoriesAsync()
         {
             return base.Channel.GetProductSubcategoriesAsync();
         }

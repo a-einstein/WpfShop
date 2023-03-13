@@ -9,7 +9,7 @@
 
 namespace RCS.WpfShop.AdventureWorks.Wcf
 {
-    // HACK Reusing the DTOs in generation did not succeed.
+    // HACK Reusing these classes in generation did not succeed.
     using RCS.AdventureWorks.Common.Dtos;
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
