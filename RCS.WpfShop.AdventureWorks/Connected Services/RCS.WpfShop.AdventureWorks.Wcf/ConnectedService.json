@@ -1,4 +1,6 @@
-﻿{
+﻿//TODO Regeneration currently does not succeed, but might simplify the client.
+//TODO This could probably be updated like for CoreWcf, but is left as is because of the previous.
+{
   "ProviderId": "Microsoft.VisualStudio.ConnectedService.Wcf",
   "Version": "15.0.40203.910",
   "GettingStartedDocument": {
