@@ -1,14 +1,14 @@
-## WpfShop: ReleaseNotes x
+## WpfShop: ReleaseNotes 0.22
 
 #### Summary
-First release following new principles.
+Some major structural changes concerning the dataservice, .net version, and documentation.
 
 #### What's new
 * Switched to CoreWcf dataservice.
-* Upgraded to .Net 7.
+* Upgraded .Net from 6 to 7.
+* Updated external libraries.
 * Moved ReadMe to docs.
 * Added ReleaseNotes (this file).
-* Updated external libraries.
 
 #### Fixed
 
