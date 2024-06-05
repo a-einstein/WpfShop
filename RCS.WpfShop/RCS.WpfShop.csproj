@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<PlatformTarget>AnyCPU</PlatformTarget>
-		<TargetFramework>net7.0-windows</TargetFramework>
+		<TargetFramework>net8.0-windows</TargetFramework>
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 		<RuntimeIdentifiers>win-x86</RuntimeIdentifiers>
 		<OutputType>WinExe</OutputType>
