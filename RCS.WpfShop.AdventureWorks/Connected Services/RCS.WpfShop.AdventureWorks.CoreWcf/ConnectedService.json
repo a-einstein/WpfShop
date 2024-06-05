@@ -10,7 +10,7 @@
     "namespaceMappings": [
       "*, RCS.WpfShop.AdventureWorks.CoreWcf"
     ],
-    "targetFramework": "net7.0",
+    "targetFramework": "net8.0",
     "typeReuseMode": "All"
   }
 }
