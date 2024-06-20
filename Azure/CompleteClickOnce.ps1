@@ -1,13 +1,16 @@
 $applicationName = "RCS.WpfShop"
 
-$buildPath = "$env:SYSTEM_DEFAULTWORKINGDIRECTORY\$applicationName\bin\$env:BUILDCONFIGURATION\*"
+# Note dots in names must be replaced by underscores.
+$buildPath = "$env:Build_SourcesDirectory\$applicationName\bin\$env:BuildConfiguration\*"
 Write-Host "buildPath = $buildPath"
 
+Write-Host "PublishRelativeDirectory = $env:PublishRelativeDirectory"
+
 # Note Azure build explicitly needs this, the publishing profile is not enough.
-$publishPath = "$env:SYSTEM_DEFAULTWORKINGDIRECTORY\..\publish\ClickOnce"
+$publishPath = "$env:Build_SourcesDirectory\$env:PublishRelativeDirectory\ClickOnce"
+Write-Host "$publishPath = $publishPath"
 
 # Debugging
-#Write-Host "Start of $publishPath  ======================="
 #Get-ChildItem -Path $publishPath -Recurse
 
 $modulesPath = "$buildPath\Modules"
@@ -32,7 +35,7 @@ $certFile = $env:PFXFILE_SECUREFILEPATH
 Write-Host "certFile = $certFile"
 
 # Used for Mage.
-$env:Path += ";C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools"
+$env:Path += ";C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8.1 Tools"
 
 # Mage documentation
 # https://docs.microsoft.com/en-us/dotnet/framework/tools/mage-exe-manifest-generation-and-editing-tool

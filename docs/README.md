@@ -57,8 +57,8 @@ Currently there are 2 installation methods, which both start with these steps.
 * Both starting and uninstallation (right click) are from the 'Apps' menu.
 
 ##### ClickOnce
-* Launch setup.exe, allow it to continue if needed. Be aware of potentially hidden blockages by virus-defenders.
+* Launch by **setup.exe**, allow it to continue if needed. Be aware of potentially hidden blockages by virus-defenders.
 * The application should start up right away, but may be hidden behind other windows.
-* The start menu gets a folder added: *Programs / Cyclone.WPF.ClickOnce*.
-* Uninstallation can be done by: *Control Panel / Program and Features / Cyclone.WPF.ClickOnce*.
+* The start menu gets the following folder added: *Programs / Cyclone.WPF.ClickOnce / Cyclone*.
+* Uninstallation can be done on: *Control Panel / Program and Features / Cyclone.WPF.ClickOnce*.
 * Updating is currently not supported, but can be done manually after uninstalling.
