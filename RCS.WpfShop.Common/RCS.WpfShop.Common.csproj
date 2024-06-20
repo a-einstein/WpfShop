@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net7.0-windows</TargetFramework>
+		<TargetFramework>net8.0-windows8</TargetFramework>
 		<RuntimeIdentifiers>win-x86</RuntimeIdentifiers>
 		<OutputType>Library</OutputType>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -43,7 +43,7 @@
 		<ProjectReference Include="..\RCS.WpfShop.Resources\RCS.WpfShop.Resources.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
+		<PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.0" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="Prism.Wpf" Version="8.1.97" />
 	</ItemGroup>

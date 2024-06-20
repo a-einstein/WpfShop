@@ -20,12 +20,12 @@ Working desktop application for test and demo purpose based on WPF. It simulates
 #### Project aspects
 * WPF + C#.
 * MVVM.
-* .Net 7 + .Net Standard 2.0.
+* .Net 8.
 * Prism/Unity Modules & Regions.
 * Unity dependency injection.
 * Client-server.
-* WCF + SSL + domain + certificate.
-* asynchronicity.
+* CoreWcf + SSL + domain + certificate.
+* Asynchronicity.
 * Globalized resources.
 * User controls.
 * Attached behaviours.
@@ -39,9 +39,10 @@ Working desktop application for test and demo purpose based on WPF. It simulates
 
 #### Prerequisites
 * The application must be configured for a running instance of my **[AdventureWorks services](https://github.com/a-einstein/AdventureWorks)**.
+* Use of the data service is on request. Contact the developer ahead.
 
 #### Installation
-The application is plug & play, but use of the data service is on request. Contact the developer ahead. 
+The application is plug & play, but note the Prerequisites. 
 
 Currently there are 2 installation methods, which both start with these steps.
 * Download the appropriate .zip file under Assets at the **[releases page](https://github.com/a-einstein/WpfShop/releases).**
@@ -51,14 +52,14 @@ Currently there are 2 installation methods, which both start with these steps.
 * Note that the application produces a .log file in its directory.
 
 ##### MSIX (recommended)
-* If not already done, install the certificate by right clicking on the .cer file. Choose 'Local Machine' and select 'Trusted Root Certification Authorities' as store.
-* Now install the application by double clicking the .msix file. If selected, the application starts right away.
-* Note that the application gets installed in the Windows 'Apps' menu as *CyclOne.WPF.WAP*, and will not show up in the 'Programs and Features' list.
-* Both starting and uninstallation (right click) are from the 'Apps' menu.
+* If not already done, install the certificate by right clicking on the **.cer** file. Choose *Local Machine* and select *Trusted Root Certification Authorities* as store.
+* Now install the application by double clicking the **.msix** file. If selected, the application starts right away.
+* Note that the application gets installed in the Windows *Apps* menu as *CyclOne.WPF.WAP*, and will not show up in the *Programs and Features* list.
+* Both starting and uninstallation (right click) are done in the *Apps* menu.
 
 ##### ClickOnce
-* Launch setup.exe, allow it to continue if needed. Be aware of potentially hidden blockages by virus-defenders.
+* Launch by **setup.exe**, allow it to continue if needed. Be aware of potentially hidden blockages by virus-defenders.
 * The application should start up right away, but may be hidden behind other windows.
-* The start menu gets a folder added: *Programs / Cyclone.WPF.ClickOnce*.
-* Uninstallation can be done by: *Control Panel / Program and Features / Cyclone.WPF.ClickOnce*.
+* The start menu gets the following folder added: *Programs / Cyclone.WPF.ClickOnce / Cyclone*.
+* Uninstallation can be done on: *Control Panel / Program and Features / Cyclone.WPF.ClickOnce*.
 * Updating is currently not supported, but can be done manually after uninstalling.

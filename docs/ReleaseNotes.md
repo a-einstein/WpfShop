@@ -1,15 +1,16 @@
-## WpfShop: ReleaseNotes x
+## WpfShop: ReleaseNotes 0.22
 
 #### Summary
-First release following new principles.
+Structural changes concerning the dataservice, .net version, and documentation.
 
 #### What's new
 * Switched to CoreWcf dataservice.
-* Upgraded to .Net 7.
+* Upgraded .Net from 6 to 8.
+* Updated external libraries.
 * Moved ReadMe to docs.
 * Added ReleaseNotes (this file).
-* Updated external libraries.
 
 #### Fixed
 
 #### Known issues
+* Undesirable name for installation menu: 'Cyclone.WPF.ClickOnce'.
