@@ -6,8 +6,9 @@
     Some only occurring on Azure.
     https://learn.microsoft.com/en-gb/dotnet/standard/frameworks
     -->
-		<TargetFramework>net9.0-windows8</TargetFramework>
-		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<TargetFramework>net9.0-windows10.0.26100.0</TargetFramework>
+    <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 		<RuntimeIdentifiers>win-x86</RuntimeIdentifiers>
 		<OutputType>WinExe</OutputType>
 		<WarningLevel>4</WarningLevel>
