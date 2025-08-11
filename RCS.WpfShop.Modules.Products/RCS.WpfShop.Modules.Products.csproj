@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0-windows8</TargetFramework>
+    <TargetFramework>net9.0-windows10.0.26100.0</TargetFramework>
+    <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
@@ -60,7 +61,7 @@
 		rem Note this is very dependent of framwework, configuration and intended platform, particularly for MSIX!
 		rem TODO This is NOT correct when building for a platform!
 
-		xcopy /i /y "$(SolutionDir)RCS.WpfShop.Modules.Products\bin\$(Configuration)\net8.0-windows8\RCS.WpfShop.Modules.Products.dll" "$(SolutionDir)RCS.WpfShop\bin\$(Configuration)\net8.0-windows8\Modules\"
+		xcopy /i /y "$(SolutionDir)RCS.WpfShop.Modules.Products\bin\$(Configuration)\net9.0-windows10.0.26100.0\RCS.WpfShop.Modules.Products.dll" "$(SolutionDir)RCS.WpfShop\bin\$(Configuration)\net9.0-windows10.0.26100.0\Modules\"
 
 		rem Note that after publishing the modules need to be added to the manifest manually with the tools below.
 		rem - Click Once: ManifestManagerUtility.
