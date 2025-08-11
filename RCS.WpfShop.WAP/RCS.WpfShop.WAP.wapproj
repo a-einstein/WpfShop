@@ -67,7 +67,7 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <EntryPointProjectUniqueName>..\RCS.WpfShop\RCS.WpfShop.csproj</EntryPointProjectUniqueName>
-    <PackageCertificateThumbprint>DD4AE5FC74966D963CB0A16D0549F08482BF7CD8</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>B8B71FCF95CD73FA77A0A17D53F4EE31444589D4</PackageCertificateThumbprint>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
