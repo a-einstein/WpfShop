@@ -1,5 +1,5 @@
 ﻿using Prism.Commands;
-using Prism.Regions;
+using Prism.Navigation.Regions;
 using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.AdventureWorks.Common.Interfaces;
 using RCS.WpfShop.Common.Interfaces;
@@ -112,7 +112,7 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         {
             return
                 base.FilterCanExecute() &&
-                
+
                 (MasterFilterValue != null && !MasterFilterValue.IsEmpty ||
 
                  //TODO Centralize the pattern.

@@ -1,4 +1,4 @@
-﻿using Prism.Regions;
+﻿using Prism.Navigation.Regions;
 using RCS.WpfShop.Common.ViewModels;
 using RCS.WpfShop.Resources;
 using System.Reflection;

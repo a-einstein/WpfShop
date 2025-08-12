@@ -1,5 +1,5 @@
 ﻿using Prism.Commands;
-using Prism.Regions;
+using Prism.Navigation.Regions;
 using RCS.WpfShop.Common;
 using RCS.WpfShop.Common.Navigation;
 using RCS.WpfShop.Common.ViewModels;
