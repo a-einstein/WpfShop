@@ -15,7 +15,7 @@ namespace RCS.WpfShop.TestGui
         private static readonly string appDir;
         private static readonly string appPath;
 
-        protected static WindowsDriver<AppiumWebElement> TestSession { get; private set; }
+        protected static WindowsDriver TestSession { get; private set; }
 
         // Note that to succeed it's generally better to move Visual Studio
         // to a DIFFERENT SCREEN than where the test applications appear.
@@ -27,7 +27,7 @@ namespace RCS.WpfShop.TestGui
             mainName = String.Join(".", classNameParts, 0, 2);
 
             // TODO This should follow the current framework.
-            appDir = $"{AppDomain.CurrentDomain.BaseDirectory}\\..\\..\\..\\..\\{mainName}\\bin\\Test\\net9.0-windows8";
+            appDir = $"{AppDomain.CurrentDomain.BaseDirectory}..\\..\\..\\..\\{mainName}\\bin\\Test\\net9.0-windows10.0.26100.0";
             appPath = $"{appDir}\\{mainName}.exe";
         }
 
@@ -38,13 +38,24 @@ namespace RCS.WpfShop.TestGui
                 EndSession();
 
                 var appiumOptions = new AppiumOptions();
-                appiumOptions.AddAdditionalCapability("app", appPath);
-                appiumOptions.AddAdditionalCapability("appWorkingDir", appDir);
+
+                appiumOptions.App = appPath;
+                appiumOptions.PlatformName =
+                appiumOptions.AutomationName = "windows";
+                appiumOptions.AddAdditionalAppiumOption("appWorkingDir", appDir);
+
+                // Debugging.
+                var capabilities = appiumOptions.ToCapabilities();
+                var optionsDictionary = appiumOptions.ToDictionary();
 
                 // Note WinAppDriver.exe has to be started first.
 
                 // Note WindowsDriver is an AppiumDriver.
-                TestSession = new WindowsDriver<AppiumWebElement>(new Uri(winAppDriverUrl), appiumOptions);
+
+                // TODO Exception here "Bad capabilities. Specify either app or appTopLevelWindow to create a session".
+                // Possibly because of just a prefix-issue as in https://github.com/appium/dotnet-client/issues/487
+                // Maybe just switch back to Appium.WebDriver 4.4.5.
+                TestSession = new WindowsDriver(new Uri(winAppDriverUrl), appiumOptions);
 
                 Assert.IsNotNull(TestSession);
                 Assert.IsNotNull(TestSession.SessionId);
@@ -73,7 +84,9 @@ namespace RCS.WpfShop.TestGui
 
         private static void CheckElement(string name)
         {
-            var element = TestSession.FindElementByClassName(name);
+            var byClassName = By.ClassName(name);
+            var element = TestSession.FindElement(byClassName);
+
             Assert.IsNotNull(element);
         }
 

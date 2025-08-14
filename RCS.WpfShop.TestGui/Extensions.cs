@@ -24,19 +24,21 @@ namespace RCS.WpfShop.TestGui
         // Not applying MainApplication.SetupExceptionHandling prevents them from turning up through the GUI.
         // The actual GUI test may continue undisturbed despite exceptions and even report success.
 
-        public static AppiumWebElement FindElementWait(this WindowsDriver<AppiumWebElement> windowsDriver, By by)
+        public static AppiumElement FindElementWait(this WindowsDriver windowsDriver, By by)
         {
             return StandardWait(windowsDriver).Until(driver => driver.FindElement(by));
         }
 
-        public static AppiumWebElement FindElementByAccessibilityIdWait(this WindowsDriver<AppiumWebElement> windowsDriver, string id)
+        public static AppiumElement FindElementByAccessibilityIdWait(this WindowsDriver windowsDriver, string id)
         {
-            return StandardWait(windowsDriver).Until(driver => driver.FindElementByAccessibilityId(id));
+            var byId = By.Id(id);
+
+            return StandardWait(windowsDriver).Until(driver => driver.FindElement(byId));
         }
 
-        private static DefaultWait<WindowsDriver<AppiumWebElement>> StandardWait(WindowsDriver<AppiumWebElement> windowsDriver)
+        private static DefaultWait<WindowsDriver> StandardWait(WindowsDriver windowsDriver)
         {
-            var wait = new DefaultWait<WindowsDriver<AppiumWebElement>>(windowsDriver)
+            var wait = new DefaultWait<WindowsDriver>(windowsDriver)
             {
                 Timeout = TimeSpan.FromSeconds(20),
                 PollingInterval = TimeSpan.FromSeconds(1),
