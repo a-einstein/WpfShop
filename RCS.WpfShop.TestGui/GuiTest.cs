@@ -15,7 +15,7 @@ namespace RCS.WpfShop.TestGui
         private static readonly string appDir;
         private static readonly string appPath;
 
-        protected static WindowsDriver TestSession { get; private set; }
+        protected static WindowsDriver<AppiumWebElement> TestSession { get; private set; }
 
         // Note that to succeed it's generally better to move Visual Studio
         // to a DIFFERENT SCREEN than where the test applications appear.
@@ -39,23 +39,25 @@ namespace RCS.WpfShop.TestGui
 
                 var appiumOptions = new AppiumOptions();
 
-                appiumOptions.App = appPath;
-                appiumOptions.PlatformName =
-                appiumOptions.AutomationName = "windows";
-                appiumOptions.AddAdditionalAppiumOption("appWorkingDir", appDir);
+                appiumOptions.AddAdditionalCapability("app", appPath);
+                appiumOptions.PlatformName = "windows";
+                appiumOptions.AddAdditionalCapability("appWorkingDir", appDir);
 
                 // Debugging.
+                /*
                 var capabilities = appiumOptions.ToCapabilities();
                 var optionsDictionary = appiumOptions.ToDictionary();
+                */
 
                 // Note WinAppDriver.exe has to be started first.
 
                 // Note WindowsDriver is an AppiumDriver.
 
-                // TODO Exception here "Bad capabilities. Specify either app or appTopLevelWindow to create a session".
-                // Possibly because of just a prefix-issue as in https://github.com/appium/dotnet-client/issues/487
-                // Maybe just switch back to Appium.WebDriver 4.4.5.
-                TestSession = new WindowsDriver(new Uri(winAppDriverUrl), appiumOptions);
+                // Note Appium.WebDriver cannot be higher than 4.4.5.
+                // Otherwise exception "Bad capabilities. Specify either app or appTopLevelWindow to create a session".
+                // Because of just a prefix-issue as in https://github.com/appium/dotnet-client/issues/487
+                // Previous commit had been adapted to 8.0.0.
+                TestSession = new WindowsDriver<AppiumWebElement>(new Uri(winAppDriverUrl), appiumOptions);
 
                 Assert.IsNotNull(TestSession);
                 Assert.IsNotNull(TestSession.SessionId);
