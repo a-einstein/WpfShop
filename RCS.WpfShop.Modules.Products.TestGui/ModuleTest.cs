@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
 using RCS.WpfShop.AdventureWorks.Mock;
 using RCS.WpfShop.Modules.Products.Views;
 using RCS.WpfShop.Resources;
@@ -70,7 +71,8 @@ namespace RCS.WpfShop.Modules.Products.TestGui
 
             // Note that Click must be applied this way. Finding the element separately resulted in only a brief display on screen after which the Display property was false, which prevented Click. 
             // TODO This tends to fail currently.
-            masterFilterComboBox.FindElementByName(categoryExpected.Name).Click();
+            var byCategory = By.Name(categoryExpected.Name);
+            masterFilterComboBox.FindElement(byCategory).Click();
 
             var subcategoriesExpected = await serviceClient.GetProductSubcategoriesAsync();
             const int subcategoryExpectedOrder = 1;
@@ -79,7 +81,9 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             var detailFilterComboBox = TestSession.FindElementByAccessibilityIdWait("DetailFilterComboBox");
             Assert.IsNotNull(detailFilterComboBox);
             detailFilterComboBox.Click();
-            detailFilterComboBox.FindElementByName(subcategoryExpected.Name).Click();
+
+            var bySubcategory = By.Name(subcategoryExpected.Name);
+            detailFilterComboBox.FindElement(bySubcategory).Click();
 
             var searchString = $"{categoryExpected.Id}.{subcategoryExpected.Id}";
             var productsOverviewExpected = await serviceClient.GetProductsOverviewByAsync(categoryExpected.Id, subcategoryExpected.Id, searchString);
@@ -89,7 +93,9 @@ namespace RCS.WpfShop.Modules.Products.TestGui
             Assert.IsNotNull(textFilterControl);
 
             // The true text element within.
-            var textFilterTextBox = textFilterControl.FindElementByClassName("TextBox");
+            var byClassName = By.ClassName("TextBox");
+            var textFilterTextBox = textFilterControl.FindElement(byClassName);
+
             textFilterTextBox.Clear();
             textFilterTextBox.SendKeys(searchString.Substring(0, 2));
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Practices.Unity.Configuration;
+using Prism.Container.Unity;
 using Prism.Ioc;
 using Prism.Modularity;
-using Prism.Unity;
 using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.WpfShop.AdventureWorks.Wrappers;
 using RCS.WpfShop.Common;
@@ -71,7 +71,7 @@ namespace RCS.WpfShop.Modules.Products
             regionManager.RegisterViewWithRegion(Regions.MainViewWidgets, typeof(CartView));
 
             // Activate the Cart which is generally visible when this module is present.
-            regionManager.RequestNavigate(Regions.MainViewWidgets, new Uri(nameof(CartView), UriKind.Relative));
+            regionManager.RequestNavigate(Regions.MainViewWidgets, new Uri(nameof(CartView), UriKind.Relative), (navigationResult) => { }, null);
 
             regionManager.RegisterViewWithRegion(Regions.MainViewMain, typeof(ProductsView));
         }

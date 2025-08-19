@@ -27,7 +27,7 @@ namespace RCS.WpfShop.TestGui
             mainName = String.Join(".", classNameParts, 0, 2);
 
             // TODO This should follow the current framework.
-            appDir = $"{AppDomain.CurrentDomain.BaseDirectory}\\..\\..\\..\\..\\{mainName}\\bin\\Test\\net9.0-windows8";
+            appDir = $"{AppDomain.CurrentDomain.BaseDirectory}..\\..\\..\\..\\{mainName}\\bin\\Test\\net9.0-windows10.0.26100.0";
             appPath = $"{appDir}\\{mainName}.exe";
         }
 
@@ -38,12 +38,25 @@ namespace RCS.WpfShop.TestGui
                 EndSession();
 
                 var appiumOptions = new AppiumOptions();
+
                 appiumOptions.AddAdditionalCapability("app", appPath);
+                appiumOptions.PlatformName = "windows";
                 appiumOptions.AddAdditionalCapability("appWorkingDir", appDir);
+
+                // Debugging.
+                /*
+                var capabilities = appiumOptions.ToCapabilities();
+                var optionsDictionary = appiumOptions.ToDictionary();
+                */
 
                 // Note WinAppDriver.exe has to be started first.
 
                 // Note WindowsDriver is an AppiumDriver.
+
+                // Note Appium.WebDriver cannot be higher than 4.4.5.
+                // Otherwise exception "Bad capabilities. Specify either app or appTopLevelWindow to create a session".
+                // Because of just a prefix-issue as in https://github.com/appium/dotnet-client/issues/487
+                // Previous commit had been adapted to 8.0.0.
                 TestSession = new WindowsDriver<AppiumWebElement>(new Uri(winAppDriverUrl), appiumOptions);
 
                 Assert.IsNotNull(TestSession);
@@ -73,7 +86,9 @@ namespace RCS.WpfShop.TestGui
 
         private static void CheckElement(string name)
         {
-            var element = TestSession.FindElementByClassName(name);
+            var byClassName = By.ClassName(name);
+            var element = TestSession.FindElement(byClassName);
+
             Assert.IsNotNull(element);
         }
 
