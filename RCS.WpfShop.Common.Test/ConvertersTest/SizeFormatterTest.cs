@@ -16,7 +16,7 @@ namespace RCS.WpfShop.Common.Converters.Test
             var result = target.Convert(new object[] { parameter1, parameter2 }, null, null, null);
             var expected = $"{parameter1} {parameter2}";
 
-            Assert.AreEqual(result, expected);
+            Assert.AreEqual(expected, result);
         }
 
         [TestMethod()]
@@ -26,7 +26,7 @@ namespace RCS.WpfShop.Common.Converters.Test
 
 
             //Note Despite this assertion, exception handling had to be disabled for testing.
-            Assert.ThrowsException<NotImplementedException>(() => target.ConvertBack("Some string", null, null, null));
+            Assert.Throws<NotImplementedException>(() => target.ConvertBack("Some string", null, null, null));
         }
     }
 }

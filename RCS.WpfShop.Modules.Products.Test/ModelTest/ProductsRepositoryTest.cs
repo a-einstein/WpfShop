@@ -27,7 +27,7 @@ namespace RCS.WpfShop.Modules.Products.Model.Test
             const string searchString = "2.3";
 
             await target.Refresh(category, subcategory, searchString);
-            Assert.AreEqual(target.Items.Count, expectedServiceCount);
+            Assert.AreEqual(expectedServiceCount, target.Items.Count);
         }
     }
 }

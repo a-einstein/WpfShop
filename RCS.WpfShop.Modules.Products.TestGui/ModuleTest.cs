@@ -108,7 +108,7 @@ namespace RCS.WpfShop.Modules.Products.TestGui
 
             var itemsCountTextBlock = TestSession.FindElementByAccessibilityIdWait("ItemsCountTextBlock");
             Assert.IsNotNull(itemsCountTextBlock);
-            Assert.AreEqual(itemsCountTextBlock.Text, productsOverviewExpected.Count.ToString());
+            Assert.AreEqual(productsOverviewExpected.Count.ToString(), itemsCountTextBlock.Text);
         }
 
         // TODO Test basking.
