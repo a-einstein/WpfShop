@@ -41,9 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Prism.Unity" Version="9.0.537" />
-    <PackageReference Include="System.Threading.Tasks.Extensions">
-      <Version>4.6.3</Version>
-    </PackageReference>
     <PackageReference Include="Unity.Configuration">
       <Version>5.11.2</Version>
     </PackageReference>
