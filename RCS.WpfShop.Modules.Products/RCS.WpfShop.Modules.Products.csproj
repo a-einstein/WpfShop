@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net9.0-windows10.0.26100.0</TargetFramework>
+    <TargetFramework>net10.0-windows10.0.26100.0</TargetFramework>
     <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -40,11 +40,7 @@
     <ProjectReference Include="..\RCS.WpfShop.Resources\RCS.WpfShop.Resources.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Prism.Unity" Version="9.0.537" />
-    <PackageReference Include="System.Threading.Tasks.Extensions">
-      <Version>4.6.3</Version>
-    </PackageReference>
     <PackageReference Include="Unity.Configuration">
       <Version>5.11.2</Version>
     </PackageReference>
@@ -61,7 +57,7 @@
 		rem Note this is very dependent of framwework, configuration and intended platform, particularly for MSIX!
 		rem TODO This is NOT correct when building for a platform!
 
-		xcopy /i /y "$(SolutionDir)RCS.WpfShop.Modules.Products\bin\$(Configuration)\net9.0-windows10.0.26100.0\RCS.WpfShop.Modules.Products.dll" "$(SolutionDir)RCS.WpfShop\bin\$(Configuration)\net9.0-windows10.0.26100.0\Modules\"
+		xcopy /i /y "$(SolutionDir)RCS.WpfShop.Modules.Products\bin\$(Configuration)\net10.0-windows10.0.26100.0\RCS.WpfShop.Modules.Products.dll" "$(SolutionDir)RCS.WpfShop\bin\$(Configuration)\net10.0-windows10.0.26100.0\Modules\"
 
 		rem Note that after publishing the modules need to be added to the manifest manually with the tools below.
 		rem - Click Once: ManifestManagerUtility.

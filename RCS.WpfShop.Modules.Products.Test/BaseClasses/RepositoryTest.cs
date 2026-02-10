@@ -32,17 +32,17 @@ namespace RCS.WpfShop.Modules.Products.Test.BaseClasses
             // Clear.
 
             await target.Clear();
-            Assert.AreEqual(target.Items.Count, 0);
+            Assert.AreEqual(0, target.Items.Count);
 
             // Create
 
             var item1 = Element(1);
             await target.Create(item1);
-            Assert.AreEqual(target.Items.Count, 1);
+            Assert.AreEqual(1, target.Items.Count);
 
             var item2 = Element(2);
             await target.Create(item2);
-            Assert.AreEqual(target.Items.Count, 2);
+            Assert.AreEqual(2, target.Items.Count);
 
             // Update.
 
@@ -52,12 +52,12 @@ namespace RCS.WpfShop.Modules.Products.Test.BaseClasses
             await target.Update(item1);
 
             // Note currently just checking status quo.
-            Assert.AreEqual(target.Items.Count, 2);
+            Assert.AreEqual(2, target.Items.Count);
 
             // Delete.
 
             await target.Delete(item1);
-            Assert.AreEqual(target.Items.Count, 1);
+            Assert.AreEqual(1, target.Items.Count);
         }
 
         protected virtual async Task TestRefresh(int expectedServiceCount, TRepository target)
@@ -65,10 +65,10 @@ namespace RCS.WpfShop.Modules.Products.Test.BaseClasses
             // TODO Better control of expected numbers.
 
             await target.Refresh(addEmptyElement: false);
-            Assert.AreEqual(target.Items.Count, expectedServiceCount);
+            Assert.AreEqual(expectedServiceCount, target.Items.Count);
 
             await target.Refresh(addEmptyElement: true);
-            Assert.AreEqual(target.Items.Count, expectedServiceCount + 1);
+            Assert.AreEqual(expectedServiceCount + 1, target.Items.Count);
         }
 
         private static TElement Element(int suffix)

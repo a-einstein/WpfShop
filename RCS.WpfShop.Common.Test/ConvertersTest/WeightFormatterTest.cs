@@ -16,7 +16,7 @@ namespace RCS.WpfShop.Common.Converters.Test
             var result = target.Convert(new object[] { weight, unit }, null, null, null);
             var expected = $"{weight} {unit}";
 
-            Assert.AreEqual(result, expected);
+            Assert.AreEqual(expected, result);
         }
 
         [TestMethod()]
@@ -25,7 +25,7 @@ namespace RCS.WpfShop.Common.Converters.Test
             var target = new WeightFormatter();
 
             //Note Despite this assertion, exception handling had to be disabled for testing.
-            Assert.ThrowsException<NotImplementedException>(() => target.ConvertBack("Some string", null, null, null));
+            Assert.Throws<NotImplementedException>(() => target.ConvertBack("Some string", null, null, null));
         }
     }
 }
