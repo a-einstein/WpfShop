@@ -3,7 +3,7 @@
 #### Summary
 
 #### What's new
-* Upgraded .Net from 8 to 9.
+* Upgraded .Net from 8 to 10.
 * Updated packages as far as possible.
 
 #### Fixed

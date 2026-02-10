@@ -20,7 +20,7 @@ Working desktop application for test and demo purpose based on WPF. It simulates
 #### Project aspects
 * WPF + C#.
 * MVVM.
-* .Net 9.
+* .Net 10.
 * Prism/Unity Modules & Regions.
 * Unity dependency injection.
 * Client-server.
