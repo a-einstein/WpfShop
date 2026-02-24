@@ -57,6 +57,8 @@ namespace RCS.WpfShop.TestGui
                 // Otherwise exception "Bad capabilities. Specify either app or appTopLevelWindow to create a session".
                 // Because of just a prefix-issue as in https://github.com/appium/dotnet-client/issues/487
                 // Previous commit had been adapted to 8.0.0.
+
+                // TODO >>> 24-02-2026 See stash for latest experiments on Appium.WebDriver 8.0.1 and alternatives.
                 TestSession = new WindowsDriver<AppiumWebElement>(new Uri(winAppDriverUrl), appiumOptions);
 
                 Assert.IsNotNull(TestSession);
