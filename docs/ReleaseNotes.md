@@ -5,6 +5,7 @@
 #### What's new
 * Upgraded .Net from 8 to 10.
 * Updated packages as far as possible.
+* Remove reference to WCF-service.
 
 #### Fixed
 

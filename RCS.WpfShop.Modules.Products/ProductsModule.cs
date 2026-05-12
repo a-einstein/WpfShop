@@ -3,7 +3,6 @@ using Prism.Container.Unity;
 using Prism.Ioc;
 using Prism.Modularity;
 using RCS.AdventureWorks.Common.DomainClasses;
-using RCS.WpfShop.AdventureWorks.Wrappers;
 using RCS.WpfShop.Common;
 using RCS.WpfShop.Common.Interfaces;
 using RCS.WpfShop.Common.Modules;
@@ -13,10 +12,7 @@ using RCS.WpfShop.Modules.Products.Views;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Xml;
 using Unity;
-// Just for EndpointConfiguration.
-using static RCS.WpfShop.AdventureWorks.Wcf.ProductsServiceClient;
 
 namespace RCS.WpfShop.Modules.Products
 {
@@ -38,12 +34,10 @@ namespace RCS.WpfShop.Modules.Products
             // Alternatively the dll.config could be renamed or copied to exe.config by an action in the project file. https://stackoverflow.com/questions/45034007/using-app-config-in-net-core
             var configurationNameBase = $"{AppDomain.CurrentDomain.FriendlyName}.dll";
 
-            var serviceConfiguration = ReadServiceConfiguration(configurationNameBase);
             var unityConfiguration = ReadUnityConfiguration(configurationNameBase);
 
             var container = containerRegistry.GetContainer();
 
-            container.RegisterInstance(serviceConfiguration);
 
             // Register singleton depending on build configuration.
             container.LoadConfiguration(unityConfiguration, "Products");
@@ -78,26 +72,6 @@ namespace RCS.WpfShop.Modules.Products
         #endregion
 
         #region Utility
-
-        // TODO Currently this just for Wcf. Maybe put somewhere else, or use simpler alternative.
-        private static EndpointAndAddressConfiguration ReadServiceConfiguration(string configurationNameBase)
-        {
-            var configurationFileName = $"{configurationNameBase}.config";
-
-            // Use xml reading instead of ConfigurationManager as there are no appropriate classes of ConfigurationSection available.
-            var document = new XmlDocument();
-            document.Load(configurationFileName);
-
-            // Read limited part of the current configuration in file. 
-            var endpointNode = document.DocumentElement.SelectSingleNode("/configuration/system.serviceModel/client/endpoint");
-            var endpointAttributes = endpointNode.Attributes;
-
-            var serviceConfiguration = new EndpointAndAddressConfiguration(
-                Enum.Parse<EndpointConfiguration>(endpointAttributes["bindingConfiguration"].Value),
-                endpointAttributes["address"].Value);
-
-            return serviceConfiguration;
-        }
 
         private static UnityConfigurationSection ReadUnityConfiguration(string configurationNameBase)
         {
